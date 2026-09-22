@@ -7,263 +7,447 @@
 <title>WorldApps</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #0f1115;
-    color: white;
-    min-height: 100vh;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0f1115;
+    color:#fff;
+    min-height:100vh;
 }
 
-/* CABEÇALHO */
-header {
-    height: 70px;
-    background: #171a21;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    border-bottom: 1px solid #292d36;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+body.light{
+    background:#f3f5f8;
+    color:#111;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
+button,
+input,
+textarea{
+    font-family:inherit;
 }
 
-.logo span {
-    color: #00bfff;
+button{
+    cursor:pointer;
 }
 
-nav {
-    display: flex;
-    gap: 10px;
+/* HEADER */
+
+header{
+    height:70px;
+    background:#171a21;
+    border-bottom:1px solid #292e38;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-nav button {
-    background: transparent;
-    border: 0;
-    color: #ddd;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
+body.light header{
+    background:#fff;
+    border-color:#ddd;
 }
 
-nav button:hover {
-    background: #292d36;
-    color: white;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:23px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* HERO */
-.hero {
-    text-align: center;
-    padding: 70px 20px 50px;
-    background:
-        radial-gradient(circle at top, #12344a 0%, #0f1115 55%);
+.logo span{
+    color:#00bfff;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+.menu{
+    display:flex;
+    gap:10px;
 }
 
-.hero h1 span {
-    color: #00bfff;
+.menu button{
+    border:0;
+    background:#252a33;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:10px;
 }
 
-.hero p {
-    color: #aeb4bf;
-    font-size: 18px;
-    margin-bottom: 30px;
+body.light .menu button{
+    background:#e9edf2;
+    color:#111;
 }
 
-.search {
-    width: min(700px, 90%);
-    margin: auto;
-    display: flex;
-    background: #1c2028;
-    border: 1px solid #303641;
-    border-radius: 14px;
-    padding: 6px;
+.menu button:hover{
+    background:#00bfff;
+    color:#fff;
 }
 
-.search input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 15px;
-    font-size: 16px;
+/* PÁGINAS */
+
+.page{
+    display:none;
 }
 
-.search button {
-    background: #00bfff;
-    border: none;
-    border-radius: 10px;
-    padding: 0 22px;
-    cursor: pointer;
-    font-weight: bold;
+.page.active{
+    display:block;
 }
 
-/* CONTEÚDO */
-.container {
-    width: min(1200px, 92%);
-    margin: 40px auto;
+/* HOME */
+
+.hero{
+    text-align:center;
+    padding:70px 20px 35px;
 }
 
-.section-title {
-    font-size: 28px;
-    margin-bottom: 20px;
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#00bfff;
+}
+
+.hero p{
+    color:#aab1bd;
+    font-size:18px;
+}
+
+body.light .hero p{
+    color:#666;
+}
+
+.searchBox{
+    max-width:700px;
+    margin:35px auto;
+    display:flex;
+    gap:10px;
+}
+
+.searchBox input{
+    flex:1;
+    padding:17px;
+    border-radius:14px;
+    border:1px solid #343b48;
+    background:#171a21;
+    color:#fff;
+    font-size:16px;
+    outline:none;
+}
+
+body.light .searchBox input{
+    background:#fff;
+    color:#111;
+    border-color:#ccc;
+}
+
+.searchBox button{
+    padding:0 22px;
+    border:0;
+    border-radius:14px;
+    background:#00bfff;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
 }
 
 /* CATEGORIAS */
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 45px;
+
+.categories{
+    max-width:1200px;
+    margin:0 auto 30px;
+    padding:0 20px;
 }
 
-.category {
-    background: #191d24;
-    border: 1px solid #2b303a;
-    color: #ddd;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
+.categories h2{
+    margin-bottom:15px;
 }
 
-.category:hover,
-.category.active {
-    background: #00bfff;
-    color: #061018;
-    border-color: #00bfff;
+.categoryButtons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
-/* APLICAÇÕES */
-.apps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+.categoryButtons button{
+    padding:10px 15px;
+    border:1px solid #343b48;
+    background:#171a21;
+    color:#fff;
+    border-radius:20px;
 }
 
-.app {
-    background: #181b22;
-    border: 1px solid #292e38;
-    border-radius: 16px;
-    padding: 25px;
-    transition: 0.25s;
-    cursor: pointer;
+body.light .categoryButtons button{
+    background:#fff;
+    color:#111;
+    border-color:#ccc;
 }
 
-.app:hover {
-    transform: translateY(-5px);
-    border-color: #00bfff;
-    box-shadow: 0 10px 30px rgba(0,191,255,0.12);
+.categoryButtons button:hover{
+    background:#00bfff;
+    color:#fff;
 }
 
-.icon {
-    width: 55px;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #252a34;
-    border-radius: 14px;
-    font-size: 28px;
-    margin-bottom: 18px;
+/* APPS */
+
+.appsSection{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 50px;
 }
 
-.app h3 {
-    margin-bottom: 10px;
+.appsSection h2{
+    margin-bottom:20px;
 }
 
-.app p {
-    color: #9da4af;
-    line-height: 1.5;
-    font-size: 14px;
+.appsGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
 }
 
-.app button {
-    margin-top: 18px;
-    background: #252a34;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
+.appCard{
+    background:#171a21;
+    border:1px solid #292e38;
+    border-radius:18px;
+    padding:22px;
+    transition:.2s;
 }
 
-.app button:hover {
-    background: #00bfff;
-    color: #061018;
+body.light .appCard{
+    background:#fff;
+    border-color:#ddd;
 }
 
-/* SEÇÃO CRIAR */
-.create {
-    margin-top: 50px;
-    background: linear-gradient(135deg, #152d3b, #171a21);
-    border: 1px solid #263f4d;
-    border-radius: 18px;
-    padding: 35px;
-    text-align: center;
+.appCard:hover{
+    transform:translateY(-4px);
+    border-color:#00bfff;
 }
 
-.create h2 {
-    margin-bottom: 10px;
+.appIcon{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    background:#252a33;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:15px;
 }
 
-.create p {
-    color: #aeb4bf;
-    margin-bottom: 20px;
+.appCard h3{
+    margin-bottom:8px;
 }
 
-.create button {
-    background: #00bfff;
-    border: none;
-    padding: 13px 22px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
+.appCard p{
+    color:#aab1bd;
+    min-height:45px;
+    margin-bottom:18px;
 }
 
-/* RODAPÉ */
-footer {
-    margin-top: 70px;
-    padding: 30px;
-    text-align: center;
-    background: #171a21;
-    color: #777;
+body.light .appCard p{
+    color:#666;
 }
 
-/* MOBILE */
-@media (max-width: 700px) {
+.cardButtons{
+    display:flex;
+    gap:8px;
+}
 
-    header {
-        padding: 0 15px;
+.openApp{
+    flex:1;
+    border:0;
+    background:#00bfff;
+    color:#fff;
+    padding:11px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.favoriteApp{
+    width:45px;
+    border:0;
+    background:#252a33;
+    color:#fff;
+    border-radius:10px;
+    font-size:18px;
+}
+
+body.light .favoriteApp{
+    background:#e8ebef;
+    color:#111;
+}
+
+/* APP PAGE */
+
+.appPage{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px 60px;
+}
+
+.backButton{
+    border:0;
+    background:#252a33;
+    color:#fff;
+    padding:11px 18px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+body.light .backButton{
+    background:#e4e8ed;
+    color:#111;
+}
+
+.appTitle{
+    background:#171a21;
+    border:1px solid #292e38;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+body.light .appTitle{
+    background:#fff;
+    border-color:#ddd;
+}
+
+.appTitle h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.appTitle p{
+    color:#aab1bd;
+}
+
+body.light .appTitle p{
+    color:#666;
+}
+
+.workspace{
+    background:#171a21;
+    border:1px solid #292e38;
+    border-radius:18px;
+    padding:25px;
+    min-height:350px;
+}
+
+body.light .workspace{
+    background:#fff;
+    border-color:#ddd;
+}
+
+/* ELEMENTOS DAS APPS */
+
+.toolInput{
+    width:100%;
+    padding:14px;
+    background:#0f1115;
+    border:1px solid #343b48;
+    color:#fff;
+    border-radius:10px;
+    margin:10px 0;
+}
+
+body.light .toolInput{
+    background:#f5f6f8;
+    color:#111;
+}
+
+.toolButton{
+    padding:12px 18px;
+    background:#00bfff;
+    color:#fff;
+    border:0;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.resultBox{
+    margin-top:20px;
+    padding:18px;
+    background:#252a33;
+    border-radius:12px;
+    min-height:70px;
+}
+
+body.light .resultBox{
+    background:#edf0f4;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#252a33;
+    padding:14px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+body.light .task{
+    background:#edf0f4;
+}
+
+.deleteTask{
+    border:0;
+    background:#ff4444;
+    color:#fff;
+    padding:7px 10px;
+    border-radius:8px;
+}
+
+/* FAVORITOS */
+
+.favoritesPage{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.favoritesPage h1{
+    margin-bottom:25px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:700px){
+
+    header{
+        padding:0 12px;
     }
 
-    nav button {
-        display: none;
+    .logo{
+        font-size:18px;
     }
 
-    .hero h1 {
-        font-size: 36px;
+    .menu button{
+        padding:8px 10px;
+        font-size:12px;
     }
 
-    .search button {
-        padding: 0 15px;
+    .hero h1{
+        font-size:35px;
+    }
+
+    .searchBox{
+        flex-direction:column;
+    }
+
+    .searchBox button{
+        padding:14px;
     }
 }
 </style>
@@ -273,390 +457,1162 @@ footer {
 
 <header>
 
-    <div class="logo">
-        🌍 World<span>Apps</span>
+    <div class="logo" id="logoButton">
+        🌍 <span>WorldApps</span>
     </div>
 
-    <nav>
-        <button onclick="mostrarInicio()">Início</button>
-        <button onclick="mostrarCategorias()">Categorias</button>
-        <button onclick="mostrarSobre()">Sobre</button>
-    </nav>
+    <div class="menu">
+        <button id="homeButton">🏠 Início</button>
+        <button id="favoritesButton">⭐ Favoritos</button>
+        <button id="themeButton">🌙 Tema</button>
+    </div>
 
 </header>
 
 
-<section class="hero">
+<!-- ================= HOME ================= -->
 
-    <h1>Tudo o que o mundo <span>precisa.</span></h1>
+<section id="homePage" class="page active">
 
-    <p>
-        Encontra ferramentas úteis num único lugar.
-    </p>
+    <div class="hero">
 
-    <div class="search">
+        <h1>
+            Tudo o que o mundo <span>precisa.</span>
+        </h1>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Pesquisar aplicações..."
-            oninput="pesquisarApps()"
-        >
+        <p>
+            Aplicações úteis num só lugar.
+        </p>
 
-        <button onclick="pesquisarApps()">
-            🔎 Pesquisar
-        </button>
+        <div class="searchBox">
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Pesquisar aplicações..."
+            >
+
+            <button id="searchButton">
+                🔎 Pesquisar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="categories">
+
+        <h2>📂 Categorias</h2>
+
+        <div class="categoryButtons">
+
+            <button data-category="Todos">Todos</button>
+            <button data-category="IA">🤖 IA</button>
+            <button data-category="Educação">📚 Educação</button>
+            <button data-category="Finanças">💰 Finanças</button>
+            <button data-category="Produtividade">⚡ Produtividade</button>
+            <button data-category="Casa">🏠 Casa</button>
+            <button data-category="Segurança">🔐 Segurança</button>
+            <button data-category="Entretenimento">🎮 Entretenimento</button>
+            <button data-category="Notas">📝 Notas</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="appsSection">
+
+        <h2>🚀 Aplicações</h2>
+
+        <div id="appsGrid" class="appsGrid"></div>
 
     </div>
 
 </section>
 
 
-<main class="container">
+<!-- ================= APP ================= -->
 
-    <h2 class="section-title">Categorias</h2>
+<section id="appPage" class="page">
 
-    <div class="categories">
+    <div class="appPage">
 
-        <div class="category active" onclick="filtrar('todos', this)">
-            🌍 Todas
-        </div>
-
-        <div class="category" onclick="filtrar('ia', this)">
-            🤖 Inteligência Artificial
-        </div>
-
-        <div class="category" onclick="filtrar('educacao', this)">
-            📚 Educação
-        </div>
-
-        <div class="category" onclick="filtrar('dinheiro', this)">
-            💰 Finanças
-        </div>
-
-        <div class="category" onclick="filtrar('trabalho', this)">
-            💼 Trabalho
-        </div>
-
-        <div class="category" onclick="filtrar('casa', this)">
-            🏠 Casa
-        </div>
-
-        <div class="category" onclick="filtrar('seguranca', this)">
-            🔐 Segurança
-        </div>
-
-        <div class="category" onclick="filtrar('entretenimento', this)">
-            🎮 Entretenimento
-        </div>
-
-    </div>
-
-
-    <h2 class="section-title">Aplicações</h2>
-
-    <div class="apps" id="apps">
-
-
-        <div class="app" data-category="ia" data-name="World AI">
-
-            <div class="icon">🤖</div>
-
-            <h3>World AI</h3>
-
-            <p>
-                Um assistente de inteligência artificial
-                para ajudar em tarefas do dia a dia.
-            </p>
-
-            <button onclick="abrirApp('World AI')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="educacao" data-name="Estudar">
-
-            <div class="icon">📚</div>
-
-            <h3>Estudar</h3>
-
-            <p>
-                Ferramentas para estudar, aprender
-                e organizar os teus estudos.
-            </p>
-
-            <button onclick="abrirApp('Estudar')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="dinheiro" data-name="Gestor de Dinheiro">
-
-            <div class="icon">💰</div>
-
-            <h3>Gestor de Dinheiro</h3>
-
-            <p>
-                Controla despesas, receitas e
-                organiza o teu orçamento.
-            </p>
-
-            <button onclick="abrirApp('Gestor de Dinheiro')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="trabalho" data-name="Produtividade">
-
-            <div class="icon">💼</div>
-
-            <h3>Produtividade</h3>
-
-            <p>
-                Organiza tarefas, projetos e
-                atividades de trabalho.
-            </p>
-
-            <button onclick="abrirApp('Produtividade')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="casa" data-name="Minha Casa">
-
-            <div class="icon">🏠</div>
-
-            <h3>Minha Casa</h3>
-
-            <p>
-                Organiza tarefas e coisas importantes
-                relacionadas com a tua casa.
-            </p>
-
-            <button onclick="abrirApp('Minha Casa')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="seguranca" data-name="Segurança">
-
-            <div class="icon">🔐</div>
-
-            <h3>Segurança</h3>
-
-            <p>
-                Ferramentas para ajudar a proteger
-                as tuas contas e informações.
-            </p>
-
-            <button onclick="abrirApp('Segurança')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="entretenimento" data-name="Entretenimento">
-
-            <div class="icon">🎮</div>
-
-            <h3>Entretenimento</h3>
-
-            <p>
-                Jogos, vídeos e outras formas
-                de entretenimento.
-            </p>
-
-            <button onclick="abrirApp('Entretenimento')">
-                Abrir
-            </button>
-
-        </div>
-
-
-        <div class="app" data-category="todos" data-name="Notas">
-
-            <div class="icon">📝</div>
-
-            <h3>Notas</h3>
-
-            <p>
-                Guarda ideias, listas e informações
-                importantes num só lugar.
-            </p>
-
-            <button onclick="abrirApp('Notas')">
-                Abrir
-            </button>
-
-        </div>
-
-
-    </div>
-
-
-    <section class="create">
-
-        <h2>🚀 Tens uma ideia?</h2>
-
-        <p>
-            O WorldApps pode crescer com novas aplicações.
-        </p>
-
-        <button onclick="novaIdeia()">
-            💡 Sugerir aplicação
+        <button id="backButton" class="backButton">
+            ← Voltar
         </button>
 
-    </section>
+        <div class="appTitle">
 
-</main>
+            <h2 id="appTitleText"></h2>
+
+            <p id="appDescription"></p>
+
+        </div>
+
+        <div id="workspace" class="workspace"></div>
+
+    </div>
+
+</section>
 
 
-<footer>
+<!-- ================= FAVORITOS ================= -->
 
-    🌍 WorldApps © 2026
-    <br><br>
-    Um lugar para aplicações úteis.
+<section id="favoritesPage" class="page">
 
-</footer>
+    <div class="favoritesPage">
+
+        <h1>⭐ Os meus favoritos</h1>
+
+        <div id="favoritesGrid" class="appsGrid"></div>
+
+    </div>
+
+</section>
 
 
 <script>
 
-/* PESQUISA */
+/* =========================================
+   DADOS DAS APLICAÇÕES
+========================================= */
 
-function pesquisarApps() {
+const apps = [
 
-    const texto =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
+    {
+        id:"ai",
+        name:"World AI",
+        icon:"🤖",
+        category:"IA",
+        description:"Um assistente inteligente para responder às tuas perguntas."
+    },
 
-    const apps =
-        document.querySelectorAll(".app");
+    {
+        id:"study",
+        name:"Estudar",
+        icon:"📚",
+        category:"Educação",
+        description:"Organiza tarefas e ajuda-te a estudar."
+    },
 
-    apps.forEach(app => {
+    {
+        id:"money",
+        name:"Gestor de Dinheiro",
+        icon:"💰",
+        category:"Finanças",
+        description:"Controla as tuas despesas."
+    },
 
-        const nome =
-            app.dataset.name.toLowerCase();
+    {
+        id:"productivity",
+        name:"Produtividade",
+        icon:"⚡",
+        category:"Produtividade",
+        description:"Organiza as tuas tarefas."
+    },
 
-        if (nome.includes(texto)) {
-            app.style.display = "block";
-        } else {
-            app.style.display = "none";
-        }
+    {
+        id:"home",
+        name:"Minha Casa",
+        icon:"🏠",
+        category:"Casa",
+        description:"Organiza informações importantes da tua casa."
+    },
 
-    });
+    {
+        id:"security",
+        name:"Segurança",
+        icon:"🔐",
+        category:"Segurança",
+        description:"Verifica a força das tuas palavras-passe."
+    },
 
-}
+    {
+        id:"games",
+        name:"Entretenimento",
+        icon:"🎮",
+        category:"Entretenimento",
+        description:"Jogos simples para te divertires."
+    },
 
+    {
+        id:"notes",
+        name:"Notas",
+        icon:"📝",
+        category:"Notas",
+        description:"Escreve e guarda as tuas notas."
+    }
 
-/* FILTRO */
-
-function filtrar(categoria, elemento) {
-
-    document
-        .querySelectorAll(".category")
-        .forEach(c => c.classList.remove("active"));
-
-    elemento.classList.add("active");
-
-    const apps =
-        document.querySelectorAll(".app");
-
-    apps.forEach(app => {
-
-        if (
-            categoria === "todos" ||
-            app.dataset.category === categoria
-        ) {
-
-            app.style.display = "block";
-
-        } else {
-
-            app.style.display = "none";
-
-        }
-
-    });
-
-}
+];
 
 
-/* ABRIR APLICAÇÃO */
+/* =========================================
+   ELEMENTOS
+========================================= */
 
-function abrirApp(nome) {
+const homePage = document.getElementById("homePage");
+const appPage = document.getElementById("appPage");
+const favoritesPage = document.getElementById("favoritesPage");
 
-    alert(
-        "🚀 " + nome +
-        "\\n\\nEsta aplicação será criada numa próxima versão do WorldApps!"
+const appsGrid = document.getElementById("appsGrid");
+const favoritesGrid = document.getElementById("favoritesGrid");
+
+const appTitleText = document.getElementById("appTitleText");
+const appDescription = document.getElementById("appDescription");
+const workspace = document.getElementById("workspace");
+
+const searchInput = document.getElementById("searchInput");
+
+
+/* =========================================
+   FAVORITOS
+========================================= */
+
+let favorites =
+    JSON.parse(localStorage.getItem("worldapps_favorites") || "[]");
+
+
+function saveFavorites(){
+
+    localStorage.setItem(
+        "worldapps_favorites",
+        JSON.stringify(favorites)
     );
 
 }
 
 
-/* SUGESTÃO */
+/* =========================================
+   MOSTRAR PÁGINA
+========================================= */
 
-function novaIdeia() {
+function showPage(page){
 
-    const ideia =
-        prompt("💡 Que aplicação gostarias de ver no WorldApps?");
+    homePage.classList.remove("active");
+    appPage.classList.remove("active");
+    favoritesPage.classList.remove("active");
 
-    if (ideia) {
+    page.classList.add("active");
 
-        alert(
-            "Obrigado! 🚀\\n\\nA tua ideia foi registada: " +
-            ideia
-        );
+    window.scrollTo(0,0);
+}
+
+
+/* =========================================
+   DESENHAR APPS
+========================================= */
+
+function renderApps(list = apps){
+
+    appsGrid.innerHTML = "";
+
+    if(list.length === 0){
+
+        appsGrid.innerHTML = `
+            <div style="padding:30px">
+                😕 Nenhuma aplicação encontrada.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach(app => {
+
+        const card = document.createElement("div");
+
+        card.className = "appCard";
+
+        const isFavorite = favorites.includes(app.id);
+
+        card.innerHTML = `
+
+            <div class="appIcon">
+                ${app.icon}
+            </div>
+
+            <h3>
+                ${app.name}
+            </h3>
+
+            <p>
+                ${app.description}
+            </p>
+
+            <div class="cardButtons">
+
+                <button
+                    class="openApp"
+                    data-id="${app.id}">
+                    Abrir
+                </button>
+
+                <button
+                    class="favoriteApp"
+                    data-id="${app.id}">
+                    ${isFavorite ? "★" : "☆"}
+                </button>
+
+            </div>
+        `;
+
+        appsGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================
+   FAVORITOS
+========================================= */
+
+function renderFavorites(){
+
+    favoritesGrid.innerHTML = "";
+
+    const favoriteApps =
+        apps.filter(app => favorites.includes(app.id));
+
+
+    if(favoriteApps.length === 0){
+
+        favoritesGrid.innerHTML = `
+            <div>
+                Ainda não tens aplicações favoritas.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    favoriteApps.forEach(app => {
+
+        const card = document.createElement("div");
+
+        card.className = "appCard";
+
+        card.innerHTML = `
+
+            <div class="appIcon">
+                ${app.icon}
+            </div>
+
+            <h3>
+                ${app.name}
+            </h3>
+
+            <p>
+                ${app.description}
+            </p>
+
+            <div class="cardButtons">
+
+                <button
+                    class="openApp"
+                    data-id="${app.id}">
+                    Abrir
+                </button>
+
+                <button
+                    class="favoriteApp"
+                    data-id="${app.id}">
+                    ★
+                </button>
+
+            </div>
+        `;
+
+        favoritesGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================
+   ABRIR APLICAÇÃO
+========================================= */
+
+function openApp(id){
+
+    const app = apps.find(item => item.id === id);
+
+    if(!app){
+        return;
+    }
+
+
+    appTitleText.textContent =
+        app.icon + " " + app.name;
+
+    appDescription.textContent =
+        app.description;
+
+
+    workspace.innerHTML = "";
+
+
+    /* WORLD AI */
+
+    if(id === "ai"){
+
+        workspace.innerHTML = `
+
+            <h2>🤖 World AI</h2>
+
+            <p style="margin-top:10px">
+                Escreve uma pergunta:
+            </p>
+
+            <input
+                id="aiInput"
+                class="toolInput"
+                placeholder="Escreve aqui..."
+            >
+
+            <button id="aiButton" class="toolButton">
+                Perguntar
+            </button>
+
+            <div id="aiResult" class="resultBox">
+                O World AI está pronto.
+            </div>
+        `;
+
+
+        document
+        .getElementById("aiButton")
+        .addEventListener("click",function(){
+
+            const question =
+                document.getElementById("aiInput").value.trim();
+
+            const result =
+                document.getElementById("aiResult");
+
+
+            if(!question){
+
+                result.textContent =
+                    "Escreve primeiro uma pergunta.";
+
+                return;
+            }
+
+
+            result.textContent =
+                "🤖 World AI: Recebi a tua pergunta: " +
+                question +
+                ". Esta é a versão local do World AI.";
+
+        });
 
     }
 
-}
+
+    /* ESTUDAR */
+
+    else if(id === "study"){
+
+        workspace.innerHTML = `
+
+            <h2>📚 Lista de estudo</h2>
+
+            <input
+                id="studyInput"
+                class="toolInput"
+                placeholder="Nova tarefa..."
+            >
+
+            <button id="studyButton" class="toolButton">
+                Adicionar
+            </button>
+
+            <div id="studyList"></div>
+        `;
 
 
-/* MENU */
+        const input =
+            document.getElementById("studyInput");
 
-function mostrarInicio() {
+        const button =
+            document.getElementById("studyButton");
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
+        const list =
+            document.getElementById("studyList");
 
 
-function mostrarCategorias() {
+        button.addEventListener("click",function(){
 
-    document
-        .querySelector(".categories")
-        .scrollIntoView({
-            behavior: "smooth"
+            const text =
+                input.value.trim();
+
+            if(!text){
+                return;
+            }
+
+
+            const task =
+                document.createElement("div");
+
+            task.className = "task";
+
+            task.innerHTML = `
+                <span>📚 ${text}</span>
+                <button class="deleteTask">X</button>
+            `;
+
+
+            task
+            .querySelector(".deleteTask")
+            .addEventListener("click",function(){
+
+                task.remove();
+
+            });
+
+
+            list.appendChild(task);
+
+            input.value = "";
+
         });
 
+    }
+
+
+    /* DINHEIRO */
+
+    else if(id === "money"){
+
+        workspace.innerHTML = `
+
+            <h2>💰 Gestor de Dinheiro</h2>
+
+            <input
+                id="moneyInput"
+                class="toolInput"
+                type="number"
+                placeholder="Valor da despesa"
+            >
+
+            <button id="moneyButton" class="toolButton">
+                Adicionar despesa
+            </button>
+
+            <div id="moneyResult" class="resultBox">
+                Total: 0 €
+            </div>
+        `;
+
+
+        let total = 0;
+
+
+        document
+        .getElementById("moneyButton")
+        .addEventListener("click",function(){
+
+            const value =
+                Number(document.getElementById("moneyInput").value);
+
+
+            if(!value){
+                return;
+            }
+
+
+            total += value;
+
+
+            document
+            .getElementById("moneyResult")
+            .textContent =
+                "Total: " + total.toFixed(2) + " €";
+
+
+            document
+            .getElementById("moneyInput")
+            .value = "";
+
+        });
+
+    }
+
+
+    /* PRODUTIVIDADE */
+
+    else if(id === "productivity"){
+
+        workspace.innerHTML = `
+
+            <h2>⚡ Produtividade</h2>
+
+            <input
+                id="prodInput"
+                class="toolInput"
+                placeholder="Nova tarefa..."
+            >
+
+            <button id="prodButton" class="toolButton">
+                Adicionar
+            </button>
+
+            <div id="prodList"></div>
+        `;
+
+
+        const input =
+            document.getElementById("prodInput");
+
+        const button =
+            document.getElementById("prodButton");
+
+        const list =
+            document.getElementById("prodList");
+
+
+        button.addEventListener("click",function(){
+
+            if(!input.value.trim()){
+                return;
+            }
+
+
+            const task =
+                document.createElement("div");
+
+            task.className = "task";
+
+
+            task.innerHTML = `
+
+                <span>⚡ ${input.value}</span>
+
+                <button class="deleteTask">
+                    X
+                </button>
+
+            `;
+
+
+            task
+            .querySelector(".deleteTask")
+            .addEventListener("click",function(){
+
+                task.remove();
+
+            });
+
+
+            list.appendChild(task);
+
+            input.value = "";
+
+        });
+
+    }
+
+
+    /* CASA */
+
+    else if(id === "home"){
+
+        workspace.innerHTML = `
+
+            <h2>🏠 Minha Casa</h2>
+
+            <p style="margin-top:10px">
+                Adiciona coisas importantes da tua casa.
+            </p>
+
+            <input
+                id="homeInput"
+                class="toolInput"
+                placeholder="Ex: Comprar lâmpadas"
+            >
+
+            <button id="homeAdd" class="toolButton">
+                Adicionar
+            </button>
+
+            <div id="homeList"></div>
+        `;
+
+
+        document
+        .getElementById("homeAdd")
+        .addEventListener("click",function(){
+
+            const input =
+                document.getElementById("homeInput");
+
+            if(!input.value.trim()){
+                return;
+            }
+
+
+            const item =
+                document.createElement("div");
+
+            item.className = "task";
+
+            item.innerHTML = `
+
+                <span>🏠 ${input.value}</span>
+
+                <button class="deleteTask">
+                    X
+                </button>
+
+            `;
+
+
+            item
+            .querySelector(".deleteTask")
+            .addEventListener("click",function(){
+
+                item.remove();
+
+            });
+
+
+            document
+            .getElementById("homeList")
+            .appendChild(item);
+
+
+            input.value = "";
+
+        });
+
+    }
+
+
+    /* SEGURANÇA */
+
+    else if(id === "security"){
+
+        workspace.innerHTML = `
+
+            <h2>🔐 Verificador de palavra-passe</h2>
+
+            <input
+                id="passwordInput"
+                class="toolInput"
+                type="password"
+                placeholder="Escreve uma palavra-passe"
+            >
+
+            <button id="securityButton" class="toolButton">
+                Verificar
+            </button>
+
+            <div id="securityResult" class="resultBox">
+                Ainda não verificaste.
+            </div>
+        `;
+
+
+        document
+        .getElementById("securityButton")
+        .addEventListener("click",function(){
+
+            const password =
+                document
+                .getElementById("passwordInput")
+                .value;
+
+
+            let score = 0;
+
+
+            if(password.length >= 8){
+                score++;
+            }
+
+            if(/[A-Z]/.test(password)){
+                score++;
+            }
+
+            if(/[0-9]/.test(password)){
+                score++;
+            }
+
+            if(/[^A-Za-z0-9]/.test(password)){
+                score++;
+            }
+
+
+            let result = "";
+
+
+            if(score <= 1){
+                result = "🔴 Fraca";
+            }
+            else if(score === 2){
+                result = "🟠 Média";
+            }
+            else if(score === 3){
+                result = "🟢 Boa";
+            }
+            else{
+                result = "🟢 Muito forte";
+            }
+
+
+            document
+            .getElementById("securityResult")
+            .textContent =
+                "Força: " + result;
+
+        });
+
+    }
+
+
+    /* JOGO */
+
+    else if(id === "games"){
+
+        let number =
+            Math.floor(Math.random()*10)+1;
+
+
+        workspace.innerHTML = `
+
+            <h2>🎮 Adivinha o número</h2>
+
+            <p style="margin-top:10px">
+                Estou a pensar num número de 1 a 10.
+            </p>
+
+            <input
+                id="gameInput"
+                class="toolInput"
+                type="number"
+                min="1"
+                max="10"
+                placeholder="Número"
+            >
+
+            <button id="gameButton" class="toolButton">
+                Tentar
+            </button>
+
+            <div id="gameResult" class="resultBox">
+                Boa sorte!
+            </div>
+        `;
+
+
+        document
+        .getElementById("gameButton")
+        .addEventListener("click",function(){
+
+            const guess =
+                Number(document.getElementById("gameInput").value);
+
+
+            const result =
+                document.getElementById("gameResult");
+
+
+            if(guess === number){
+
+                result.textContent =
+                    "🎉 Acertaste! Novo número escolhido.";
+
+                number =
+                    Math.floor(Math.random()*10)+1;
+
+            }
+            else{
+
+                result.textContent =
+                    "❌ Não acertaste. Tenta novamente.";
+
+            }
+
+        });
+
+    }
+
+
+    /* NOTAS */
+
+    else if(id === "notes"){
+
+        const saved =
+            localStorage.getItem("worldapps_notes") || "";
+
+
+        workspace.innerHTML = `
+
+            <h2>📝 As minhas notas</h2>
+
+            <textarea
+                id="notesArea"
+                class="toolInput"
+                style="height:220px"
+                placeholder="Escreve aqui..."
+            >${saved}</textarea>
+
+            <button id="saveNotes" class="toolButton">
+                💾 Guardar notas
+            </button>
+
+            <div id="notesResult" class="resultBox">
+                As notas são guardadas neste navegador.
+            </div>
+        `;
+
+
+        document
+        .getElementById("saveNotes")
+        .addEventListener("click",function(){
+
+            const text =
+                document.getElementById("notesArea").value;
+
+
+            localStorage.setItem(
+                "worldapps_notes",
+                text
+            );
+
+
+            document
+            .getElementById("notesResult")
+            .textContent =
+                "✅ Notas guardadas!";
+
+        });
+
+    }
+
+
+    showPage(appPage);
+
 }
 
 
-function mostrarSobre() {
+/* =========================================
+   EVENTOS DOS APPS
+========================================= */
 
-    alert(
-        "🌍 WorldApps\\n\\n" +
-        "Uma plataforma para reunir aplicações úteis " +
-        "num único lugar."
+document.addEventListener("click",function(event){
+
+    const openButton =
+        event.target.closest(".openApp");
+
+
+    if(openButton){
+
+        openApp(openButton.dataset.id);
+
+        return;
+    }
+
+
+    const favoriteButton =
+        event.target.closest(".favoriteApp");
+
+
+    if(favoriteButton){
+
+        const id =
+            favoriteButton.dataset.id;
+
+
+        if(favorites.includes(id)){
+
+            favorites =
+                favorites.filter(item => item !== id);
+
+        }
+        else{
+
+            favorites.push(id);
+
+        }
+
+
+        saveFavorites();
+
+        renderApps();
+
+        renderFavorites();
+
+    }
+
+});
+
+
+/* =========================================
+   NAVEGAÇÃO
+========================================= */
+
+document
+.getElementById("homeButton")
+.addEventListener("click",function(){
+
+    showPage(homePage);
+
+});
+
+
+document
+.getElementById("logoButton")
+.addEventListener("click",function(){
+
+    showPage(homePage);
+
+});
+
+
+document
+.getElementById("backButton")
+.addEventListener("click",function(){
+
+    showPage(homePage);
+
+});
+
+
+document
+.getElementById("favoritesButton")
+.addEventListener("click",function(){
+
+    renderFavorites();
+
+    showPage(favoritesPage);
+
+});
+
+
+/* =========================================
+   TEMA
+========================================= */
+
+document
+.getElementById("themeButton")
+.addEventListener("click",function(){
+
+    document.body.classList.toggle("light");
+
+
+    localStorage.setItem(
+        "worldapps_theme",
+        document.body.classList.contains("light")
+            ? "light"
+            : "dark"
     );
 
+});
+
+
+if(
+    localStorage.getItem("worldapps_theme")
+    === "light"
+){
+
+    document.body.classList.add("light");
+
 }
+
+
+/* =========================================
+   PESQUISA
+========================================= */
+
+function searchApps(){
+
+    const query =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+    const result =
+        apps.filter(app =>
+
+            app.name.toLowerCase().includes(query) ||
+
+            app.description.toLowerCase().includes(query) ||
+
+            app.category.toLowerCase().includes(query)
+
+        );
+
+
+    renderApps(result);
+
+}
+
+
+document
+.getElementById("searchButton")
+.addEventListener("click",searchApps);
+
+
+searchInput
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        searchApps();
+
+    }
+
+});
+
+
+/* =========================================
+   CATEGORIAS
+========================================= */
+
+document
+.querySelectorAll(".categoryButtons button")
+.forEach(button => {
+
+    button.addEventListener("click",function(){
+
+        const category =
+            button.dataset.category;
+
+
+        if(category === "Todos"){
+
+            renderApps();
+
+            return;
+        }
+
+
+        const result =
+            apps.filter(app =>
+                app.category === category
+            );
+
+
+        renderApps(result);
+
+    });
+
+});
+
+
+/* =========================================
+   INICIAR
+========================================= */
+
+renderApps();
 
 </script>
 
