@@ -15,50 +15,35 @@
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#0f1115;
-    color:#fff;
+    background:#101318;
+    color:white;
     min-height:100vh;
 }
 
 body.light{
-    background:#f3f5f8;
+    background:#f2f4f7;
     color:#111;
 }
 
-button,
-input,
-textarea{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-/* HEADER */
-
 header{
     height:70px;
-    background:#171a21;
-    border-bottom:1px solid #292e38;
+    background:#191d24;
+    border-bottom:1px solid #303641;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 25px;
     position:sticky;
     top:0;
-    z-index:1000;
+    z-index:100;
 }
 
 body.light header{
-    background:#fff;
+    background:white;
     border-color:#ddd;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
     font-size:23px;
     font-weight:bold;
     cursor:pointer;
@@ -70,28 +55,31 @@ body.light header{
 
 .menu{
     display:flex;
-    gap:10px;
+    gap:8px;
+}
+
+button{
+    cursor:pointer;
+    font-family:Arial,sans-serif;
 }
 
 .menu button{
     border:0;
-    background:#252a33;
-    color:#fff;
-    padding:10px 15px;
     border-radius:10px;
+    padding:10px 14px;
+    background:#292e37;
+    color:white;
 }
 
 body.light .menu button{
-    background:#e9edf2;
+    background:#e7eaf0;
     color:#111;
 }
 
 .menu button:hover{
     background:#00bfff;
-    color:#fff;
+    color:white;
 }
-
-/* PÁGINAS */
 
 .page{
     display:none;
@@ -101,15 +89,13 @@ body.light .menu button{
     display:block;
 }
 
-/* HOME */
-
 .hero{
     text-align:center;
     padding:70px 20px 35px;
 }
 
 .hero h1{
-    font-size:48px;
+    font-size:46px;
     margin-bottom:15px;
 }
 
@@ -118,7 +104,7 @@ body.light .menu button{
 }
 
 .hero p{
-    color:#aab1bd;
+    color:#aeb5c0;
     font-size:18px;
 }
 
@@ -126,118 +112,103 @@ body.light .hero p{
     color:#666;
 }
 
-.searchBox{
+.search{
     max-width:700px;
     margin:35px auto;
     display:flex;
     gap:10px;
 }
 
-.searchBox input{
+.search input{
     flex:1;
-    padding:17px;
-    border-radius:14px;
-    border:1px solid #343b48;
-    background:#171a21;
-    color:#fff;
+    padding:16px;
+    border-radius:12px;
+    border:1px solid #363d49;
+    background:#191d24;
+    color:white;
     font-size:16px;
     outline:none;
 }
 
-body.light .searchBox input{
-    background:#fff;
+body.light .search input{
+    background:white;
     color:#111;
-    border-color:#ccc;
 }
 
-.searchBox button{
-    padding:0 22px;
+.search button{
     border:0;
-    border-radius:14px;
+    border-radius:12px;
     background:#00bfff;
-    color:#fff;
-    font-size:16px;
+    color:white;
+    padding:0 20px;
     font-weight:bold;
 }
 
-/* CATEGORIAS */
-
-.categories{
-    max-width:1200px;
-    margin:0 auto 30px;
-    padding:0 20px;
-}
-
-.categories h2{
-    margin-bottom:15px;
-}
-
-.categoryButtons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.categoryButtons button{
-    padding:10px 15px;
-    border:1px solid #343b48;
-    background:#171a21;
-    color:#fff;
-    border-radius:20px;
-}
-
-body.light .categoryButtons button{
-    background:#fff;
-    color:#111;
-    border-color:#ccc;
-}
-
-.categoryButtons button:hover{
-    background:#00bfff;
-    color:#fff;
-}
-
-/* APPS */
-
-.appsSection{
+.container{
     max-width:1200px;
     margin:auto;
     padding:0 20px 50px;
 }
 
-.appsSection h2{
-    margin-bottom:20px;
+h2{
+    margin-bottom:18px;
 }
 
-.appsGrid{
+.categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.categories button{
+    border:1px solid #363d49;
+    border-radius:20px;
+    background:#191d24;
+    color:white;
+    padding:10px 15px;
+}
+
+body.light .categories button{
+    background:white;
+    color:#111;
+    border-color:#ccc;
+}
+
+.categories button:hover{
+    background:#00bfff;
+    color:white;
+}
+
+.apps{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:20px;
 }
 
-.appCard{
-    background:#171a21;
-    border:1px solid #292e38;
+.card{
+    background:#191d24;
+    border:1px solid #303641;
     border-radius:18px;
     padding:22px;
     transition:.2s;
 }
 
-body.light .appCard{
-    background:#fff;
+body.light .card{
+    background:white;
     border-color:#ddd;
 }
 
-.appCard:hover{
+.card:hover{
     transform:translateY(-4px);
     border-color:#00bfff;
 }
 
-.appIcon{
+.icon{
     width:60px;
     height:60px;
     border-radius:15px;
-    background:#252a33;
+    background:#292e37;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -245,183 +216,171 @@ body.light .appCard{
     margin-bottom:15px;
 }
 
-.appCard h3{
-    margin-bottom:8px;
+.card h3{
+    margin-bottom:9px;
 }
 
-.appCard p{
-    color:#aab1bd;
+.card p{
+    color:#aeb5c0;
     min-height:45px;
+    line-height:1.4;
     margin-bottom:18px;
 }
 
-body.light .appCard p{
+body.light .card p{
     color:#666;
 }
 
-.cardButtons{
+.buttons{
     display:flex;
     gap:8px;
 }
 
-.openApp{
+.open{
     flex:1;
     border:0;
-    background:#00bfff;
-    color:#fff;
-    padding:11px;
     border-radius:10px;
+    background:#00bfff;
+    color:white;
+    padding:11px;
     font-weight:bold;
 }
 
-.favoriteApp{
+.favorite{
     width:45px;
     border:0;
-    background:#252a33;
-    color:#fff;
     border-radius:10px;
-    font-size:18px;
+    background:#292e37;
+    color:white;
+    font-size:19px;
 }
 
-body.light .favoriteApp{
+body.light .favorite{
     background:#e8ebef;
     color:#111;
 }
 
-/* APP PAGE */
-
 .appPage{
-    max-width:1100px;
-    margin:30px auto;
+    max-width:1000px;
+    margin:35px auto;
     padding:0 20px 60px;
 }
 
-.backButton{
+.back{
     border:0;
-    background:#252a33;
-    color:#fff;
-    padding:11px 18px;
     border-radius:10px;
+    padding:11px 17px;
+    background:#292e37;
+    color:white;
     margin-bottom:20px;
 }
 
-body.light .backButton{
-    background:#e4e8ed;
+body.light .back{
+    background:#e2e6eb;
     color:#111;
 }
 
-.appTitle{
-    background:#171a21;
-    border:1px solid #292e38;
+.appHeader{
+    background:#191d24;
+    border:1px solid #303641;
     border-radius:18px;
     padding:25px;
     margin-bottom:20px;
 }
 
-body.light .appTitle{
-    background:#fff;
+body.light .appHeader{
+    background:white;
     border-color:#ddd;
 }
 
-.appTitle h2{
-    font-size:30px;
+.appHeader h1{
     margin-bottom:8px;
 }
 
-.appTitle p{
-    color:#aab1bd;
+.appHeader p{
+    color:#aeb5c0;
 }
 
-body.light .appTitle p{
+body.light .appHeader p{
     color:#666;
 }
 
 .workspace{
-    background:#171a21;
-    border:1px solid #292e38;
+    background:#191d24;
+    border:1px solid #303641;
     border-radius:18px;
     padding:25px;
     min-height:350px;
 }
 
 body.light .workspace{
-    background:#fff;
+    background:white;
     border-color:#ddd;
 }
 
-/* ELEMENTOS DAS APPS */
-
-.toolInput{
+.input{
     width:100%;
     padding:14px;
-    background:#0f1115;
-    border:1px solid #343b48;
-    color:#fff;
     border-radius:10px;
+    border:1px solid #3b424e;
+    background:#101318;
+    color:white;
     margin:10px 0;
 }
 
-body.light .toolInput{
-    background:#f5f6f8;
+body.light .input{
+    background:#f4f5f7;
     color:#111;
 }
 
-.toolButton{
-    padding:12px 18px;
-    background:#00bfff;
-    color:#fff;
+.action{
     border:0;
     border-radius:10px;
+    background:#00bfff;
+    color:white;
+    padding:12px 18px;
     font-weight:bold;
 }
 
-.resultBox{
-    margin-top:20px;
-    padding:18px;
-    background:#252a33;
+.result{
+    background:#292e37;
     border-radius:12px;
-    min-height:70px;
+    padding:18px;
+    margin-top:20px;
+    min-height:60px;
 }
 
-body.light .resultBox{
+body.light .result{
     background:#edf0f4;
 }
 
 .task{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    background:#252a33;
-    padding:14px;
-    border-radius:10px;
+    align-items:center;
+    padding:13px;
     margin-top:10px;
+    border-radius:10px;
+    background:#292e37;
 }
 
 body.light .task{
     background:#edf0f4;
 }
 
-.deleteTask{
+.delete{
     border:0;
-    background:#ff4444;
-    color:#fff;
+    background:#ef4444;
+    color:white;
+    border-radius:7px;
     padding:7px 10px;
-    border-radius:8px;
 }
 
-/* FAVORITOS */
-
-.favoritesPage{
-    max-width:1200px;
-    margin:auto;
-    padding:50px 20px;
+.empty{
+    padding:30px;
+    text-align:center;
+    color:#999;
 }
-
-.favoritesPage h1{
-    margin-bottom:25px;
-}
-
-/* RESPONSIVO */
 
 @media(max-width:700px){
 
@@ -434,19 +393,19 @@ body.light .task{
     }
 
     .menu button{
-        padding:8px 10px;
+        padding:8px;
         font-size:12px;
     }
 
     .hero h1{
-        font-size:35px;
+        font-size:34px;
     }
 
-    .searchBox{
+    .search{
         flex-direction:column;
     }
 
-    .searchBox button{
+    .search button{
         padding:14px;
     }
 }
@@ -457,20 +416,30 @@ body.light .task{
 
 <header>
 
-    <div class="logo" id="logoButton">
+    <div class="logo" id="logo">
         🌍 <span>WorldApps</span>
     </div>
 
     <div class="menu">
-        <button id="homeButton">🏠 Início</button>
-        <button id="favoritesButton">⭐ Favoritos</button>
-        <button id="themeButton">🌙 Tema</button>
+
+        <button id="homeBtn">
+            🏠 Início
+        </button>
+
+        <button id="favBtn">
+            ⭐ Favoritos
+        </button>
+
+        <button id="themeBtn">
+            🌙 Tema
+        </button>
+
     </div>
 
 </header>
 
 
-<!-- ================= HOME ================= -->
+<!-- INÍCIO -->
 
 <section id="homePage" class="page active">
 
@@ -484,15 +453,15 @@ body.light .task{
             Aplicações úteis num só lugar.
         </p>
 
-        <div class="searchBox">
+        <div class="search">
 
             <input
-                id="searchInput"
+                id="search"
                 type="text"
                 placeholder="Pesquisar aplicações..."
             >
 
-            <button id="searchButton">
+            <button id="searchBtn">
                 🔎 Pesquisar
             </button>
 
@@ -501,11 +470,11 @@ body.light .task{
     </div>
 
 
-    <div class="categories">
+    <div class="container">
 
         <h2>📂 Categorias</h2>
 
-        <div class="categoryButtons">
+        <div class="categories">
 
             <button data-category="Todos">Todos</button>
             <button data-category="IA">🤖 IA</button>
@@ -519,33 +488,29 @@ body.light .task{
 
         </div>
 
-    </div>
-
-
-    <div class="appsSection">
 
         <h2>🚀 Aplicações</h2>
 
-        <div id="appsGrid" class="appsGrid"></div>
+        <div id="apps" class="apps"></div>
 
     </div>
 
 </section>
 
 
-<!-- ================= APP ================= -->
+<!-- APLICAÇÃO -->
 
 <section id="appPage" class="page">
 
     <div class="appPage">
 
-        <button id="backButton" class="backButton">
+        <button id="backBtn" class="back">
             ← Voltar
         </button>
 
-        <div class="appTitle">
+        <div class="appHeader">
 
-            <h2 id="appTitleText"></h2>
+            <h1 id="appTitle"></h1>
 
             <p id="appDescription"></p>
 
@@ -558,15 +523,17 @@ body.light .task{
 </section>
 
 
-<!-- ================= FAVORITOS ================= -->
+<!-- FAVORITOS -->
 
 <section id="favoritesPage" class="page">
 
-    <div class="favoritesPage">
+    <div class="container">
 
-        <h1>⭐ Os meus favoritos</h1>
+        <h1 style="margin-top:40px;margin-bottom:25px">
+            ⭐ Os meus favoritos
+        </h1>
 
-        <div id="favoritesGrid" class="appsGrid"></div>
+        <div id="favorites" class="apps"></div>
 
     </div>
 
@@ -575,72 +542,68 @@ body.light .task{
 
 <script>
 
-/* =========================================
-   DADOS DAS APLICAÇÕES
-========================================= */
-
-const apps = [
+const applications = [
 
     {
         id:"ai",
-        name:"World AI",
         icon:"🤖",
+        name:"World AI",
         category:"IA",
         description:"Um assistente inteligente para responder às tuas perguntas."
     },
 
     {
         id:"study",
-        name:"Estudar",
         icon:"📚",
+        name:"Estudar",
         category:"Educação",
-        description:"Organiza tarefas e ajuda-te a estudar."
+        description:"Organiza os teus estudos e tarefas escolares."
     },
 
     {
         id:"money",
-        name:"Gestor de Dinheiro",
         icon:"💰",
+        name:"Gestor de Dinheiro",
         category:"Finanças",
-        description:"Controla as tuas despesas."
+        description:"Controla as tuas despesas e o teu dinheiro."
     },
 
     {
-        id:"productivity",
-        name:"Produtividade",
+        id:"work",
         icon:"⚡",
+        name:"Produtividade",
         category:"Produtividade",
-        description:"Organiza as tuas tarefas."
+        description:"Cria e organiza as tuas tarefas."
     },
 
     {
-        id:"home",
-        name:"Minha Casa",
+        id:"house",
         icon:"🏠",
+        name:"Minha Casa",
         category:"Casa",
-        description:"Organiza informações importantes da tua casa."
+        description:"Organiza coisas importantes da tua casa."
     },
 
     {
         id:"security",
-        name:"Segurança",
         icon:"🔐",
+        name:"Segurança",
         category:"Segurança",
-        description:"Verifica a força das tuas palavras-passe."
+        description:"Verifica a força de uma palavra-passe."
     },
 
     {
-        id:"games",
-        name:"Entretenimento",
+        id:"game",
         icon:"🎮",
+        name:"Entretenimento",
         category:"Entretenimento",
-        description:"Jogos simples para te divertires."
+        description:"Joga um pequeno jogo dentro do WorldApps."
     },
 
     {
         id:"notes",
-        name:"Notas",
         icon:"📝",
+        name:"Notas",
         category:"Notas",
         description:"Escreve e guarda as tuas notas."
     }
@@ -648,30 +611,29 @@ const apps = [
 ];
 
 
-/* =========================================
-   ELEMENTOS
-========================================= */
-
-const homePage = document.getElementById("homePage");
-const appPage = document.getElementById("appPage");
-const favoritesPage = document.getElementById("favoritesPage");
-
-const appsGrid = document.getElementById("appsGrid");
-const favoritesGrid = document.getElementById("favoritesGrid");
-
-const appTitleText = document.getElementById("appTitleText");
-const appDescription = document.getElementById("appDescription");
-const workspace = document.getElementById("workspace");
-
-const searchInput = document.getElementById("searchInput");
-
-
-/* =========================================
-   FAVORITOS
-========================================= */
-
 let favorites =
-    JSON.parse(localStorage.getItem("worldapps_favorites") || "[]");
+    JSON.parse(
+        localStorage.getItem("worldapps_favorites") || "[]"
+    );
+
+
+const homePage =
+    document.getElementById("homePage");
+
+const appPage =
+    document.getElementById("appPage");
+
+const favoritesPage =
+    document.getElementById("favoritesPage");
+
+const appsContainer =
+    document.getElementById("apps");
+
+const favoritesContainer =
+    document.getElementById("favorites");
+
+const workspace =
+    document.getElementById("workspace");
 
 
 function saveFavorites(){
@@ -684,11 +646,7 @@ function saveFavorites(){
 }
 
 
-/* =========================================
-   MOSTRAR PÁGINA
-========================================= */
-
-function showPage(page){
+function show(page){
 
     homePage.classList.remove("active");
     appPage.classList.remove("active");
@@ -697,167 +655,133 @@ function showPage(page){
     page.classList.add("active");
 
     window.scrollTo(0,0);
+
 }
 
 
-/* =========================================
-   DESENHAR APPS
-========================================= */
+function createCard(app){
 
-function renderApps(list = apps){
+    const card =
+        document.createElement("div");
 
-    appsGrid.innerHTML = "";
+    card.className = "card";
+
+    const isFavorite =
+        favorites.includes(app.id);
+
+
+    card.innerHTML = `
+
+        <div class="icon">
+            ${app.icon}
+        </div>
+
+        <h3>
+            ${app.name}
+        </h3>
+
+        <p>
+            ${app.description}
+        </p>
+
+        <div class="buttons">
+
+            <button class="open" data-open="${app.id}">
+                Abrir aplicação
+            </button>
+
+            <button class="favorite" data-favorite="${app.id}">
+                ${isFavorite ? "★" : "☆"}
+            </button>
+
+        </div>
+
+    `;
+
+    return card;
+
+}
+
+
+function renderApps(list){
+
+    appsContainer.innerHTML = "";
 
     if(list.length === 0){
 
-        appsGrid.innerHTML = `
-            <div style="padding:30px">
-                😕 Nenhuma aplicação encontrada.
-            </div>
-        `;
+        appsContainer.innerHTML =
+            '<div class="empty">😕 Nenhuma aplicação encontrada.</div>';
 
         return;
+
     }
 
 
     list.forEach(app => {
 
-        const card = document.createElement("div");
-
-        card.className = "appCard";
-
-        const isFavorite = favorites.includes(app.id);
-
-        card.innerHTML = `
-
-            <div class="appIcon">
-                ${app.icon}
-            </div>
-
-            <h3>
-                ${app.name}
-            </h3>
-
-            <p>
-                ${app.description}
-            </p>
-
-            <div class="cardButtons">
-
-                <button
-                    class="openApp"
-                    data-id="${app.id}">
-                    Abrir
-                </button>
-
-                <button
-                    class="favoriteApp"
-                    data-id="${app.id}">
-                    ${isFavorite ? "★" : "☆"}
-                </button>
-
-            </div>
-        `;
-
-        appsGrid.appendChild(card);
+        appsContainer.appendChild(
+            createCard(app)
+        );
 
     });
 
 }
 
-
-/* =========================================
-   FAVORITOS
-========================================= */
 
 function renderFavorites(){
 
-    favoritesGrid.innerHTML = "";
-
-    const favoriteApps =
-        apps.filter(app => favorites.includes(app.id));
+    favoritesContainer.innerHTML = "";
 
 
-    if(favoriteApps.length === 0){
+    const list =
+        applications.filter(app =>
+            favorites.includes(app.id)
+        );
 
-        favoritesGrid.innerHTML = `
-            <div>
-                Ainda não tens aplicações favoritas.
-            </div>
-        `;
+
+    if(list.length === 0){
+
+        favoritesContainer.innerHTML =
+            '<div class="empty">Ainda não tens favoritos.</div>';
 
         return;
+
     }
 
 
-    favoriteApps.forEach(app => {
+    list.forEach(app => {
 
-        const card = document.createElement("div");
-
-        card.className = "appCard";
-
-        card.innerHTML = `
-
-            <div class="appIcon">
-                ${app.icon}
-            </div>
-
-            <h3>
-                ${app.name}
-            </h3>
-
-            <p>
-                ${app.description}
-            </p>
-
-            <div class="cardButtons">
-
-                <button
-                    class="openApp"
-                    data-id="${app.id}">
-                    Abrir
-                </button>
-
-                <button
-                    class="favoriteApp"
-                    data-id="${app.id}">
-                    ★
-                </button>
-
-            </div>
-        `;
-
-        favoritesGrid.appendChild(card);
+        favoritesContainer.appendChild(
+            createCard(app)
+        );
 
     });
 
 }
 
 
-/* =========================================
-   ABRIR APLICAÇÃO
-========================================= */
+function openApplication(id){
 
-function openApp(id){
+    const app =
+        applications.find(item =>
+            item.id === id
+        );
 
-    const app = apps.find(item => item.id === id);
 
     if(!app){
         return;
     }
 
 
-    appTitleText.textContent =
+    document.getElementById("appTitle").textContent =
         app.icon + " " + app.name;
 
-    appDescription.textContent =
+    document.getElementById("appDescription").textContent =
         app.description;
 
 
     workspace.innerHTML = "";
 
-
-    /* WORLD AI */
 
     if(id === "ai"){
 
@@ -866,127 +790,83 @@ function openApp(id){
             <h2>🤖 World AI</h2>
 
             <p style="margin-top:10px">
-                Escreve uma pergunta:
+                Escreve uma pergunta para o World AI.
             </p>
 
             <input
-                id="aiInput"
-                class="toolInput"
-                placeholder="Escreve aqui..."
+                id="aiQuestion"
+                class="input"
+                placeholder="Ex: O que é inteligência artificial?"
             >
 
-            <button id="aiButton" class="toolButton">
+            <button id="askAI" class="action">
                 Perguntar
             </button>
 
-            <div id="aiResult" class="resultBox">
+            <div id="aiAnswer" class="result">
                 O World AI está pronto.
             </div>
+
         `;
 
 
         document
-        .getElementById("aiButton")
-        .addEventListener("click",function(){
+        .getElementById("askAI")
+        .onclick = function(){
 
             const question =
-                document.getElementById("aiInput").value.trim();
-
-            const result =
-                document.getElementById("aiResult");
-
-
-            if(!question){
-
-                result.textContent =
-                    "Escreve primeiro uma pergunta.";
-
-                return;
-            }
+                document
+                .getElementById("aiQuestion")
+                .value.trim();
 
 
-            result.textContent =
-                "🤖 World AI: Recebi a tua pergunta: " +
-                question +
-                ". Esta é a versão local do World AI.";
+            document
+            .getElementById("aiAnswer")
+            .textContent =
+                question
+                ? "🤖 World AI recebeu: " + question
+                : "Escreve primeiro uma pergunta.";
 
-        });
+        };
 
     }
 
-
-    /* ESTUDAR */
 
     else if(id === "study"){
 
-        workspace.innerHTML = `
-
-            <h2>📚 Lista de estudo</h2>
-
-            <input
-                id="studyInput"
-                class="toolInput"
-                placeholder="Nova tarefa..."
-            >
-
-            <button id="studyButton" class="toolButton">
-                Adicionar
-            </button>
-
-            <div id="studyList"></div>
-        `;
-
-
-        const input =
-            document.getElementById("studyInput");
-
-        const button =
-            document.getElementById("studyButton");
-
-        const list =
-            document.getElementById("studyList");
-
-
-        button.addEventListener("click",function(){
-
-            const text =
-                input.value.trim();
-
-            if(!text){
-                return;
-            }
-
-
-            const task =
-                document.createElement("div");
-
-            task.className = "task";
-
-            task.innerHTML = `
-                <span>📚 ${text}</span>
-                <button class="deleteTask">X</button>
-            `;
-
-
-            task
-            .querySelector(".deleteTask")
-            .addEventListener("click",function(){
-
-                task.remove();
-
-            });
-
-
-            list.appendChild(task);
-
-            input.value = "";
-
-        });
+        createTasks(
+            "📚 Estudar",
+            "studyInput",
+            "studyAdd",
+            "studyList"
+        );
 
     }
 
 
-    /* DINHEIRO */
+    else if(id === "work"){
+
+        createTasks(
+            "⚡ Produtividade",
+            "workInput",
+            "workAdd",
+            "workList"
+        );
+
+    }
+
+
+    else if(id === "house"){
+
+        createTasks(
+            "🏠 Minha Casa",
+            "houseInput",
+            "houseAdd",
+            "houseList"
+        );
+
+    }
+
 
     else if(id === "money"){
 
@@ -996,18 +876,19 @@ function openApp(id){
 
             <input
                 id="moneyInput"
-                class="toolInput"
+                class="input"
                 type="number"
-                placeholder="Valor da despesa"
+                placeholder="Valor da despesa (€)"
             >
 
-            <button id="moneyButton" class="toolButton">
+            <button id="moneyAdd" class="action">
                 Adicionar despesa
             </button>
 
-            <div id="moneyResult" class="resultBox">
-                Total: 0 €
+            <div id="moneyTotal" class="result">
+                Total: 0,00 €
             </div>
+
         `;
 
 
@@ -1015,14 +896,18 @@ function openApp(id){
 
 
         document
-        .getElementById("moneyButton")
-        .addEventListener("click",function(){
+        .getElementById("moneyAdd")
+        .onclick = function(){
 
             const value =
-                Number(document.getElementById("moneyInput").value);
+                Number(
+                    document
+                    .getElementById("moneyInput")
+                    .value
+                );
 
 
-            if(!value){
+            if(value <= 0){
                 return;
             }
 
@@ -1031,254 +916,99 @@ function openApp(id){
 
 
             document
-            .getElementById("moneyResult")
+            .getElementById("moneyTotal")
             .textContent =
-                "Total: " + total.toFixed(2) + " €";
+                "Total: " +
+                total.toFixed(2) +
+                " €";
 
-
-            document
-            .getElementById("moneyInput")
-            .value = "";
-
-        });
+        };
 
     }
 
-
-    /* PRODUTIVIDADE */
-
-    else if(id === "productivity"){
-
-        workspace.innerHTML = `
-
-            <h2>⚡ Produtividade</h2>
-
-            <input
-                id="prodInput"
-                class="toolInput"
-                placeholder="Nova tarefa..."
-            >
-
-            <button id="prodButton" class="toolButton">
-                Adicionar
-            </button>
-
-            <div id="prodList"></div>
-        `;
-
-
-        const input =
-            document.getElementById("prodInput");
-
-        const button =
-            document.getElementById("prodButton");
-
-        const list =
-            document.getElementById("prodList");
-
-
-        button.addEventListener("click",function(){
-
-            if(!input.value.trim()){
-                return;
-            }
-
-
-            const task =
-                document.createElement("div");
-
-            task.className = "task";
-
-
-            task.innerHTML = `
-
-                <span>⚡ ${input.value}</span>
-
-                <button class="deleteTask">
-                    X
-                </button>
-
-            `;
-
-
-            task
-            .querySelector(".deleteTask")
-            .addEventListener("click",function(){
-
-                task.remove();
-
-            });
-
-
-            list.appendChild(task);
-
-            input.value = "";
-
-        });
-
-    }
-
-
-    /* CASA */
-
-    else if(id === "home"){
-
-        workspace.innerHTML = `
-
-            <h2>🏠 Minha Casa</h2>
-
-            <p style="margin-top:10px">
-                Adiciona coisas importantes da tua casa.
-            </p>
-
-            <input
-                id="homeInput"
-                class="toolInput"
-                placeholder="Ex: Comprar lâmpadas"
-            >
-
-            <button id="homeAdd" class="toolButton">
-                Adicionar
-            </button>
-
-            <div id="homeList"></div>
-        `;
-
-
-        document
-        .getElementById("homeAdd")
-        .addEventListener("click",function(){
-
-            const input =
-                document.getElementById("homeInput");
-
-            if(!input.value.trim()){
-                return;
-            }
-
-
-            const item =
-                document.createElement("div");
-
-            item.className = "task";
-
-            item.innerHTML = `
-
-                <span>🏠 ${input.value}</span>
-
-                <button class="deleteTask">
-                    X
-                </button>
-
-            `;
-
-
-            item
-            .querySelector(".deleteTask")
-            .addEventListener("click",function(){
-
-                item.remove();
-
-            });
-
-
-            document
-            .getElementById("homeList")
-            .appendChild(item);
-
-
-            input.value = "";
-
-        });
-
-    }
-
-
-    /* SEGURANÇA */
 
     else if(id === "security"){
 
         workspace.innerHTML = `
 
-            <h2>🔐 Verificador de palavra-passe</h2>
+            <h2>🔐 Segurança</h2>
 
             <input
-                id="passwordInput"
-                class="toolInput"
+                id="password"
+                class="input"
                 type="password"
                 placeholder="Escreve uma palavra-passe"
             >
 
-            <button id="securityButton" class="toolButton">
+            <button id="checkPassword" class="action">
                 Verificar
             </button>
 
-            <div id="securityResult" class="resultBox">
+            <div id="passwordResult" class="result">
                 Ainda não verificaste.
             </div>
+
         `;
 
 
         document
-        .getElementById("securityButton")
-        .addEventListener("click",function(){
+        .getElementById("checkPassword")
+        .onclick = function(){
 
             const password =
                 document
-                .getElementById("passwordInput")
+                .getElementById("password")
                 .value;
 
 
-            let score = 0;
+            let points = 0;
 
 
             if(password.length >= 8){
-                score++;
+                points++;
             }
 
             if(/[A-Z]/.test(password)){
-                score++;
+                points++;
             }
 
             if(/[0-9]/.test(password)){
-                score++;
+                points++;
             }
 
             if(/[^A-Za-z0-9]/.test(password)){
-                score++;
+                points++;
             }
 
 
-            let result = "";
+            let text;
 
 
-            if(score <= 1){
-                result = "🔴 Fraca";
+            if(points <= 1){
+                text = "🔴 Fraca";
             }
-            else if(score === 2){
-                result = "🟠 Média";
+            else if(points === 2){
+                text = "🟠 Média";
             }
-            else if(score === 3){
-                result = "🟢 Boa";
+            else if(points === 3){
+                text = "🟢 Boa";
             }
             else{
-                result = "🟢 Muito forte";
+                text = "🟢 Muito forte";
             }
 
 
             document
-            .getElementById("securityResult")
+            .getElementById("passwordResult")
             .textContent =
-                "Força: " + result;
+                "Força: " + text;
 
-        });
+        };
 
     }
 
 
-    /* JOGO */
-
-    else if(id === "games"){
+    else if(id === "game"){
 
         let number =
             Math.floor(Math.random()*10)+1;
@@ -1288,44 +1018,47 @@ function openApp(id){
 
             <h2>🎮 Adivinha o número</h2>
 
-            <p style="margin-top:10px">
-                Estou a pensar num número de 1 a 10.
+            <p style="margin:10px 0">
+                Estou a pensar num número entre 1 e 10.
             </p>
 
             <input
-                id="gameInput"
-                class="toolInput"
+                id="guess"
+                class="input"
                 type="number"
                 min="1"
                 max="10"
-                placeholder="Número"
+                placeholder="O teu número"
             >
 
-            <button id="gameButton" class="toolButton">
+            <button id="guessButton" class="action">
                 Tentar
             </button>
 
-            <div id="gameResult" class="resultBox">
+            <div id="gameResult" class="result">
                 Boa sorte!
             </div>
+
         `;
 
 
         document
-        .getElementById("gameButton")
-        .addEventListener("click",function(){
+        .getElementById("guessButton")
+        .onclick = function(){
 
             const guess =
-                Number(document.getElementById("gameInput").value);
-
-
-            const result =
-                document.getElementById("gameResult");
+                Number(
+                    document
+                    .getElementById("guess")
+                    .value
+                );
 
 
             if(guess === number){
 
-                result.textContent =
+                document
+                .getElementById("gameResult")
+                .textContent =
                     "🎉 Acertaste! Novo número escolhido.";
 
                 number =
@@ -1334,106 +1067,187 @@ function openApp(id){
             }
             else{
 
-                result.textContent =
-                    "❌ Não acertaste. Tenta novamente.";
+                document
+                .getElementById("gameResult")
+                .textContent =
+                    "❌ Errado. Tenta novamente.";
 
             }
 
-        });
+        };
 
     }
 
 
-    /* NOTAS */
-
     else if(id === "notes"){
-
-        const saved =
-            localStorage.getItem("worldapps_notes") || "";
-
 
         workspace.innerHTML = `
 
-            <h2>📝 As minhas notas</h2>
+            <h2>📝 Notas</h2>
 
             <textarea
-                id="notesArea"
-                class="toolInput"
+                id="notes"
+                class="input"
                 style="height:220px"
-                placeholder="Escreve aqui..."
-            >${saved}</textarea>
+                placeholder="Escreve as tuas notas..."
+            ></textarea>
 
-            <button id="saveNotes" class="toolButton">
-                💾 Guardar notas
+            <button id="saveNotes" class="action">
+                💾 Guardar
             </button>
 
-            <div id="notesResult" class="resultBox">
-                As notas são guardadas neste navegador.
+            <div id="notesResult" class="result">
+                As notas ficam guardadas neste navegador.
             </div>
+
         `;
+
+
+        document.getElementById("notes").value =
+            localStorage.getItem("worldapps_notes") || "";
 
 
         document
         .getElementById("saveNotes")
-        .addEventListener("click",function(){
-
-            const text =
-                document.getElementById("notesArea").value;
-
+        .onclick = function(){
 
             localStorage.setItem(
                 "worldapps_notes",
-                text
+                document.getElementById("notes").value
             );
 
 
             document
             .getElementById("notesResult")
             .textContent =
-                "✅ Notas guardadas!";
+                "✅ Notas guardadas.";
 
-        });
+        };
 
     }
 
 
-    showPage(appPage);
+    show(appPage);
 
 }
 
 
-/* =========================================
-   EVENTOS DOS APPS
-========================================= */
+function createTasks(title,inputId,buttonId,listId){
+
+    workspace.innerHTML = `
+
+        <h2>${title}</h2>
+
+        <input
+            id="${inputId}"
+            class="input"
+            placeholder="Escreve uma tarefa..."
+        >
+
+        <button id="${buttonId}" class="action">
+            Adicionar
+        </button>
+
+        <div id="${listId}"></div>
+
+    `;
+
+
+    document
+    .getElementById(buttonId)
+    .onclick = function(){
+
+        const input =
+            document.getElementById(inputId);
+
+        const text =
+            input.value.trim();
+
+
+        if(!text){
+            return;
+        }
+
+
+        const task =
+            document.createElement("div");
+
+        task.className = "task";
+
+
+        const span =
+            document.createElement("span");
+
+        span.textContent =
+            "📌 " + text;
+
+
+        const remove =
+            document.createElement("button");
+
+        remove.textContent = "X";
+
+        remove.className = "delete";
+
+
+        remove.onclick = function(){
+
+            task.remove();
+
+        };
+
+
+        task.appendChild(span);
+        task.appendChild(remove);
+
+
+        document
+        .getElementById(listId)
+        .appendChild(task);
+
+
+        input.value = "";
+
+    };
+
+}
+
+
+/* CLIQUE NOS BOTÕES DAS APLICAÇÕES */
 
 document.addEventListener("click",function(event){
 
     const openButton =
-        event.target.closest(".openApp");
+        event.target.closest("[data-open]");
 
 
     if(openButton){
 
-        openApp(openButton.dataset.id);
+        openApplication(
+            openButton.dataset.open
+        );
 
         return;
+
     }
 
 
     const favoriteButton =
-        event.target.closest(".favoriteApp");
+        event.target.closest("[data-favorite]");
 
 
     if(favoriteButton){
 
         const id =
-            favoriteButton.dataset.id;
+            favoriteButton.dataset.favorite;
 
 
         if(favorites.includes(id)){
 
             favorites =
-                favorites.filter(item => item !== id);
+                favorites.filter(
+                    item => item !== id
+                );
 
         }
         else{
@@ -1445,7 +1259,7 @@ document.addEventListener("click",function(event){
 
         saveFavorites();
 
-        renderApps();
+        renderApps(applications);
 
         renderFavorites();
 
@@ -1454,55 +1268,57 @@ document.addEventListener("click",function(event){
 });
 
 
-/* =========================================
-   NAVEGAÇÃO
-========================================= */
+/* INÍCIO */
 
 document
-.getElementById("homeButton")
-.addEventListener("click",function(){
+.getElementById("homeBtn")
+.onclick = function(){
 
-    showPage(homePage);
+    show(homePage);
 
-});
+};
 
 
-document
-.getElementById("logoButton")
-.addEventListener("click",function(){
-
-    showPage(homePage);
-
-});
-
+/* LOGO */
 
 document
-.getElementById("backButton")
-.addEventListener("click",function(){
+.getElementById("logo")
+.onclick = function(){
 
-    showPage(homePage);
+    show(homePage);
 
-});
+};
 
+
+/* VOLTAR */
 
 document
-.getElementById("favoritesButton")
-.addEventListener("click",function(){
+.getElementById("backBtn")
+.onclick = function(){
+
+    show(homePage);
+
+};
+
+
+/* FAVORITOS */
+
+document
+.getElementById("favBtn")
+.onclick = function(){
 
     renderFavorites();
 
-    showPage(favoritesPage);
+    show(favoritesPage);
 
-});
+};
 
 
-/* =========================================
-   TEMA
-========================================= */
+/* TEMA */
 
 document
-.getElementById("themeButton")
-.addEventListener("click",function(){
+.getElementById("themeBtn")
+.onclick = function(){
 
     document.body.classList.toggle("light");
 
@@ -1510,11 +1326,11 @@ document
     localStorage.setItem(
         "worldapps_theme",
         document.body.classList.contains("light")
-            ? "light"
-            : "dark"
+        ? "light"
+        : "dark"
     );
 
-});
+};
 
 
 if(
@@ -1527,26 +1343,26 @@ if(
 }
 
 
-/* =========================================
-   PESQUISA
-========================================= */
+/* PESQUISA */
 
-function searchApps(){
+function doSearch(){
 
-    const query =
-        searchInput.value
+    const text =
+        document
+        .getElementById("search")
+        .value
         .toLowerCase()
         .trim();
 
 
     const result =
-        apps.filter(app =>
+        applications.filter(app =>
 
-            app.name.toLowerCase().includes(query) ||
+            app.name.toLowerCase().includes(text) ||
 
-            app.description.toLowerCase().includes(query) ||
+            app.description.toLowerCase().includes(text) ||
 
-            app.category.toLowerCase().includes(query)
+            app.category.toLowerCase().includes(text)
 
         );
 
@@ -1557,31 +1373,28 @@ function searchApps(){
 
 
 document
-.getElementById("searchButton")
-.addEventListener("click",searchApps);
+.getElementById("searchBtn")
+.onclick = doSearch;
 
-
-searchInput
-.addEventListener("keydown",function(event){
-
-    if(event.key === "Enter"){
-
-        searchApps();
-
-    }
-
-});
-
-
-/* =========================================
-   CATEGORIAS
-========================================= */
 
 document
-.querySelectorAll(".categoryButtons button")
+.getElementById("search")
+.onkeydown = function(event){
+
+    if(event.key === "Enter"){
+        doSearch();
+    }
+
+};
+
+
+/* CATEGORIAS */
+
+document
+.querySelectorAll("[data-category]")
 .forEach(button => {
 
-    button.addEventListener("click",function(){
+    button.onclick = function(){
 
         const category =
             button.dataset.category;
@@ -1589,30 +1402,29 @@ document
 
         if(category === "Todos"){
 
-            renderApps();
+            renderApps(applications);
 
             return;
+
         }
 
 
         const result =
-            apps.filter(app =>
-                app.category === category
+            applications.filter(
+                app => app.category === category
             );
 
 
         renderApps(result);
 
-    });
+    };
 
 });
 
 
-/* =========================================
-   INICIAR
-========================================= */
+/* INICIAR */
 
-renderApps();
+renderApps(applications);
 
 </script>
 
