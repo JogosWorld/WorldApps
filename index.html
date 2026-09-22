@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>WorldApps</title>
 
 <style>
@@ -15,31 +14,42 @@
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#101318;
-    color:white;
+    background:#0d1117;
+    color:#fff;
     min-height:100vh;
+    transition:.2s;
 }
 
 body.light{
-    background:#f2f4f7;
+    background:#f3f5f8;
     color:#111;
 }
 
+button,input,textarea,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* HEADER */
+
 header{
     height:70px;
-    background:#191d24;
-    border-bottom:1px solid #303641;
+    background:#161b22;
+    border-bottom:1px solid #30363d;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 25px;
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 }
 
 body.light header{
-    background:white;
+    background:#fff;
     border-color:#ddd;
 }
 
@@ -58,28 +68,25 @@ body.light header{
     gap:8px;
 }
 
-button{
-    cursor:pointer;
-    font-family:Arial,sans-serif;
-}
-
 .menu button{
     border:0;
     border-radius:10px;
     padding:10px 14px;
-    background:#292e37;
-    color:white;
+    background:#252b33;
+    color:#fff;
 }
 
 body.light .menu button{
-    background:#e7eaf0;
+    background:#e8ebef;
     color:#111;
 }
 
 .menu button:hover{
     background:#00bfff;
-    color:white;
+    color:#fff;
 }
+
+/* PÁGINAS */
 
 .page{
     display:none;
@@ -89,13 +96,15 @@ body.light .menu button{
     display:block;
 }
 
+/* HOME */
+
 .hero{
     text-align:center;
-    padding:70px 20px 35px;
+    padding:70px 20px 40px;
 }
 
 .hero h1{
-    font-size:46px;
+    font-size:48px;
     margin-bottom:15px;
 }
 
@@ -104,7 +113,7 @@ body.light .menu button{
 }
 
 .hero p{
-    color:#aeb5c0;
+    color:#aeb6c2;
     font-size:18px;
 }
 
@@ -113,7 +122,7 @@ body.light .hero p{
 }
 
 .search{
-    max-width:700px;
+    max-width:750px;
     margin:35px auto;
     display:flex;
     gap:10px;
@@ -121,81 +130,82 @@ body.light .hero p{
 
 .search input{
     flex:1;
-    padding:16px;
-    border-radius:12px;
-    border:1px solid #363d49;
-    background:#191d24;
-    color:white;
+    padding:17px;
+    border-radius:13px;
+    border:1px solid #30363d;
+    background:#161b22;
+    color:#fff;
     font-size:16px;
     outline:none;
 }
 
 body.light .search input{
-    background:white;
+    background:#fff;
     color:#111;
+    border-color:#ccc;
 }
 
 .search button{
     border:0;
-    border-radius:12px;
+    border-radius:13px;
+    padding:0 22px;
     background:#00bfff;
-    color:white;
-    padding:0 20px;
+    color:#fff;
     font-weight:bold;
 }
 
 .container{
     max-width:1200px;
     margin:auto;
-    padding:0 20px 50px;
+    padding:0 20px 60px;
 }
 
-h2{
-    margin-bottom:18px;
-}
+/* CATEGORIAS */
 
 .categories{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-    margin-bottom:35px;
+    margin:15px 0 35px;
 }
 
 .categories button{
-    border:1px solid #363d49;
+    border:1px solid #30363d;
     border-radius:20px;
-    background:#191d24;
-    color:white;
     padding:10px 15px;
+    background:#161b22;
+    color:#fff;
 }
 
 body.light .categories button{
-    background:white;
+    background:#fff;
     color:#111;
     border-color:#ccc;
 }
 
 .categories button:hover{
     background:#00bfff;
-    color:white;
+    color:#fff;
 }
+
+/* APPS */
 
 .apps{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
 }
 
 .card{
-    background:#191d24;
-    border:1px solid #303641;
+    background:#161b22;
+    border:1px solid #30363d;
     border-radius:18px;
     padding:22px;
     transition:.2s;
 }
 
 body.light .card{
-    background:white;
+    background:#fff;
     border-color:#ddd;
 }
 
@@ -205,25 +215,25 @@ body.light .card{
 }
 
 .icon{
-    width:60px;
-    height:60px;
-    border-radius:15px;
-    background:#292e37;
+    width:62px;
+    height:62px;
+    border-radius:16px;
+    background:#252b33;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:30px;
+    align-items:center;
+    font-size:31px;
     margin-bottom:15px;
 }
 
 .card h3{
-    margin-bottom:9px;
+    margin-bottom:8px;
 }
 
 .card p{
-    color:#aeb5c0;
-    min-height:45px;
+    color:#aeb6c2;
     line-height:1.4;
+    min-height:48px;
     margin-bottom:18px;
 }
 
@@ -231,7 +241,7 @@ body.light .card p{
     color:#666;
 }
 
-.buttons{
+.cardButtons{
     display:flex;
     gap:8px;
 }
@@ -240,9 +250,9 @@ body.light .card p{
     flex:1;
     border:0;
     border-radius:10px;
-    background:#00bfff;
-    color:white;
     padding:11px;
+    background:#00bfff;
+    color:#fff;
     font-weight:bold;
 }
 
@@ -250,18 +260,20 @@ body.light .card p{
     width:45px;
     border:0;
     border-radius:10px;
-    background:#292e37;
-    color:white;
+    background:#252b33;
+    color:#fff;
     font-size:19px;
 }
 
 body.light .favorite{
-    background:#e8ebef;
+    background:#e7eaf0;
     color:#111;
 }
 
+/* APP PAGE */
+
 .appPage{
-    max-width:1000px;
+    max-width:1050px;
     margin:35px auto;
     padding:0 20px 60px;
 }
@@ -269,9 +281,9 @@ body.light .favorite{
 .back{
     border:0;
     border-radius:10px;
-    padding:11px 17px;
-    background:#292e37;
-    color:white;
+    padding:11px 18px;
+    background:#252b33;
+    color:#fff;
     margin-bottom:20px;
 }
 
@@ -281,15 +293,15 @@ body.light .back{
 }
 
 .appHeader{
-    background:#191d24;
-    border:1px solid #303641;
+    background:#161b22;
+    border:1px solid #30363d;
     border-radius:18px;
     padding:25px;
     margin-bottom:20px;
 }
 
 body.light .appHeader{
-    background:white;
+    background:#fff;
     border-color:#ddd;
 }
 
@@ -298,7 +310,7 @@ body.light .appHeader{
 }
 
 .appHeader p{
-    color:#aeb5c0;
+    color:#aeb6c2;
 }
 
 body.light .appHeader p{
@@ -306,30 +318,33 @@ body.light .appHeader p{
 }
 
 .workspace{
-    background:#191d24;
-    border:1px solid #303641;
+    background:#161b22;
+    border:1px solid #30363d;
     border-radius:18px;
     padding:25px;
-    min-height:350px;
+    min-height:400px;
 }
 
 body.light .workspace{
-    background:white;
+    background:#fff;
     border-color:#ddd;
 }
+
+/* CAMPOS */
 
 .input{
     width:100%;
     padding:14px;
-    border-radius:10px;
-    border:1px solid #3b424e;
-    background:#101318;
-    color:white;
     margin:10px 0;
+    border-radius:10px;
+    border:1px solid #30363d;
+    background:#0d1117;
+    color:#fff;
+    outline:none;
 }
 
 body.light .input{
-    background:#f4f5f7;
+    background:#f5f6f8;
     color:#111;
 }
 
@@ -337,16 +352,31 @@ body.light .input{
     border:0;
     border-radius:10px;
     background:#00bfff;
-    color:white;
+    color:#fff;
     padding:12px 18px;
     font-weight:bold;
 }
 
+.secondary{
+    border:1px solid #3b424d;
+    border-radius:10px;
+    background:#252b33;
+    color:#fff;
+    padding:10px 15px;
+}
+
+body.light .secondary{
+    background:#e9edf2;
+    color:#111;
+}
+
+/* RESULTADOS */
+
 .result{
-    background:#292e37;
+    background:#252b33;
     border-radius:12px;
     padding:18px;
-    margin-top:20px;
+    margin-top:18px;
     min-height:60px;
 }
 
@@ -354,14 +384,17 @@ body.light .result{
     background:#edf0f4;
 }
 
+/* TASKS */
+
 .task{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:#252b33;
     padding:13px;
-    margin-top:10px;
     border-radius:10px;
-    background:#292e37;
+    margin-top:10px;
 }
 
 body.light .task{
@@ -370,17 +403,96 @@ body.light .task{
 
 .delete{
     border:0;
-    background:#ef4444;
-    color:white;
     border-radius:7px;
     padding:7px 10px;
+    background:#ef4444;
+    color:#fff;
 }
 
+/* AI */
+
+.aiChat{
+    height:300px;
+    overflow-y:auto;
+    background:#0d1117;
+    border:1px solid #30363d;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+body.light .aiChat{
+    background:#f5f6f8;
+}
+
+.message{
+    max-width:85%;
+    padding:12px 15px;
+    border-radius:14px;
+    margin-bottom:10px;
+    line-height:1.45;
+}
+
+.aiMessage{
+    background:#252b33;
+}
+
+.userMessage{
+    background:#00bfff;
+    margin-left:auto;
+}
+
+.aiInputArea{
+    display:flex;
+    gap:8px;
+}
+
+.aiInputArea input{
+    margin:0;
+}
+
+/* FINANÇAS */
+
+.moneyStats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:20px 0;
+}
+
+.stat{
+    background:#252b33;
+    border-radius:12px;
+    padding:18px;
+}
+
+body.light .stat{
+    background:#edf0f4;
+}
+
+.stat strong{
+    display:block;
+    font-size:24px;
+    margin-top:7px;
+}
+
+/* NOTAS */
+
+.noteArea{
+    width:100%;
+    height:250px;
+    resize:vertical;
+}
+
+/* FAVORITOS */
+
 .empty{
-    padding:30px;
+    padding:35px;
     text-align:center;
     color:#999;
 }
+
+/* RESPONSIVO */
 
 @media(max-width:700px){
 
@@ -398,7 +510,7 @@ body.light .task{
     }
 
     .hero h1{
-        font-size:34px;
+        font-size:35px;
     }
 
     .search{
@@ -407,6 +519,14 @@ body.light .task{
 
     .search button{
         padding:14px;
+    }
+
+    .moneyStats{
+        grid-template-columns:1fr;
+    }
+
+    .aiInputArea{
+        flex-direction:column;
     }
 }
 </style>
@@ -422,24 +542,18 @@ body.light .task{
 
     <div class="menu">
 
-        <button id="homeBtn">
-            🏠 Início
-        </button>
+        <button id="homeButton">🏠 Início</button>
 
-        <button id="favBtn">
-            ⭐ Favoritos
-        </button>
+        <button id="favoritesButton">⭐ Favoritos</button>
 
-        <button id="themeBtn">
-            🌙 Tema
-        </button>
+        <button id="themeButton">🌙 Tema</button>
 
     </div>
 
 </header>
 
 
-<!-- INÍCIO -->
+<!-- ================= HOME ================= -->
 
 <section id="homePage" class="page active">
 
@@ -456,12 +570,11 @@ body.light .task{
         <div class="search">
 
             <input
-                id="search"
-                type="text"
+                id="searchInput"
                 placeholder="Pesquisar aplicações..."
             >
 
-            <button id="searchBtn">
+            <button id="searchButton">
                 🔎 Pesquisar
             </button>
 
@@ -488,7 +601,6 @@ body.light .task{
 
         </div>
 
-
         <h2>🚀 Aplicações</h2>
 
         <div id="apps" class="apps"></div>
@@ -498,13 +610,13 @@ body.light .task{
 </section>
 
 
-<!-- APLICAÇÃO -->
+<!-- ================= APP ================= -->
 
 <section id="appPage" class="page">
 
     <div class="appPage">
 
-        <button id="backBtn" class="back">
+        <button id="backButton" class="back">
             ← Voltar
         </button>
 
@@ -523,13 +635,13 @@ body.light .task{
 </section>
 
 
-<!-- FAVORITOS -->
+<!-- ================= FAVORITOS ================= -->
 
 <section id="favoritesPage" class="page">
 
     <div class="container">
 
-        <h1 style="margin-top:40px;margin-bottom:25px">
+        <h1 style="padding-top:40px;margin-bottom:25px">
             ⭐ Os meus favoritos
         </h1>
 
@@ -542,6 +654,10 @@ body.light .task{
 
 <script>
 
+/* =====================================================
+   LISTA DE APLICAÇÕES
+===================================================== */
+
 const applications = [
 
     {
@@ -549,7 +665,7 @@ const applications = [
         icon:"🤖",
         name:"World AI",
         category:"IA",
-        description:"Um assistente inteligente para responder às tuas perguntas."
+        description:"O assistente inteligente do WorldApps."
     },
 
     {
@@ -557,7 +673,7 @@ const applications = [
         icon:"📚",
         name:"Estudar",
         category:"Educação",
-        description:"Organiza os teus estudos e tarefas escolares."
+        description:"Organiza estudos, matérias e tarefas."
     },
 
     {
@@ -565,15 +681,15 @@ const applications = [
         icon:"💰",
         name:"Gestor de Dinheiro",
         category:"Finanças",
-        description:"Controla as tuas despesas e o teu dinheiro."
+        description:"Controla receitas, despesas e saldo."
     },
 
     {
-        id:"work",
+        id:"productivity",
         icon:"⚡",
         name:"Produtividade",
         category:"Produtividade",
-        description:"Cria e organiza as tuas tarefas."
+        description:"Organiza as tuas tarefas e prioridades."
     },
 
     {
@@ -581,7 +697,7 @@ const applications = [
         icon:"🏠",
         name:"Minha Casa",
         category:"Casa",
-        description:"Organiza coisas importantes da tua casa."
+        description:"Organiza tarefas e coisas da tua casa."
     },
 
     {
@@ -589,15 +705,15 @@ const applications = [
         icon:"🔐",
         name:"Segurança",
         category:"Segurança",
-        description:"Verifica a força de uma palavra-passe."
+        description:"Ferramentas para melhorar a segurança digital."
     },
 
     {
-        id:"game",
+        id:"games",
         icon:"🎮",
         name:"Entretenimento",
         category:"Entretenimento",
-        description:"Joga um pequeno jogo dentro do WorldApps."
+        description:"Jogos simples para te divertires."
     },
 
     {
@@ -605,17 +721,25 @@ const applications = [
         icon:"📝",
         name:"Notas",
         category:"Notas",
-        description:"Escreve e guarda as tuas notas."
+        description:"Cria e guarda as tuas notas."
     }
 
 ];
 
+
+/* =====================================================
+   ESTADO
+===================================================== */
 
 let favorites =
     JSON.parse(
         localStorage.getItem("worldapps_favorites") || "[]"
     );
 
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
 const homePage =
     document.getElementById("homePage");
@@ -636,6 +760,26 @@ const workspace =
     document.getElementById("workspace");
 
 
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
+
+function showPage(page){
+
+    homePage.classList.remove("active");
+    appPage.classList.remove("active");
+    favoritesPage.classList.remove("active");
+
+    page.classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* =====================================================
+   FAVORITOS
+===================================================== */
+
 function saveFavorites(){
 
     localStorage.setItem(
@@ -646,18 +790,33 @@ function saveFavorites(){
 }
 
 
-function show(page){
+function toggleFavorite(id){
 
-    homePage.classList.remove("active");
-    appPage.classList.remove("active");
-    favoritesPage.classList.remove("active");
+    if(favorites.includes(id)){
 
-    page.classList.add("active");
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
 
-    window.scrollTo(0,0);
+    }else{
+
+        favorites.push(id);
+
+    }
+
+    saveFavorites();
+
+    renderApps(applications);
+
+    renderFavorites();
 
 }
 
+
+/* =====================================================
+   CARTÃO
+===================================================== */
 
 function createCard(app){
 
@@ -666,7 +825,7 @@ function createCard(app){
 
     card.className = "card";
 
-    const isFavorite =
+    const favorite =
         favorites.includes(app.id);
 
 
@@ -684,14 +843,18 @@ function createCard(app){
             ${app.description}
         </p>
 
-        <div class="buttons">
+        <div class="cardButtons">
 
-            <button class="open" data-open="${app.id}">
+            <button
+                class="open"
+                data-open="${app.id}">
                 Abrir aplicação
             </button>
 
-            <button class="favorite" data-favorite="${app.id}">
-                ${isFavorite ? "★" : "☆"}
+            <button
+                class="favorite"
+                data-favorite="${app.id}">
+                ${favorite ? "★" : "☆"}
             </button>
 
         </div>
@@ -699,13 +862,17 @@ function createCard(app){
     `;
 
     return card;
-
 }
 
+
+/* =====================================================
+   MOSTRAR APPS
+===================================================== */
 
 function renderApps(list){
 
     appsContainer.innerHTML = "";
+
 
     if(list.length === 0){
 
@@ -728,21 +895,25 @@ function renderApps(list){
 }
 
 
+/* =====================================================
+   FAVORITOS
+===================================================== */
+
 function renderFavorites(){
 
     favoritesContainer.innerHTML = "";
 
 
     const list =
-        applications.filter(app =>
-            favorites.includes(app.id)
+        applications.filter(
+            app => favorites.includes(app.id)
         );
 
 
     if(list.length === 0){
 
         favoritesContainer.innerHTML =
-            '<div class="empty">Ainda não tens favoritos.</div>';
+            '<div class="empty">Ainda não tens aplicações favoritas.</div>';
 
         return;
 
@@ -760,11 +931,15 @@ function renderFavorites(){
 }
 
 
+/* =====================================================
+   ABRIR APLICAÇÃO
+===================================================== */
+
 function openApplication(id){
 
     const app =
-        applications.find(item =>
-            item.id === id
+        applications.find(
+            item => item.id === id
         );
 
 
@@ -779,9 +954,10 @@ function openApplication(id){
     document.getElementById("appDescription").textContent =
         app.description;
 
-
     workspace.innerHTML = "";
 
+
+    /* ================= WORLD AI ================= */
 
     if(id === "ai"){
 
@@ -789,84 +965,200 @@ function openApplication(id){
 
             <h2>🤖 World AI</h2>
 
-            <p style="margin-top:10px">
-                Escreve uma pergunta para o World AI.
+            <p style="margin:10px 0 18px">
+                Fala com o assistente do WorldApps.
             </p>
 
-            <input
-                id="aiQuestion"
-                class="input"
-                placeholder="Ex: O que é inteligência artificial?"
-            >
+            <div id="aiChat" class="aiChat">
 
-            <button id="askAI" class="action">
-                Perguntar
-            </button>
+                <div class="message aiMessage">
+                    🤖 Olá! Eu sou o World AI. Como posso ajudar?
+                </div>
 
-            <div id="aiAnswer" class="result">
-                O World AI está pronto.
             </div>
+
+            <div class="aiInputArea">
+
+                <input
+                    id="aiInput"
+                    class="input"
+                    placeholder="Escreve a tua pergunta..."
+                >
+
+                <button id="aiSend" class="action">
+                    Enviar
+                </button>
+
+            </div>
+
+            <div style="margin-top:15px">
+
+                <button class="secondary aiSuggestion"
+                    data-question="Dá-me uma ideia para uma aplicação.">
+                    💡 Ideia
+                </button>
+
+                <button class="secondary aiSuggestion"
+                    data-question="Ajuda-me a organizar o meu dia.">
+                    📅 Organizar o dia
+                </button>
+
+                <button class="secondary aiSuggestion"
+                    data-question="Explica-me o que é inteligência artificial.">
+                    🧠 Explicar IA
+                </button>
+
+            </div>
+
+            <button
+                id="newChat"
+                class="secondary"
+                style="margin-top:15px">
+                🗑️ Nova conversa
+            </button>
 
         `;
 
 
-        document
-        .getElementById("askAI")
-        .onclick = function(){
+        const chat =
+            document.getElementById("aiChat");
+
+
+        function sendAI(){
+
+            const input =
+                document.getElementById("aiInput");
 
             const question =
+                input.value.trim();
+
+
+            if(!question){
+                return;
+            }
+
+
+            const user =
+                document.createElement("div");
+
+            user.className =
+                "message userMessage";
+
+            user.textContent =
+                question;
+
+            chat.appendChild(user);
+
+
+            const answer =
+                document.createElement("div");
+
+            answer.className =
+                "message aiMessage";
+
+
+            answer.textContent =
+                getAIResponse(question);
+
+
+            chat.appendChild(answer);
+
+            input.value = "";
+
+            chat.scrollTop =
+                chat.scrollHeight;
+
+        }
+
+
+        document
+        .getElementById("aiSend")
+        .onclick = sendAI;
+
+
+        document
+        .getElementById("aiInput")
+        .onkeydown = function(event){
+
+            if(event.key === "Enter"){
+                sendAI();
+            }
+
+        };
+
+
+        document
+        .querySelectorAll(".aiSuggestion")
+        .forEach(button => {
+
+            button.onclick = function(){
+
                 document
-                .getElementById("aiQuestion")
-                .value.trim();
+                .getElementById("aiInput")
+                .value =
+                    button.dataset.question;
+
+                sendAI();
+
+            };
+
+        });
 
 
-            document
-            .getElementById("aiAnswer")
-            .textContent =
-                question
-                ? "🤖 World AI recebeu: " + question
-                : "Escreve primeiro uma pergunta.";
+        document
+        .getElementById("newChat")
+        .onclick = function(){
+
+            chat.innerHTML = `
+
+                <div class="message aiMessage">
+                    🤖 Nova conversa iniciada. Como posso ajudar?
+                </div>
+
+            `;
 
         };
 
     }
 
 
+    /* ================= ESTUDAR ================= */
+
     else if(id === "study"){
 
-        createTasks(
+        createTaskApp(
             "📚 Estudar",
-            "studyInput",
-            "studyAdd",
-            "studyList"
+            "Adiciona uma matéria ou tarefa de estudo."
         );
 
     }
 
 
-    else if(id === "work"){
+    /* ================= PRODUTIVIDADE ================= */
 
-        createTasks(
+    else if(id === "productivity"){
+
+        createTaskApp(
             "⚡ Produtividade",
-            "workInput",
-            "workAdd",
-            "workList"
+            "Organiza as tarefas que tens para fazer."
         );
 
     }
 
+
+    /* ================= CASA ================= */
 
     else if(id === "house"){
 
-        createTasks(
+        createTaskApp(
             "🏠 Minha Casa",
-            "houseInput",
-            "houseAdd",
-            "houseList"
+            "Adiciona tarefas, compras ou coisas importantes."
         );
 
     }
 
+
+    /* ================= DINHEIRO ================= */
 
     else if(id === "money"){
 
@@ -874,25 +1166,56 @@ function openApplication(id){
 
             <h2>💰 Gestor de Dinheiro</h2>
 
+            <div class="moneyStats">
+
+                <div class="stat">
+                    Receitas
+                    <strong id="income">0,00 €</strong>
+                </div>
+
+                <div class="stat">
+                    Despesas
+                    <strong id="expenses">0,00 €</strong>
+                </div>
+
+                <div class="stat">
+                    Saldo
+                    <strong id="balance">0,00 €</strong>
+                </div>
+
+            </div>
+
+            <h3>Adicionar movimento</h3>
+
+            <select id="moneyType" class="input">
+                <option value="expense">Despesa</option>
+                <option value="income">Receita</option>
+            </select>
+
             <input
-                id="moneyInput"
+                id="moneyValue"
                 class="input"
                 type="number"
-                placeholder="Valor da despesa (€)"
+                placeholder="Valor (€)"
+            >
+
+            <input
+                id="moneyDescription"
+                class="input"
+                placeholder="Descrição"
             >
 
             <button id="moneyAdd" class="action">
-                Adicionar despesa
+                Adicionar
             </button>
 
-            <div id="moneyTotal" class="result">
-                Total: 0,00 €
-            </div>
+            <div id="moneyHistory" style="margin-top:20px"></div>
 
         `;
 
 
-        let total = 0;
+        let income = 0;
+        let expenses = 0;
 
 
         document
@@ -901,10 +1224,19 @@ function openApplication(id){
 
             const value =
                 Number(
-                    document
-                    .getElementById("moneyInput")
-                    .value
+                    document.getElementById("moneyValue").value
                 );
+
+
+            const type =
+                document.getElementById("moneyType").value;
+
+
+            const description =
+                document
+                .getElementById("moneyDescription")
+                .value
+                .trim() || "Movimento";
 
 
             if(value <= 0){
@@ -912,26 +1244,71 @@ function openApplication(id){
             }
 
 
-            total += value;
+            if(type === "income"){
+                income += value;
+            }else{
+                expenses += value;
+            }
+
+
+            document.getElementById("income")
+                .textContent =
+                income.toFixed(2) + " €";
+
+
+            document.getElementById("expenses")
+                .textContent =
+                expenses.toFixed(2) + " €";
+
+
+            document.getElementById("balance")
+                .textContent =
+                (income - expenses).toFixed(2) + " €";
+
+
+            const item =
+                document.createElement("div");
+
+            item.className = "task";
+
+            item.innerHTML = `
+
+                <span>
+                    ${type === "income" ? "🟢" : "🔴"}
+                    ${description}
+                </span>
+
+                <strong>
+                    ${value.toFixed(2)} €
+                </strong>
+
+            `;
 
 
             document
-            .getElementById("moneyTotal")
-            .textContent =
-                "Total: " +
-                total.toFixed(2) +
-                " €";
+            .getElementById("moneyHistory")
+            .prepend(item);
+
+
+            document.getElementById("moneyValue").value = "";
+            document.getElementById("moneyDescription").value = "";
 
         };
 
     }
 
 
+    /* ================= SEGURANÇA ================= */
+
     else if(id === "security"){
 
         workspace.innerHTML = `
 
             <h2>🔐 Segurança</h2>
+
+            <p style="margin:10px 0">
+                Verifica a força de uma palavra-passe.
+            </p>
 
             <input
                 id="password"
@@ -948,6 +1325,20 @@ function openApplication(id){
                 Ainda não verificaste.
             </div>
 
+            <hr style="margin:25px 0;border-color:#30363d">
+
+            <h3>🔑 Gerador de palavra-passe</h3>
+
+            <button id="generatePassword"
+                class="action"
+                style="margin-top:15px">
+                Gerar palavra-passe
+            </button>
+
+            <div id="generatedPassword" class="result">
+                Clica para gerar.
+            </div>
+
         `;
 
 
@@ -956,62 +1347,81 @@ function openApplication(id){
         .onclick = function(){
 
             const password =
-                document
-                .getElementById("password")
-                .value;
+                document.getElementById("password").value;
 
 
             let points = 0;
 
 
-            if(password.length >= 8){
-                points++;
-            }
-
-            if(/[A-Z]/.test(password)){
-                points++;
-            }
-
-            if(/[0-9]/.test(password)){
-                points++;
-            }
-
-            if(/[^A-Za-z0-9]/.test(password)){
-                points++;
-            }
+            if(password.length >= 8) points++;
+            if(/[A-Z]/.test(password)) points++;
+            if(/[0-9]/.test(password)) points++;
+            if(/[^A-Za-z0-9]/.test(password)) points++;
 
 
-            let text;
+            let result;
 
 
             if(points <= 1){
-                text = "🔴 Fraca";
+                result = "🔴 Fraca";
             }
             else if(points === 2){
-                text = "🟠 Média";
+                result = "🟠 Média";
             }
             else if(points === 3){
-                text = "🟢 Boa";
+                result = "🟢 Boa";
             }
             else{
-                text = "🟢 Muito forte";
+                result = "🟢 Muito forte";
             }
 
 
             document
             .getElementById("passwordResult")
             .textContent =
-                "Força: " + text;
+                "Força: " + result;
+
+        };
+
+
+        document
+        .getElementById("generatePassword")
+        .onclick = function(){
+
+            const chars =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
+
+            let password = "";
+
+
+            for(let i=0;i<14;i++){
+
+                password +=
+                    chars[
+                        Math.floor(
+                            Math.random()*chars.length
+                        )
+                    ];
+
+            }
+
+
+            document
+            .getElementById("generatedPassword")
+            .textContent =
+                password;
 
         };
 
     }
 
 
-    else if(id === "game"){
+    /* ================= JOGO ================= */
+
+    else if(id === "games"){
 
         let number =
-            Math.floor(Math.random()*10)+1;
+            Math.floor(Math.random()*100)+1;
 
 
         workspace.innerHTML = `
@@ -1019,16 +1429,14 @@ function openApplication(id){
             <h2>🎮 Adivinha o número</h2>
 
             <p style="margin:10px 0">
-                Estou a pensar num número entre 1 e 10.
+                Estou a pensar num número entre 1 e 100.
             </p>
 
             <input
                 id="guess"
                 class="input"
                 type="number"
-                min="1"
-                max="10"
-                placeholder="O teu número"
+                placeholder="Escreve um número"
             >
 
             <button id="guessButton" class="action">
@@ -1048,29 +1456,40 @@ function openApplication(id){
 
             const guess =
                 Number(
-                    document
-                    .getElementById("guess")
-                    .value
+                    document.getElementById("guess").value
                 );
+
+
+            const result =
+                document.getElementById("gameResult");
+
+
+            if(!guess){
+                result.textContent =
+                    "Escreve um número.";
+                return;
+            }
 
 
             if(guess === number){
 
-                document
-                .getElementById("gameResult")
-                .textContent =
-                    "🎉 Acertaste! Novo número escolhido.";
+                result.textContent =
+                    "🎉 Acertaste! Vou escolher outro número.";
 
                 number =
-                    Math.floor(Math.random()*10)+1;
+                    Math.floor(Math.random()*100)+1;
+
+            }
+            else if(guess < number){
+
+                result.textContent =
+                    "⬆️ O número é maior.";
 
             }
             else{
 
-                document
-                .getElementById("gameResult")
-                .textContent =
-                    "❌ Errado. Tenta novamente.";
+                result.textContent =
+                    "⬇️ O número é menor.";
 
             }
 
@@ -1079,6 +1498,8 @@ function openApplication(id){
     }
 
 
+    /* ================= NOTAS ================= */
+
     else if(id === "notes"){
 
         workspace.innerHTML = `
@@ -1086,24 +1507,27 @@ function openApplication(id){
             <h2>📝 Notas</h2>
 
             <textarea
-                id="notes"
-                class="input"
-                style="height:220px"
-                placeholder="Escreve as tuas notas..."
+                id="notesArea"
+                class="input noteArea"
+                placeholder="Escreve aqui..."
             ></textarea>
 
             <button id="saveNotes" class="action">
-                💾 Guardar
+                💾 Guardar notas
+            </button>
+
+            <button id="clearNotes" class="secondary">
+                🗑️ Limpar
             </button>
 
             <div id="notesResult" class="result">
-                As notas ficam guardadas neste navegador.
+                As notas são guardadas neste navegador.
             </div>
 
         `;
 
 
-        document.getElementById("notes").value =
+        document.getElementById("notesArea").value =
             localStorage.getItem("worldapps_notes") || "";
 
 
@@ -1113,7 +1537,7 @@ function openApplication(id){
 
             localStorage.setItem(
                 "worldapps_notes",
-                document.getElementById("notes").value
+                document.getElementById("notesArea").value
             );
 
 
@@ -1124,41 +1548,135 @@ function openApplication(id){
 
         };
 
+
+        document
+        .getElementById("clearNotes")
+        .onclick = function(){
+
+            document.getElementById("notesArea").value = "";
+
+        };
+
     }
 
 
-    show(appPage);
+    showPage(appPage);
 
 }
 
 
-function createTasks(title,inputId,buttonId,listId){
+/* =====================================================
+   RESPOSTAS DA WORLD AI
+===================================================== */
+
+function getAIResponse(question){
+
+    const q =
+        question.toLowerCase();
+
+
+    if(
+        q.includes("olá") ||
+        q.includes("ola") ||
+        q.includes("oi")
+    ){
+
+        return "🤖 Olá! É um prazer falar contigo. O que precisas de fazer?";
+
+    }
+
+
+    if(
+        q.includes("ideia") &&
+        q.includes("aplica")
+    ){
+
+        return "💡 Uma ideia: uma aplicação que junta tarefas, calendário, despesas e IA num único painel.";
+
+    }
+
+
+    if(
+        q.includes("inteligência artificial") ||
+        q.includes("inteligencia artificial") ||
+        q.includes("ia")
+    ){
+
+        return "🧠 A inteligência artificial permite que computadores analisem informação e realizem tarefas que normalmente precisam de capacidades humanas, como compreender texto, reconhecer padrões e gerar conteúdo.";
+
+    }
+
+
+    if(
+        q.includes("estudar") ||
+        q.includes("estudo")
+    ){
+
+        return "📚 Para estudar, experimenta dividir o trabalho em sessões de 25 minutos, fazer pequenas pausas e guardar as tarefas no WorldApps.";
+
+    }
+
+
+    if(
+        q.includes("dia") ||
+        q.includes("organizar")
+    ){
+
+        return "📅 Podes organizar o dia em três grupos: urgente, importante e se houver tempo. Começa pelas tarefas mais importantes.";
+
+    }
+
+
+    if(
+        q.includes("worldapps")
+    ){
+
+        return "🌍 O WorldApps é uma plataforma onde podemos juntar várias aplicações úteis num só lugar.";
+
+    }
+
+
+    return "🤖 Ainda estou a aprender. Podes explicar a pergunta de outra forma ou experimentar uma das sugestões acima.";
+
+}
+
+
+/* =====================================================
+   APLICAÇÕES DE TAREFAS
+===================================================== */
+
+function createTaskApp(title,description){
 
     workspace.innerHTML = `
 
         <h2>${title}</h2>
 
+        <p style="margin:10px 0 15px">
+            ${description}
+        </p>
+
         <input
-            id="${inputId}"
+            id="taskInput"
             class="input"
             placeholder="Escreve uma tarefa..."
         >
 
-        <button id="${buttonId}" class="action">
-            Adicionar
+        <button id="taskAdd" class="action">
+            ➕ Adicionar
         </button>
 
-        <div id="${listId}"></div>
+        <div id="taskList"></div>
 
     `;
 
 
     document
-    .getElementById(buttonId)
+    .getElementById("taskAdd")
     .onclick = function(){
 
         const input =
-            document.getElementById(inputId);
+            document.getElementById("taskInput");
+
 
         const text =
             input.value.trim();
@@ -1186,7 +1704,6 @@ function createTasks(title,inputId,buttonId,listId){
             document.createElement("button");
 
         remove.textContent = "X";
-
         remove.className = "delete";
 
 
@@ -1202,7 +1719,7 @@ function createTasks(title,inputId,buttonId,listId){
 
 
         document
-        .getElementById(listId)
+        .getElementById("taskList")
         .appendChild(task);
 
 
@@ -1213,7 +1730,9 @@ function createTasks(title,inputId,buttonId,listId){
 }
 
 
-/* CLIQUE NOS BOTÕES DAS APLICAÇÕES */
+/* =====================================================
+   CLIQUES GERAIS
+===================================================== */
 
 document.addEventListener("click",function(event){
 
@@ -1238,86 +1757,63 @@ document.addEventListener("click",function(event){
 
     if(favoriteButton){
 
-        const id =
-            favoriteButton.dataset.favorite;
-
-
-        if(favorites.includes(id)){
-
-            favorites =
-                favorites.filter(
-                    item => item !== id
-                );
-
-        }
-        else{
-
-            favorites.push(id);
-
-        }
-
-
-        saveFavorites();
-
-        renderApps(applications);
-
-        renderFavorites();
+        toggleFavorite(
+            favoriteButton.dataset.favorite
+        );
 
     }
 
 });
 
 
-/* INÍCIO */
+/* =====================================================
+   BOTÕES PRINCIPAIS
+===================================================== */
 
 document
-.getElementById("homeBtn")
+.getElementById("homeButton")
 .onclick = function(){
 
-    show(homePage);
+    showPage(homePage);
 
 };
 
-
-/* LOGO */
 
 document
 .getElementById("logo")
 .onclick = function(){
 
-    show(homePage);
+    showPage(homePage);
 
 };
 
 
-/* VOLTAR */
-
 document
-.getElementById("backBtn")
+.getElementById("backButton")
 .onclick = function(){
 
-    show(homePage);
+    showPage(homePage);
 
 };
 
 
-/* FAVORITOS */
-
 document
-.getElementById("favBtn")
+.getElementById("favoritesButton")
 .onclick = function(){
 
     renderFavorites();
 
-    show(favoritesPage);
+    showPage(favoritesPage);
 
 };
 
 
-/* TEMA */
+/* =====================================================
+   TEMA
+===================================================== */
 
 document
-.getElementById("themeBtn")
+.getElementById("themeButton")
 .onclick = function(){
 
     document.body.classList.toggle("light");
@@ -1326,8 +1822,8 @@ document
     localStorage.setItem(
         "worldapps_theme",
         document.body.classList.contains("light")
-        ? "light"
-        : "dark"
+            ? "light"
+            : "dark"
     );
 
 };
@@ -1343,13 +1839,15 @@ if(
 }
 
 
-/* PESQUISA */
+/* =====================================================
+   PESQUISA
+===================================================== */
 
-function doSearch(){
+function searchApps(){
 
-    const text =
+    const query =
         document
-        .getElementById("search")
+        .getElementById("searchInput")
         .value
         .toLowerCase()
         .trim();
@@ -1358,11 +1856,11 @@ function doSearch(){
     const result =
         applications.filter(app =>
 
-            app.name.toLowerCase().includes(text) ||
+            app.name.toLowerCase().includes(query) ||
 
-            app.description.toLowerCase().includes(text) ||
+            app.description.toLowerCase().includes(query) ||
 
-            app.category.toLowerCase().includes(text)
+            app.category.toLowerCase().includes(query)
 
         );
 
@@ -1373,22 +1871,26 @@ function doSearch(){
 
 
 document
-.getElementById("searchBtn")
-.onclick = doSearch;
+.getElementById("searchButton")
+.onclick = searchApps;
 
 
 document
-.getElementById("search")
+.getElementById("searchInput")
 .onkeydown = function(event){
 
     if(event.key === "Enter"){
-        doSearch();
+
+        searchApps();
+
     }
 
 };
 
 
-/* CATEGORIAS */
+/* =====================================================
+   CATEGORIAS
+===================================================== */
 
 document
 .querySelectorAll("[data-category]")
@@ -1422,7 +1924,9 @@ document
 });
 
 
-/* INICIAR */
+/* =====================================================
+   INICIAR
+===================================================== */
 
 renderApps(applications);
 
