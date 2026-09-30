@@ -2,435 +2,468 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>WorldApps V3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorldApps V4</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
 
 :root{
-    --bg:#0f1117;
-    --card:#181c25;
-    --card2:#202633;
-    --text:#ffffff;
-    --muted:#9ca3af;
-    --accent:#2563eb;
-    --accent2:#3b82f6;
-    --border:#303746;
-    --danger:#ef4444;
-    --success:#22c55e;
-}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    transition:.25s;
+ --bg:#0d1117;
+ --card:#161b22;
+ --card2:#21262d;
+ --text:#fff;
+ --muted:#9da7b3;
+ --accent:#2563eb;
+ --border:#30363d;
+ --danger:#ef4444;
+ --good:#22c55e;
 }
 
 body.light{
-    --bg:#f2f4f8;
-    --card:#ffffff;
-    --card2:#eef1f5;
-    --text:#111827;
-    --muted:#667085;
-    --border:#d9dee7;
+ --bg:#f3f4f6;
+ --card:#fff;
+ --card2:#e5e7eb;
+ --text:#111827;
+ --muted:#667085;
+ --border:#d1d5db;
 }
 
-body.green{
-    --accent:#16a34a;
-    --accent2:#22c55e;
-}
+body.green{--accent:#16a34a}
+body.purple{--accent:#9333ea}
+body.red{--accent:#dc2626}
+body.orange{--accent:#ea580c}
 
-body.purple{
-    --accent:#9333ea;
-    --accent2:#a855f7;
-}
-
-body.red{
-    --accent:#dc2626;
-    --accent2:#ef4444;
+body{
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
+ transition:.2s;
 }
 
 header{
-    height:70px;
-    display:flex;
-    align-items:center;
-    gap:20px;
-    padding:0 25px;
-    background:var(--card);
-    border-bottom:1px solid var(--border);
-    position:sticky;
-    top:0;
-    z-index:1000;
+ position:sticky;
+ top:0;
+ z-index:1000;
+ min-height:70px;
+ background:var(--card);
+ border-bottom:1px solid var(--border);
+ display:flex;
+ align-items:center;
+ gap:20px;
+ padding:10px 20px;
 }
 
 .logo{
-    font-size:24px;
-    font-weight:bold;
-    white-space:nowrap;
+ font-size:25px;
+ font-weight:bold;
+ white-space:nowrap;
 }
 
-.logo span{
-    color:var(--accent2);
-}
+.logo span{color:var(--accent)}
 
 nav{
-    display:flex;
-    gap:6px;
-    overflow:auto;
+ display:flex;
+ gap:5px;
+ overflow:auto;
 }
 
-nav button,
-.header-btn{
-    border:0;
-    background:transparent;
-    color:var(--text);
-    padding:10px 13px;
-    border-radius:10px;
-    cursor:pointer;
-    white-space:nowrap;
+nav button,.headbtn{
+ background:transparent;
+ color:var(--text);
+ border:0;
+ padding:10px 13px;
+ border-radius:9px;
+ cursor:pointer;
+ white-space:nowrap;
 }
 
-nav button:hover,
-.header-btn:hover{
-    background:var(--card2);
+nav button:hover,.headbtn:hover{
+ background:var(--card2);
 }
 
-.header-actions{
-    margin-left:auto;
-    display:flex;
-    gap:6px;
+.head-actions{
+ margin-left:auto;
+ display:flex;
+ gap:5px;
 }
 
 main{
-    max-width:1250px;
-    margin:auto;
-    padding:30px 20px 80px;
+ max-width:1250px;
+ margin:auto;
+ padding:30px 20px 70px;
 }
 
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 .hero{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    border-radius:24px;
-    padding:45px;
-    margin-bottom:30px;
-    box-shadow:0 15px 50px #0004;
+ padding:45px;
+ border-radius:25px;
+ background:linear-gradient(135deg,var(--accent),#06b6d4);
+ margin-bottom:30px;
 }
 
 .hero h1{
-    font-size:42px;
-    margin-bottom:12px;
+ font-size:43px;
+ margin-bottom:10px;
 }
 
 .hero p{
-    font-size:18px;
-    opacity:.9;
-    max-width:650px;
+ font-size:18px;
+ max-width:700px;
 }
 
 .search{
-    display:flex;
-    gap:10px;
-    margin-top:25px;
-    max-width:750px;
+ margin-top:25px;
+ display:flex;
+ gap:10px;
+ max-width:750px;
 }
 
 .search input{
-    flex:1;
-    padding:15px 18px;
-    border:0;
-    border-radius:12px;
-    outline:none;
-    font-size:16px;
+ flex:1;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ outline:none;
+ font-size:16px;
 }
 
-.search button{
-    border:0;
-    background:#111827;
-    color:white;
-    padding:0 22px;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-h2{
-    margin:25px 0 15px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:18px;
-}
-
-.card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:22px;
-    transition:.2s;
-}
-
-.card:hover{
-    transform:translateY(-3px);
-    border-color:var(--accent);
-}
-
-.icon{
-    font-size:40px;
-    margin-bottom:12px;
-}
-
-.card h3{
-    margin-bottom:8px;
-}
-
-.card p{
-    color:var(--muted);
-    line-height:1.5;
-    min-height:45px;
-}
-
-.card-buttons{
-    display:flex;
-    gap:8px;
-    margin-top:18px;
-    flex-wrap:wrap;
+button{
+ font-size:14px;
 }
 
 .btn{
-    border:0;
-    background:var(--accent);
-    color:white;
-    padding:10px 14px;
-    border-radius:9px;
-    cursor:pointer;
+ border:0;
+ background:var(--accent);
+ color:white;
+ padding:10px 15px;
+ border-radius:9px;
+ cursor:pointer;
 }
 
-.btn:hover{
-    background:var(--accent2);
-}
+.btn:hover{opacity:.85}
 
 .btn.secondary{
-    background:var(--card2);
-    color:var(--text);
+ background:var(--card2);
+ color:var(--text);
 }
 
-.btn.danger{
-    background:var(--danger);
+.btn.danger{background:var(--danger)}
+.btn.good{background:var(--good)}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;
 }
 
-.btn.success{
-    background:var(--success);
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:17px;
+ padding:20px;
+}
+
+.card:hover{
+ border-color:var(--accent);
+}
+
+.icon{
+ font-size:40px;
+ margin-bottom:12px;
+}
+
+.card h3{margin-bottom:8px}
+
+.card p{
+ color:var(--muted);
+ line-height:1.5;
+ min-height:45px;
+}
+
+.card-actions{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ margin-top:17px;
 }
 
 .star{
-    float:right;
-    font-size:23px;
-    cursor:pointer;
+ float:right;
+ font-size:24px;
+ cursor:pointer;
 }
 
+h1{margin-bottom:10px}
+h2{margin:25px 0 15px}
+
+.muted{color:var(--muted)}
+
 .categories{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin:20px 0;
 }
 
 .category{
-    padding:9px 14px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    border-radius:20px;
-    cursor:pointer;
+ border:1px solid var(--border);
+ background:var(--card);
+ color:var(--text);
+ padding:9px 14px;
+ border-radius:20px;
+ cursor:pointer;
 }
 
 .category.active{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:white;
+ background:var(--accent);
+ color:white;
 }
 
 .empty{
-    padding:40px;
-    text-align:center;
-    color:var(--muted);
-    background:var(--card);
-    border-radius:18px;
+ background:var(--card);
+ border:1px solid var(--border);
+ padding:40px;
+ border-radius:15px;
+ text-align:center;
+ color:var(--muted);
 }
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#0009;
-    z-index:3000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#000b;
+ z-index:3000;
+ justify-content:center;
+ align-items:center;
+ padding:20px;
 }
 
-.modal.show{
-    display:flex;
+.modal.show{display:flex}
+
+.modalbox{
+ width:min(750px,100%);
+ max-height:92vh;
+ overflow:auto;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:25px;
 }
 
-.modal-box{
-    width:min(650px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.modalhead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px;
 }
 
 .close{
-    background:var(--card2);
-    border:0;
-    color:var(--text);
-    width:38px;
-    height:38px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:20px;
+ width:38px;
+ height:38px;
+ border:0;
+ border-radius:9px;
+ background:var(--card2);
+ color:var(--text);
+ font-size:22px;
+ cursor:pointer;
 }
 
-.field{
-    margin-bottom:15px;
-}
+.field{margin-bottom:15px}
 
 .field label{
-    display:block;
-    margin-bottom:7px;
-    color:var(--muted);
+ display:block;
+ color:var(--muted);
+ margin-bottom:6px;
 }
 
-.field input,
-.field textarea,
-.field select{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:1px solid var(--border);
-    background:var(--bg);
-    color:var(--text);
-    outline:none;
+.field input,.field textarea,.field select{
+ width:100%;
+ padding:12px;
+ background:var(--bg);
+ color:var(--text);
+ border:1px solid var(--border);
+ border-radius:9px;
+ outline:none;
 }
 
 .field textarea{
-    min-height:180px;
-    resize:vertical;
+ min-height:200px;
+ resize:vertical;
 }
 
-.password-row{
-    display:flex;
-    gap:8px;
+.tool{
+ margin-top:20px;
+ background:var(--card2);
+ border-radius:14px;
+ padding:20px;
 }
 
-.password-row input{
-    flex:1;
+.result{
+ margin-top:15px;
+ background:var(--bg);
+ padding:15px;
+ border-radius:10px;
+ word-break:break-word;
 }
 
-.notice{
-    background:var(--card2);
-    border-left:4px solid var(--accent);
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
+.gamearea{
+ background:#05070a;
+ border-radius:15px;
+ min-height:300px;
+ padding:15px;
+ overflow:hidden;
 }
 
-.vault-entry{
-    background:var(--card2);
-    padding:16px;
-    border-radius:12px;
-    margin-bottom:10px;
+#snakeCanvas{
+ display:block;
+ background:#07130b;
+ margin:auto;
+ max-width:100%;
 }
 
-.vault-entry strong{
-    font-size:17px;
+.targetArea{
+ height:360px;
+ background:#111827;
+ border-radius:15px;
+ position:relative;
+ overflow:hidden;
 }
 
-.vault-entry small{
-    color:var(--muted);
+.target{
+ position:absolute;
+ width:55px;
+ height:55px;
+ border-radius:50%;
+ background:#ef4444;
+ cursor:pointer;
+ border:5px solid white;
 }
 
-.tool-output{
-    margin-top:15px;
-    background:var(--bg);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:15px;
-    word-break:break-all;
+.memorygrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+ max-width:500px;
+ margin:auto;
+}
+
+.memorycard{
+ aspect-ratio:1;
+ border:0;
+ border-radius:10px;
+ background:var(--accent);
+ color:white;
+ font-size:30px;
+ cursor:pointer;
+}
+
+.memorycard.open{
+ background:var(--card2);
+}
+
+.puzzle{
+ display:grid;
+ grid-template-columns:repeat(4,70px);
+ gap:5px;
+ justify-content:center;
+}
+
+.puzzle button{
+ height:70px;
+ border:0;
+ border-radius:7px;
+ background:var(--accent);
+ color:white;
+ font-size:22px;
+ cursor:pointer;
+}
+
+.puzzle button.empty{
+ background:var(--card2);
+}
+
+.cards{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:12px;
+}
+
+.playcard{
+ width:90px;
+ height:125px;
+ border-radius:12px;
+ border:2px solid var(--border);
+ background:white;
+ color:#111;
+ font-size:28px;
+ cursor:pointer;
+}
+
+.grid2048{
+ display:grid;
+ grid-template-columns:repeat(4,80px);
+ gap:8px;
+ justify-content:center;
+ background:#9ca3af;
+ padding:8px;
+ border-radius:10px;
+}
+
+.tile2048{
+ width:80px;
+ height:80px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#d1d5db;
+ color:#111;
+ font-size:25px;
+ font-weight:bold;
+ border-radius:6px;
+}
+
+.notes{
+ min-height:250px;
 }
 
 footer{
-    text-align:center;
-    padding:30px;
-    color:var(--muted);
-    border-top:1px solid var(--border);
-}
-
-.download-box{
-    margin-top:20px;
-    padding:18px;
-    background:#0003;
-    border-radius:15px;
+ text-align:center;
+ padding:30px;
+ color:var(--muted);
+ border-top:1px solid var(--border);
 }
 
 @media(max-width:800px){
-    header{
-        height:auto;
-        min-height:70px;
-        flex-wrap:wrap;
-        padding:12px;
-    }
-
-    nav{
-        order:3;
-        width:100%;
-    }
-
-    .header-actions{
-        margin-left:auto;
-    }
-
-    .hero{
-        padding:30px 20px;
-    }
-
-    .hero h1{
-        font-size:32px;
-    }
-
-    .search{
-        flex-direction:column;
-    }
-
-    .search button{
-        padding:13px;
-    }
+ header{
+  flex-wrap:wrap;
+ }
+ nav{
+  width:100%;
+  order:3;
+ }
+ .head-actions{margin-left:auto}
+ .hero{padding:30px 20px}
+ .hero h1{font-size:32px}
+ .search{flex-direction:column}
+ .memorygrid{grid-template-columns:repeat(4,1fr)}
+ .puzzle{
+  grid-template-columns:repeat(4,55px);
+ }
+ .puzzle button{
+  height:55px;
+ }
+ .grid2048{
+  grid-template-columns:repeat(4,65px);
+ }
+ .tile2048{
+  width:65px;
+  height:65px;
+ }
 }
 </style>
 </head>
@@ -439,87 +472,55 @@ footer{
 
 <header>
 
-<div class="logo">
-🌍 World<span>Apps</span>
-</div>
+<div class="logo">🌍 World<span>Apps</span></div>
 
 <nav>
-<button onclick="showSection('home')">🏠 Início</button>
-<button onclick="showSection('apps')">📱 Apps</button>
-<button onclick="showSection('games')">🎮 Jogos</button>
-<button onclick="showSection('favorites')">⭐ Favoritos</button>
-<button onclick="showSection('security')">🔐 Segurança</button>
+<button onclick="show('home')">🏠 Início</button>
+<button onclick="show('apps')">📱 Aplicações</button>
+<button onclick="show('games')">🎮 Jogos</button>
+<button onclick="show('favorites')">⭐ Favoritos</button>
+<button onclick="show('security')">🔐 Segurança</button>
 </nav>
 
-<div class="header-actions">
-<button class="header-btn" onclick="cycleTheme()">🎨</button>
-<button class="header-btn" onclick="showSection('settings')">⚙️</button>
+<div class="head-actions">
+<button class="headbtn" onclick="cycleTheme()">🎨</button>
 </div>
 
 </header>
 
 <main>
 
-<!-- INÍCIO -->
+<!-- HOME -->
 
 <section id="home" class="section active">
 
 <div class="hero">
 
-<h1>Bem-vindo ao WorldApps 🚀</h1>
+<h1>WorldApps 🚀</h1>
 
 <p>
-O teu espaço para aplicações, jogos e ferramentas úteis.
-Tudo num só lugar e sem IA.
+Aplicações, ferramentas e jogos funcionais num só lugar.
 </p>
 
 <div class="search">
 
-<input
-id="globalSearch"
-placeholder="Pesquisar aplicações, jogos ou ferramentas..."
-onkeydown="if(event.key==='Enter')searchWorld()">
+<input id="search"
+placeholder="Pesquisar uma aplicação ou jogo..."
+onkeydown="if(event.key==='Enter')searchApps()">
 
-<button onclick="searchWorld()">🔎 Pesquisar</button>
-
-</div>
-
-<div class="download-box">
-
-<strong>🌐 IternetWorld</strong>
-
-<p style="margin-top:7px">
-O navegador desenvolvido para o WorldApps.
-</p>
-
-<div class="card-buttons">
-
-<button
-class="btn"
-onclick="openIternetWorld()">
-Abrir IternetWorld
-</button>
-
-<a
-class="btn secondary"
-style="text-decoration:none"
-href="https://github.com/JogosWorld/InternetWorld/releases/download/v1.0.0/IternetWorld.Setup.1.0.0.exe">
-⬇️ Download Windows
-</a>
+<button class="btn" onclick="searchApps()">🔎 Pesquisar</button>
 
 </div>
 
 </div>
 
-</div>
+<h2>⭐ Aplicações populares</h2>
 
-<h2>⭐ Destaques</h2>
+<div id="homeApps" class="grid"></div>
 
-<div id="featuredGrid" class="grid"></div>
+<h2>🎮 Jogos</h2>
 
-<h2>🕘 Recentes</h2>
-
-<div id="recentGrid" class="grid"></div>
+<div id="homeGames" class="grid"></div>
 
 </section>
 
@@ -530,27 +531,15 @@ href="https://github.com/JogosWorld/InternetWorld/releases/download/v1.0.0/Itern
 
 <h1>📱 Aplicações</h1>
 
-<p style="color:var(--muted);margin:10px 0 25px">
-Ferramentas úteis para o dia a dia.
-</p>
+<p class="muted">Ferramentas funcionais do WorldApps.</p>
 
 <div class="categories">
 
-<button class="category active" onclick="filterApps('all',this)">
-Todas
-</button>
-
-<button class="category" onclick="filterApps('produtividade',this)">
-📚 Produtividade
-</button>
-
-<button class="category" onclick="filterApps('ferramentas',this)">
-🛠️ Ferramentas
-</button>
-
-<button class="category" onclick="filterApps('internet',this)">
-🌐 Internet
-</button>
+<button class="category active" onclick="filterApps('all',this)">Todas</button>
+<button class="category" onclick="filterApps('prod',this)">📚 Produtividade</button>
+<button class="category" onclick="filterApps('tools',this)">🛠️ Ferramentas</button>
+<button class="category" onclick="filterApps('creative',this)">🎨 Criatividade</button>
+<button class="category" onclick="filterApps('math',this)">🔢 Matemática</button>
 
 </div>
 
@@ -559,45 +548,35 @@ Todas
 </section>
 
 
-<!-- JOGOS -->
+<!-- GAMES -->
 
 <section id="games" class="section">
 
 <h1>🎮 Jogos</h1>
 
-<p style="color:var(--muted);margin:10px 0 25px">
-Os jogos do WorldApps.
-</p>
+<p class="muted">Todos os jogos desta página são jogáveis.</p>
 
 <div id="gamesGrid" class="grid"></div>
 
 </section>
 
 
-<!-- FAVORITOS -->
+<!-- FAVORITES -->
 
 <section id="favorites" class="section">
 
 <h1>⭐ Favoritos</h1>
-
-<p style="color:var(--muted);margin:10px 0 25px">
-As tuas aplicações e jogos favoritos.
-</p>
 
 <div id="favoritesGrid" class="grid"></div>
 
 </section>
 
 
-<!-- SEGURANÇA -->
+<!-- SECURITY -->
 
 <section id="security" class="section">
 
 <h1>🔐 Segurança</h1>
-
-<p style="color:var(--muted);margin:10px 0 25px">
-Ferramentas de segurança disponíveis localmente no teu navegador.
-</p>
 
 <div class="grid">
 
@@ -605,196 +584,27 @@ Ferramentas de segurança disponíveis localmente no teu navegador.
 
 <div class="icon">🔐</div>
 
-<h3>Palavras-passe</h3>
+<h3>Cofre de palavras-passe</h3>
 
-<p>
-Cofre local protegido por palavra-passe principal.
-</p>
+<p>Guarda palavras-passe localmente com AES-GCM.</p>
 
-<div class="card-buttons">
-
-<button class="btn" onclick="openVault()">
-Abrir cofre
-</button>
-
+<div class="card-actions">
+<button class="btn" onclick="openVault()">Abrir</button>
 </div>
 
 </div>
-
 
 <div class="card">
 
 <div class="icon">🎲</div>
 
-<h3>Gerador de palavras-passe</h3>
+<h3>Gerador</h3>
 
-<p>
-Cria palavras-passe fortes aleatórias.
-</p>
+<p>Cria palavras-passe aleatórias fortes.</p>
 
-<div class="card-buttons">
-
-<button class="btn" onclick="openPasswordGenerator()">
-Abrir gerador
-</button>
-
+<div class="card-actions">
+<button class="btn" onclick="passwordGenerator()">Abrir</button>
 </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- DEFINIÇÕES -->
-
-<section id="settings" class="section">
-
-<h1>⚙️ Definições</h1>
-
-<div class="grid">
-
-<div class="card">
-
-<div class="icon">🎨</div>
-
-<h3>Tema</h3>
-
-<p>
-Escolhe o aspeto do WorldApps.
-</p>
-
-<div class="card-buttons">
-
-<button class="btn" onclick="setTheme('dark')">
-Escuro
-</button>
-
-<button class="btn" onclick="setTheme('light')">
-Claro
-</button>
-
-<button class="btn" onclick="setTheme('green')">
-Verde
-</button>
-
-<button class="btn" onclick="setTheme('purple')">
-Roxo
-</button>
-
-<button class="btn" onclick="setTheme('red')">
-Vermelho
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">🗑️</div>
-
-<h3>Dados locais</h3>
-
-<p>
-Apaga favoritos, notas e definições guardadas neste navegador.
-</p>
-
-<div class="card-buttons">
-
-<button class="btn danger" onclick="clearWorldApps()">
-Apagar dados
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- NOTAS -->
-
-<section id="notes" class="section">
-
-<h1>📝 Notas</h1>
-
-<div class="card" style="margin-top:20px">
-
-<div class="field">
-
-<label>As tuas notas</label>
-
-<textarea
-id="notesText"
-placeholder="Escreve aqui..."></textarea>
-
-</div>
-
-<button class="btn" onclick="saveNotes()">
-💾 Guardar notas
-</button>
-
-<span id="notesStatus" style="margin-left:10px;color:var(--success)"></span>
-
-</div>
-
-</section>
-
-
-<!-- CALCULADORA -->
-
-<section id="calculator" class="section">
-
-<h1>🧮 Calculadora</h1>
-
-<div class="card" style="max-width:600px;margin-top:20px">
-
-<div class="field">
-
-<input
-id="calcInput"
-placeholder="Exemplo: 25 * 4 + 10">
-
-</div>
-
-<button class="btn" onclick="calculate()">
-Calcular
-</button>
-
-<div id="calcOutput" class="tool-output">
-Resultado aparecerá aqui.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CRONÓMETRO -->
-
-<section id="timer" class="section">
-
-<h1>⏱️ Cronómetro</h1>
-
-<div class="card" style="max-width:500px;margin-top:20px;text-align:center">
-
-<div id="timerDisplay"
-style="font-size:55px;font-weight:bold;margin:20px">
-00:00:00
-</div>
-
-<div class="card-buttons" style="justify-content:center">
-
-<button class="btn" onclick="startTimer()">▶️ Iniciar</button>
-
-<button class="btn secondary" onclick="pauseTimer()">⏸️ Pausar</button>
-
-<button class="btn danger" onclick="resetTimer()">🔄 Reiniciar</button>
 
 </div>
 
@@ -804,21 +614,16 @@ style="font-size:55px;font-weight:bold;margin:20px">
 
 </main>
 
-
 <footer>
-
-WorldApps V3 · Aplicações, jogos e ferramentas 🌍
-
+WorldApps V4 · Sem IA · Sem IternetWorld
 </footer>
 
 
-<!-- MODAL -->
-
 <div id="modal" class="modal">
 
-<div class="modal-box">
+<div class="modalbox">
 
-<div class="modal-header">
+<div class="modalhead">
 
 <h2 id="modalTitle">WorldApps</h2>
 
@@ -835,202 +640,274 @@ WorldApps V3 · Aplicações, jogos e ferramentas 🌍
 
 <script>
 
-/* =========================
+/* ================================
    DADOS
-========================= */
+================================ */
 
-const apps = [
+const apps=[
 
 {
-id:"internetworld",
-name:"IternetWorld",
-icon:"🌐",
-category:"internet",
-description:"Navegador web do WorldApps.",
-action:"internetworld"
+ id:"notes",
+ name:"Notas",
+ icon:"📝",
+ cat:"prod",
+ desc:"Escreve e guarda notas.",
+ open:notes
 },
 
 {
-id:"notes",
-name:"Notas",
-icon:"📝",
-category:"produtividade",
-description:"Escreve e guarda notas no navegador.",
-action:"notes"
+ id:"todo",
+ name:"Lista de tarefas",
+ icon:"✅",
+ cat:"prod",
+ desc:"Cria e completa tarefas.",
+ open:todo
 },
 
 {
-id:"calculator",
-name:"Calculadora",
-icon:"🧮",
-category:"ferramentas",
-description:"Calculadora rápida.",
-action:"calculator"
+ id:"calendar",
+ name:"Calendário",
+ icon:"📅",
+ cat:"prod",
+ desc:"Consulta o calendário.",
+ open:calendar
 },
 
 {
-id:"timer",
-name:"Cronómetro",
-icon:"⏱️",
-category:"ferramentas",
-description:"Cronómetro digital.",
-action:"timer"
+ id:"clock",
+ name:"Relógio",
+ icon:"🕐",
+ cat:"prod",
+ desc:"Relógio digital.",
+ open:clock
 },
 
 {
-id:"passwords",
-name:"Palavras-passe",
-icon:"🔐",
-category:"ferramentas",
-description:"Cofre local para palavras-passe.",
-action:"vault"
+ id:"stopwatch",
+ name:"Cronómetro",
+ icon:"⏱️",
+ cat:"tools",
+ desc:"Cronómetro funcional.",
+ open:stopwatch
 },
 
 {
-id:"generator",
-name:"Gerador de palavras-passe",
-icon:"🎲",
-category:"ferramentas",
-description:"Gera palavras-passe aleatórias.",
-action:"generator"
+ id:"timer",
+ name:"Temporizador",
+ icon:"⏳",
+ cat:"tools",
+ desc:"Temporizador com contagem decrescente.",
+ open:timer
+},
+
+{
+ id:"calculator",
+ name:"Calculadora",
+ icon:"🧮",
+ cat:"math",
+ desc:"Calculadora básica.",
+ open:calculator
+},
+
+{
+ id:"scientific",
+ name:"Calculadora científica",
+ icon:"🔬",
+ cat:"math",
+ desc:"Calculadora com funções matemáticas.",
+ open:scientific
+},
+
+{
+ id:"converter",
+ name:"Conversor de unidades",
+ icon:"📏",
+ cat:"math",
+ desc:"Converte metros, quilómetros, centímetros e mais.",
+ open:converter
+},
+
+{
+ id:"random",
+ name:"Números aleatórios",
+ icon:"🎲",
+ cat:"math",
+ desc:"Gera números aleatórios.",
+ open:randomNumbers
+},
+
+{
+ id:"counter",
+ name:"Contador de palavras",
+ icon:"🔤",
+ cat:"tools",
+ desc:"Conta palavras e caracteres.",
+ open:counter
+},
+
+{
+ id:"color",
+ name:"Cores",
+ icon:"🎨",
+ cat:"creative",
+ desc:"Escolhe e copia cores.",
+ open:colors
+},
+
+{
+ id:"drawing",
+ name:"Desenho",
+ icon:"🖌️",
+ cat:"creative",
+ desc:"Desenha livremente.",
+ open:drawing
+},
+
+{
+ id:"password",
+ name:"Gerador de palavras-passe",
+ icon:"🔑",
+ cat:"tools",
+ desc:"Cria palavras-passe fortes.",
+ open:passwordGenerator
+},
+
+{
+ id:"calculator2",
+ name:"Calculadora de percentagens",
+ icon:"💯",
+ cat:"math",
+ desc:"Calcula percentagens rapidamente.",
+ open:percentage
 }
 
 ];
 
 
-const games = [
+const games=[
 
 {
-id:"craftbuild",
-name:"Craft & Build",
-icon:"🧱",
-description:"Jogo 3D de construção.",
-url:"#"
+ id:"snake",
+ name:"Snake",
+ icon:"🐍",
+ desc:"Jogo clássico da cobra.",
+ open:snake
 },
 
 {
-id:"corrida",
-name:"Corrida Relâmpago",
-icon:"🏎️",
-description:"Jogo de corridas com obstáculos.",
-url:"#"
+ id:"memory",
+ name:"Memória",
+ icon:"🧠",
+ desc:"Encontra os pares.",
+ open:memory
+},
+
+{
+ id:"aim",
+ name:"Pontaria",
+ icon:"🎯",
+ desc:"Acerta no alvo o mais rápido possível.",
+ open:aim
+},
+
+{
+ id:"puzzle",
+ name:"Puzzle",
+ icon:"🧩",
+ desc:"Resolve o puzzle deslizante.",
+ open:puzzle
+},
+
+{
+ id:"cards",
+ name:"Cartas",
+ icon:"🃏",
+ desc:"Jogo de cartas maior ou menor.",
+ open:cards
+},
+
+{
+ id:"2048",
+ name:"2048",
+ icon:"🔢",
+ desc:"Junta números até chegar a 2048.",
+ open:game2048
 }
 
 ];
 
 
-/* =========================
-   ESTADO
-========================= */
+let favorites=
+JSON.parse(localStorage.getItem("wa_favorites")||"[]");
 
-let favorites =
-JSON.parse(localStorage.getItem("worldapps_favorites") || "[]");
-
-let recent =
-JSON.parse(localStorage.getItem("worldapps_recent") || "[]");
-
-let currentFilter="all";
+let filter="all";
 
 
-/* =========================
+/* ================================
    NAVEGAÇÃO
-========================= */
+================================ */
 
-function showSection(id){
+function show(id){
 
 document.querySelectorAll(".section")
-.forEach(s=>s.classList.remove("active"));
+.forEach(x=>x.classList.remove("active"));
 
-const section=document.getElementById(id);
-
-if(section){
-section.classList.add("active");
-}
+document.getElementById(id).classList.add("active");
 
 window.scrollTo(0,0);
 
-if(id==="apps") renderApps();
-if(id==="games") renderGames();
-if(id==="favorites") renderFavorites();
-
 }
 
 
-/* =========================
-   CARDS
-========================= */
+/* ================================
+   FAVORITOS
+================================ */
 
-function isFavorite(id){
+function favorite(id){
 
-return favorites.includes(id);
-
-}
-
-
-function toggleFavorite(id){
-
-if(isFavorite(id)){
-
-favorites=favorites.filter(x=>x!==id);
-
+if(favorites.includes(id)){
+ favorites=favorites.filter(x=>x!==id);
 }else{
-
-favorites.push(id);
-
+ favorites.push(id);
 }
 
 localStorage.setItem(
-"worldapps_favorites",
+"wa_favorites",
 JSON.stringify(favorites)
 );
 
-renderAll();
+render();
 
 }
 
 
-function addRecent(id){
+function star(id){
 
-recent=recent.filter(x=>x!==id);
-
-recent.unshift(id);
-
-recent=recent.slice(0,6);
-
-localStorage.setItem(
-"worldapps_recent",
-JSON.stringify(recent)
-);
+return favorites.includes(id)?"⭐":"☆";
 
 }
 
 
-function appCard(app){
+function card(item){
 
 return `
 
 <div class="card">
 
-<div class="star"
-onclick="toggleFavorite('${app.id}')">
-
-${isFavorite(app.id) ? "⭐" : "☆"}
-
+<div class="star" onclick="favorite('${item.id}')">
+${star(item.id)}
 </div>
 
-<div class="icon">${app.icon}</div>
+<div class="icon">${item.icon}</div>
 
-<h3>${app.name}</h3>
+<h3>${item.name}</h3>
 
-<p>${app.description}</p>
+<p>${item.desc}</p>
 
-<div class="card-buttons">
+<div class="card-actions">
 
-<button class="btn"
-onclick="openApp('${app.id}')">
-
+<button class="btn" onclick="openItem('${item.id}')">
 Abrir
-
 </button>
 
 </div>
@@ -1042,538 +919,873 @@ Abrir
 }
 
 
-function gameCard(game){
-
-return `
-
-<div class="card">
-
-<div class="star"
-onclick="toggleFavorite('${game.id}')">
-
-${isFavorite(game.id) ? "⭐" : "☆"}
-
-</div>
-
-<div class="icon">${game.icon}</div>
-
-<h3>${game.name}</h3>
-
-<p>${game.description}</p>
-
-<div class="card-buttons">
-
-<button class="btn"
-onclick="openGame('${game.id}')">
-
-Jogar
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
+/* ================================
    RENDER
-========================= */
+================================ */
 
-function renderApps(){
-
-const grid=document.getElementById("appsGrid");
+function render(){
 
 let list=apps;
 
-if(currentFilter!=="all"){
-
-list=apps.filter(
-a=>a.category===currentFilter
-);
-
+if(filter!=="all"){
+ list=apps.filter(x=>x.cat===filter);
 }
 
-grid.innerHTML=list.map(appCard).join("");
-
-}
-
-
-function renderGames(){
+document.getElementById("appsGrid").innerHTML=
+list.map(card).join("");
 
 document.getElementById("gamesGrid").innerHTML=
-games.map(gameCard).join("");
+games.map(card).join("");
+
+document.getElementById("homeApps").innerHTML=
+apps.slice(0,8).map(card).join("");
+
+document.getElementById("homeGames").innerHTML=
+games.map(card).join("");
+
+let all=[...apps,...games];
+
+let fav=all.filter(x=>favorites.includes(x.id));
+
+document.getElementById("favoritesGrid").innerHTML=
+fav.length
+?fav.map(card).join("")
+:`<div class="empty">⭐ Ainda não tens favoritos.</div>`;
 
 }
 
 
-function renderFavorites(){
+function openItem(id){
 
-const grid=document.getElementById("favoritesGrid");
+let item=
+[...apps,...games].find(x=>x.id===id);
 
-const all=[...apps,...games];
+if(item)item.open();
 
-const list=all.filter(
-x=>favorites.includes(x.id)
+}
+
+
+/* ================================
+   PESQUISA
+================================ */
+
+function searchApps(){
+
+let q=
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+if(!q)return;
+
+let results=
+[...apps,...games].filter(x=>
+x.name.toLowerCase().includes(q)||
+x.desc.toLowerCase().includes(q)
 );
 
-if(!list.length){
+show("home");
 
-grid.innerHTML=`
+document.getElementById("homeApps").innerHTML=
+results.length
+?results.map(card).join("")
+:`<div class="empty">🔎 Nada encontrado.</div>`;
 
-<div class="empty">
-
-⭐ Ainda não tens favoritos.
-
-<br><br>
-
-Vai às Apps ou Jogos e carrega na estrela.
-
-</div>
-
-`;
-
-return;
-
-}
-
-grid.innerHTML=list.map(x=>{
-
-if(apps.some(a=>a.id===x.id))
-return appCard(x);
-
-return gameCard(x);
-
-}).join("");
+document.getElementById("homeGames").innerHTML="";
 
 }
 
 
-function renderFeatured(){
-
-const grid=document.getElementById("featuredGrid");
-
-grid.innerHTML=`
-
-${appCard(apps[0])}
-
-${appCard(apps[1])}
-
-${gameCard(games[0])}
-
-${gameCard(games[1])}
-
-`;
-
-}
-
-
-function renderRecent(){
-
-const grid=document.getElementById("recentGrid");
-
-const all=[...apps,...games];
-
-const list=recent
-.map(id=>all.find(x=>x.id===id))
-.filter(Boolean);
-
-if(!list.length){
-
-grid.innerHTML=`
-
-<div class="empty">
-
-Ainda não abriste nenhuma aplicação.
-
-</div>
-
-`;
-
-return;
-
-}
-
-grid.innerHTML=list.map(x=>{
-
-if(apps.some(a=>a.id===x.id))
-return appCard(x);
-
-return gameCard(x);
-
-}).join("");
-
-}
-
-
-function renderAll(){
-
-renderApps();
-renderGames();
-renderFavorites();
-renderFeatured();
-renderRecent();
-
-}
-
-
-/* =========================
-   ABRIR APP
-========================= */
-
-function openApp(id){
-
-addRecent(id);
-
-if(id==="internetworld"){
-
-openIternetWorld();
-return;
-
-}
-
-if(id==="notes"){
-
-showSection("notes");
-
-document.getElementById("notesText").value=
-localStorage.getItem("worldapps_notes") || "";
-
-return;
-
-}
-
-if(id==="calculator"){
-
-showSection("calculator");
-return;
-
-}
-
-if(id==="timer"){
-
-showSection("timer");
-return;
-
-}
-
-if(id==="vault"){
-
-openVault();
-return;
-
-}
-
-if(id==="passwords"){
-
-openVault();
-return;
-
-}
-
-if(id==="generator"){
-
-openPasswordGenerator();
-return;
-
-}
-
-}
-
-
-function openGame(id){
-
-addRecent(id);
-
-const game=games.find(g=>g.id===id);
-
-if(!game)return;
-
-if(game.url==="#"){
-
-alert(
-"🎮 Este jogo ainda não tem um endereço público ligado ao WorldApps."
-);
-
-return;
-
-}
-
-window.open(game.url,"_blank");
-
-}
-
-
-/* =========================
-   IternetWorld
-========================= */
-
-function openIternetWorld(){
-
-window.open(
-"https://jogosworld.github.io/InternetWorld/",
-"_blank"
-);
-
-}
-
-
-/* =========================
+/* ================================
    FILTROS
-========================= */
+================================ */
 
-function filterApps(filter,button){
+function filterApps(type,button){
 
-currentFilter=filter;
+filter=type;
 
 document.querySelectorAll(".category")
 .forEach(x=>x.classList.remove("active"));
 
 button.classList.add("active");
 
-renderApps();
+render();
 
 }
 
 
-/* =========================
-   PESQUISA
-========================= */
+/* ================================
+   MODAL
+================================ */
 
-function searchWorld(){
+function modal(title,html){
 
-const query=
-document.getElementById("globalSearch")
-.value
-.toLowerCase()
-.trim();
+document.getElementById("modalTitle").textContent=title;
+document.getElementById("modalContent").innerHTML=html;
+document.getElementById("modal").classList.add("show");
 
-if(!query)return;
+}
 
-const all=[...apps,...games];
+function closeModal(){
 
-const results=all.filter(x=>
+document.getElementById("modal").classList.remove("show");
 
-x.name.toLowerCase().includes(query) ||
-x.description.toLowerCase().includes(query)
+}
 
-);
 
-document.getElementById("featuredGrid").innerHTML=
-results.length
-? results.map(x=>
-apps.some(a=>a.id===x.id)
-? appCard(x)
-:gameCard(x)
-).join("")
-:`
+/* ================================
+   NOTAS
+================================ */
 
-<div class="empty">
+function notes(){
 
-🔎 Nenhum resultado encontrado.
+modal("📝 Notas",`
+
+<textarea id="notesText" class="notes"
+placeholder="Escreve aqui..."></textarea>
+
+<br><br>
+
+<button class="btn" onclick="
+localStorage.setItem('wa_notes',document.getElementById('notesText').value);
+alert('Notas guardadas!');
+">
+
+💾 Guardar
+
+</button>
+`);
+
+document.getElementById("notesText").value=
+localStorage.getItem("wa_notes")||"";
+
+}
+
+
+/* ================================
+   TO-DO
+================================ */
+
+let tasks=
+JSON.parse(localStorage.getItem("wa_tasks")||"[]");
+
+function todo(){
+
+modal("✅ Lista de tarefas",`
+
+<div class="field">
+
+<input id="taskInput"
+placeholder="Nova tarefa..."
+onkeydown="if(event.key==='Enter')addTask()">
 
 </div>
 
-`;
+<button class="btn" onclick="addTask()">➕ Adicionar</button>
+
+<div id="taskList" style="margin-top:20px"></div>
+
+`);
+
+renderTasks();
+
+}
+
+function addTask(){
+
+let input=document.getElementById("taskInput");
+
+if(!input.value.trim())return;
+
+tasks.push({
+text:input.value,
+done:false
+});
+
+saveTasks();
+
+input.value="";
+
+renderTasks();
+
+}
+
+function saveTasks(){
+
+localStorage.setItem("wa_tasks",JSON.stringify(tasks));
+
+}
+
+function renderTasks(){
+
+let el=document.getElementById("taskList");
+
+if(!el)return;
+
+el.innerHTML=tasks.map((t,i)=>`
+
+<div class="tool">
+
+<label>
+
+<input type="checkbox"
+${t.done?"checked":""}
+onchange="tasks[${i}].done=this.checked;saveTasks();renderTasks()">
+
+<span style="${t.done?'text-decoration:line-through':''}">
+${escapeHTML(t.text)}
+</span>
+
+</label>
+
+<button class="btn danger"
+style="float:right"
+onclick="tasks.splice(${i},1);saveTasks();renderTasks()">
+
+🗑️
+
+</button>
+
+</div>
+
+`).join("");
 
 }
 
 
-/* =========================
-   TEMAS
-========================= */
+/* ================================
+   CALENDÁRIO
+================================ */
 
-function setTheme(theme){
+function calendar(){
 
-document.body.className="";
+let now=new Date();
 
-if(theme!=="dark")
-document.body.classList.add(theme);
+modal("📅 Calendário",`
 
-localStorage.setItem(
-"worldapps_theme",
-theme
-);
+<div style="text-align:center;font-size:30px">
+${now.toLocaleDateString("pt-PT",{
+weekday:"long",
+year:"numeric",
+month:"long",
+day:"numeric"
+})}
+</div>
 
-}
+<br>
 
+<input type="date"
+value="${now.toISOString().split("T")[0]}"
+style="
+width:100%;
+padding:15px;
+font-size:20px;
+background:var(--bg);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:10px">
 
-function cycleTheme(){
-
-const themes=[
-"dark",
-"light",
-"green",
-"purple",
-"red"
-];
-
-const current=
-localStorage.getItem("worldapps_theme")
-||"dark";
-
-let index=themes.indexOf(current);
-
-index=(index+1)%themes.length;
-
-setTheme(themes[index]);
+`);
 
 }
 
 
-/* =========================
-   NOTAS
-========================= */
+/* ================================
+   RELÓGIO
+================================ */
 
-function saveNotes(){
+function clock(){
 
-const value=
-document.getElementById("notesText").value;
+modal("🕐 Relógio",`
 
-localStorage.setItem(
-"worldapps_notes",
-value
-);
+<div id="clockDisplay"
+style="text-align:center;font-size:55px;font-weight:bold">
+--:--:--
+</div>
 
-document.getElementById("notesStatus")
-.textContent="✓ Guardado";
+`);
 
-setTimeout(()=>{
+let interval=setInterval(()=>{
 
-document.getElementById("notesStatus")
-.textContent="";
+let el=document.getElementById("clockDisplay");
 
-},2000);
+if(!el){
+clearInterval(interval);
+return;
+}
+
+el.textContent=
+new Date().toLocaleTimeString("pt-PT");
+
+},500);
 
 }
 
 
-/* =========================
-   CALCULADORA
-========================= */
-
-function calculate(){
-
-const input=
-document.getElementById("calcInput").value;
-
-const output=
-document.getElementById("calcOutput");
-
-try{
-
-if(!/^[0-9+\-*/().%\s]+$/.test(input)){
-
-throw new Error();
-
-}
-
-const result=Function(
-'"use strict";return ('+input+')'
-)();
-
-output.textContent="Resultado: "+result;
-
-}catch{
-
-output.textContent=
-"❌ Expressão inválida.";
-
-}
-
-}
-
-
-/* =========================
+/* ================================
    CRONÓMETRO
-========================= */
+================================ */
 
-let timerSeconds=0;
-let timerInterval=null;
+function stopwatch(){
 
+modal("⏱️ Cronómetro",`
 
-function updateTimer(){
+<div id="sw"
+style="text-align:center;font-size:50px">
+00:00.0
+</div>
 
-const h=
-String(Math.floor(timerSeconds/3600))
-.padStart(2,"0");
+<div style="text-align:center">
 
-const m=
-String(Math.floor((timerSeconds%3600)/60))
-.padStart(2,"0");
+<button class="btn" onclick="swStart()">▶️</button>
+<button class="btn secondary" onclick="swPause()">⏸️</button>
+<button class="btn danger" onclick="swReset()">🔄</button>
 
-const s=
-String(timerSeconds%60)
-.padStart(2,"0");
-
-document.getElementById("timerDisplay")
-.textContent=`${h}:${m}:${s}`;
+</div>
+`);
 
 }
 
+let swTime=0;
+let swInterval=null;
+
+function swStart(){
+
+if(swInterval)return;
+
+swInterval=setInterval(()=>{
+
+swTime+=100;
+
+let sec=Math.floor(swTime/1000);
+let ms=Math.floor((swTime%1000)/100);
+
+let el=document.getElementById("sw");
+
+if(el)
+el.textContent=
+`${String(Math.floor(sec/60)).padStart(2,"0")}:${String(sec%60).padStart(2,"0")}.${ms}`;
+
+},100);
+
+}
+
+function swPause(){
+
+clearInterval(swInterval);
+swInterval=null;
+
+}
+
+function swReset(){
+
+swPause();
+swTime=0;
+
+let el=document.getElementById("sw");
+
+if(el)el.textContent="00:00.0";
+
+}
+
+
+/* ================================
+   TEMPORIZADOR
+================================ */
+
+function timer(){
+
+modal("⏳ Temporizador",`
+
+<div class="field">
+
+<input id="timerInput"
+type="number"
+min="1"
+value="60">
+
+<label>Segundos</label>
+
+</div>
+
+<div id="timerOutput"
+style="font-size:50px;text-align:center">
+60
+</div>
+
+<div style="text-align:center">
+
+<button class="btn" onclick="startTimer()">▶️ Iniciar</button>
+
+</div>
+`);
+
+}
+
+let timerInterval=null;
 
 function startTimer(){
 
-if(timerInterval)return;
+clearInterval(timerInterval);
+
+let n=
+parseInt(document.getElementById("timerInput").value)||60;
+
+let output=document.getElementById("timerOutput");
+
+output.textContent=n;
 
 timerInterval=setInterval(()=>{
 
-timerSeconds++;
+n--;
 
-updateTimer();
+output.textContent=n;
+
+if(n<=0){
+
+clearInterval(timerInterval);
+
+alert("⏰ Tempo terminado!");
+
+}
 
 },1000);
 
 }
 
 
-function pauseTimer(){
+/* ================================
+   CALCULADORA
+================================ */
 
-clearInterval(timerInterval);
+function calculator(){
 
-timerInterval=null;
+modal("🧮 Calculadora",`
+
+<div class="field">
+
+<input id="calc"
+placeholder="Ex: 25*4+10">
+
+</div>
+
+<button class="btn" onclick="calc()">= Calcular</button>
+
+<div id="calcResult" class="result"></div>
+
+`);
+
+}
+
+function calc(){
+
+let value=document.getElementById("calc").value;
+
+if(!/^[0-9+\-*/().%\s]+$/.test(value)){
+
+document.getElementById("calcResult").textContent=
+"Expressão inválida.";
+
+return;
+
+}
+
+try{
+
+let result=Function(
+'"use strict";return('+value+')'
+)();
+
+document.getElementById("calcResult")
+.textContent=result;
+
+}catch{
+
+document.getElementById("calcResult")
+.textContent="Erro.";
+
+}
 
 }
 
 
-function resetTimer(){
+/* ================================
+   CIENTÍFICA
+================================ */
 
-pauseTimer();
+function scientific(){
 
-timerSeconds=0;
+modal("🔬 Calculadora científica",`
 
-updateTimer();
+<div class="field">
+<input id="sci" placeholder="Ex: Math.sin(Math.PI/2)">
+</div>
+
+<button class="btn" onclick="sciCalc()">Calcular</button>
+
+<div id="sciResult" class="result"></div>
+
+<p class="muted" style="margin-top:15px">
+Exemplos: Math.sqrt(25), Math.sin(1), Math.cos(1), Math.pow(2,8)
+</p>
+`);
+
+}
+
+function sciCalc(){
+
+let value=document.getElementById("sci").value;
+
+if(!/^[0-9a-zA-Z_().,+\-*/%\s]+$/.test(value))return;
+
+try{
+
+document.getElementById("sciResult").textContent=
+Function('"use strict";return('+value+')')();
+
+}catch{
+
+document.getElementById("sciResult").textContent="Erro.";
+
+}
 
 }
 
 
-/* =========================
-   GERADOR DE PALAVRAS-PASSE
-========================= */
+/* ================================
+   CONVERSOR
+================================ */
 
-function openPasswordGenerator(){
+function converter(){
 
-openModal(
-"🎲 Gerador de palavras-passe",
-`
+modal("📏 Conversor de unidades",`
+
+<div class="field">
+<label>Valor</label>
+<input id="convValue" type="number" value="1">
+</div>
+
+<div class="field">
+<label>De</label>
+<select id="convFrom">
+<option value="m">Metros</option>
+<option value="km">Quilómetros</option>
+<option value="cm">Centímetros</option>
+<option value="mm">Milímetros</option>
+</select>
+</div>
+
+<div class="field">
+<label>Para</label>
+<select id="convTo">
+<option value="m">Metros</option>
+<option value="km">Quilómetros</option>
+<option value="cm">Centímetros</option>
+<option value="mm">Milímetros</option>
+</select>
+</div>
+
+<button class="btn" onclick="convert()">Converter</button>
+
+<div id="convResult" class="result"></div>
+
+`);
+
+}
+
+function convert(){
+
+let v=parseFloat(document.getElementById("convValue").value);
+
+let from=document.getElementById("convFrom").value;
+let to=document.getElementById("convTo").value;
+
+const factor={
+ m:1,
+ km:1000,
+ cm:.01,
+ mm:.001
+};
+
+let result=v*factor[from]/factor[to];
+
+document.getElementById("convResult")
+.textContent=result;
+
+}
+
+
+/* ================================
+   NÚMEROS ALEATÓRIOS
+================================ */
+
+function randomNumbers(){
+
+modal("🎲 Números aleatórios",`
+
+<div class="field">
+<label>Mínimo</label>
+<input id="randMin" type="number" value="1">
+</div>
+
+<div class="field">
+<label>Máximo</label>
+<input id="randMax" type="number" value="100">
+</div>
+
+<button class="btn" onclick="randomize()">🎲 Gerar</button>
+
+<div id="randomResult" class="result">
+-
+</div>
+
+`);
+
+}
+
+function randomize(){
+
+let min=
+parseInt(document.getElementById("randMin").value);
+
+let max=
+parseInt(document.getElementById("randMax").value);
+
+if(max<min)[min,max]=[max,min];
+
+document.getElementById("randomResult")
+.textContent=
+Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+
+/* ================================
+   CONTADOR
+================================ */
+
+function counter(){
+
+modal("🔤 Contador de palavras",`
+
+<textarea id="countText"
+class="notes"
+placeholder="Escreve ou cola texto..."></textarea>
+
+<div id="countResult" class="result">
+0 palavras · 0 caracteres
+</div>
+
+`);
+
+document.getElementById("countText")
+.addEventListener("input",()=>{
+
+let t=document.getElementById("countText").value;
+
+let words=t.trim()?t.trim().split(/\s+/).length:0;
+
+document.getElementById("countResult")
+.textContent=
+`${words} palavras · ${t.length} caracteres`;
+
+});
+
+}
+
+
+/* ================================
+   CORES
+================================ */
+
+function colors(){
+
+modal("🎨 Escolher cor",`
+
+<input id="colorPicker"
+type="color"
+value="#2563eb"
+style="width:100%;height:100px">
+
+<div id="colorResult"
+class="result">
+#2563eb
+</div>
+
+<br>
+
+<button class="btn"
+onclick="navigator.clipboard.writeText(document.getElementById('colorPicker').value)">
+📋 Copiar
+
+</button>
+
+`);
+
+document.getElementById("colorPicker")
+.addEventListener("input",e=>{
+
+document.getElementById("colorResult")
+.textContent=e.target.value;
+
+});
+
+}
+
+
+/* ================================
+   DESENHO
+================================ */
+
+function drawing(){
+
+modal("🖌️ Desenho",`
+
+<canvas id="drawCanvas"
+width="650"
+height="400"
+style="
+width:100%;
+background:white;
+border-radius:10px;
+touch-action:none;
+cursor:crosshair">
+</canvas>
+
+<br>
+
+<button class="btn danger" onclick="clearDrawing()">
+🗑️ Limpar
+</button>
+
+`);
+
+setTimeout(initDrawing,100);
+
+}
+
+let drawCtx;
+
+function initDrawing(){
+
+let c=document.getElementById("drawCanvas");
+
+if(!c)return;
+
+drawCtx=c.getContext("2d");
+
+let drawing=false;
+
+function pos(e){
+
+let r=c.getBoundingClientRect();
+
+return {
+x:(e.clientX-r.left)*c.width/r.width,
+y:(e.clientY-r.top)*c.height/r.height
+};
+
+}
+
+c.addEventListener("pointerdown",e=>{
+
+drawing=true;
+
+let p=pos(e);
+
+drawCtx.beginPath();
+drawCtx.moveTo(p.x,p.y);
+
+});
+
+c.addEventListener("pointermove",e=>{
+
+if(!drawing)return;
+
+let p=pos(e);
+
+drawCtx.lineWidth=4;
+drawCtx.lineCap="round";
+drawCtx.strokeStyle="#111";
+
+drawCtx.lineTo(p.x,p.y);
+drawCtx.stroke();
+
+});
+
+c.addEventListener("pointerup",()=>drawing=false);
+c.addEventListener("pointerleave",()=>drawing=false);
+
+}
+
+function clearDrawing(){
+
+if(drawCtx)
+drawCtx.clearRect(0,0,650,400);
+
+}
+
+
+/* ================================
+   PERCENTAGENS
+================================ */
+
+function percentage(){
+
+modal("💯 Percentagens",`
+
+<div class="field">
+<label>Valor</label>
+<input id="percValue" type="number" value="100">
+</div>
+
+<div class="field">
+<label>Percentagem</label>
+<input id="perc" type="number" value="20">
+</div>
+
+<button class="btn" onclick="calcPercentage()">
+Calcular
+</button>
+
+<div id="percResult" class="result"></div>
+
+`);
+
+}
+
+function calcPercentage(){
+
+let value=parseFloat(document.getElementById("percValue").value);
+let p=parseFloat(document.getElementById("perc").value);
+
+document.getElementById("percResult")
+.textContent=
+`${p}% de ${value} = ${value*p/100}`;
+
+}
+
+
+/* ================================
+   PASSWORD GENERATOR
+================================ */
+
+function passwordGenerator(){
+
+modal("🔑 Gerador de palavras-passe",`
 
 <div class="field">
 
 <label>Tamanho</label>
 
-<input
-id="passLength"
+<input id="passLen"
 type="number"
 min="8"
 max="64"
 value="20">
 
 </div>
-
-<div class="field">
 
 <label>
 
@@ -1583,774 +1795,1084 @@ Incluir símbolos
 
 </label>
 
-</div>
+<br><br>
 
-<button class="btn"
-onclick="generatePassword()">
-
+<button class="btn" onclick="generatePass()">
 🎲 Gerar
-
 </button>
 
-<div id="generatedPassword"
-class="tool-output">
-
-Clica em Gerar.
-
+<div id="passResult" class="result">
+-
 </div>
 
-<div class="card-buttons">
+<br>
 
 <button class="btn secondary"
-onclick="copyGeneratedPassword()">
-
+onclick="copyPass()">
 📋 Copiar
-
 </button>
 
-</div>
-
-`
-);
+`);
 
 }
 
-
-function generatePassword(){
-
-let length=
-parseInt(
-document.getElementById("passLength").value
-)||20;
-
-length=Math.max(8,Math.min(64,length));
+function generatePass(){
 
 let chars=
 "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
-if(
-document.getElementById("passSymbols").checked
-){
-
+if(document.getElementById("passSymbols").checked)
 chars+="!@#$%^&*()-_=+[]{}";
 
-}
+let len=
+Math.max(8,Math.min(64,
+parseInt(document.getElementById("passLen").value)||20
+));
 
-const values=
-new Uint32Array(length);
+let values=new Uint32Array(len);
 
 crypto.getRandomValues(values);
 
-let result="";
+let pass="";
 
-for(let i=0;i<length;i++){
+for(let i=0;i<len;i++)
+pass+=chars[values[i]%chars.length];
 
-result+=chars[
-values[i]%chars.length
-];
-
-}
-
-document.getElementById(
-"generatedPassword"
-).textContent=result;
+document.getElementById("passResult")
+.textContent=pass;
 
 }
 
+function copyPass(){
 
-function copyGeneratedPassword(){
+let text=document.getElementById("passResult").textContent;
 
-const text=
-document.getElementById(
-"generatedPassword"
-).textContent;
-
-if(
-!text ||
-text==="Clica em Gerar."
-)return;
-
+if(text!=="-")
 navigator.clipboard.writeText(text);
 
 }
 
 
-/* =========================
-   MODAL
-========================= */
+/* ================================
+   SNAKE
+================================ */
 
-function openModal(title,content){
+function snake(){
 
-document.getElementById("modalTitle")
-.textContent=title;
+modal("🐍 Snake",`
 
-document.getElementById("modalContent")
-.innerHTML=content;
+<canvas id="snakeCanvas"
+width="400"
+height="400"></canvas>
 
-document.getElementById("modal")
-.classList.add("show");
+<p id="snakeScore"
+style="text-align:center;margin:10px">
+Pontuação: 0
+</p>
+
+<p class="muted" style="text-align:center">
+Usa as setas do teclado.
+</p>
+
+`);
+
+setTimeout(startSnake,100);
+
+}
+
+function startSnake(){
+
+const c=document.getElementById("snakeCanvas");
+
+if(!c)return;
+
+const ctx=c.getContext("2d");
+
+let size=20;
+let snakeBody=[
+{x:10,y:10},
+{x:9,y:10},
+{x:8,y:10}
+];
+
+let food={
+x:15,
+y:15
+};
+
+let dx=1,dy=0;
+let score=0;
+let alive=true;
+
+function newFood(){
+
+food={
+x:Math.floor(Math.random()*20),
+y:Math.floor(Math.random()*20)
+};
+
+}
+
+function key(e){
+
+if(e.key==="ArrowUp"&&dy!==1){
+ dx=0;dy=-1;
+}
+
+if(e.key==="ArrowDown"&&dy!==-1){
+ dx=0;dy=1;
+}
+
+if(e.key==="ArrowLeft"&&dx!==1){
+ dx=-1;dy=0;
+}
+
+if(e.key==="ArrowRight"&&dx!==-1){
+ dx=1;dy=0;
+}
+
+}
+
+window.addEventListener("keydown",key);
+
+let interval=setInterval(()=>{
+
+if(!alive){
+ clearInterval(interval);
+ window.removeEventListener("keydown",key);
+ return;
+}
+
+let head={
+ x:snakeBody[0].x+dx,
+ y:snakeBody[0].y+dy
+};
+
+if(
+head.x<0||head.x>=20||
+head.y<0||head.y>=20||
+snakeBody.some(s=>s.x===head.x&&s.y===head.y)
+){
+
+alive=false;
+
+alert("🐍 Game Over! Pontuação: "+score);
+
+return;
+
+}
+
+snakeBody.unshift(head);
+
+if(head.x===food.x&&head.y===food.y){
+
+score++;
+
+document.getElementById("snakeScore")
+.textContent="Pontuação: "+score;
+
+newFood();
+
+}else{
+
+snakeBody.pop();
+
+}
+
+ctx.fillStyle="#07130b";
+ctx.fillRect(0,0,400,400);
+
+ctx.fillStyle="#ef4444";
+ctx.fillRect(food.x*size,food.y*size,size,size);
+
+ctx.fillStyle="#22c55e";
+
+snakeBody.forEach(s=>{
+ctx.fillRect(s.x*size,s.y*size,size-1,size-1);
+});
+
+},120);
 
 }
 
 
-function closeModal(){
+/* ================================
+   MEMÓRIA
+================================ */
 
-document.getElementById("modal")
-.classList.remove("show");
+function memory(){
+
+let symbols=[
+"🍎","🍌","🍇","🍉",
+"🍎","🍌","🍇","🍉"
+];
+
+symbols.sort(()=>Math.random()-.5);
+
+let first=null;
+let lock=false;
+let matched=0;
+
+modal("🧠 Jogo da Memória",`
+
+<div id="memoryGrid" class="memorygrid"></div>
+
+<p id="memoryStatus"
+style="text-align:center;margin-top:15px">
+Encontra os pares!
+</p>
+
+`);
+
+let grid=document.getElementById("memoryGrid");
+
+symbols.forEach((symbol,i)=>{
+
+let b=document.createElement("button");
+
+b.className="memorycard";
+b.textContent="?";
+
+b.onclick=()=>{
+
+if(lock||b.classList.contains("open"))return;
+
+b.classList.add("open");
+b.textContent=symbol;
+
+if(!first){
+
+first={b,symbol};
+
+return;
+
+}
+
+if(first.symbol===symbol){
+
+matched++;
+
+first=null;
+
+if(matched===4)
+document.getElementById("memoryStatus")
+.textContent="🏆 Ganhaste!";
+
+}else{
+
+lock=true;
+
+setTimeout(()=>{
+
+b.classList.remove("open");
+b.textContent="?";
+
+first.b.classList.remove("open");
+first.b.textContent="?";
+
+first=null;
+lock=false;
+
+},700);
+
+}
+
+};
+
+grid.appendChild(b);
+
+});
 
 }
 
 
-/* =========================
-   COFRE DE PALAVRAS-PASSE
-   AES-GCM + PBKDF2
-========================= */
+/* ================================
+   PONTARIA
+================================ */
 
-const VAULT_KEY="worldapps_vault_v3";
+function aim(){
+
+modal("🎯 Pontaria",`
+
+<p style="text-align:center;margin-bottom:10px">
+Tempo: <span id="aimTime">30</span>s ·
+Pontos: <span id="aimScore">0</span>
+</p>
+
+<div id="targetArea" class="targetArea"></div>
+
+`);
+
+let area=document.getElementById("targetArea");
+let score=0;
+let time=30;
+
+function target(){
+
+let old=area.querySelector(".target");
+
+if(old)old.remove();
+
+let t=document.createElement("button");
+
+t.className="target";
+
+t.style.left=
+Math.random()*(area.clientWidth-60)+"px";
+
+t.style.top=
+Math.random()*(area.clientHeight-60)+"px";
+
+t.onclick=()=>{
+
+score++;
+
+document.getElementById("aimScore")
+.textContent=score;
+
+target();
+
+};
+
+area.appendChild(t);
+
+}
+
+target();
+
+let interval=setInterval(()=>{
+
+time--;
+
+let el=document.getElementById("aimTime");
+
+if(el)el.textContent=time;
+
+if(time<=0){
+
+clearInterval(interval);
+
+let t=area.querySelector(".target");
+
+if(t)t.remove();
+
+alert("🎯 Fim! Pontuação: "+score);
+
+}
+
+},1000);
+
+}
 
 
-async function deriveKey(password,salt){
+/* ================================
+   PUZZLE
+================================ */
 
-const encoder=new TextEncoder();
+function puzzle(){
 
-const material=
+let nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+
+do{
+ nums.sort(()=>Math.random()-.5);
+}while(!solvable(nums));
+
+modal("🧩 Puzzle",`
+
+<div id="puzzleBoard" class="puzzle"></div>
+
+<p style="text-align:center;margin-top:15px">
+Move o quadrado vazio para ordenar de 1 a 15.
+</p>
+
+`);
+
+renderPuzzle(nums);
+
+}
+
+function solvable(a){
+
+let inv=0;
+
+for(let i=0;i<a.length;i++)
+for(let j=i+1;j<a.length;j++)
+if(a[i]&&a[j]&&a[i]>a[j])inv++;
+
+let row=Math.floor(a.indexOf(0)/4);
+
+return (inv+row)%2===1;
+
+}
+
+function renderPuzzle(a){
+
+let board=document.getElementById("puzzleBoard");
+
+if(!board)return;
+
+board.innerHTML="";
+
+a.forEach((n,i)=>{
+
+let b=document.createElement("button");
+
+b.textContent=n||"";
+
+if(!n)b.className="empty";
+
+b.onclick=()=>{
+
+let empty=a.indexOf(0);
+
+let r=Math.floor(i/4);
+let c=i%4;
+
+let er=Math.floor(empty/4);
+let ec=empty%4;
+
+if(Math.abs(r-er)+Math.abs(c-ec)!==1)return;
+
+[a[i],a[empty]]=[a[empty],a[i]];
+
+renderPuzzle(a);
+
+if(a.every((v,i)=>v===((i+1)%16)))
+alert("🏆 Puzzle resolvido!");
+
+};
+
+board.appendChild(b);
+
+});
+
+}
+
+
+/* ================================
+   CARTAS
+================================ */
+
+function cards(){
+
+modal("🃏 Cartas - Maior ou Menor",`
+
+<div id="cardGame"></div>
+
+`);
+
+let values=[
+"🂡","🂢","🂣","🂤","🂥",
+"🂦","🂧","🂨","🂩","🂪",
+"🂫","🂭","🂮"
+];
+
+let current=
+Math.floor(Math.random()*values.length);
+
+function render(){
+
+document.getElementById("cardGame").innerHTML=`
+
+<div style="text-align:center">
+
+<div style="font-size:100px">
+${values[current]}
+</div>
+
+<p>Será a próxima carta maior ou menor?</p>
+
+<br>
+
+<button class="btn" id="higher">
+⬆️ Maior
+</button>
+
+<button class="btn secondary" id="lower">
+⬇️ Menor
+</button>
+
+<p id="cardScore" style="margin-top:15px">
+Pontuação: ${score}
+</p>
+
+</div>
+
+`;
+
+document.getElementById("higher").onclick=()=>play(true);
+document.getElementById("lower").onclick=()=>play(false);
+
+}
+
+let score=0;
+
+function play(higher){
+
+let next=
+Math.floor(Math.random()*values.length);
+
+let correct=
+higher
+?next>current
+:next<current;
+
+if(next===current){
+
+alert("Empate! Tenta outra vez.");
+
+return;
+
+}
+
+if(correct){
+
+score++;
+current=next;
+render();
+
+}else{
+
+alert("❌ Erraste! Pontuação: "+score);
+
+score=0;
+current=next;
+render();
+
+}
+
+}
+
+render();
+
+}
+
+
+/* ================================
+   2048
+================================ */
+
+function game2048(){
+
+modal("🔢 2048",`
+
+<div id="game2048Board" class="grid2048"></div>
+
+<p style="text-align:center;margin-top:15px">
+Usa as setas do teclado.
+</p>
+
+`);
+
+let board=Array(16).fill(0);
+
+function addTile(){
+
+let empty=board
+.map((v,i)=>v===0?i:null)
+.filter(v=>v!==null);
+
+if(!empty.length)return;
+
+let i=empty[Math.floor(Math.random()*empty.length)];
+
+board[i]=Math.random()<.9?2:4;
+
+}
+
+function draw(){
+
+let el=document.getElementById("game2048Board");
+
+if(!el)return;
+
+el.innerHTML=board.map(v=>
+`<div class="tile2048">${v||""}</div>`
+).join("");
+
+}
+
+function move(dir){
+
+let old=board.join(",");
+
+let rows=[];
+
+for(let r=0;r<4;r++)
+rows.push(board.slice(r*4,r*4+4));
+
+if(dir==="left"||dir==="right"){
+
+rows.forEach(row=>{
+
+if(dir==="right")row.reverse();
+
+row=row.filter(x=>x);
+
+for(let i=0;i<row.length-1;i++){
+
+if(row[i]===row[i+1]){
+
+row[i]*=2;
+row[i+1]=0;
+
+}
+
+}
+
+row=row.filter(x=>x);
+
+while(row.length<4)row.push(0);
+
+if(dir==="right")row.reverse();
+
+});
+
+}else{
+
+let cols=[];
+
+for(let c=0;c<4;c++){
+
+let col=[
+board[c],
+board[c+4],
+board[c+8],
+board[c+12]
+];
+
+if(dir==="down")col.reverse();
+
+col=col.filter(x=>x);
+
+for(let i=0;i<col.length-1;i++){
+
+if(col[i]===col[i+1]){
+
+col[i]*=2;
+col[i+1]=0;
+
+}
+
+}
+
+col=col.filter(x=>x);
+
+while(col.length<4)col.push(0);
+
+if(dir==="down")col.reverse();
+
+cols.push(col);
+
+}
+
+for(let c=0;c<4;c++)
+for(let r=0;r<4;r++)
+board[r*4+c]=cols[c][r];
+
+draw();
+
+if(old!==board.join(","))addTile();
+
+return;
+
+}
+
+board=rows.flat();
+
+if(old!==board.join(","))addTile();
+
+draw();
+
+}
+
+addTile();
+addTile();
+draw();
+
+function key(e){
+
+if(e.key==="ArrowLeft")move("left");
+if(e.key==="ArrowRight")move("right");
+if(e.key==="ArrowUp")move("up");
+if(e.key==="ArrowDown")move("down");
+
+}
+
+window.addEventListener("keydown",key);
+
+}
+
+
+/* ================================
+   COFRE
+================================ */
+
+const VAULT="wa_secure_v4";
+
+async function derive(password,salt){
+
+let material=
 await crypto.subtle.importKey(
 "raw",
-encoder.encode(password),
+new TextEncoder().encode(password),
 "PBKDF2",
 false,
 ["deriveKey"]
 );
 
 return crypto.subtle.deriveKey(
-
 {
 name:"PBKDF2",
-salt:salt,
+salt,
 iterations:250000,
 hash:"SHA-256"
 },
-
 material,
-
-{
-name:"AES-GCM",
-length:256
-},
-
+{name:"AES-GCM",length:256},
 false,
-
 ["encrypt","decrypt"]
-
 );
 
 }
 
+function b64(bytes){
 
-function bytesToBase64(bytes){
+let s="";
 
-let binary="";
+bytes.forEach(x=>s+=String.fromCharCode(x));
 
-bytes.forEach(b=>{
-binary+=String.fromCharCode(b);
-});
-
-return btoa(binary);
+return btoa(s);
 
 }
 
+function unb64(s){
 
-function base64ToBytes(base64){
+let x=atob(s);
+let a=new Uint8Array(x.length);
 
-const binary=atob(base64);
+for(let i=0;i<x.length;i++)a[i]=x.charCodeAt(i);
 
-const bytes=new Uint8Array(binary.length);
-
-for(let i=0;i<binary.length;i++){
-
-bytes[i]=binary.charCodeAt(i);
+return a;
 
 }
 
-return bytes;
+async function encrypt(data,password){
 
-}
+let salt=crypto.getRandomValues(new Uint8Array(16));
+let iv=crypto.getRandomValues(new Uint8Array(12));
 
+let key=await derive(password,salt);
 
-async function encryptVault(data,password){
-
-const salt=
-crypto.getRandomValues(
-new Uint8Array(16)
-);
-
-const iv=
-crypto.getRandomValues(
-new Uint8Array(12)
-);
-
-const key=
-await deriveKey(password,salt);
-
-const encoded=
-new TextEncoder().encode(
-JSON.stringify(data)
-);
-
-const encrypted=
+let encrypted=
 await crypto.subtle.encrypt(
-{
-name:"AES-GCM",
-iv:iv
-},
+{name:"AES-GCM",iv},
 key,
-encoded
+new TextEncoder().encode(JSON.stringify(data))
 );
 
 return JSON.stringify({
-
-salt:bytesToBase64(salt),
-iv:bytesToBase64(iv),
-data:bytesToBase64(
-new Uint8Array(encrypted)
-)
-
+salt:b64(salt),
+iv:b64(iv),
+data:b64(new Uint8Array(encrypted))
 });
 
 }
 
+async function decrypt(saved,password){
 
-async function decryptVault(saved,password){
+let x=JSON.parse(saved);
 
-const obj=JSON.parse(saved);
+let key=await derive(
+password,
+unb64(x.salt)
+);
 
-const salt=
-base64ToBytes(obj.salt);
-
-const iv=
-base64ToBytes(obj.iv);
-
-const data=
-base64ToBytes(obj.data);
-
-const key=
-await deriveKey(password,salt);
-
-const decrypted=
+let data=
 await crypto.subtle.decrypt(
-{
-name:"AES-GCM",
-iv:iv
-},
+{name:"AES-GCM",iv:unb64(x.iv)},
 key,
-data
+unb64(x.data)
 );
 
 return JSON.parse(
-new TextDecoder().decode(decrypted)
+new TextDecoder().decode(data)
 );
 
 }
-
-
-function getVault(){
-
-return JSON.parse(
-localStorage.getItem(VAULT_KEY)
-||"null"
-);
-
-}
-
 
 function openVault(){
 
-const saved=getVault();
+let saved=localStorage.getItem(VAULT);
 
-if(!saved){
-
-openCreateVault();
-
-}else{
-
-openUnlockVault();
+if(saved)unlockVault();
+else createVault();
 
 }
 
-}
-
-
-function openCreateVault(){
-
-openModal(
-"🔐 Criar cofre",
-`
-
-<div class="notice">
-
-A tua palavra-passe principal protege
-os dados do cofre neste navegador.
-
-<strong>
-Se a perderes, não será possível recuperar
-o conteúdo do cofre.
-</strong>
-
-</div>
-
-<div class="field">
-
-<label>Palavra-passe principal</label>
-
-<input
-id="master1"
-type="password"
-placeholder="Cria uma palavra-passe forte">
-
-</div>
-
-<div class="field">
-
-<label>Confirmar</label>
-
-<input
-id="master2"
-type="password">
-
-</div>
-
-<button class="btn"
-onclick="createVault()">
-
-Criar cofre
-
-</button>
-
-`
-);
-
-}
-
-
-async function createVault(){
-
-const p1=
-document.getElementById("master1").value;
-
-const p2=
-document.getElementById("master2").value;
-
-if(p1.length<8){
-
-alert(
-"A palavra-passe principal deve ter pelo menos 8 caracteres."
-);
-
-return;
-
-}
-
-if(p1!==p2){
-
-alert("As palavras-passe não coincidem.");
-
-return;
-
-}
-
-const data={
-entries:[]
-};
-
-const encrypted=
-await encryptVault(data,p1);
-
-localStorage.setItem(
-VAULT_KEY,
-encrypted
-);
-
-showVault(data,p1);
-
-}
-
-
-function openUnlockVault(){
-
-openModal(
-"🔐 Desbloquear cofre",
-`
-
-<div class="field">
-
-<label>Palavra-passe principal</label>
-
-<input
-id="unlockPassword"
-type="password"
-onkeydown="if(event.key==='Enter')unlockVault()">
-
-</div>
-
-<button class="btn"
-onclick="unlockVault()">
-
-🔓 Desbloquear
-
-</button>
-
-`
-);
-
-}
-
-
-async function unlockVault(){
-
-const password=
-document.getElementById(
-"unlockPassword"
-).value;
-
-try{
-
-const data=
-await decryptVault(
-localStorage.getItem(VAULT_KEY),
-password
-);
-
-showVault(data,password);
-
-}catch{
-
-alert(
-"❌ Palavra-passe incorreta ou cofre inválido."
-);
-
-}
-
-}
-
-
-function showVault(data,password){
-
-openModal(
-"🔐 Cofre de palavras-passe",
-`
-
-<div class="card-buttons">
-
-<button class="btn"
-onclick="showAddEntry()">
-
-➕ Adicionar
-
-</button>
-
-<button class="btn secondary"
-onclick="openPasswordGenerator()">
-
-🎲 Gerador
-
-</button>
-
-<button class="btn danger"
-onclick="closeModal()">
-
-🔒 Fechar
-
-</button>
-
-</div>
-
-<hr style="margin:20px 0;border-color:var(--border)">
-
-<div id="vaultEntries">
-
-${renderVaultEntries(data)}
-
-</div>
-
-`
-);
-
-window.currentVaultData=data;
-window.currentVaultPassword=password;
-
-}
-
-
-function renderVaultEntries(data){
-
-if(!data.entries.length){
-
-return `
-
-<div class="empty">
-
-🔐 O teu cofre está vazio.
-
-</div>
-
-`;
-
-}
-
-return data.entries.map((entry,index)=>`
-
-<div class="vault-entry">
-
-<strong>
-${escapeHTML(entry.service)}
-</strong>
+function createVault(){
+
+modal("🔐 Criar cofre",`
+
+<p class="muted">
+O cofre é protegido por encriptação AES-GCM.
+Se esqueceres a palavra-passe principal,
+não será possível recuperar o conteúdo.
+</p>
 
 <br>
 
-<small>
-${escapeHTML(entry.username)}
-</small>
-
-<div class="card-buttons">
-
-<button class="btn"
-onclick="showVaultPassword(${index})">
-
-👁️ Mostrar
-
-</button>
-
-<button class="btn secondary"
-onclick="copyVaultPassword(${index})">
-
-📋 Copiar
-
-</button>
-
-<button class="btn danger"
-onclick="deleteVaultEntry(${index})">
-
-🗑️ Apagar
-
-</button>
-
+<div class="field">
+<label>Palavra-passe principal</label>
+<input id="master1" type="password">
 </div>
 
-<div
-id="vaultPass${index}"
-style="display:none;margin-top:10px"
-class="tool-output">
-
-${escapeHTML(entry.password)}
-
+<div class="field">
+<label>Confirmar</label>
+<input id="master2" type="password">
 </div>
 
-</div>
+<button class="btn" onclick="createVaultNow()">
+Criar cofre
+</button>
 
-`).join("");
+`);
 
 }
 
+async function createVaultNow(){
 
-function showAddEntry(){
+let a=document.getElementById("master1").value;
+let b=document.getElementById("master2").value;
 
-openModal(
-"➕ Nova palavra-passe",
-`
+if(a.length<8){
+alert("Usa pelo menos 8 caracteres.");
+return;
+}
+
+if(a!==b){
+alert("As palavras-passe não coincidem.");
+return;
+}
+
+let data={entries:[]};
+
+localStorage.setItem(
+VAULT,
+await encrypt(data,a)
+);
+
+vaultScreen(data,a);
+
+}
+
+function unlockVault(){
+
+modal("🔓 Desbloquear cofre",`
 
 <div class="field">
-
-<label>Serviço / site</label>
-
-<input id="entryService"
-placeholder="Ex: Google">
-
-</div>
-
-<div class="field">
-
-<label>Utilizador / email</label>
-
-<input id="entryUsername">
-
-</div>
-
-<div class="field">
-
 <label>Palavra-passe</label>
-
-<input id="entryPassword" type="password">
-
+<input id="unlock" type="password">
 </div>
 
-<div class="card-buttons">
+<button class="btn" onclick="unlockNow()">
+Desbloquear
+</button>
+
+`);
+
+}
+
+async function unlockNow(){
+
+try{
+
+let data=await decrypt(
+localStorage.getItem(VAULT),
+document.getElementById("unlock").value
+);
+
+vaultScreen(
+data,
+document.getElementById("unlock").value
+);
+
+}catch{
+
+alert("❌ Palavra-passe incorreta.");
+
+}
+
+}
+
+let vaultData;
+let vaultPassword;
+
+function vaultScreen(data,password){
+
+vaultData=data;
+vaultPassword=password;
+
+modal("🔐 Cofre",`
+
+<button class="btn" onclick="addVaultEntry()">
+➕ Adicionar
+</button>
+
+<div style="margin-top:20px">
+
+${data.entries.length
+?data.entries.map((x,i)=>`
+
+<div class="tool">
+
+<strong>${escapeHTML(x.site)}</strong>
+
+<br>
+
+<span class="muted">
+${escapeHTML(x.user)}
+</span>
+
+<div class="card-actions">
 
 <button class="btn secondary"
-onclick="generateEntryPassword()">
+onclick="alert('Palavra-passe: '+${JSON.stringify(x.pass)})">
+👁️ Mostrar
+</button>
 
+<button class="btn danger"
+onclick="deleteVault(${i})">
+🗑️ Apagar
+</button>
+
+</div>
+
+</div>
+
+`).join("")
+:`<div class="empty">Cofre vazio.</div>`}
+
+</div>
+
+`);
+
+}
+
+function addVaultEntry(){
+
+modal("➕ Nova palavra-passe",`
+
+<div class="field">
+<label>Site</label>
+<input id="vSite">
+</div>
+
+<div class="field">
+<label>Utilizador</label>
+<input id="vUser">
+</div>
+
+<div class="field">
+<label>Palavra-passe</label>
+<input id="vPass" type="password">
+</div>
+
+<button class="btn secondary"
+onclick="generateVaultPass()">
 🎲 Gerar
-
 </button>
 
 <button class="btn"
 onclick="saveVaultEntry()">
-
 💾 Guardar
-
 </button>
 
-</div>
-
-`
-);
+`);
 
 }
 
-
-function generateEntryPassword(){
+function generateVaultPass(){
 
 let chars=
 "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*";
 
-const values=
-new Uint32Array(20);
+let a=new Uint32Array(20);
 
-crypto.getRandomValues(values);
+crypto.getRandomValues(a);
 
-let result="";
-
-for(let i=0;i<20;i++){
-
-result+=chars[
-values[i]%chars.length
-];
+document.getElementById("vPass").value=
+[...a].map(x=>chars[x%chars.length]).join("");
 
 }
-
-document.getElementById(
-"entryPassword"
-).value=result;
-
-}
-
 
 async function saveVaultEntry(){
 
-const service=
-document.getElementById(
-"entryService"
-).value.trim();
+vaultData.entries.push({
 
-const username=
-document.getElementById(
-"entryUsername"
-).value.trim();
-
-const password=
-document.getElementById(
-"entryPassword"
-).value;
-
-if(!service || !password){
-
-alert(
-"Preenche pelo menos o serviço e a palavra-passe."
-);
-
-return;
-
-}
-
-window.currentVaultData.entries.push({
-
-service,
-username,
-password
+site:document.getElementById("vSite").value,
+user:document.getElementById("vUser").value,
+pass:document.getElementById("vPass").value
 
 });
 
-const encrypted=
-await encryptVault(
-window.currentVaultData,
-window.currentVaultPassword
+localStorage.setItem(
+VAULT,
+await encrypt(vaultData,vaultPassword)
 );
+
+vaultScreen(vaultData,vaultPassword);
+
+}
+
+async function deleteVault(i){
+
+if(!confirm("Apagar esta palavra-passe?"))return;
+
+vaultData.entries.splice(i,1);
 
 localStorage.setItem(
-VAULT_KEY,
-encrypted
+VAULT,
+await encrypt(vaultData,vaultPassword)
 );
 
-showVault(
-window.currentVaultData,
-window.currentVaultPassword
-);
+vaultScreen(vaultData,vaultPassword);
 
 }
 
 
-function showVaultPassword(index){
+/* ================================
+   TEMAS
+================================ */
 
-const element=
-document.getElementById(
-"vaultPass"+index
-);
+function setTheme(t){
 
-element.style.display=
-element.style.display==="none"
-?"block"
-:"none";
+document.body.className=t==="dark"?"":t;
+
+localStorage.setItem("wa_theme",t);
+
+}
+
+function cycleTheme(){
+
+let themes=["dark","light","green","purple","red","orange"];
+
+let current=localStorage.getItem("wa_theme")||"dark";
+
+let i=themes.indexOf(current);
+
+setTheme(themes[(i+1)%themes.length]);
 
 }
 
 
-function copyVaultPassword(index){
-
-const password=
-window.currentVaultData
-.entries[index].password;
-
-navigator.clipboard.writeText(password);
-
-}
-
-
-async function deleteVaultEntry(index){
-
-if(!confirm(
-"Apagar esta palavra-passe?"
-))return;
-
-window.currentVaultData.entries.splice(
-index,
-1
-);
-
-const encrypted=
-await encryptVault(
-window.currentVaultData,
-window.currentVaultPassword
-);
-
-localStorage.setItem(
-VAULT_KEY,
-encrypted
-);
-
-showVault(
-window.currentVaultData,
-window.currentVaultPassword
-);
-
-}
-
-
-/* =========================
+/* ================================
    SEGURANÇA HTML
-========================= */
+================================ */
 
-function escapeHTML(value){
+function escapeHTML(x){
 
-return String(value)
+return String(x)
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
@@ -2360,77 +2882,22 @@ return String(value)
 }
 
 
-/* =========================
-   LIMPAR DADOS
-========================= */
+/* ================================
+   INÍCIO
+================================ */
 
-function clearWorldApps(){
-
-const answer=
-confirm(
-"Apagar favoritos, notas, tema e cofre?"
-);
-
-if(!answer)return;
-
-localStorage.removeItem(
-"worldapps_favorites"
-);
-
-localStorage.removeItem(
-"worldapps_recent"
-);
-
-localStorage.removeItem(
-"worldapps_notes"
-);
-
-localStorage.removeItem(
-"worldapps_theme"
-);
-
-localStorage.removeItem(
-VAULT_KEY
-);
-
-favorites=[];
-recent=[];
-
-alert(
-"Dados apagados."
-);
-
-location.reload();
-
-}
-
-
-/* =========================
-   INICIALIZAÇÃO
-========================= */
-
-const savedTheme=
-localStorage.getItem("worldapps_theme")
-||"dark";
+let savedTheme=
+localStorage.getItem("wa_theme")||"dark";
 
 setTheme(savedTheme);
 
-renderAll();
-
-document.getElementById("notesText").value=
-localStorage.getItem("worldapps_notes") || "";
-
-
-/* fechar modal ao clicar fora */
+render();
 
 document.getElementById("modal")
-.addEventListener("click",function(e){
+.addEventListener("click",e=>{
 
-if(e.target===this){
-
+if(e.target.id==="modal")
 closeModal();
-
-}
 
 });
 
