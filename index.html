@@ -2,9 +2,8 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WorldApps</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WorldApps V3</title>
 
 <style>
 *{
@@ -15,178 +14,167 @@
 }
 
 :root{
-    --bg:#0f1115;
-    --card:#181b22;
-    --card2:#20242d;
+    --bg:#0f1117;
+    --card:#181c25;
+    --card2:#202633;
     --text:#ffffff;
-    --muted:#a9b0bd;
-    --blue:#00bfff;
-    --border:#303641;
-    --danger:#ff4d4d;
-    --green:#20d070;
+    --muted:#9ca3af;
+    --accent:#2563eb;
+    --accent2:#3b82f6;
+    --border:#303746;
+    --danger:#ef4444;
+    --success:#22c55e;
 }
 
 body{
     background:var(--bg);
     color:var(--text);
     min-height:100vh;
-    transition:.3s;
+    transition:.25s;
 }
 
 body.light{
     --bg:#f2f4f8;
     --card:#ffffff;
-    --card2:#e9edf3;
+    --card2:#eef1f5;
     --text:#111827;
-    --muted:#5b6472;
-    --border:#d8dde6;
+    --muted:#667085;
+    --border:#d9dee7;
+}
+
+body.green{
+    --accent:#16a34a;
+    --accent2:#22c55e;
+}
+
+body.purple{
+    --accent:#9333ea;
+    --accent2:#a855f7;
+}
+
+body.red{
+    --accent:#dc2626;
+    --accent2:#ef4444;
 }
 
 header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    min-height:70px;
-    background:rgba(15,17,21,.95);
-    border-bottom:1px solid var(--border);
+    height:70px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:12px 25px;
-    backdrop-filter:blur(12px);
-}
-
-body.light header{
-    background:rgba(255,255,255,.95);
+    gap:20px;
+    padding:0 25px;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
-    font-size:25px;
+    font-size:24px;
     font-weight:bold;
-    color:var(--blue);
+    white-space:nowrap;
 }
 
 .logo span{
-    color:var(--text);
+    color:var(--accent2);
 }
 
 nav{
     display:flex;
     gap:6px;
-    flex-wrap:wrap;
-    justify-content:center;
+    overflow:auto;
 }
 
-nav button{
+nav button,
+.header-btn{
+    border:0;
     background:transparent;
     color:var(--text);
-    border:0;
-    padding:10px 12px;
+    padding:10px 13px;
     border-radius:10px;
     cursor:pointer;
-    font-size:14px;
+    white-space:nowrap;
 }
 
-nav button:hover{
+nav button:hover,
+.header-btn:hover{
     background:var(--card2);
 }
 
-.header-buttons{
+.header-actions{
+    margin-left:auto;
     display:flex;
-    gap:8px;
-}
-
-.icon-btn{
-    width:42px;
-    height:42px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    border-radius:10px;
-    cursor:pointer;
-    font-size:18px;
+    gap:6px;
 }
 
 main{
-    max-width:1200px;
+    max-width:1250px;
     margin:auto;
-    padding:45px 20px 70px;
+    padding:30px 20px 80px;
 }
 
-.page{
+.section{
     display:none;
 }
 
-.page.active{
+.section.active{
     display:block;
 }
 
 .hero{
-    text-align:center;
-    padding:55px 20px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border-radius:24px;
+    padding:45px;
+    margin-bottom:30px;
+    box-shadow:0 15px 50px #0004;
 }
 
 .hero h1{
-    font-size:55px;
-    margin-bottom:15px;
-}
-
-.hero h1 span{
-    color:var(--blue);
+    font-size:42px;
+    margin-bottom:12px;
 }
 
 .hero p{
-    color:var(--muted);
-    font-size:19px;
-    margin-bottom:30px;
+    font-size:18px;
+    opacity:.9;
+    max-width:650px;
 }
 
 .search{
-    max-width:650px;
-    margin:auto;
     display:flex;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    overflow:hidden;
+    gap:10px;
+    margin-top:25px;
+    max-width:750px;
 }
 
 .search input{
     flex:1;
-    background:transparent;
+    padding:15px 18px;
     border:0;
-    outline:0;
-    padding:17px;
-    color:var(--text);
+    border-radius:12px;
+    outline:none;
     font-size:16px;
 }
 
 .search button{
     border:0;
-    background:var(--blue);
-    color:#001018;
-    padding:0 25px;
-    font-weight:bold;
+    background:#111827;
+    color:white;
+    padding:0 22px;
+    border-radius:12px;
     cursor:pointer;
+    font-size:16px;
 }
 
-.section-title{
-    margin:35px 0 20px;
-}
-
-.section-title h2{
-    font-size:28px;
-}
-
-.section-title p{
-    color:var(--muted);
-    margin-top:6px;
+h2{
+    margin:25px 0 15px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
 }
 
 .card{
@@ -198,264 +186,225 @@ main{
 }
 
 .card:hover{
-    transform:translateY(-4px);
-    border-color:var(--blue);
+    transform:translateY(-3px);
+    border-color:var(--accent);
 }
 
-.card-icon{
-    width:60px;
-    height:60px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--card2);
-    font-size:30px;
-    margin-bottom:18px;
+.icon{
+    font-size:40px;
+    margin-bottom:12px;
 }
 
 .card h3{
     margin-bottom:8px;
-    font-size:20px;
 }
 
 .card p{
     color:var(--muted);
     line-height:1.5;
-    min-height:48px;
+    min-height:45px;
 }
 
-.card button{
+.card-buttons{
+    display:flex;
+    gap:8px;
     margin-top:18px;
-    width:100%;
-    padding:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
     border:0;
-    border-radius:10px;
-    background:var(--blue);
-    color:#001018;
-    font-weight:bold;
+    background:var(--accent);
+    color:white;
+    padding:10px 14px;
+    border-radius:9px;
     cursor:pointer;
 }
 
-.download{
-    margin-top:40px;
-    padding:30px;
-    background:linear-gradient(135deg,#111c25,#17232e);
-    border:1px solid var(--border);
-    border-radius:20px;
-    text-align:center;
+.btn:hover{
+    background:var(--accent2);
 }
 
-.download h2{
-    margin-bottom:10px;
+.btn.secondary{
+    background:var(--card2);
+    color:var(--text);
 }
 
-.download p{
-    color:var(--muted);
+.btn.danger{
+    background:var(--danger);
+}
+
+.btn.success{
+    background:var(--success);
+}
+
+.star{
+    float:right;
+    font-size:23px;
+    cursor:pointer;
+}
+
+.categories{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
     margin-bottom:20px;
 }
 
-.download a{
-    display:inline-block;
-    background:var(--blue);
-    color:#001018;
-    text-decoration:none;
-    font-weight:bold;
-    padding:13px 22px;
-    border-radius:10px;
+.category{
+    padding:9px 14px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:20px;
+    cursor:pointer;
 }
 
-.result{
+.category.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:white;
+}
+
+.empty{
+    padding:40px;
+    text-align:center;
+    color:var(--muted);
+    background:var(--card);
+    border-radius:18px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0009;
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:12px;
+    border-radius:20px;
+    padding:25px;
 }
 
-/* PASSWORD VAULT */
-
-.vault{
-    max-width:850px;
-    margin:auto;
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
-.vault-header{
-    text-align:center;
-    margin-bottom:30px;
+.close{
+    background:var(--card2);
+    border:0;
+    color:var(--text);
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:20px;
 }
 
-.vault-header .big-lock{
-    font-size:60px;
+.field{
     margin-bottom:15px;
 }
 
-.vault-header h1{
-    font-size:36px;
-    margin-bottom:10px;
-}
-
-.vault-header p{
-    color:var(--muted);
-}
-
-.vault-box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
-    margin-bottom:20px;
-}
-
-.vault-box h2{
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:16px;
-}
-
-.form-group label{
+.field label{
     display:block;
     margin-bottom:7px;
     color:var(--muted);
-    font-size:14px;
 }
 
-.form-group input{
+.field input,
+.field textarea,
+.field select{
     width:100%;
-    padding:13px;
+    padding:12px;
     border-radius:10px;
     border:1px solid var(--border);
-    background:var(--card2);
+    background:var(--bg);
     color:var(--text);
     outline:none;
-    font-size:15px;
 }
 
-.form-group input:focus{
-    border-color:var(--blue);
+.field textarea{
+    min-height:180px;
+    resize:vertical;
 }
 
-.primary-btn{
-    width:100%;
-    border:0;
-    border-radius:10px;
-    padding:13px;
-    background:var(--blue);
-    color:#001018;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:15px;
-}
-
-.secondary-btn{
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:11px 15px;
-    background:var(--card2);
-    color:var(--text);
-    cursor:pointer;
-}
-
-.danger-btn{
-    border:0;
-    border-radius:9px;
-    padding:9px 12px;
-    background:var(--danger);
-    color:white;
-    cursor:pointer;
-}
-
-.success-btn{
-    border:0;
-    border-radius:9px;
-    padding:9px 12px;
-    background:var(--green);
-    color:#001b0d;
-    cursor:pointer;
-}
-
-.vault-actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.password-item{
-    background:var(--card2);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:18px;
-    margin-top:12px;
-}
-
-.password-item h3{
-    margin-bottom:5px;
-}
-
-.password-item .site{
-    color:var(--blue);
-    font-size:14px;
-    margin-bottom:14px;
-}
-
-.password-display{
+.password-row{
     display:flex;
     gap:8px;
 }
 
-.password-display input{
+.password-row input{
     flex:1;
-    min-width:0;
-    padding:10px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    border-radius:8px;
 }
 
-.item-buttons{
-    display:flex;
-    gap:8px;
-    margin-top:12px;
-    flex-wrap:wrap;
+.notice{
+    background:var(--card2);
+    border-left:4px solid var(--accent);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
 }
 
-.empty-vault{
-    text-align:center;
-    padding:30px;
+.vault-entry{
+    background:var(--card2);
+    padding:16px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.vault-entry strong{
+    font-size:17px;
+}
+
+.vault-entry small{
     color:var(--muted);
 }
 
-.warning{
-    padding:13px;
+.tool-output{
+    margin-top:15px;
+    background:var(--bg);
+    border:1px solid var(--border);
     border-radius:10px;
-    background:rgba(255,180,0,.1);
-    border:1px solid rgba(255,180,0,.3);
-    color:#ffc857;
-    margin-bottom:18px;
-    line-height:1.5;
-}
-
-.hidden{
-    display:none !important;
+    padding:15px;
+    word-break:break-all;
 }
 
 footer{
-    border-top:1px solid var(--border);
-    padding:25px;
     text-align:center;
+    padding:30px;
     color:var(--muted);
+    border-top:1px solid var(--border);
 }
 
-@media(max-width:700px){
+.download-box{
+    margin-top:20px;
+    padding:18px;
+    background:#0003;
+    border-radius:15px;
+}
 
+@media(max-width:800px){
     header{
-        padding:12px;
+        height:auto;
+        min-height:70px;
         flex-wrap:wrap;
-        gap:10px;
+        padding:12px;
     }
 
     nav{
@@ -463,24 +412,24 @@ footer{
         width:100%;
     }
 
+    .header-actions{
+        margin-left:auto;
+    }
+
     .hero{
-        padding:35px 10px;
+        padding:30px 20px;
     }
 
     .hero h1{
-        font-size:40px;
+        font-size:32px;
     }
 
-    main{
-        padding:25px 14px 50px;
-    }
-
-    .vault-header h1{
-        font-size:29px;
-    }
-
-    .password-display{
+    .search{
         flex-direction:column;
+    }
+
+    .search button{
+        padding:13px;
     }
 }
 </style>
@@ -490,20 +439,22 @@ footer{
 
 <header>
 
-    <div class="logo">
-        World<span>Apps</span>
-    </div>
+<div class="logo">
+🌍 World<span>Apps</span>
+</div>
 
-    <nav>
-        <button onclick="showPage('home')">🏠 Início</button>
-        <button onclick="showPage('apps')">📱 Apps</button>
-        <button onclick="showPage('games')">🎮 Jogos</button>
-        <button onclick="showPage('passwords')">🔐 Passwords</button>
-    </nav>
+<nav>
+<button onclick="showSection('home')">🏠 Início</button>
+<button onclick="showSection('apps')">📱 Apps</button>
+<button onclick="showSection('games')">🎮 Jogos</button>
+<button onclick="showSection('favorites')">⭐ Favoritos</button>
+<button onclick="showSection('security')">🔐 Segurança</button>
+</nav>
 
-    <div class="header-buttons">
-        <button class="icon-btn" onclick="toggleTheme()">🌙</button>
-    </div>
+<div class="header-actions">
+<button class="header-btn" onclick="cycleTheme()">🎨</button>
+<button class="header-btn" onclick="showSection('settings')">⚙️</button>
+</div>
 
 </header>
 
@@ -511,400 +462,343 @@ footer{
 
 <!-- INÍCIO -->
 
-<section id="home" class="page active">
+<section id="home" class="section active">
 
-    <div class="hero">
+<div class="hero">
 
-        <h1>World<span>Apps</span></h1>
+<h1>Bem-vindo ao WorldApps 🚀</h1>
 
-        <p>
-            As tuas aplicações e jogos num só lugar.
-        </p>
+<p>
+O teu espaço para aplicações, jogos e ferramentas úteis.
+Tudo num só lugar e sem IA.
+</p>
 
-        <div class="search">
+<div class="search">
 
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="Pesquisar aplicações ou jogos..."
-                onkeydown="if(event.key==='Enter') searchApps()"
-            >
+<input
+id="globalSearch"
+placeholder="Pesquisar aplicações, jogos ou ferramentas..."
+onkeydown="if(event.key==='Enter')searchWorld()">
 
-            <button onclick="searchApps()">
-                🔎 Pesquisar
-            </button>
+<button onclick="searchWorld()">🔎 Pesquisar</button>
 
-        </div>
+</div>
 
-    </div>
+<div class="download-box">
 
-    <div id="searchResults"></div>
+<strong>🌐 IternetWorld</strong>
 
-    <div class="section-title">
-        <h2>⭐ Destaques</h2>
-        <p>Conhece os projetos do WorldApps.</p>
-    </div>
+<p style="margin-top:7px">
+O navegador desenvolvido para o WorldApps.
+</p>
 
-    <div class="grid">
+<div class="card-buttons">
 
-        <div class="card">
+<button
+class="btn"
+onclick="openIternetWorld()">
+Abrir IternetWorld
+</button>
 
-            <div class="card-icon">🌐</div>
+<a
+class="btn secondary"
+style="text-decoration:none"
+href="https://github.com/JogosWorld/InternetWorld/releases/download/v1.0.0/IternetWorld.Setup.1.0.0.exe">
+⬇️ Download Windows
+</a>
 
-            <h3>IternetWorld</h3>
+</div>
 
-            <p>
-                Um navegador criado pelo WorldApps.
-            </p>
+</div>
 
-            <button onclick="openIternetWorld()">
-                Abrir
-            </button>
+</div>
 
-        </div>
+<h2>⭐ Destaques</h2>
 
-        <div class="card">
+<div id="featuredGrid" class="grid"></div>
 
-            <div class="card-icon">🧱</div>
+<h2>🕘 Recentes</h2>
 
-            <h3>Craft & Build</h3>
-
-            <p>
-                Explora, constrói e cria o teu próprio mundo.
-            </p>
-
-            <button onclick="openGame('Craft & Build')">
-                Jogar
-            </button>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">🏎️</div>
-
-            <h3>Corrida Relâmpago</h3>
-
-            <p>
-                Conduz, desvia dos obstáculos e acelera.
-            </p>
-
-            <button onclick="openGame('Corrida Relâmpago')">
-                Jogar
-            </button>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">🔐</div>
-
-            <h3>Password Vault</h3>
-
-            <p>
-                Guarda as tuas palavras-passe num cofre protegido.
-            </p>
-
-            <button onclick="showPage('passwords')">
-                Abrir cofre
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="download">
-
-        <h2>💻 IternetWorld para Windows</h2>
-
-        <p>
-            Descarrega a versão Windows do navegador IternetWorld.
-        </p>
-
-        <a href="https://github.com/JogosWorld/InternetWorld/releases/download/v1.0.0/IternetWorld.Setup.1.0.0.exe">
-            ⬇️ Download IternetWorld
-        </a>
-
-    </div>
+<div id="recentGrid" class="grid"></div>
 
 </section>
 
 
 <!-- APPS -->
 
-<section id="apps" class="page">
+<section id="apps" class="section">
 
-    <div class="section-title">
+<h1>📱 Aplicações</h1>
 
-        <h2>📱 Aplicações</h2>
+<p style="color:var(--muted);margin:10px 0 25px">
+Ferramentas úteis para o dia a dia.
+</p>
 
-        <p>
-            As aplicações disponíveis no WorldApps.
-        </p>
+<div class="categories">
 
-    </div>
+<button class="category active" onclick="filterApps('all',this)">
+Todas
+</button>
 
-    <div class="grid">
+<button class="category" onclick="filterApps('produtividade',this)">
+📚 Produtividade
+</button>
 
-        <div class="card">
+<button class="category" onclick="filterApps('ferramentas',this)">
+🛠️ Ferramentas
+</button>
 
-            <div class="card-icon">🌐</div>
+<button class="category" onclick="filterApps('internet',this)">
+🌐 Internet
+</button>
 
-            <h3>IternetWorld</h3>
+</div>
 
-            <p>
-                Navegador criado pelo WorldApps.
-            </p>
-
-            <button onclick="openIternetWorld()">
-                Abrir IternetWorld
-            </button>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">🔐</div>
-
-            <h3>Password Vault</h3>
-
-            <p>
-                Cofre local para proteger as tuas palavras-passe.
-            </p>
-
-            <button onclick="showPage('passwords')">
-                Abrir
-            </button>
-
-        </div>
-
-    </div>
+<div id="appsGrid" class="grid"></div>
 
 </section>
 
 
 <!-- JOGOS -->
 
-<section id="games" class="page">
+<section id="games" class="section">
 
-    <div class="section-title">
+<h1>🎮 Jogos</h1>
 
-        <h2>🎮 Jogos</h2>
+<p style="color:var(--muted);margin:10px 0 25px">
+Os jogos do WorldApps.
+</p>
 
-        <p>
-            Jogos criados para o WorldApps.
-        </p>
-
-    </div>
-
-    <div class="grid">
-
-        <div class="card">
-
-            <div class="card-icon">🧱</div>
-
-            <h3>Craft & Build</h3>
-
-            <p>
-                Jogo 3D de construção e exploração.
-            </p>
-
-            <button onclick="openGame('Craft & Build')">
-                Jogar
-            </button>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">🏎️</div>
-
-            <h3>Corrida Relâmpago</h3>
-
-            <p>
-                Jogo de corridas com obstáculos.
-            </p>
-
-            <button onclick="openGame('Corrida Relâmpago')">
-                Jogar
-            </button>
-
-        </div>
-
-    </div>
+<div id="gamesGrid" class="grid"></div>
 
 </section>
 
 
-<!-- PASSWORD VAULT -->
+<!-- FAVORITOS -->
 
-<section id="passwords" class="page">
+<section id="favorites" class="section">
 
-    <div class="vault">
+<h1>⭐ Favoritos</h1>
 
-        <div class="vault-header">
+<p style="color:var(--muted);margin:10px 0 25px">
+As tuas aplicações e jogos favoritos.
+</p>
 
-            <div class="big-lock">🔐</div>
+<div id="favoritesGrid" class="grid"></div>
 
-            <h1>Password Vault</h1>
+</section>
 
-            <p>
-                O teu cofre pessoal de palavras-passe.
-            </p>
 
-        </div>
+<!-- SEGURANÇA -->
 
+<section id="security" class="section">
 
-        <!-- PRIMEIRO ACESSO -->
+<h1>🔐 Segurança</h1>
 
-        <div id="createMaster" class="vault-box hidden">
+<p style="color:var(--muted);margin:10px 0 25px">
+Ferramentas de segurança disponíveis localmente no teu navegador.
+</p>
 
-            <h2>🔑 Criar palavra-passe principal</h2>
+<div class="grid">
 
-            <div class="warning">
-                Esta palavra-passe será usada para desbloquear o cofre.
-                Se a perderes, não será possível recuperar os dados.
-            </div>
+<div class="card">
 
-            <div class="form-group">
+<div class="icon">🔐</div>
 
-                <label>Nova palavra-passe principal</label>
+<h3>Palavras-passe</h3>
 
-                <input
-                    id="newMaster"
-                    type="password"
-                    placeholder="Escolhe uma palavra-passe forte"
-                >
+<p>
+Cofre local protegido por palavra-passe principal.
+</p>
 
-            </div>
+<div class="card-buttons">
 
-            <div class="form-group">
+<button class="btn" onclick="openVault()">
+Abrir cofre
+</button>
 
-                <label>Confirmar palavra-passe</label>
+</div>
 
-                <input
-                    id="confirmMaster"
-                    type="password"
-                    placeholder="Repete a palavra-passe"
-                >
+</div>
 
-            </div>
 
-            <button class="primary-btn" onclick="createVault()">
-                🔐 Criar cofre
-            </button>
+<div class="card">
 
-        </div>
+<div class="icon">🎲</div>
 
+<h3>Gerador de palavras-passe</h3>
 
-        <!-- LOGIN -->
+<p>
+Cria palavras-passe fortes aleatórias.
+</p>
 
-        <div id="unlockBox" class="vault-box hidden">
+<div class="card-buttons">
 
-            <h2>🔓 Desbloquear cofre</h2>
+<button class="btn" onclick="openPasswordGenerator()">
+Abrir gerador
+</button>
 
-            <div class="form-group">
+</div>
 
-                <label>Palavra-passe principal</label>
+</div>
 
-                <input
-                    id="masterPassword"
-                    type="password"
-                    placeholder="Introduz a tua palavra-passe"
-                    onkeydown="if(event.key==='Enter') unlockVault()"
-                >
+</div>
 
-            </div>
+</section>
 
-            <button class="primary-btn" onclick="unlockVault()">
-                🔓 Desbloquear
-            </button>
 
-        </div>
+<!-- DEFINIÇÕES -->
 
+<section id="settings" class="section">
 
-        <!-- COFRE -->
+<h1>⚙️ Definições</h1>
 
-        <div id="vaultContent" class="hidden">
+<div class="grid">
 
-            <div class="vault-box">
+<div class="card">
 
-                <h2>➕ Adicionar palavra-passe</h2>
+<div class="icon">🎨</div>
 
-                <div class="form-group">
+<h3>Tema</h3>
 
-                    <label>Nome / Serviço</label>
+<p>
+Escolhe o aspeto do WorldApps.
+</p>
 
-                    <input
-                        id="entryName"
-                        type="text"
-                        placeholder="Ex.: Google"
-                    >
+<div class="card-buttons">
 
-                </div>
+<button class="btn" onclick="setTheme('dark')">
+Escuro
+</button>
 
-                <div class="form-group">
+<button class="btn" onclick="setTheme('light')">
+Claro
+</button>
 
-                    <label>Site</label>
+<button class="btn" onclick="setTheme('green')">
+Verde
+</button>
 
-                    <input
-                        id="entrySite"
-                        type="text"
-                        placeholder="Ex.: https://google.com"
-                    >
+<button class="btn" onclick="setTheme('purple')">
+Roxo
+</button>
 
-                </div>
+<button class="btn" onclick="setTheme('red')">
+Vermelho
+</button>
 
-                <div class="form-group">
+</div>
 
-                    <label>Nome de utilizador / email</label>
+</div>
 
-                    <input
-                        id="entryUser"
-                        type="text"
-                        placeholder="Ex.: exemplo@email.com"
-                    >
 
-                </div>
+<div class="card">
 
-                <div class="form-group">
+<div class="icon">🗑️</div>
 
-                    <label>Palavra-passe</label>
+<h3>Dados locais</h3>
 
-                    <input
-                        id="entryPassword"
-                        type="password"
-                        placeholder="Palavra-passe"
-                    >
+<p>
+Apaga favoritos, notas e definições guardadas neste navegador.
+</p>
 
-                </div>
+<div class="card-buttons">
 
-                <button class="primary-btn" onclick="addPassword()">
-                    ➕ Guardar palavra-passe
-                </button>
+<button class="btn danger" onclick="clearWorldApps()">
+Apagar dados
+</button>
 
-            </div>
+</div>
 
+</div>
 
-            <div class="vault-box">
+</div>
 
-                <h2>🔐 As tuas palavras-passe</h2>
+</section>
 
-                <div id="passwordList"></div>
 
-                <div class="vault-actions">
+<!-- NOTAS -->
 
-                    <button class="secondary-btn" onclick="lockVault()">
-                        🔒 Bloquear cofre
-                    </button>
+<section id="notes" class="section">
 
-                </div>
+<h1>📝 Notas</h1>
 
-            </div>
+<div class="card" style="margin-top:20px">
 
-        </div>
+<div class="field">
 
-    </div>
+<label>As tuas notas</label>
+
+<textarea
+id="notesText"
+placeholder="Escreve aqui..."></textarea>
+
+</div>
+
+<button class="btn" onclick="saveNotes()">
+💾 Guardar notas
+</button>
+
+<span id="notesStatus" style="margin-left:10px;color:var(--success)"></span>
+
+</div>
+
+</section>
+
+
+<!-- CALCULADORA -->
+
+<section id="calculator" class="section">
+
+<h1>🧮 Calculadora</h1>
+
+<div class="card" style="max-width:600px;margin-top:20px">
+
+<div class="field">
+
+<input
+id="calcInput"
+placeholder="Exemplo: 25 * 4 + 10">
+
+</div>
+
+<button class="btn" onclick="calculate()">
+Calcular
+</button>
+
+<div id="calcOutput" class="tool-output">
+Resultado aparecerá aqui.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CRONÓMETRO -->
+
+<section id="timer" class="section">
+
+<h1>⏱️ Cronómetro</h1>
+
+<div class="card" style="max-width:500px;margin-top:20px;text-align:center">
+
+<div id="timerDisplay"
+style="font-size:55px;font-weight:bold;margin:20px">
+00:00:00
+</div>
+
+<div class="card-buttons" style="justify-content:center">
+
+<button class="btn" onclick="startTimer()">▶️ Iniciar</button>
+
+<button class="btn secondary" onclick="pauseTimer()">⏸️ Pausar</button>
+
+<button class="btn danger" onclick="resetTimer()">🔄 Reiniciar</button>
+
+</div>
+
+</div>
 
 </section>
 
@@ -912,946 +806,1633 @@ footer{
 
 
 <footer>
-    © 2026 WorldApps · Aplicações, jogos e projetos
+
+WorldApps V3 · Aplicações, jogos e ferramentas 🌍
+
 </footer>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2 id="modalTitle">WorldApps</h2>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
 
 
 <script>
 
 /* =========================
+   DADOS
+========================= */
+
+const apps = [
+
+{
+id:"internetworld",
+name:"IternetWorld",
+icon:"🌐",
+category:"internet",
+description:"Navegador web do WorldApps.",
+action:"internetworld"
+},
+
+{
+id:"notes",
+name:"Notas",
+icon:"📝",
+category:"produtividade",
+description:"Escreve e guarda notas no navegador.",
+action:"notes"
+},
+
+{
+id:"calculator",
+name:"Calculadora",
+icon:"🧮",
+category:"ferramentas",
+description:"Calculadora rápida.",
+action:"calculator"
+},
+
+{
+id:"timer",
+name:"Cronómetro",
+icon:"⏱️",
+category:"ferramentas",
+description:"Cronómetro digital.",
+action:"timer"
+},
+
+{
+id:"passwords",
+name:"Palavras-passe",
+icon:"🔐",
+category:"ferramentas",
+description:"Cofre local para palavras-passe.",
+action:"vault"
+},
+
+{
+id:"generator",
+name:"Gerador de palavras-passe",
+icon:"🎲",
+category:"ferramentas",
+description:"Gera palavras-passe aleatórias.",
+action:"generator"
+}
+
+];
+
+
+const games = [
+
+{
+id:"craftbuild",
+name:"Craft & Build",
+icon:"🧱",
+description:"Jogo 3D de construção.",
+url:"#"
+},
+
+{
+id:"corrida",
+name:"Corrida Relâmpago",
+icon:"🏎️",
+description:"Jogo de corridas com obstáculos.",
+url:"#"
+}
+
+];
+
+
+/* =========================
+   ESTADO
+========================= */
+
+let favorites =
+JSON.parse(localStorage.getItem("worldapps_favorites") || "[]");
+
+let recent =
+JSON.parse(localStorage.getItem("worldapps_recent") || "[]");
+
+let currentFilter="all";
+
+
+/* =========================
    NAVEGAÇÃO
 ========================= */
 
-function showPage(page){
+function showSection(id){
 
-    document.querySelectorAll(".page").forEach(function(p){
-        p.classList.remove("active");
-    });
+document.querySelectorAll(".section")
+.forEach(s=>s.classList.remove("active"));
 
-    const selected = document.getElementById(page);
+const section=document.getElementById(id);
 
-    if(selected){
-        selected.classList.add("active");
-    }
+if(section){
+section.classList.add("active");
+}
 
-    if(page === "passwords"){
-        prepareVault();
-    }
+window.scrollTo(0,0);
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+if(id==="apps") renderApps();
+if(id==="games") renderGames();
+if(id==="favorites") renderFavorites();
+
 }
 
 
 /* =========================
-   TEMA
+   CARDS
 ========================= */
 
-function toggleTheme(){
+function isFavorite(id){
 
-    document.body.classList.toggle("light");
+return favorites.includes(id);
 
-    const light =
-        document.body.classList.contains("light");
-
-    localStorage.setItem(
-        "worldapps_theme",
-        light ? "light" : "dark"
-    );
-
-    document.querySelector(".icon-btn").textContent =
-        light ? "☀️" : "🌙";
 }
 
 
-(function(){
+function toggleFavorite(id){
 
-    if(
-        localStorage.getItem("worldapps_theme")
-        === "light"
-    ){
+if(isFavorite(id)){
 
-        document.body.classList.add("light");
+favorites=favorites.filter(x=>x!==id);
 
-        document.querySelector(".icon-btn").textContent =
-            "☀️";
-    }
+}else{
 
-})();
+favorites.push(id);
+
+}
+
+localStorage.setItem(
+"worldapps_favorites",
+JSON.stringify(favorites)
+);
+
+renderAll();
+
+}
+
+
+function addRecent(id){
+
+recent=recent.filter(x=>x!==id);
+
+recent.unshift(id);
+
+recent=recent.slice(0,6);
+
+localStorage.setItem(
+"worldapps_recent",
+JSON.stringify(recent)
+);
+
+}
+
+
+function appCard(app){
+
+return `
+
+<div class="card">
+
+<div class="star"
+onclick="toggleFavorite('${app.id}')">
+
+${isFavorite(app.id) ? "⭐" : "☆"}
+
+</div>
+
+<div class="icon">${app.icon}</div>
+
+<h3>${app.name}</h3>
+
+<p>${app.description}</p>
+
+<div class="card-buttons">
+
+<button class="btn"
+onclick="openApp('${app.id}')">
+
+Abrir
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function gameCard(game){
+
+return `
+
+<div class="card">
+
+<div class="star"
+onclick="toggleFavorite('${game.id}')">
+
+${isFavorite(game.id) ? "⭐" : "☆"}
+
+</div>
+
+<div class="icon">${game.icon}</div>
+
+<h3>${game.name}</h3>
+
+<p>${game.description}</p>
+
+<div class="card-buttons">
+
+<button class="btn"
+onclick="openGame('${game.id}')">
+
+Jogar
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderApps(){
+
+const grid=document.getElementById("appsGrid");
+
+let list=apps;
+
+if(currentFilter!=="all"){
+
+list=apps.filter(
+a=>a.category===currentFilter
+);
+
+}
+
+grid.innerHTML=list.map(appCard).join("");
+
+}
+
+
+function renderGames(){
+
+document.getElementById("gamesGrid").innerHTML=
+games.map(gameCard).join("");
+
+}
+
+
+function renderFavorites(){
+
+const grid=document.getElementById("favoritesGrid");
+
+const all=[...apps,...games];
+
+const list=all.filter(
+x=>favorites.includes(x.id)
+);
+
+if(!list.length){
+
+grid.innerHTML=`
+
+<div class="empty">
+
+⭐ Ainda não tens favoritos.
+
+<br><br>
+
+Vai às Apps ou Jogos e carrega na estrela.
+
+</div>
+
+`;
+
+return;
+
+}
+
+grid.innerHTML=list.map(x=>{
+
+if(apps.some(a=>a.id===x.id))
+return appCard(x);
+
+return gameCard(x);
+
+}).join("");
+
+}
+
+
+function renderFeatured(){
+
+const grid=document.getElementById("featuredGrid");
+
+grid.innerHTML=`
+
+${appCard(apps[0])}
+
+${appCard(apps[1])}
+
+${gameCard(games[0])}
+
+${gameCard(games[1])}
+
+`;
+
+}
+
+
+function renderRecent(){
+
+const grid=document.getElementById("recentGrid");
+
+const all=[...apps,...games];
+
+const list=recent
+.map(id=>all.find(x=>x.id===id))
+.filter(Boolean);
+
+if(!list.length){
+
+grid.innerHTML=`
+
+<div class="empty">
+
+Ainda não abriste nenhuma aplicação.
+
+</div>
+
+`;
+
+return;
+
+}
+
+grid.innerHTML=list.map(x=>{
+
+if(apps.some(a=>a.id===x.id))
+return appCard(x);
+
+return gameCard(x);
+
+}).join("");
+
+}
+
+
+function renderAll(){
+
+renderApps();
+renderGames();
+renderFavorites();
+renderFeatured();
+renderRecent();
+
+}
+
+
+/* =========================
+   ABRIR APP
+========================= */
+
+function openApp(id){
+
+addRecent(id);
+
+if(id==="internetworld"){
+
+openIternetWorld();
+return;
+
+}
+
+if(id==="notes"){
+
+showSection("notes");
+
+document.getElementById("notesText").value=
+localStorage.getItem("worldapps_notes") || "";
+
+return;
+
+}
+
+if(id==="calculator"){
+
+showSection("calculator");
+return;
+
+}
+
+if(id==="timer"){
+
+showSection("timer");
+return;
+
+}
+
+if(id==="vault"){
+
+openVault();
+return;
+
+}
+
+if(id==="passwords"){
+
+openVault();
+return;
+
+}
+
+if(id==="generator"){
+
+openPasswordGenerator();
+return;
+
+}
+
+}
+
+
+function openGame(id){
+
+addRecent(id);
+
+const game=games.find(g=>g.id===id);
+
+if(!game)return;
+
+if(game.url==="#"){
+
+alert(
+"🎮 Este jogo ainda não tem um endereço público ligado ao WorldApps."
+);
+
+return;
+
+}
+
+window.open(game.url,"_blank");
+
+}
+
+
+/* =========================
+   IternetWorld
+========================= */
+
+function openIternetWorld(){
+
+window.open(
+"https://jogosworld.github.io/InternetWorld/",
+"_blank"
+);
+
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+function filterApps(filter,button){
+
+currentFilter=filter;
+
+document.querySelectorAll(".category")
+.forEach(x=>x.classList.remove("active"));
+
+button.classList.add("active");
+
+renderApps();
+
+}
 
 
 /* =========================
    PESQUISA
 ========================= */
 
-const items = [
+function searchWorld(){
 
-    {
-        name:"IternetWorld",
-        type:"Aplicação",
-        description:"Navegador criado pelo WorldApps.",
-        action:"openIternetWorld()"
-    },
+const query=
+document.getElementById("globalSearch")
+.value
+.toLowerCase()
+.trim();
 
-    {
-        name:"Password Vault",
-        type:"Aplicação",
-        description:"Cofre local de palavras-passe.",
-        action:"showPage('passwords')"
-    },
+if(!query)return;
 
-    {
-        name:"Craft & Build",
-        type:"Jogo",
-        description:"Jogo 3D de construção e exploração.",
-        action:"openGame('Craft & Build')"
-    },
+const all=[...apps,...games];
 
-    {
-        name:"Corrida Relâmpago",
-        type:"Jogo",
-        description:"Jogo de corridas com obstáculos.",
-        action:"openGame('Corrida Relâmpago')"
-    }
+const results=all.filter(x=>
 
+x.name.toLowerCase().includes(query) ||
+x.description.toLowerCase().includes(query)
+
+);
+
+document.getElementById("featuredGrid").innerHTML=
+results.length
+? results.map(x=>
+apps.some(a=>a.id===x.id)
+? appCard(x)
+:gameCard(x)
+).join("")
+:`
+
+<div class="empty">
+
+🔎 Nenhum resultado encontrado.
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   TEMAS
+========================= */
+
+function setTheme(theme){
+
+document.body.className="";
+
+if(theme!=="dark")
+document.body.classList.add(theme);
+
+localStorage.setItem(
+"worldapps_theme",
+theme
+);
+
+}
+
+
+function cycleTheme(){
+
+const themes=[
+"dark",
+"light",
+"green",
+"purple",
+"red"
 ];
 
+const current=
+localStorage.getItem("worldapps_theme")
+||"dark";
 
-function searchApps(){
+let index=themes.indexOf(current);
 
-    const input =
-        document.getElementById("searchInput");
+index=(index+1)%themes.length;
 
-    const results =
-        document.getElementById("searchResults");
-
-    const query =
-        input.value.trim().toLowerCase();
-
-    results.innerHTML = "";
-
-    if(!query){
-        return;
-    }
-
-    const found =
-        items.filter(function(item){
-
-            return (
-                item.name.toLowerCase().includes(query) ||
-                item.type.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
-
-        });
-
-
-    if(found.length === 0){
-
-        results.innerHTML = `
-            <div class="result">
-                <h3>🔎 Nenhum resultado</h3>
-                <p>
-                    Não encontramos nenhuma aplicação ou jogo.
-                </p>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    found.forEach(function(item){
-
-        results.innerHTML += `
-
-            <div class="result">
-
-                <h3>${item.name}</h3>
-
-                <p>
-                    ${item.type} · ${item.description}
-                </p>
-
-                <button
-                    onclick="${item.action}"
-                    style="
-                        margin-top:12px;
-                        padding:10px 16px;
-                        border:0;
-                        border-radius:9px;
-                        background:var(--blue);
-                        cursor:pointer;
-                        font-weight:bold;
-                    "
-                >
-                    Abrir
-                </button>
-
-            </div>
-
-        `;
-
-    });
+setTheme(themes[index]);
 
 }
 
 
 /* =========================
-   INTERNETWORLD
+   NOTAS
 ========================= */
 
-function openIternetWorld(){
+function saveNotes(){
 
-    window.open(
-        "https://jogosworld.github.io/InternetWorld/",
-        "_blank"
-    );
+const value=
+document.getElementById("notesText").value;
+
+localStorage.setItem(
+"worldapps_notes",
+value
+);
+
+document.getElementById("notesStatus")
+.textContent="✓ Guardado";
+
+setTimeout(()=>{
+
+document.getElementById("notesStatus")
+.textContent="";
+
+},2000);
 
 }
 
 
 /* =========================
-   JOGOS
+   CALCULADORA
 ========================= */
 
-function openGame(name){
+function calculate(){
 
-    alert(
-        name +
-        "\n\nO jogo está a ser preparado para ficar disponível no WorldApps."
-    );
+const input=
+document.getElementById("calcInput").value;
+
+const output=
+document.getElementById("calcOutput");
+
+try{
+
+if(!/^[0-9+\-*/().%\s]+$/.test(input)){
+
+throw new Error();
+
+}
+
+const result=Function(
+'"use strict";return ('+input+')'
+)();
+
+output.textContent="Resultado: "+result;
+
+}catch{
+
+output.textContent=
+"❌ Expressão inválida.";
+
+}
 
 }
 
 
-/* =========================================================
-   PASSWORD VAULT
-   ========================================================= */
+/* =========================
+   CRONÓMETRO
+========================= */
 
-let vaultKey = null;
-let vaultEntries = [];
+let timerSeconds=0;
+let timerInterval=null;
 
 
-/* -------------------------
-   BASE64
-------------------------- */
+function updateTimer(){
 
-function arrayBufferToBase64(buffer){
+const h=
+String(Math.floor(timerSeconds/3600))
+.padStart(2,"0");
 
-    let binary = "";
+const m=
+String(Math.floor((timerSeconds%3600)/60))
+.padStart(2,"0");
 
-    const bytes = new Uint8Array(buffer);
+const s=
+String(timerSeconds%60)
+.padStart(2,"0");
 
-    for(let i=0;i<bytes.byteLength;i++){
-        binary += String.fromCharCode(bytes[i]);
-    }
+document.getElementById("timerDisplay")
+.textContent=`${h}:${m}:${s}`;
 
-    return btoa(binary);
 }
 
 
-function base64ToArrayBuffer(base64){
+function startTimer(){
 
-    const binary =
-        atob(base64);
+if(timerInterval)return;
 
-    const bytes =
-        new Uint8Array(binary.length);
+timerInterval=setInterval(()=>{
 
-    for(let i=0;i<binary.length;i++){
-        bytes[i] = binary.charCodeAt(i);
-    }
+timerSeconds++;
 
-    return bytes.buffer;
+updateTimer();
+
+},1000);
+
 }
 
 
-/* -------------------------
-   CHAVE
-------------------------- */
+function pauseTimer(){
+
+clearInterval(timerInterval);
+
+timerInterval=null;
+
+}
+
+
+function resetTimer(){
+
+pauseTimer();
+
+timerSeconds=0;
+
+updateTimer();
+
+}
+
+
+/* =========================
+   GERADOR DE PALAVRAS-PASSE
+========================= */
+
+function openPasswordGenerator(){
+
+openModal(
+"🎲 Gerador de palavras-passe",
+`
+
+<div class="field">
+
+<label>Tamanho</label>
+
+<input
+id="passLength"
+type="number"
+min="8"
+max="64"
+value="20">
+
+</div>
+
+<div class="field">
+
+<label>
+
+<input id="passSymbols" type="checkbox" checked>
+
+Incluir símbolos
+
+</label>
+
+</div>
+
+<button class="btn"
+onclick="generatePassword()">
+
+🎲 Gerar
+
+</button>
+
+<div id="generatedPassword"
+class="tool-output">
+
+Clica em Gerar.
+
+</div>
+
+<div class="card-buttons">
+
+<button class="btn secondary"
+onclick="copyGeneratedPassword()">
+
+📋 Copiar
+
+</button>
+
+</div>
+
+`
+);
+
+}
+
+
+function generatePassword(){
+
+let length=
+parseInt(
+document.getElementById("passLength").value
+)||20;
+
+length=Math.max(8,Math.min(64,length));
+
+let chars=
+"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+
+if(
+document.getElementById("passSymbols").checked
+){
+
+chars+="!@#$%^&*()-_=+[]{}";
+
+}
+
+const values=
+new Uint32Array(length);
+
+crypto.getRandomValues(values);
+
+let result="";
+
+for(let i=0;i<length;i++){
+
+result+=chars[
+values[i]%chars.length
+];
+
+}
+
+document.getElementById(
+"generatedPassword"
+).textContent=result;
+
+}
+
+
+function copyGeneratedPassword(){
+
+const text=
+document.getElementById(
+"generatedPassword"
+).textContent;
+
+if(
+!text ||
+text==="Clica em Gerar."
+)return;
+
+navigator.clipboard.writeText(text);
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(title,content){
+
+document.getElementById("modalTitle")
+.textContent=title;
+
+document.getElementById("modalContent")
+.innerHTML=content;
+
+document.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+/* =========================
+   COFRE DE PALAVRAS-PASSE
+   AES-GCM + PBKDF2
+========================= */
+
+const VAULT_KEY="worldapps_vault_v3";
+
 
 async function deriveKey(password,salt){
 
-    const encoder =
-        new TextEncoder();
+const encoder=new TextEncoder();
 
-    const material =
-        await crypto.subtle.importKey(
-            "raw",
-            encoder.encode(password),
-            "PBKDF2",
-            false,
-            ["deriveKey"]
-        );
+const material=
+await crypto.subtle.importKey(
+"raw",
+encoder.encode(password),
+"PBKDF2",
+false,
+["deriveKey"]
+);
 
-    return crypto.subtle.deriveKey(
-        {
-            name:"PBKDF2",
-            salt:salt,
-            iterations:250000,
-            hash:"SHA-256"
-        },
-        material,
-        {
-            name:"AES-GCM",
-            length:256
-        },
-        false,
-        ["encrypt","decrypt"]
-    );
-}
+return crypto.subtle.deriveKey(
 
+{
+name:"PBKDF2",
+salt:salt,
+iterations:250000,
+hash:"SHA-256"
+},
 
-/* -------------------------
-   ENCRIPTAR
-------------------------- */
+material,
 
-async function encryptVault(){
+{
+name:"AES-GCM",
+length:256
+},
 
-    const encoder =
-        new TextEncoder();
+false,
 
-    const data =
-        JSON.stringify(vaultEntries);
+["encrypt","decrypt"]
 
-    const iv =
-        crypto.getRandomValues(
-            new Uint8Array(12)
-        );
-
-    const encrypted =
-        await crypto.subtle.encrypt(
-            {
-                name:"AES-GCM",
-                iv:iv
-            },
-            vaultKey,
-            encoder.encode(data)
-        );
-
-    const stored =
-        JSON.parse(
-            localStorage.getItem(
-                "worldapps_vault"
-            )
-        );
-
-    stored.iv =
-        arrayBufferToBase64(iv);
-
-    stored.data =
-        arrayBufferToBase64(encrypted);
-
-    localStorage.setItem(
-        "worldapps_vault",
-        JSON.stringify(stored)
-    );
-}
-
-
-/* -------------------------
-   DESENCRIPTAR
-------------------------- */
-
-async function decryptVault(){
-
-    const stored =
-        JSON.parse(
-            localStorage.getItem(
-                "worldapps_vault"
-            )
-        );
-
-    const iv =
-        new Uint8Array(
-            base64ToArrayBuffer(
-                stored.iv
-            )
-        );
-
-    const encrypted =
-        base64ToArrayBuffer(
-            stored.data
-        );
-
-    const decrypted =
-        await crypto.subtle.decrypt(
-            {
-                name:"AES-GCM",
-                iv:iv
-            },
-            vaultKey,
-            encrypted
-        );
-
-    const decoder =
-        new TextDecoder();
-
-    vaultEntries =
-        JSON.parse(
-            decoder.decode(decrypted)
-        );
-}
-
-
-/* -------------------------
-   PREPARAR COFRE
-------------------------- */
-
-function prepareVault(){
-
-    const exists =
-        localStorage.getItem(
-            "worldapps_vault"
-        );
-
-    document
-        .getElementById("createMaster")
-        .classList.toggle(
-            "hidden",
-            !!exists
-        );
-
-    document
-        .getElementById("unlockBox")
-        .classList.toggle(
-            "hidden",
-            !exists
-        );
-
-    document
-        .getElementById("vaultContent")
-        .classList.add("hidden");
+);
 
 }
 
 
-/* -------------------------
-   CRIAR COFRE
-------------------------- */
+function bytesToBase64(bytes){
+
+let binary="";
+
+bytes.forEach(b=>{
+binary+=String.fromCharCode(b);
+});
+
+return btoa(binary);
+
+}
+
+
+function base64ToBytes(base64){
+
+const binary=atob(base64);
+
+const bytes=new Uint8Array(binary.length);
+
+for(let i=0;i<binary.length;i++){
+
+bytes[i]=binary.charCodeAt(i);
+
+}
+
+return bytes;
+
+}
+
+
+async function encryptVault(data,password){
+
+const salt=
+crypto.getRandomValues(
+new Uint8Array(16)
+);
+
+const iv=
+crypto.getRandomValues(
+new Uint8Array(12)
+);
+
+const key=
+await deriveKey(password,salt);
+
+const encoded=
+new TextEncoder().encode(
+JSON.stringify(data)
+);
+
+const encrypted=
+await crypto.subtle.encrypt(
+{
+name:"AES-GCM",
+iv:iv
+},
+key,
+encoded
+);
+
+return JSON.stringify({
+
+salt:bytesToBase64(salt),
+iv:bytesToBase64(iv),
+data:bytesToBase64(
+new Uint8Array(encrypted)
+)
+
+});
+
+}
+
+
+async function decryptVault(saved,password){
+
+const obj=JSON.parse(saved);
+
+const salt=
+base64ToBytes(obj.salt);
+
+const iv=
+base64ToBytes(obj.iv);
+
+const data=
+base64ToBytes(obj.data);
+
+const key=
+await deriveKey(password,salt);
+
+const decrypted=
+await crypto.subtle.decrypt(
+{
+name:"AES-GCM",
+iv:iv
+},
+key,
+data
+);
+
+return JSON.parse(
+new TextDecoder().decode(decrypted)
+);
+
+}
+
+
+function getVault(){
+
+return JSON.parse(
+localStorage.getItem(VAULT_KEY)
+||"null"
+);
+
+}
+
+
+function openVault(){
+
+const saved=getVault();
+
+if(!saved){
+
+openCreateVault();
+
+}else{
+
+openUnlockVault();
+
+}
+
+}
+
+
+function openCreateVault(){
+
+openModal(
+"🔐 Criar cofre",
+`
+
+<div class="notice">
+
+A tua palavra-passe principal protege
+os dados do cofre neste navegador.
+
+<strong>
+Se a perderes, não será possível recuperar
+o conteúdo do cofre.
+</strong>
+
+</div>
+
+<div class="field">
+
+<label>Palavra-passe principal</label>
+
+<input
+id="master1"
+type="password"
+placeholder="Cria uma palavra-passe forte">
+
+</div>
+
+<div class="field">
+
+<label>Confirmar</label>
+
+<input
+id="master2"
+type="password">
+
+</div>
+
+<button class="btn"
+onclick="createVault()">
+
+Criar cofre
+
+</button>
+
+`
+);
+
+}
+
 
 async function createVault(){
 
-    const password =
-        document.getElementById(
-            "newMaster"
-        ).value;
+const p1=
+document.getElementById("master1").value;
 
-    const confirmation =
-        document.getElementById(
-            "confirmMaster"
-        ).value;
+const p2=
+document.getElementById("master2").value;
 
+if(p1.length<8){
 
-    if(password.length < 8){
+alert(
+"A palavra-passe principal deve ter pelo menos 8 caracteres."
+);
 
-        alert(
-            "A palavra-passe principal deve ter pelo menos 8 caracteres."
-        );
+return;
 
-        return;
-    }
+}
 
+if(p1!==p2){
 
-    if(password !== confirmation){
+alert("As palavras-passe não coincidem.");
 
-        alert(
-            "As palavras-passe não coincidem."
-        );
+return;
 
-        return;
-    }
+}
 
+const data={
+entries:[]
+};
 
-    const salt =
-        crypto.getRandomValues(
-            new Uint8Array(16)
-        );
+const encrypted=
+await encryptVault(data,p1);
 
+localStorage.setItem(
+VAULT_KEY,
+encrypted
+);
 
-    vaultKey =
-        await deriveKey(
-            password,
-            salt
-        );
+showVault(data,p1);
 
-
-    vaultEntries = [];
-
-
-    localStorage.setItem(
-        "worldapps_vault",
-        JSON.stringify({
-            version:1,
-            salt:arrayBufferToBase64(salt),
-            iv:"",
-            data:""
-        })
-    );
-
-
-    await encryptVault();
-
-
-    document.getElementById(
-        "newMaster"
-    ).value = "";
-
-    document.getElementById(
-        "confirmMaster"
-    ).value = "";
-
-
-    alert(
-        "🔐 Cofre criado com sucesso!"
-    );
-
-
-    prepareVault();
-
-    await unlockVaultAfterCreate();
 }
 
 
-/* -------------------------
-   DESBLOQUEAR
-------------------------- */
+function openUnlockVault(){
+
+openModal(
+"🔐 Desbloquear cofre",
+`
+
+<div class="field">
+
+<label>Palavra-passe principal</label>
+
+<input
+id="unlockPassword"
+type="password"
+onkeydown="if(event.key==='Enter')unlockVault()">
+
+</div>
+
+<button class="btn"
+onclick="unlockVault()">
+
+🔓 Desbloquear
+
+</button>
+
+`
+);
+
+}
+
 
 async function unlockVault(){
 
-    const password =
-        document.getElementById(
-            "masterPassword"
-        ).value;
+const password=
+document.getElementById(
+"unlockPassword"
+).value;
 
-    if(!password){
+try{
 
-        alert(
-            "Introduz a palavra-passe principal."
-        );
+const data=
+await decryptVault(
+localStorage.getItem(VAULT_KEY),
+password
+);
 
-        return;
-    }
+showVault(data,password);
 
+}catch{
 
-    try{
+alert(
+"❌ Palavra-passe incorreta ou cofre inválido."
+);
 
-        const stored =
-            JSON.parse(
-                localStorage.getItem(
-                    "worldapps_vault"
-                )
-            );
-
-
-        const salt =
-            new Uint8Array(
-                base64ToArrayBuffer(
-                    stored.salt
-                )
-            );
-
-
-        vaultKey =
-            await deriveKey(
-                password,
-                salt
-            );
-
-
-        await decryptVault();
-
-
-        document.getElementById(
-            "masterPassword"
-        ).value = "";
-
-
-        document.getElementById(
-            "unlockBox"
-        ).classList.add("hidden");
-
-
-        document.getElementById(
-            "createMaster"
-        ).classList.add("hidden");
-
-
-        document.getElementById(
-            "vaultContent"
-        ).classList.remove("hidden");
-
-
-        renderPasswords();
-
-    }catch(error){
-
-        vaultKey = null;
-
-        alert(
-            "❌ Palavra-passe principal incorreta."
-        );
-
-    }
+}
 
 }
 
 
-/* -------------------------
-   DESBLOQUEAR DEPOIS DE CRIAR
-------------------------- */
+function showVault(data,password){
 
-async function unlockVaultAfterCreate(){
+openModal(
+"🔐 Cofre de palavras-passe",
+`
 
-    document.getElementById(
-        "unlockBox"
-    ).classList.add("hidden");
+<div class="card-buttons">
 
-    document.getElementById(
-        "createMaster"
-    ).classList.add("hidden");
+<button class="btn"
+onclick="showAddEntry()">
 
-    document.getElementById(
-        "vaultContent"
-    ).classList.remove("hidden");
+➕ Adicionar
 
-    renderPasswords();
+</button>
 
-}
+<button class="btn secondary"
+onclick="openPasswordGenerator()">
 
+🎲 Gerador
 
-/* -------------------------
-   ADICIONAR PASSWORD
-------------------------- */
+</button>
 
-async function addPassword(){
+<button class="btn danger"
+onclick="closeModal()">
 
-    if(!vaultKey){
+🔒 Fechar
 
-        alert(
-            "Desbloqueia primeiro o cofre."
-        );
+</button>
 
-        return;
-    }
+</div>
 
+<hr style="margin:20px 0;border-color:var(--border)">
 
-    const name =
-        document.getElementById(
-            "entryName"
-        ).value.trim();
+<div id="vaultEntries">
 
-    const site =
-        document.getElementById(
-            "entrySite"
-        ).value.trim();
+${renderVaultEntries(data)}
 
-    const username =
-        document.getElementById(
-            "entryUser"
-        ).value.trim();
+</div>
 
-    const password =
-        document.getElementById(
-            "entryPassword"
-        ).value;
+`
+);
 
-
-    if(!name || !password){
-
-        alert(
-            "Preenche pelo menos o nome e a palavra-passe."
-        );
-
-        return;
-    }
-
-
-    vaultEntries.push({
-
-        id:
-            Date.now(),
-
-        name:name,
-
-        site:site,
-
-        username:username,
-
-        password:password
-
-    });
-
-
-    await encryptVault();
-
-
-    document.getElementById(
-        "entryName"
-    ).value = "";
-
-    document.getElementById(
-        "entrySite"
-    ).value = "";
-
-    document.getElementById(
-        "entryUser"
-    ).value = "";
-
-    document.getElementById(
-        "entryPassword"
-    ).value = "";
-
-
-    renderPasswords();
+window.currentVaultData=data;
+window.currentVaultPassword=password;
 
 }
 
 
-/* -------------------------
-   MOSTRAR PASSWORDS
-------------------------- */
+function renderVaultEntries(data){
 
-function renderPasswords(){
+if(!data.entries.length){
 
-    const list =
-        document.getElementById(
-            "passwordList"
-        );
+return `
 
+<div class="empty">
 
-    if(vaultEntries.length === 0){
+🔐 O teu cofre está vazio.
 
-        list.innerHTML = `
-            <div class="empty-vault">
-                🔐 Ainda não tens palavras-passe guardadas.
-            </div>
-        `;
+</div>
 
-        return;
-    }
+`;
 
+}
 
-    list.innerHTML = "";
+return data.entries.map((entry,index)=>`
 
+<div class="vault-entry">
 
-    vaultEntries.forEach(function(entry){
+<strong>
+${escapeHTML(entry.service)}
+</strong>
 
-        const div =
-            document.createElement("div");
+<br>
 
-        div.className =
-            "password-item";
+<small>
+${escapeHTML(entry.username)}
+</small>
 
+<div class="card-buttons">
 
-        div.innerHTML = `
+<button class="btn"
+onclick="showVaultPassword(${index})">
 
-            <h3>
-                ${escapeHTML(entry.name)}
-            </h3>
+👁️ Mostrar
 
-            <div class="site">
-                ${escapeHTML(entry.site || "Sem site")}
-            </div>
+</button>
 
-            <div>
-                👤
-                ${escapeHTML(entry.username || "Sem utilizador")}
-            </div>
+<button class="btn secondary"
+onclick="copyVaultPassword(${index})">
 
-            <div class="password-display">
+📋 Copiar
 
-                <input
-                    type="password"
-                    value="${escapeHTML(entry.password)}"
-                    readonly
-                    id="pass-${entry.id}"
-                >
+</button>
 
-                <button
-                    class="secondary-btn"
-                    onclick="togglePassword('${entry.id}')"
-                >
-                    👁️
-                </button>
+<button class="btn danger"
+onclick="deleteVaultEntry(${index})">
 
-            </div>
+🗑️ Apagar
 
-            <div class="item-buttons">
+</button>
 
-                <button
-                    class="success-btn"
-                    onclick="copyPassword('${entry.id}')"
-                >
-                    📋 Copiar
-                </button>
+</div>
 
-                <button
-                    class="danger-btn"
-                    onclick="deletePassword('${entry.id}')"
-                >
-                    🗑️ Apagar
-                </button>
+<div
+id="vaultPass${index}"
+style="display:none;margin-top:10px"
+class="tool-output">
 
-            </div>
+${escapeHTML(entry.password)}
 
-        `;
+</div>
 
+</div>
 
-        list.appendChild(div);
-
-    });
+`).join("");
 
 }
 
 
-/* -------------------------
-   ESCAPE HTML
-------------------------- */
+function showAddEntry(){
+
+openModal(
+"➕ Nova palavra-passe",
+`
+
+<div class="field">
+
+<label>Serviço / site</label>
+
+<input id="entryService"
+placeholder="Ex: Google">
+
+</div>
+
+<div class="field">
+
+<label>Utilizador / email</label>
+
+<input id="entryUsername">
+
+</div>
+
+<div class="field">
+
+<label>Palavra-passe</label>
+
+<input id="entryPassword" type="password">
+
+</div>
+
+<div class="card-buttons">
+
+<button class="btn secondary"
+onclick="generateEntryPassword()">
+
+🎲 Gerar
+
+</button>
+
+<button class="btn"
+onclick="saveVaultEntry()">
+
+💾 Guardar
+
+</button>
+
+</div>
+
+`
+);
+
+}
+
+
+function generateEntryPassword(){
+
+let chars=
+"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*";
+
+const values=
+new Uint32Array(20);
+
+crypto.getRandomValues(values);
+
+let result="";
+
+for(let i=0;i<20;i++){
+
+result+=chars[
+values[i]%chars.length
+];
+
+}
+
+document.getElementById(
+"entryPassword"
+).value=result;
+
+}
+
+
+async function saveVaultEntry(){
+
+const service=
+document.getElementById(
+"entryService"
+).value.trim();
+
+const username=
+document.getElementById(
+"entryUsername"
+).value.trim();
+
+const password=
+document.getElementById(
+"entryPassword"
+).value;
+
+if(!service || !password){
+
+alert(
+"Preenche pelo menos o serviço e a palavra-passe."
+);
+
+return;
+
+}
+
+window.currentVaultData.entries.push({
+
+service,
+username,
+password
+
+});
+
+const encrypted=
+await encryptVault(
+window.currentVaultData,
+window.currentVaultPassword
+);
+
+localStorage.setItem(
+VAULT_KEY,
+encrypted
+);
+
+showVault(
+window.currentVaultData,
+window.currentVaultPassword
+);
+
+}
+
+
+function showVaultPassword(index){
+
+const element=
+document.getElementById(
+"vaultPass"+index
+);
+
+element.style.display=
+element.style.display==="none"
+?"block"
+:"none";
+
+}
+
+
+function copyVaultPassword(index){
+
+const password=
+window.currentVaultData
+.entries[index].password;
+
+navigator.clipboard.writeText(password);
+
+}
+
+
+async function deleteVaultEntry(index){
+
+if(!confirm(
+"Apagar esta palavra-passe?"
+))return;
+
+window.currentVaultData.entries.splice(
+index,
+1
+);
+
+const encrypted=
+await encryptVault(
+window.currentVaultData,
+window.currentVaultPassword
+);
+
+localStorage.setItem(
+VAULT_KEY,
+encrypted
+);
+
+showVault(
+window.currentVaultData,
+window.currentVaultPassword
+);
+
+}
+
+
+/* =========================
+   SEGURANÇA HTML
+========================= */
 
 function escapeHTML(value){
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-
-
-/* -------------------------
-   MOSTRAR/ESCONDER
-------------------------- */
-
-function togglePassword(id){
-
-    const input =
-        document.getElementById(
-            "pass-" + id
-        );
-
-    if(input.type === "password"){
-
-        input.type = "text";
-
-    }else{
-
-        input.type = "password";
-
-    }
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
-/* -------------------------
-   COPIAR
-------------------------- */
+/* =========================
+   LIMPAR DADOS
+========================= */
 
-async function copyPassword(id){
+function clearWorldApps(){
 
-    const entry =
-        vaultEntries.find(
-            function(item){
-                return item.id == id;
-            }
-        );
+const answer=
+confirm(
+"Apagar favoritos, notas, tema e cofre?"
+);
 
+if(!answer)return;
 
-    if(!entry){
-        return;
-    }
+localStorage.removeItem(
+"worldapps_favorites"
+);
 
+localStorage.removeItem(
+"worldapps_recent"
+);
 
-    try{
+localStorage.removeItem(
+"worldapps_notes"
+);
 
-        await navigator.clipboard.writeText(
-            entry.password
-        );
+localStorage.removeItem(
+"worldapps_theme"
+);
 
-        alert(
-            "📋 Palavra-passe copiada."
-        );
+localStorage.removeItem(
+VAULT_KEY
+);
 
-    }catch(error){
+favorites=[];
+recent=[];
 
-        alert(
-            "Não foi possível copiar automaticamente."
-        );
+alert(
+"Dados apagados."
+);
 
-    }
-
-}
-
-
-/* -------------------------
-   APAGAR
-------------------------- */
-
-async function deletePassword(id){
-
-    const confirmed =
-        confirm(
-            "Queres mesmo apagar esta palavra-passe?"
-        );
-
-
-    if(!confirmed){
-        return;
-    }
-
-
-    vaultEntries =
-        vaultEntries.filter(
-            function(item){
-                return item.id != id;
-            }
-        );
-
-
-    await encryptVault();
-
-    renderPasswords();
+location.reload();
 
 }
 
 
-/* -------------------------
-   BLOQUEAR
-------------------------- */
+/* =========================
+   INICIALIZAÇÃO
+========================= */
 
-function lockVault(){
+const savedTheme=
+localStorage.getItem("worldapps_theme")
+||"dark";
 
-    vaultKey = null;
+setTheme(savedTheme);
 
-    vaultEntries = [];
+renderAll();
 
-
-    document.getElementById(
-        "vaultContent"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "unlockBox"
-    ).classList.remove("hidden");
+document.getElementById("notesText").value=
+localStorage.getItem("worldapps_notes") || "";
 
 
-    alert(
-        "🔒 Cofre bloqueado."
-    );
+/* fechar modal ao clicar fora */
+
+document.getElementById("modal")
+.addEventListener("click",function(e){
+
+if(e.target===this){
+
+closeModal();
 
 }
 
-
-/* -------------------------
-   INICIAR
-------------------------- */
-
-prepareVault();
+});
 
 </script>
 
