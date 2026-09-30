@@ -3,436 +3,321 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WorldApps — Apps e IA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WorldApps + WorldAI</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --bg:#080b12;
-    --bg2:#101522;
-    --card:#151c2b;
-    --card2:#1d2739;
-    --text:#fff;
-    --muted:#94a3b8;
-    --blue:#00bfff;
-    --purple:#7c3aed;
-    --border:#273449;
+ --bg:#080b12;
+ --card:#121927;
+ --card2:#1b2638;
+ --text:#fff;
+ --muted:#94a3b8;
+ --blue:#00bfff;
+ --border:#263449;
 }
 
 body.light{
-    --bg:#f1f5f9;
-    --bg2:#fff;
-    --card:#fff;
-    --card2:#e2e8f0;
-    --text:#0f172a;
-    --muted:#64748b;
-    --border:#cbd5e1;
+ --bg:#f1f5f9;
+ --card:#fff;
+ --card2:#e2e8f0;
+ --text:#0f172a;
+ --muted:#64748b;
+ --border:#cbd5e1;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
+ font-family:Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
 }
-
-/* HEADER */
 
 header{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    border-bottom:1px solid var(--border);
-    background:rgba(8,11,18,.92);
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-body.light header{
-    background:rgba(255,255,255,.92);
+ height:70px;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 25px;
+ position:sticky;
+ top:0;
+ z-index:10;
+ background:var(--bg);
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:22px;
-    font-weight:bold;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-size:21px;
+ font-weight:bold;
 }
 
-.logo-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#00bfff,#7c3aed);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.logoIcon{
+ width:42px;
+ height:42px;
+ border-radius:12px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#00bfff,#7c3aed);
 }
 
 nav{
-    display:flex;
-    gap:8px;
+ display:flex;
+ gap:5px;
 }
 
-nav button{
-    border:0;
-    background:transparent;
-    color:var(--text);
-    padding:10px 14px;
-    border-radius:9px;
-    cursor:pointer;
-    font-size:14px;
+nav button,.theme{
+ border:0;
+ background:transparent;
+ color:var(--text);
+ padding:10px 13px;
+ border-radius:9px;
+ cursor:pointer;
 }
 
-nav button:hover{
-    background:var(--card2);
+nav button:hover,.theme:hover{
+ background:var(--card2);
 }
-
-.theme{
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    border-radius:9px;
-    padding:9px 12px;
-    cursor:pointer;
-}
-
-/* PAGES */
 
 .page{
-    display:none;
+ display:none;
 }
 
 .page.active{
-    display:block;
+ display:block;
 }
 
-/* HOME */
-
 .hero{
-    max-width:1100px;
-    margin:auto;
-    padding:90px 25px 50px;
-    text-align:center;
+ max-width:1000px;
+ margin:auto;
+ padding:90px 20px;
+ text-align:center;
 }
 
 .hero h1{
-    font-size:55px;
-    margin-bottom:15px;
-    background:linear-gradient(90deg,#00bfff,#7c3aed);
-    -webkit-background-clip:text;
-    color:transparent;
+ font-size:55px;
+ background:linear-gradient(90deg,#00bfff,#7c3aed);
+ -webkit-background-clip:text;
+ color:transparent;
+ margin-bottom:15px;
 }
 
 .hero p{
-    color:var(--muted);
-    font-size:19px;
-    max-width:650px;
-    margin:auto;
-    line-height:1.6;
+ color:var(--muted);
+ font-size:18px;
+ line-height:1.6;
 }
 
-.hero-buttons{
-    margin-top:30px;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
+.buttons{
+ margin-top:30px;
+ display:flex;
+ justify-content:center;
+ gap:12px;
+ flex-wrap:wrap;
+}
+
+.primary,.secondary{
+ padding:13px 20px;
+ border-radius:10px;
+ cursor:pointer;
+ font-size:15px;
 }
 
 .primary{
-    border:0;
-    background:linear-gradient(135deg,#00bfff,#2563eb);
-    color:white;
-    padding:14px 22px;
-    border-radius:11px;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:15px;
+ border:0;
+ background:linear-gradient(135deg,#00bfff,#2563eb);
+ color:white;
 }
 
 .secondary{
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    padding:14px 22px;
-    border-radius:11px;
-    cursor:pointer;
-    font-size:15px;
+ border:1px solid var(--border);
+ background:var(--card);
+ color:var(--text);
 }
 
 .section{
-    max-width:1100px;
-    margin:auto;
-    padding:30px 25px 70px;
+ max-width:1100px;
+ margin:auto;
+ padding:50px 20px;
 }
 
-.section-title{
-    font-size:27px;
-    margin-bottom:20px;
+.section h2{
+ margin-bottom:20px;
 }
-
-/* APP CARDS */
 
 .apps{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:18px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:18px;
 }
 
-.app-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:22px;
-    transition:.2s;
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:22px;
 }
 
-.app-card:hover{
-    transform:translateY(-4px);
-    background:var(--card2);
+.cardIcon{
+ font-size:35px;
+ margin-bottom:15px;
 }
 
-.app-icon{
-    width:55px;
-    height:55px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:27px;
-    background:linear-gradient(135deg,#00bfff,#7c3aed);
-    margin-bottom:15px;
+.card p{
+ color:var(--muted);
+ margin:10px 0 18px;
+ line-height:1.5;
 }
 
-.app-card h3{
-    margin-bottom:8px;
-}
-
-.app-card p{
-    color:var(--muted);
-    line-height:1.5;
-    font-size:14px;
-    margin-bottom:17px;
-}
-
-.open{
-    border:0;
-    background:var(--blue);
-    color:white;
-    padding:10px 15px;
-    border-radius:8px;
-    cursor:pointer;
+.card button{
+ border:0;
+ background:var(--blue);
+ color:white;
+ padding:10px 15px;
+ border-radius:8px;
+ cursor:pointer;
 }
 
 /* AI */
 
-.ai-page{
-    max-width:1000px;
-    margin:auto;
-    min-height:calc(100vh - 70px);
-    display:flex;
-    flex-direction:column;
+.ai{
+ max-width:950px;
+ margin:auto;
+ min-height:calc(100vh - 70px);
 }
 
-.ai-header{
-    padding:30px 20px 10px;
+.aiTop{
+ padding:30px 20px 10px;
 }
 
-.ai-header h2{
-    font-size:30px;
+.aiTop h2{
+ font-size:30px;
 }
 
-.ai-header p{
-    color:var(--muted);
-    margin-top:5px;
+.aiTop p{
+ color:var(--muted);
+ margin-top:5px;
 }
 
 .chat{
-    flex:1;
-    padding:25px 20px 150px;
+ padding:25px 20px 130px;
 }
 
 .welcome{
-    text-align:center;
-    margin:60px auto 35px;
+ text-align:center;
+ padding:80px 10px 40px;
 }
 
 .robot{
-    font-size:60px;
-    margin-bottom:15px;
+ font-size:65px;
 }
 
 .welcome h1{
-    font-size:35px;
+ font-size:34px;
+ margin-top:10px;
 }
 
 .welcome p{
-    color:var(--muted);
-    margin-top:10px;
+ color:var(--muted);
+ margin-top:10px;
 }
 
 .messages{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+ display:flex;
+ flex-direction:column;
+ gap:20px;
 }
 
 .message{
-    display:flex;
-    gap:12px;
-    max-width:850px;
-    width:100%;
-    margin:auto;
+ display:flex;
+ gap:12px;
+ max-width:850px;
+ margin:auto;
+ width:100%;
 }
 
 .avatar{
-    min-width:40px;
-    height:40px;
-    border-radius:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ width:40px;
+ height:40px;
+ min-width:40px;
+ border-radius:11px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 }
 
-.user-avatar{
-    background:#075985;
+.userAvatar{
+ background:#075985;
 }
 
-.ai-avatar{
-    background:linear-gradient(135deg,#00bfff,#7c3aed);
+.aiAvatar{
+ background:linear-gradient(135deg,#00bfff,#7c3aed);
 }
 
-.message-body{
-    line-height:1.65;
-    padding-top:7px;
+.body{
+ line-height:1.65;
+ padding-top:6px;
 }
 
-.message-name{
-    font-weight:bold;
-    margin-bottom:4px;
+.name{
+ font-weight:bold;
+ margin-bottom:5px;
 }
 
-.ai-input{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    padding:18px;
-    background:linear-gradient(transparent,var(--bg) 30%);
+.aiInput{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ padding:18px;
+ background:linear-gradient(transparent,var(--bg) 30%);
 }
 
-.input-box{
-    max-width:850px;
-    margin:auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:15px;
-    display:flex;
-    padding:7px;
+.inputBox{
+ max-width:850px;
+ margin:auto;
+ display:flex;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:7px;
 }
 
 textarea{
-    flex:1;
-    resize:none;
-    border:0;
-    outline:0;
-    background:transparent;
-    color:var(--text);
-    padding:12px;
-    font-family:inherit;
-    font-size:15px;
+ flex:1;
+ resize:none;
+ border:0;
+ outline:0;
+ background:transparent;
+ color:var(--text);
+ padding:12px;
+ font:15px Arial;
 }
 
 .send{
-    width:46px;
-    border:0;
-    border-radius:11px;
-    background:var(--blue);
-    color:white;
-    font-size:20px;
-    cursor:pointer;
+ width:48px;
+ border:0;
+ border-radius:11px;
+ background:var(--blue);
+ color:white;
+ font-size:20px;
+ cursor:pointer;
 }
 
-/* SEARCH */
-
-.search{
-    max-width:700px;
-    margin:30px auto;
-    padding:0 20px;
+.loading{
+ color:var(--muted);
+ font-style:italic;
 }
-
-.search input{
-    width:100%;
-    padding:16px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    outline:none;
-    font-size:15px;
-}
-
-.search-results{
-    margin-top:20px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.result{
-    padding:17px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:11px;
-    cursor:pointer;
-}
-
-.result:hover{
-    background:var(--card2);
-}
-
-/* FOOTER */
-
-footer{
-    border-top:1px solid var(--border);
-    text-align:center;
-    padding:25px;
-    color:var(--muted);
-}
-
-/* MOBILE */
 
 @media(max-width:700px){
-
-    header{
-        padding:0 15px;
-    }
-
-    nav button{
-        padding:8px;
-        font-size:12px;
-    }
-
-    .hero h1{
-        font-size:40px;
-    }
-
-    .hero{
-        padding-top:60px;
-    }
-
+ header{padding:0 10px}
+ nav button{padding:8px 6px;font-size:12px}
+ .hero h1{font-size:40px}
 }
 </style>
 </head>
@@ -441,19 +326,18 @@ footer{
 
 <header>
 
-    <div class="logo">
-        <div class="logo-icon">🌐</div>
-        WorldApps
-    </div>
+<div class="logo">
+ <div class="logoIcon">🌐</div>
+ WorldApps
+</div>
 
-    <nav>
-        <button onclick="showPage('home')">🏠 Início</button>
-        <button onclick="showPage('apps')">📱 Apps</button>
-        <button onclick="showPage('ai')">🤖 WorldAI</button>
-        <button onclick="showPage('search')">🔎 Pesquisa</button>
-    </nav>
+<nav>
+ <button onclick="page('home')">🏠</button>
+ <button onclick="page('apps')">📱 Apps</button>
+ <button onclick="page('ai')">🤖 WorldAI</button>
+</nav>
 
-    <button class="theme" onclick="toggleTheme()">🌙</button>
+<button class="theme" onclick="theme()">🌙</button>
 
 </header>
 
@@ -462,103 +346,65 @@ footer{
 
 <div id="home" class="page active">
 
-    <section class="hero">
+<section class="hero">
 
-        <h1>WorldApps</h1>
+<h1>WorldApps</h1>
 
-        <p>
-            Um espaço onde podes encontrar aplicações,
-            jogos e inteligência artificial num só lugar.
-        </p>
+<p>
+Aplicações, jogos e inteligência artificial
+num só lugar.
+</p>
 
-        <div class="hero-buttons">
+<div class="buttons">
 
-            <button
-                class="primary"
-                onclick="showPage('ai')">
-                🤖 Experimentar WorldAI
-            </button>
+<button class="primary" onclick="page('ai')">
+🤖 Abrir WorldAI
+</button>
 
-            <button
-                class="secondary"
-                onclick="showPage('apps')">
-                📱 Ver aplicações
-            </button>
+<button class="secondary" onclick="page('apps')">
+📱 Ver aplicações
+</button>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
+<section class="section">
 
-    <section class="section">
+<h2>🚀 Destaques</h2>
 
-        <h2 class="section-title">
-            🚀 Destaques
-        </h2>
+<div class="apps">
 
-        <div class="apps">
+<div class="card">
+<div class="cardIcon">🤖</div>
+<h3>WorldAI</h3>
+<p>
+Uma IA real integrada no WorldApps.
+</p>
+<button onclick="page('ai')">Abrir</button>
+</div>
 
-            <div class="app-card">
+<div class="card">
+<div class="cardIcon">🎮</div>
+<h3>Jogos</h3>
+<p>
+Os jogos criados no WorldApps.
+</p>
+<button onclick="page('apps')">Ver</button>
+</div>
 
-                <div class="app-icon">🤖</div>
+<div class="card">
+<div class="cardIcon">🌐</div>
+<h3>IternetWorld</h3>
+<p>
+O navegador do teu projeto.
+</p>
+<button onclick="page('apps')">Ver</button>
+</div>
 
-                <h3>WorldAI</h3>
+</div>
 
-                <p>
-                    A inteligência artificial do WorldApps.
-                    Faz perguntas, cria ideias e ajuda nos teus projetos.
-                </p>
-
-                <button
-                    class="open"
-                    onclick="showPage('ai')">
-                    Abrir
-                </button>
-
-            </div>
-
-
-            <div class="app-card">
-
-                <div class="app-icon">🎮</div>
-
-                <h3>Jogos</h3>
-
-                <p>
-                    Área para colocar os teus jogos criados
-                    no WorldApps.
-                </p>
-
-                <button
-                    class="open"
-                    onclick="showPage('apps')">
-                    Ver jogos
-                </button>
-
-            </div>
-
-
-            <div class="app-card">
-
-                <div class="app-icon">🔎</div>
-
-                <h3>Pesquisa</h3>
-
-                <p>
-                    Pesquisa rapidamente na Internet.
-                </p>
-
-                <button
-                    class="open"
-                    onclick="showPage('search')">
-                    Pesquisar
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 </div>
 
@@ -567,86 +413,43 @@ footer{
 
 <div id="apps" class="page">
 
-    <section class="section">
+<section class="section">
 
-        <h1 class="section-title">
-            📱 WorldApps
-        </h1>
+<h2>📱 WorldApps</h2>
 
-        <div class="apps">
+<div class="apps">
 
-            <div class="app-card">
+<div class="card">
+<div class="cardIcon">🤖</div>
+<h3>WorldAI</h3>
+<p>Assistente inteligente.</p>
+<button onclick="page('ai')">Abrir</button>
+</div>
 
-                <div class="app-icon">🤖</div>
+<div class="card">
+<div class="cardIcon">🎮</div>
+<h3>Craft & Build</h3>
+<p>Jogo de construção 3D.</p>
+<button>Em breve</button>
+</div>
 
-                <h3>WorldAI</h3>
+<div class="card">
+<div class="cardIcon">🏎️</div>
+<h3>Corrida Relâmpago</h3>
+<p>Jogo de corridas.</p>
+<button>Em breve</button>
+</div>
 
-                <p>
-                    Assistente de inteligência artificial.
-                </p>
+<div class="card">
+<div class="cardIcon">🌐</div>
+<h3>IternetWorld</h3>
+<p>Navegador desenvolvido por nós.</p>
+<button>Em breve</button>
+</div>
 
-                <button
-                    class="open"
-                    onclick="showPage('ai')">
-                    Abrir
-                </button>
+</div>
 
-            </div>
-
-
-            <div class="app-card">
-
-                <div class="app-icon">🎮</div>
-
-                <h3>Craft & Build</h3>
-
-                <p>
-                    Jogo de construção 3D.
-                </p>
-
-                <button class="open">
-                    Em breve
-                </button>
-
-            </div>
-
-
-            <div class="app-card">
-
-                <div class="app-icon">🏎️</div>
-
-                <h3>Corrida Relâmpago</h3>
-
-                <p>
-                    Jogo de corridas com obstáculos.
-                </p>
-
-                <button class="open">
-                    Em breve
-                </button>
-
-            </div>
-
-
-            <div class="app-card">
-
-                <div class="app-icon">🌐</div>
-
-                <h3>IternetWorld</h3>
-
-                <p>
-                    O navegador desenvolvido para o WorldApps.
-                </p>
-
-                <button class="open">
-                    Em breve
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 </div>
 
@@ -655,448 +458,241 @@ footer{
 
 <div id="ai" class="page">
 
-    <div class="ai-page">
+<div class="ai">
 
-        <div class="ai-header">
+<div class="aiTop">
+<h2>🤖 WorldAI</h2>
+<p>Agora ligada a uma IA real.</p>
+</div>
 
-            <h2>🤖 WorldAI</h2>
+<div class="chat">
 
-            <p>
-                O assistente inteligente do WorldApps.
-            </p>
+<div class="welcome" id="welcome">
 
-        </div>
+<div class="robot">🤖</div>
 
-        <div class="chat" id="chat">
+<h1>Olá! Sou a WorldAI</h1>
 
-            <div class="welcome" id="welcome">
+<p>
+Pergunta-me alguma coisa.
+</p>
 
-                <div class="robot">🤖</div>
+</div>
 
-                <h1>Olá! Eu sou a WorldAI</h1>
+<div class="messages" id="messages"></div>
 
-                <p>
-                    Como posso ajudar?
-                </p>
+</div>
 
-            </div>
-
-            <div
-                class="messages"
-                id="messages">
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- SEARCH -->
+<!-- INPUT -->
 
-<div id="search" class="page">
+<div class="aiInput" id="aiInput" style="display:none">
 
-    <section class="section">
+<div class="inputBox">
 
-        <h1 class="section-title">
-            🔎 Pesquisa
-        </h1>
+<textarea
+id="input"
+rows="1"
+placeholder="Escreve a tua pergunta..."
+onkeydown="key(event)"
+></textarea>
 
-        <div class="search">
-
-            <input
-                id="searchInput"
-                placeholder="Pesquisar na Internet..."
-                onkeydown="searchEnter(event)"
-            >
-
-            <div
-                class="search-results"
-                id="searchResults">
-            </div>
-
-        </div>
-
-    </section>
+<button class="send" onclick="send()">➤</button>
 
 </div>
-
-
-<footer>
-    © 2026 WorldApps — WorldAI
-</footer>
-
-
-<!-- AI INPUT -->
-
-<div class="ai-input" id="aiInput" style="display:none;">
-
-    <div class="input-box">
-
-        <textarea
-            id="aiText"
-            rows="1"
-            placeholder="Pergunta alguma coisa à WorldAI..."
-            onkeydown="aiKey(event)">
-        </textarea>
-
-        <button
-            class="send"
-            onclick="sendAI()">
-            ➤
-        </button>
-
-    </div>
 
 </div>
 
 
 <script>
 
-/* NAVEGAÇÃO */
+function page(name){
 
-function showPage(page){
+ document.querySelectorAll(".page")
+ .forEach(x=>x.classList.remove("active"));
 
-    document
-        .querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
+ document.getElementById(name)
+ .classList.add("active");
 
-    document
-        .getElementById(page)
-        .classList.add("active");
+ document.getElementById("aiInput").style.display =
+ name==="ai" ? "block" : "none";
 
-    const aiInput =
-        document.getElementById("aiInput");
-
-    aiInput.style.display =
-        page === "ai" ? "block" : "none";
-
-    window.scrollTo(0,0);
+ window.scrollTo(0,0);
 
 }
 
 
-/* TEMA */
+function theme(){
 
-function toggleTheme(){
+ document.body.classList.toggle("light");
 
-    document.body.classList.toggle("light");
-
-    localStorage.setItem(
-        "worldapps-theme",
-        document.body.classList.contains("light")
-            ? "light"
-            : "dark"
-    );
+ localStorage.setItem(
+ "worldapps-theme",
+ document.body.classList.contains("light")
+ ? "light"
+ : "dark"
+ );
 
 }
+
 
 if(localStorage.getItem("worldapps-theme")==="light"){
-    document.body.classList.add("light");
+ document.body.classList.add("light");
 }
 
 
-/* IA */
+/* CHAT */
 
-let aiHistory =
-    JSON.parse(
-        localStorage.getItem("worldai-history") || "[]"
-    );
+let conversation=[];
 
 
-function addAIMessage(type,text){
+function addMessage(type,text){
 
-    const box =
-        document.getElementById("messages");
+ const box=document.getElementById("messages");
 
-    const div =
-        document.createElement("div");
+ const div=document.createElement("div");
 
-    div.className="message";
+ div.className="message";
 
-    if(type==="user"){
+ if(type==="user"){
 
-        div.innerHTML=`
+  div.innerHTML=`
+  <div class="avatar userAvatar">👤</div>
+  <div class="body">
+   <div class="name">Tu</div>
+   ${escapeHTML(text)}
+  </div>
+  `;
 
-            <div class="avatar user-avatar">
-                👤
-            </div>
+ }else{
 
-            <div class="message-body">
+  div.innerHTML=`
+  <div class="avatar aiAvatar">🤖</div>
+  <div class="body">
+   <div class="name">WorldAI</div>
+   ${format(text)}
+  </div>
+  `;
 
-                <div class="message-name">
-                    Tu
-                </div>
+ }
 
-                ${escapeHTML(text)}
+ box.appendChild(div);
 
-            </div>
-        `;
-
-    }else{
-
-        div.innerHTML=`
-
-            <div class="avatar ai-avatar">
-                🤖
-            </div>
-
-            <div class="message-body">
-
-                <div class="message-name">
-                    WorldAI
-                </div>
-
-                ${text}
-
-            </div>
-        `;
-
-    }
-
-    box.appendChild(div);
-
-    document
-        .getElementById("chat")
-        .scrollTop =
-        document.getElementById("chat").scrollHeight;
+ document.querySelector(".chat").scrollTop =
+ document.querySelector(".chat").scrollHeight;
 
 }
 
 
-function sendAI(){
+async function send(){
 
-    const input =
-        document.getElementById("aiText");
+ const input=document.getElementById("input");
 
-    const text =
-        input.value.trim();
+ const text=input.value.trim();
 
-    if(!text) return;
+ if(!text)return;
 
-    document
-        .getElementById("welcome")
-        .style.display="none";
+ document.getElementById("welcome").style.display="none";
 
-    addAIMessage("user",text);
+ addMessage("user",text);
 
-    aiHistory.push({
-        role:"user",
-        text:text
-    });
+ conversation.push({
+  role:"user",
+  content:text
+ });
 
-    input.value="";
+ input.value="";
 
-    setTimeout(()=>{
+ const loading=document.createElement("div");
 
-        const answer =
-            worldAI(text);
+ loading.className="message";
 
-        addAIMessage("ai",answer);
+ loading.innerHTML=`
+ <div class="avatar aiAvatar">🤖</div>
+ <div class="body loading">WorldAI está a pensar...</div>
+ `;
 
-        aiHistory.push({
-            role:"ai",
-            text:answer
-        });
+ document.getElementById("messages").appendChild(loading);
 
-        localStorage.setItem(
-            "worldai-history",
-            JSON.stringify(aiHistory)
-        );
+ try{
 
-    },500);
+  const response=await fetch("/api/chat",{
 
-}
+   method:"POST",
 
+   headers:{
+    "Content-Type":"application/json"
+   },
 
-function worldAI(text){
+   body:JSON.stringify({
+    messages:conversation
+   })
 
-    const t =
-        text.toLowerCase();
+  });
 
-    if(
-        t.includes("olá") ||
-        t.includes("ola") ||
-        t.includes("bom dia") ||
-        t.includes("boa tarde")
-    ){
+  const data=await response.json();
 
-        return `
-        Olá! 👋<br><br>
-        Eu sou a <b>WorldAI</b>.
-        Estou pronta para ajudar-te a criar
-        coisas novas no WorldApps! 🚀
-        `;
+  loading.remove();
 
-    }
+  if(!response.ok){
+   throw new Error(data.error || "Erro no servidor");
+  }
 
+  addMessage("ai",data.answer);
 
-    if(
-        t.includes("quem és") ||
-        t.includes("quem es")
-    ){
+  conversation.push({
+   role:"assistant",
+   content:data.answer
+  });
 
-        return `
-        Eu sou a <b>WorldAI</b> 🤖,
-        a inteligência artificial do WorldApps.
-        <br><br>
-        Esta é a nossa primeira versão,
-        mas podemos torná-la muito mais poderosa.
-        `;
+ }catch(error){
 
-    }
+  loading.remove();
 
+  addMessage(
+   "ai",
+   "❌ Não consegui contactar o servidor da WorldAI.<br><br>"+
+   escapeHTML(error.message)
+  );
 
-    if(
-        t.includes("worldapps")
-    ){
-
-        return `
-        🌐 <b>WorldApps</b> é a nossa plataforma
-        para reunir aplicações, jogos e IA num só lugar.
-        `;
-
-    }
-
-
-    if(
-        t.includes("jogo") ||
-        t.includes("jogos")
-    ){
-
-        return `
-        🎮 Podemos criar muitos jogos!
-        <br><br>
-        Por exemplo:
-        <br>• jogos 3D
-        <br>• jogos de construção
-        <br>• corridas
-        <br>• sobrevivência
-        <br>• aventuras
-        <br><br>
-        Diz-me o tipo de jogo que queres criar.
-        `;
-
-    }
-
-
-    if(
-        t.includes("aplicação") ||
-        t.includes("aplicacao") ||
-        t.includes("app")
-    ){
-
-        return `
-        💡 Posso ajudar a planear uma aplicação
-        com páginas, botões, contas, pesquisa,
-        armazenamento e inteligência artificial.
-        `;
-
-    }
-
-
-    if(
-        t.includes("código") ||
-        t.includes("codigo") ||
-        t.includes("html") ||
-        t.includes("javascript")
-    ){
-
-        return `
-        💻 Posso ajudar-te a criar código.
-        <br><br>
-        Por exemplo, podemos construir
-        páginas HTML, JavaScript, jogos
-        e aplicações web.
-        `;
-
-    }
-
-
-    if(
-        t.includes("obrigado") ||
-        t.includes("obrigada")
-    ){
-
-        return `
-        De nada! 😄
-        <br><br>
-        Vamos continuar a construir o WorldApps!
-        `;
-
-    }
-
-
-    return `
-        🤖 Entendi: <b>${escapeHTML(text)}</b>
-        <br><br>
-        Nesta V1 ainda estou a usar respostas
-        programadas. Na próxima versão podemos
-        ligar a WorldAI a um verdadeiro modelo
-        de inteligência artificial para responder
-        a praticamente qualquer pergunta.
-    `;
+ }
 
 }
 
 
-function aiKey(event){
+function key(event){
 
-    if(
-        event.key==="Enter" &&
-        !event.shiftKey
-    ){
+ if(event.key==="Enter" && !event.shiftKey){
 
-        event.preventDefault();
+  event.preventDefault();
 
-        sendAI();
+  send();
 
-    }
+ }
 
 }
 
-
-/* PESQUISA */
-
-function searchEnter(event){
-
-    if(event.key!=="Enter") return;
-
-    searchInternet();
-
-}
-
-
-function searchInternet(){
-
-    const input =
-        document.getElementById("searchInput");
-
-    const q =
-        input.value.trim();
-
-    if(!q) return;
-
-    window.open(
-        "https://www.google.com/search?q="+
-        encodeURIComponent(q),
-        "_blank"
-    );
-
-}
-
-
-/* SEGURANÇA */
 
 function escapeHTML(text){
 
-    return text
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+ return text
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+
+}
+
+
+function format(text){
+
+ return escapeHTML(text)
+ .replace(/\n/g,"<br>");
 
 }
 
