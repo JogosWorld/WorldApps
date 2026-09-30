@@ -1,323 +1,487 @@
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>WorldApps + WorldAI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WorldApps</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
- --bg:#080b12;
- --card:#121927;
- --card2:#1b2638;
- --text:#fff;
- --muted:#94a3b8;
- --blue:#00bfff;
- --border:#263449;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-body.light{
- --bg:#f1f5f9;
- --card:#fff;
- --card2:#e2e8f0;
- --text:#0f172a;
- --muted:#64748b;
- --border:#cbd5e1;
+:root{
+    --bg:#0f1115;
+    --card:#181b22;
+    --card2:#20242d;
+    --text:#ffffff;
+    --muted:#a9b0bd;
+    --blue:#00bfff;
+    --border:#303641;
+    --danger:#ff4d4d;
+    --green:#20d070;
 }
 
 body{
- font-family:Arial,sans-serif;
- background:var(--bg);
- color:var(--text);
- min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    transition:.3s;
+}
+
+body.light{
+    --bg:#f2f4f8;
+    --card:#ffffff;
+    --card2:#e9edf3;
+    --text:#111827;
+    --muted:#5b6472;
+    --border:#d8dde6;
 }
 
 header{
- height:70px;
- border-bottom:1px solid var(--border);
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 25px;
- position:sticky;
- top:0;
- z-index:10;
- background:var(--bg);
+    position:sticky;
+    top:0;
+    z-index:100;
+    min-height:70px;
+    background:rgba(15,17,21,.95);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 25px;
+    backdrop-filter:blur(12px);
+}
+
+body.light header{
+    background:rgba(255,255,255,.95);
 }
 
 .logo{
- display:flex;
- align-items:center;
- gap:10px;
- font-size:21px;
- font-weight:bold;
+    font-size:25px;
+    font-weight:bold;
+    color:var(--blue);
 }
 
-.logoIcon{
- width:42px;
- height:42px;
- border-radius:12px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:linear-gradient(135deg,#00bfff,#7c3aed);
+.logo span{
+    color:var(--text);
 }
 
 nav{
- display:flex;
- gap:5px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-nav button,.theme{
- border:0;
- background:transparent;
- color:var(--text);
- padding:10px 13px;
- border-radius:9px;
- cursor:pointer;
+nav button{
+    background:transparent;
+    color:var(--text);
+    border:0;
+    padding:10px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
 }
 
-nav button:hover,.theme:hover{
- background:var(--card2);
+nav button:hover{
+    background:var(--card2);
+}
+
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:45px 20px 70px;
 }
 
 .page{
- display:none;
+    display:none;
 }
 
 .page.active{
- display:block;
+    display:block;
 }
 
 .hero{
- max-width:1000px;
- margin:auto;
- padding:90px 20px;
- text-align:center;
+    text-align:center;
+    padding:55px 20px;
 }
 
 .hero h1{
- font-size:55px;
- background:linear-gradient(90deg,#00bfff,#7c3aed);
- -webkit-background-clip:text;
- color:transparent;
- margin-bottom:15px;
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:var(--blue);
 }
 
 .hero p{
- color:var(--muted);
- font-size:18px;
- line-height:1.6;
+    color:var(--muted);
+    font-size:19px;
+    margin-bottom:30px;
 }
 
-.buttons{
- margin-top:30px;
- display:flex;
- justify-content:center;
- gap:12px;
- flex-wrap:wrap;
+.search{
+    max-width:650px;
+    margin:auto;
+    display:flex;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
 }
 
-.primary,.secondary{
- padding:13px 20px;
- border-radius:10px;
- cursor:pointer;
- font-size:15px;
+.search input{
+    flex:1;
+    background:transparent;
+    border:0;
+    outline:0;
+    padding:17px;
+    color:var(--text);
+    font-size:16px;
 }
 
-.primary{
- border:0;
- background:linear-gradient(135deg,#00bfff,#2563eb);
- color:white;
+.search button{
+    border:0;
+    background:var(--blue);
+    color:#001018;
+    padding:0 25px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.secondary{
- border:1px solid var(--border);
- background:var(--card);
- color:var(--text);
+.section-title{
+    margin:35px 0 20px;
 }
 
-.section{
- max-width:1100px;
- margin:auto;
- padding:50px 20px;
+.section-title h2{
+    font-size:28px;
 }
 
-.section h2{
- margin-bottom:20px;
+.section-title p{
+    color:var(--muted);
+    margin-top:6px;
 }
 
-.apps{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
- gap:18px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
 }
 
 .card{
- background:var(--card);
- border:1px solid var(--border);
- border-radius:16px;
- padding:22px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    transition:.2s;
 }
 
-.cardIcon{
- font-size:35px;
- margin-bottom:15px;
+.card:hover{
+    transform:translateY(-4px);
+    border-color:var(--blue);
+}
+
+.card-icon{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--card2);
+    font-size:30px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:8px;
+    font-size:20px;
 }
 
 .card p{
- color:var(--muted);
- margin:10px 0 18px;
- line-height:1.5;
+    color:var(--muted);
+    line-height:1.5;
+    min-height:48px;
 }
 
 .card button{
- border:0;
- background:var(--blue);
- color:white;
- padding:10px 15px;
- border-radius:8px;
- cursor:pointer;
+    margin-top:18px;
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    background:var(--blue);
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* AI */
-
-.ai{
- max-width:950px;
- margin:auto;
- min-height:calc(100vh - 70px);
+.download{
+    margin-top:40px;
+    padding:30px;
+    background:linear-gradient(135deg,#111c25,#17232e);
+    border:1px solid var(--border);
+    border-radius:20px;
+    text-align:center;
 }
 
-.aiTop{
- padding:30px 20px 10px;
+.download h2{
+    margin-bottom:10px;
 }
 
-.aiTop h2{
- font-size:30px;
+.download p{
+    color:var(--muted);
+    margin-bottom:20px;
 }
 
-.aiTop p{
- color:var(--muted);
- margin-top:5px;
+.download a{
+    display:inline-block;
+    background:var(--blue);
+    color:#001018;
+    text-decoration:none;
+    font-weight:bold;
+    padding:13px 22px;
+    border-radius:10px;
 }
 
-.chat{
- padding:25px 20px 130px;
+.result{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:12px;
 }
 
-.welcome{
- text-align:center;
- padding:80px 10px 40px;
+/* PASSWORD VAULT */
+
+.vault{
+    max-width:850px;
+    margin:auto;
 }
 
-.robot{
- font-size:65px;
+.vault-header{
+    text-align:center;
+    margin-bottom:30px;
 }
 
-.welcome h1{
- font-size:34px;
- margin-top:10px;
+.vault-header .big-lock{
+    font-size:60px;
+    margin-bottom:15px;
 }
 
-.welcome p{
- color:var(--muted);
- margin-top:10px;
+.vault-header h1{
+    font-size:36px;
+    margin-bottom:10px;
 }
 
-.messages{
- display:flex;
- flex-direction:column;
- gap:20px;
+.vault-header p{
+    color:var(--muted);
 }
 
-.message{
- display:flex;
- gap:12px;
- max-width:850px;
- margin:auto;
- width:100%;
+.vault-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
 }
 
-.avatar{
- width:40px;
- height:40px;
- min-width:40px;
- border-radius:11px;
- display:flex;
- align-items:center;
- justify-content:center;
+.vault-box h2{
+    margin-bottom:20px;
 }
 
-.userAvatar{
- background:#075985;
+.form-group{
+    margin-bottom:16px;
 }
 
-.aiAvatar{
- background:linear-gradient(135deg,#00bfff,#7c3aed);
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    color:var(--muted);
+    font-size:14px;
 }
 
-.body{
- line-height:1.65;
- padding-top:6px;
+.form-group input{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    outline:none;
+    font-size:15px;
 }
 
-.name{
- font-weight:bold;
- margin-bottom:5px;
+.form-group input:focus{
+    border-color:var(--blue);
 }
 
-.aiInput{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- padding:18px;
- background:linear-gradient(transparent,var(--bg) 30%);
+.primary-btn{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:13px;
+    background:var(--blue);
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
 }
 
-.inputBox{
- max-width:850px;
- margin:auto;
- display:flex;
- background:var(--card);
- border:1px solid var(--border);
- border-radius:15px;
- padding:7px;
+.secondary-btn{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 15px;
+    background:var(--card2);
+    color:var(--text);
+    cursor:pointer;
 }
 
-textarea{
- flex:1;
- resize:none;
- border:0;
- outline:0;
- background:transparent;
- color:var(--text);
- padding:12px;
- font:15px Arial;
+.danger-btn{
+    border:0;
+    border-radius:9px;
+    padding:9px 12px;
+    background:var(--danger);
+    color:white;
+    cursor:pointer;
 }
 
-.send{
- width:48px;
- border:0;
- border-radius:11px;
- background:var(--blue);
- color:white;
- font-size:20px;
- cursor:pointer;
+.success-btn{
+    border:0;
+    border-radius:9px;
+    padding:9px 12px;
+    background:var(--green);
+    color:#001b0d;
+    cursor:pointer;
 }
 
-.loading{
- color:var(--muted);
- font-style:italic;
+.vault-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.password-item{
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px;
+    margin-top:12px;
+}
+
+.password-item h3{
+    margin-bottom:5px;
+}
+
+.password-item .site{
+    color:var(--blue);
+    font-size:14px;
+    margin-bottom:14px;
+}
+
+.password-display{
+    display:flex;
+    gap:8px;
+}
+
+.password-display input{
+    flex:1;
+    min-width:0;
+    padding:10px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:8px;
+}
+
+.item-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+    flex-wrap:wrap;
+}
+
+.empty-vault{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+}
+
+.warning{
+    padding:13px;
+    border-radius:10px;
+    background:rgba(255,180,0,.1);
+    border:1px solid rgba(255,180,0,.3);
+    color:#ffc857;
+    margin-bottom:18px;
+    line-height:1.5;
+}
+
+.hidden{
+    display:none !important;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:25px;
+    text-align:center;
+    color:var(--muted);
 }
 
 @media(max-width:700px){
- header{padding:0 10px}
- nav button{padding:8px 6px;font-size:12px}
- .hero h1{font-size:40px}
+
+    header{
+        padding:12px;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    nav{
+        order:3;
+        width:100%;
+    }
+
+    .hero{
+        padding:35px 10px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    main{
+        padding:25px 14px 50px;
+    }
+
+    .vault-header h1{
+        font-size:29px;
+    }
+
+    .password-display{
+        flex-direction:column;
+    }
 }
 </style>
 </head>
@@ -326,378 +490,1370 @@ textarea{
 
 <header>
 
-<div class="logo">
- <div class="logoIcon">🌐</div>
- WorldApps
-</div>
+    <div class="logo">
+        World<span>Apps</span>
+    </div>
 
-<nav>
- <button onclick="page('home')">🏠</button>
- <button onclick="page('apps')">📱 Apps</button>
- <button onclick="page('ai')">🤖 WorldAI</button>
-</nav>
+    <nav>
+        <button onclick="showPage('home')">🏠 Início</button>
+        <button onclick="showPage('apps')">📱 Apps</button>
+        <button onclick="showPage('games')">🎮 Jogos</button>
+        <button onclick="showPage('passwords')">🔐 Passwords</button>
+    </nav>
 
-<button class="theme" onclick="theme()">🌙</button>
+    <div class="header-buttons">
+        <button class="icon-btn" onclick="toggleTheme()">🌙</button>
+    </div>
 
 </header>
 
+<main>
 
-<!-- HOME -->
+<!-- INÍCIO -->
 
-<div id="home" class="page active">
+<section id="home" class="page active">
 
-<section class="hero">
+    <div class="hero">
 
-<h1>WorldApps</h1>
+        <h1>World<span>Apps</span></h1>
 
-<p>
-Aplicações, jogos e inteligência artificial
-num só lugar.
-</p>
+        <p>
+            As tuas aplicações e jogos num só lugar.
+        </p>
 
-<div class="buttons">
+        <div class="search">
 
-<button class="primary" onclick="page('ai')">
-🤖 Abrir WorldAI
-</button>
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Pesquisar aplicações ou jogos..."
+                onkeydown="if(event.key==='Enter') searchApps()"
+            >
 
-<button class="secondary" onclick="page('apps')">
-📱 Ver aplicações
-</button>
+            <button onclick="searchApps()">
+                🔎 Pesquisar
+            </button>
 
-</div>
+        </div>
+
+    </div>
+
+    <div id="searchResults"></div>
+
+    <div class="section-title">
+        <h2>⭐ Destaques</h2>
+        <p>Conhece os projetos do WorldApps.</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="card-icon">🌐</div>
+
+            <h3>IternetWorld</h3>
+
+            <p>
+                Um navegador criado pelo WorldApps.
+            </p>
+
+            <button onclick="openIternetWorld()">
+                Abrir
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🧱</div>
+
+            <h3>Craft & Build</h3>
+
+            <p>
+                Explora, constrói e cria o teu próprio mundo.
+            </p>
+
+            <button onclick="openGame('Craft & Build')">
+                Jogar
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🏎️</div>
+
+            <h3>Corrida Relâmpago</h3>
+
+            <p>
+                Conduz, desvia dos obstáculos e acelera.
+            </p>
+
+            <button onclick="openGame('Corrida Relâmpago')">
+                Jogar
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔐</div>
+
+            <h3>Password Vault</h3>
+
+            <p>
+                Guarda as tuas palavras-passe num cofre protegido.
+            </p>
+
+            <button onclick="showPage('passwords')">
+                Abrir cofre
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="download">
+
+        <h2>💻 IternetWorld para Windows</h2>
+
+        <p>
+            Descarrega a versão Windows do navegador IternetWorld.
+        </p>
+
+        <a href="https://github.com/JogosWorld/InternetWorld/releases/download/v1.0.0/IternetWorld.Setup.1.0.0.exe">
+            ⬇️ Download IternetWorld
+        </a>
+
+    </div>
 
 </section>
-
-<section class="section">
-
-<h2>🚀 Destaques</h2>
-
-<div class="apps">
-
-<div class="card">
-<div class="cardIcon">🤖</div>
-<h3>WorldAI</h3>
-<p>
-Uma IA real integrada no WorldApps.
-</p>
-<button onclick="page('ai')">Abrir</button>
-</div>
-
-<div class="card">
-<div class="cardIcon">🎮</div>
-<h3>Jogos</h3>
-<p>
-Os jogos criados no WorldApps.
-</p>
-<button onclick="page('apps')">Ver</button>
-</div>
-
-<div class="card">
-<div class="cardIcon">🌐</div>
-<h3>IternetWorld</h3>
-<p>
-O navegador do teu projeto.
-</p>
-<button onclick="page('apps')">Ver</button>
-</div>
-
-</div>
-
-</section>
-
-</div>
 
 
 <!-- APPS -->
 
-<div id="apps" class="page">
+<section id="apps" class="page">
 
-<section class="section">
+    <div class="section-title">
 
-<h2>📱 WorldApps</h2>
+        <h2>📱 Aplicações</h2>
 
-<div class="apps">
+        <p>
+            As aplicações disponíveis no WorldApps.
+        </p>
 
-<div class="card">
-<div class="cardIcon">🤖</div>
-<h3>WorldAI</h3>
-<p>Assistente inteligente.</p>
-<button onclick="page('ai')">Abrir</button>
-</div>
+    </div>
 
-<div class="card">
-<div class="cardIcon">🎮</div>
-<h3>Craft & Build</h3>
-<p>Jogo de construção 3D.</p>
-<button>Em breve</button>
-</div>
+    <div class="grid">
 
-<div class="card">
-<div class="cardIcon">🏎️</div>
-<h3>Corrida Relâmpago</h3>
-<p>Jogo de corridas.</p>
-<button>Em breve</button>
-</div>
+        <div class="card">
 
-<div class="card">
-<div class="cardIcon">🌐</div>
-<h3>IternetWorld</h3>
-<p>Navegador desenvolvido por nós.</p>
-<button>Em breve</button>
-</div>
+            <div class="card-icon">🌐</div>
 
-</div>
+            <h3>IternetWorld</h3>
+
+            <p>
+                Navegador criado pelo WorldApps.
+            </p>
+
+            <button onclick="openIternetWorld()">
+                Abrir IternetWorld
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔐</div>
+
+            <h3>Password Vault</h3>
+
+            <p>
+                Cofre local para proteger as tuas palavras-passe.
+            </p>
+
+            <button onclick="showPage('passwords')">
+                Abrir
+            </button>
+
+        </div>
+
+    </div>
 
 </section>
 
-</div>
+
+<!-- JOGOS -->
+
+<section id="games" class="page">
+
+    <div class="section-title">
+
+        <h2>🎮 Jogos</h2>
+
+        <p>
+            Jogos criados para o WorldApps.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="card-icon">🧱</div>
+
+            <h3>Craft & Build</h3>
+
+            <p>
+                Jogo 3D de construção e exploração.
+            </p>
+
+            <button onclick="openGame('Craft & Build')">
+                Jogar
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🏎️</div>
+
+            <h3>Corrida Relâmpago</h3>
+
+            <p>
+                Jogo de corridas com obstáculos.
+            </p>
+
+            <button onclick="openGame('Corrida Relâmpago')">
+                Jogar
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-<!-- AI -->
+<!-- PASSWORD VAULT -->
 
-<div id="ai" class="page">
+<section id="passwords" class="page">
 
-<div class="ai">
+    <div class="vault">
 
-<div class="aiTop">
-<h2>🤖 WorldAI</h2>
-<p>Agora ligada a uma IA real.</p>
-</div>
+        <div class="vault-header">
 
-<div class="chat">
+            <div class="big-lock">🔐</div>
 
-<div class="welcome" id="welcome">
+            <h1>Password Vault</h1>
 
-<div class="robot">🤖</div>
+            <p>
+                O teu cofre pessoal de palavras-passe.
+            </p>
 
-<h1>Olá! Sou a WorldAI</h1>
-
-<p>
-Pergunta-me alguma coisa.
-</p>
-
-</div>
-
-<div class="messages" id="messages"></div>
-
-</div>
-
-</div>
-
-</div>
+        </div>
 
 
-<!-- INPUT -->
+        <!-- PRIMEIRO ACESSO -->
 
-<div class="aiInput" id="aiInput" style="display:none">
+        <div id="createMaster" class="vault-box hidden">
 
-<div class="inputBox">
+            <h2>🔑 Criar palavra-passe principal</h2>
 
-<textarea
-id="input"
-rows="1"
-placeholder="Escreve a tua pergunta..."
-onkeydown="key(event)"
-></textarea>
+            <div class="warning">
+                Esta palavra-passe será usada para desbloquear o cofre.
+                Se a perderes, não será possível recuperar os dados.
+            </div>
 
-<button class="send" onclick="send()">➤</button>
+            <div class="form-group">
 
-</div>
+                <label>Nova palavra-passe principal</label>
 
-</div>
+                <input
+                    id="newMaster"
+                    type="password"
+                    placeholder="Escolhe uma palavra-passe forte"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Confirmar palavra-passe</label>
+
+                <input
+                    id="confirmMaster"
+                    type="password"
+                    placeholder="Repete a palavra-passe"
+                >
+
+            </div>
+
+            <button class="primary-btn" onclick="createVault()">
+                🔐 Criar cofre
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div id="unlockBox" class="vault-box hidden">
+
+            <h2>🔓 Desbloquear cofre</h2>
+
+            <div class="form-group">
+
+                <label>Palavra-passe principal</label>
+
+                <input
+                    id="masterPassword"
+                    type="password"
+                    placeholder="Introduz a tua palavra-passe"
+                    onkeydown="if(event.key==='Enter') unlockVault()"
+                >
+
+            </div>
+
+            <button class="primary-btn" onclick="unlockVault()">
+                🔓 Desbloquear
+            </button>
+
+        </div>
+
+
+        <!-- COFRE -->
+
+        <div id="vaultContent" class="hidden">
+
+            <div class="vault-box">
+
+                <h2>➕ Adicionar palavra-passe</h2>
+
+                <div class="form-group">
+
+                    <label>Nome / Serviço</label>
+
+                    <input
+                        id="entryName"
+                        type="text"
+                        placeholder="Ex.: Google"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Site</label>
+
+                    <input
+                        id="entrySite"
+                        type="text"
+                        placeholder="Ex.: https://google.com"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Nome de utilizador / email</label>
+
+                    <input
+                        id="entryUser"
+                        type="text"
+                        placeholder="Ex.: exemplo@email.com"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Palavra-passe</label>
+
+                    <input
+                        id="entryPassword"
+                        type="password"
+                        placeholder="Palavra-passe"
+                    >
+
+                </div>
+
+                <button class="primary-btn" onclick="addPassword()">
+                    ➕ Guardar palavra-passe
+                </button>
+
+            </div>
+
+
+            <div class="vault-box">
+
+                <h2>🔐 As tuas palavras-passe</h2>
+
+                <div id="passwordList"></div>
+
+                <div class="vault-actions">
+
+                    <button class="secondary-btn" onclick="lockVault()">
+                        🔒 Bloquear cofre
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+    © 2026 WorldApps · Aplicações, jogos e projetos
+</footer>
 
 
 <script>
 
-function page(name){
+/* =========================
+   NAVEGAÇÃO
+========================= */
 
- document.querySelectorAll(".page")
- .forEach(x=>x.classList.remove("active"));
+function showPage(page){
 
- document.getElementById(name)
- .classList.add("active");
+    document.querySelectorAll(".page").forEach(function(p){
+        p.classList.remove("active");
+    });
 
- document.getElementById("aiInput").style.display =
- name==="ai" ? "block" : "none";
+    const selected = document.getElementById(page);
 
- window.scrollTo(0,0);
+    if(selected){
+        selected.classList.add("active");
+    }
+
+    if(page === "passwords"){
+        prepareVault();
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   TEMA
+========================= */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    const light =
+        document.body.classList.contains("light");
+
+    localStorage.setItem(
+        "worldapps_theme",
+        light ? "light" : "dark"
+    );
+
+    document.querySelector(".icon-btn").textContent =
+        light ? "☀️" : "🌙";
+}
+
+
+(function(){
+
+    if(
+        localStorage.getItem("worldapps_theme")
+        === "light"
+    ){
+
+        document.body.classList.add("light");
+
+        document.querySelector(".icon-btn").textContent =
+            "☀️";
+    }
+
+})();
+
+
+/* =========================
+   PESQUISA
+========================= */
+
+const items = [
+
+    {
+        name:"IternetWorld",
+        type:"Aplicação",
+        description:"Navegador criado pelo WorldApps.",
+        action:"openIternetWorld()"
+    },
+
+    {
+        name:"Password Vault",
+        type:"Aplicação",
+        description:"Cofre local de palavras-passe.",
+        action:"showPage('passwords')"
+    },
+
+    {
+        name:"Craft & Build",
+        type:"Jogo",
+        description:"Jogo 3D de construção e exploração.",
+        action:"openGame('Craft & Build')"
+    },
+
+    {
+        name:"Corrida Relâmpago",
+        type:"Jogo",
+        description:"Jogo de corridas com obstáculos.",
+        action:"openGame('Corrida Relâmpago')"
+    }
+
+];
+
+
+function searchApps(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const results =
+        document.getElementById("searchResults");
+
+    const query =
+        input.value.trim().toLowerCase();
+
+    results.innerHTML = "";
+
+    if(!query){
+        return;
+    }
+
+    const found =
+        items.filter(function(item){
+
+            return (
+                item.name.toLowerCase().includes(query) ||
+                item.type.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query)
+            );
+
+        });
+
+
+    if(found.length === 0){
+
+        results.innerHTML = `
+            <div class="result">
+                <h3>🔎 Nenhum resultado</h3>
+                <p>
+                    Não encontramos nenhuma aplicação ou jogo.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    found.forEach(function(item){
+
+        results.innerHTML += `
+
+            <div class="result">
+
+                <h3>${item.name}</h3>
+
+                <p>
+                    ${item.type} · ${item.description}
+                </p>
+
+                <button
+                    onclick="${item.action}"
+                    style="
+                        margin-top:12px;
+                        padding:10px 16px;
+                        border:0;
+                        border-radius:9px;
+                        background:var(--blue);
+                        cursor:pointer;
+                        font-weight:bold;
+                    "
+                >
+                    Abrir
+                </button>
+
+            </div>
+
+        `;
+
+    });
 
 }
 
 
-function theme(){
+/* =========================
+   INTERNETWORLD
+========================= */
 
- document.body.classList.toggle("light");
+function openIternetWorld(){
 
- localStorage.setItem(
- "worldapps-theme",
- document.body.classList.contains("light")
- ? "light"
- : "dark"
- );
-
-}
-
-
-if(localStorage.getItem("worldapps-theme")==="light"){
- document.body.classList.add("light");
-}
-
-
-/* CHAT */
-
-let conversation=[];
-
-
-function addMessage(type,text){
-
- const box=document.getElementById("messages");
-
- const div=document.createElement("div");
-
- div.className="message";
-
- if(type==="user"){
-
-  div.innerHTML=`
-  <div class="avatar userAvatar">👤</div>
-  <div class="body">
-   <div class="name">Tu</div>
-   ${escapeHTML(text)}
-  </div>
-  `;
-
- }else{
-
-  div.innerHTML=`
-  <div class="avatar aiAvatar">🤖</div>
-  <div class="body">
-   <div class="name">WorldAI</div>
-   ${format(text)}
-  </div>
-  `;
-
- }
-
- box.appendChild(div);
-
- document.querySelector(".chat").scrollTop =
- document.querySelector(".chat").scrollHeight;
+    window.open(
+        "https://jogosworld.github.io/InternetWorld/",
+        "_blank"
+    );
 
 }
 
 
-async function send(){
+/* =========================
+   JOGOS
+========================= */
 
- const input=document.getElementById("input");
+function openGame(name){
 
- const text=input.value.trim();
-
- if(!text)return;
-
- document.getElementById("welcome").style.display="none";
-
- addMessage("user",text);
-
- conversation.push({
-  role:"user",
-  content:text
- });
-
- input.value="";
-
- const loading=document.createElement("div");
-
- loading.className="message";
-
- loading.innerHTML=`
- <div class="avatar aiAvatar">🤖</div>
- <div class="body loading">WorldAI está a pensar...</div>
- `;
-
- document.getElementById("messages").appendChild(loading);
-
- try{
-
-  const response=await fetch("/api/chat",{
-
-   method:"POST",
-
-   headers:{
-    "Content-Type":"application/json"
-   },
-
-   body:JSON.stringify({
-    messages:conversation
-   })
-
-  });
-
-  const data=await response.json();
-
-  loading.remove();
-
-  if(!response.ok){
-   throw new Error(data.error || "Erro no servidor");
-  }
-
-  addMessage("ai",data.answer);
-
-  conversation.push({
-   role:"assistant",
-   content:data.answer
-  });
-
- }catch(error){
-
-  loading.remove();
-
-  addMessage(
-   "ai",
-   "❌ Não consegui contactar o servidor da WorldAI.<br><br>"+
-   escapeHTML(error.message)
-  );
-
- }
+    alert(
+        name +
+        "\n\nO jogo está a ser preparado para ficar disponível no WorldApps."
+    );
 
 }
 
 
-function key(event){
+/* =========================================================
+   PASSWORD VAULT
+   ========================================================= */
 
- if(event.key==="Enter" && !event.shiftKey){
+let vaultKey = null;
+let vaultEntries = [];
 
-  event.preventDefault();
 
-  send();
+/* -------------------------
+   BASE64
+------------------------- */
 
- }
+function arrayBufferToBase64(buffer){
+
+    let binary = "";
+
+    const bytes = new Uint8Array(buffer);
+
+    for(let i=0;i<bytes.byteLength;i++){
+        binary += String.fromCharCode(bytes[i]);
+    }
+
+    return btoa(binary);
+}
+
+
+function base64ToArrayBuffer(base64){
+
+    const binary =
+        atob(base64);
+
+    const bytes =
+        new Uint8Array(binary.length);
+
+    for(let i=0;i<binary.length;i++){
+        bytes[i] = binary.charCodeAt(i);
+    }
+
+    return bytes.buffer;
+}
+
+
+/* -------------------------
+   CHAVE
+------------------------- */
+
+async function deriveKey(password,salt){
+
+    const encoder =
+        new TextEncoder();
+
+    const material =
+        await crypto.subtle.importKey(
+            "raw",
+            encoder.encode(password),
+            "PBKDF2",
+            false,
+            ["deriveKey"]
+        );
+
+    return crypto.subtle.deriveKey(
+        {
+            name:"PBKDF2",
+            salt:salt,
+            iterations:250000,
+            hash:"SHA-256"
+        },
+        material,
+        {
+            name:"AES-GCM",
+            length:256
+        },
+        false,
+        ["encrypt","decrypt"]
+    );
+}
+
+
+/* -------------------------
+   ENCRIPTAR
+------------------------- */
+
+async function encryptVault(){
+
+    const encoder =
+        new TextEncoder();
+
+    const data =
+        JSON.stringify(vaultEntries);
+
+    const iv =
+        crypto.getRandomValues(
+            new Uint8Array(12)
+        );
+
+    const encrypted =
+        await crypto.subtle.encrypt(
+            {
+                name:"AES-GCM",
+                iv:iv
+            },
+            vaultKey,
+            encoder.encode(data)
+        );
+
+    const stored =
+        JSON.parse(
+            localStorage.getItem(
+                "worldapps_vault"
+            )
+        );
+
+    stored.iv =
+        arrayBufferToBase64(iv);
+
+    stored.data =
+        arrayBufferToBase64(encrypted);
+
+    localStorage.setItem(
+        "worldapps_vault",
+        JSON.stringify(stored)
+    );
+}
+
+
+/* -------------------------
+   DESENCRIPTAR
+------------------------- */
+
+async function decryptVault(){
+
+    const stored =
+        JSON.parse(
+            localStorage.getItem(
+                "worldapps_vault"
+            )
+        );
+
+    const iv =
+        new Uint8Array(
+            base64ToArrayBuffer(
+                stored.iv
+            )
+        );
+
+    const encrypted =
+        base64ToArrayBuffer(
+            stored.data
+        );
+
+    const decrypted =
+        await crypto.subtle.decrypt(
+            {
+                name:"AES-GCM",
+                iv:iv
+            },
+            vaultKey,
+            encrypted
+        );
+
+    const decoder =
+        new TextDecoder();
+
+    vaultEntries =
+        JSON.parse(
+            decoder.decode(decrypted)
+        );
+}
+
+
+/* -------------------------
+   PREPARAR COFRE
+------------------------- */
+
+function prepareVault(){
+
+    const exists =
+        localStorage.getItem(
+            "worldapps_vault"
+        );
+
+    document
+        .getElementById("createMaster")
+        .classList.toggle(
+            "hidden",
+            !!exists
+        );
+
+    document
+        .getElementById("unlockBox")
+        .classList.toggle(
+            "hidden",
+            !exists
+        );
+
+    document
+        .getElementById("vaultContent")
+        .classList.add("hidden");
 
 }
 
 
-function escapeHTML(text){
+/* -------------------------
+   CRIAR COFRE
+------------------------- */
 
- return text
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
+async function createVault(){
+
+    const password =
+        document.getElementById(
+            "newMaster"
+        ).value;
+
+    const confirmation =
+        document.getElementById(
+            "confirmMaster"
+        ).value;
+
+
+    if(password.length < 8){
+
+        alert(
+            "A palavra-passe principal deve ter pelo menos 8 caracteres."
+        );
+
+        return;
+    }
+
+
+    if(password !== confirmation){
+
+        alert(
+            "As palavras-passe não coincidem."
+        );
+
+        return;
+    }
+
+
+    const salt =
+        crypto.getRandomValues(
+            new Uint8Array(16)
+        );
+
+
+    vaultKey =
+        await deriveKey(
+            password,
+            salt
+        );
+
+
+    vaultEntries = [];
+
+
+    localStorage.setItem(
+        "worldapps_vault",
+        JSON.stringify({
+            version:1,
+            salt:arrayBufferToBase64(salt),
+            iv:"",
+            data:""
+        })
+    );
+
+
+    await encryptVault();
+
+
+    document.getElementById(
+        "newMaster"
+    ).value = "";
+
+    document.getElementById(
+        "confirmMaster"
+    ).value = "";
+
+
+    alert(
+        "🔐 Cofre criado com sucesso!"
+    );
+
+
+    prepareVault();
+
+    await unlockVaultAfterCreate();
+}
+
+
+/* -------------------------
+   DESBLOQUEAR
+------------------------- */
+
+async function unlockVault(){
+
+    const password =
+        document.getElementById(
+            "masterPassword"
+        ).value;
+
+    if(!password){
+
+        alert(
+            "Introduz a palavra-passe principal."
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const stored =
+            JSON.parse(
+                localStorage.getItem(
+                    "worldapps_vault"
+                )
+            );
+
+
+        const salt =
+            new Uint8Array(
+                base64ToArrayBuffer(
+                    stored.salt
+                )
+            );
+
+
+        vaultKey =
+            await deriveKey(
+                password,
+                salt
+            );
+
+
+        await decryptVault();
+
+
+        document.getElementById(
+            "masterPassword"
+        ).value = "";
+
+
+        document.getElementById(
+            "unlockBox"
+        ).classList.add("hidden");
+
+
+        document.getElementById(
+            "createMaster"
+        ).classList.add("hidden");
+
+
+        document.getElementById(
+            "vaultContent"
+        ).classList.remove("hidden");
+
+
+        renderPasswords();
+
+    }catch(error){
+
+        vaultKey = null;
+
+        alert(
+            "❌ Palavra-passe principal incorreta."
+        );
+
+    }
 
 }
 
 
-function format(text){
+/* -------------------------
+   DESBLOQUEAR DEPOIS DE CRIAR
+------------------------- */
 
- return escapeHTML(text)
- .replace(/\n/g,"<br>");
+async function unlockVaultAfterCreate(){
+
+    document.getElementById(
+        "unlockBox"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "createMaster"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "vaultContent"
+    ).classList.remove("hidden");
+
+    renderPasswords();
 
 }
+
+
+/* -------------------------
+   ADICIONAR PASSWORD
+------------------------- */
+
+async function addPassword(){
+
+    if(!vaultKey){
+
+        alert(
+            "Desbloqueia primeiro o cofre."
+        );
+
+        return;
+    }
+
+
+    const name =
+        document.getElementById(
+            "entryName"
+        ).value.trim();
+
+    const site =
+        document.getElementById(
+            "entrySite"
+        ).value.trim();
+
+    const username =
+        document.getElementById(
+            "entryUser"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "entryPassword"
+        ).value;
+
+
+    if(!name || !password){
+
+        alert(
+            "Preenche pelo menos o nome e a palavra-passe."
+        );
+
+        return;
+    }
+
+
+    vaultEntries.push({
+
+        id:
+            Date.now(),
+
+        name:name,
+
+        site:site,
+
+        username:username,
+
+        password:password
+
+    });
+
+
+    await encryptVault();
+
+
+    document.getElementById(
+        "entryName"
+    ).value = "";
+
+    document.getElementById(
+        "entrySite"
+    ).value = "";
+
+    document.getElementById(
+        "entryUser"
+    ).value = "";
+
+    document.getElementById(
+        "entryPassword"
+    ).value = "";
+
+
+    renderPasswords();
+
+}
+
+
+/* -------------------------
+   MOSTRAR PASSWORDS
+------------------------- */
+
+function renderPasswords(){
+
+    const list =
+        document.getElementById(
+            "passwordList"
+        );
+
+
+    if(vaultEntries.length === 0){
+
+        list.innerHTML = `
+            <div class="empty-vault">
+                🔐 Ainda não tens palavras-passe guardadas.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML = "";
+
+
+    vaultEntries.forEach(function(entry){
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "password-item";
+
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(entry.name)}
+            </h3>
+
+            <div class="site">
+                ${escapeHTML(entry.site || "Sem site")}
+            </div>
+
+            <div>
+                👤
+                ${escapeHTML(entry.username || "Sem utilizador")}
+            </div>
+
+            <div class="password-display">
+
+                <input
+                    type="password"
+                    value="${escapeHTML(entry.password)}"
+                    readonly
+                    id="pass-${entry.id}"
+                >
+
+                <button
+                    class="secondary-btn"
+                    onclick="togglePassword('${entry.id}')"
+                >
+                    👁️
+                </button>
+
+            </div>
+
+            <div class="item-buttons">
+
+                <button
+                    class="success-btn"
+                    onclick="copyPassword('${entry.id}')"
+                >
+                    📋 Copiar
+                </button>
+
+                <button
+                    class="danger-btn"
+                    onclick="deletePassword('${entry.id}')"
+                >
+                    🗑️ Apagar
+                </button>
+
+            </div>
+
+        `;
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* -------------------------
+   ESCAPE HTML
+------------------------- */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* -------------------------
+   MOSTRAR/ESCONDER
+------------------------- */
+
+function togglePassword(id){
+
+    const input =
+        document.getElementById(
+            "pass-" + id
+        );
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+    }else{
+
+        input.type = "password";
+
+    }
+
+}
+
+
+/* -------------------------
+   COPIAR
+------------------------- */
+
+async function copyPassword(id){
+
+    const entry =
+        vaultEntries.find(
+            function(item){
+                return item.id == id;
+            }
+        );
+
+
+    if(!entry){
+        return;
+    }
+
+
+    try{
+
+        await navigator.clipboard.writeText(
+            entry.password
+        );
+
+        alert(
+            "📋 Palavra-passe copiada."
+        );
+
+    }catch(error){
+
+        alert(
+            "Não foi possível copiar automaticamente."
+        );
+
+    }
+
+}
+
+
+/* -------------------------
+   APAGAR
+------------------------- */
+
+async function deletePassword(id){
+
+    const confirmed =
+        confirm(
+            "Queres mesmo apagar esta palavra-passe?"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    vaultEntries =
+        vaultEntries.filter(
+            function(item){
+                return item.id != id;
+            }
+        );
+
+
+    await encryptVault();
+
+    renderPasswords();
+
+}
+
+
+/* -------------------------
+   BLOQUEAR
+------------------------- */
+
+function lockVault(){
+
+    vaultKey = null;
+
+    vaultEntries = [];
+
+
+    document.getElementById(
+        "vaultContent"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "unlockBox"
+    ).classList.remove("hidden");
+
+
+    alert(
+        "🔒 Cofre bloqueado."
+    );
+
+}
+
+
+/* -------------------------
+   INICIAR
+------------------------- */
+
+prepareVault();
 
 </script>
 
 </body>
 </html>
-
