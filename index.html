@@ -1,9 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldApps</title>
+
+<title>WorldApps — Apps e IA</title>
 
 <style>
 *{
@@ -12,81 +14,101 @@
     padding:0;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#0d1117;
-    color:#fff;
-    min-height:100vh;
-    transition:.2s;
+:root{
+    --bg:#080b12;
+    --bg2:#101522;
+    --card:#151c2b;
+    --card2:#1d2739;
+    --text:#fff;
+    --muted:#94a3b8;
+    --blue:#00bfff;
+    --purple:#7c3aed;
+    --border:#273449;
 }
 
 body.light{
-    background:#f3f5f8;
-    color:#111;
+    --bg:#f1f5f9;
+    --bg2:#fff;
+    --card:#fff;
+    --card2:#e2e8f0;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#cbd5e1;
 }
 
-button,input,textarea,select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
 /* HEADER */
 
 header{
     height:70px;
-    background:#161b22;
-    border-bottom:1px solid #30363d;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 25px;
+    padding:0 30px;
+    border-bottom:1px solid var(--border);
+    background:rgba(8,11,18,.92);
     position:sticky;
     top:0;
-    z-index:1000;
+    z-index:10;
 }
 
 body.light header{
-    background:#fff;
-    border-color:#ddd;
+    background:rgba(255,255,255,.92);
 }
 
 .logo{
-    font-size:23px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
     font-weight:bold;
-    cursor:pointer;
 }
 
-.logo span{
-    color:#00bfff;
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#00bfff,#7c3aed);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.menu{
+nav{
     display:flex;
     gap:8px;
 }
 
-.menu button{
+nav button{
     border:0;
-    border-radius:10px;
+    background:transparent;
+    color:var(--text);
     padding:10px 14px;
-    background:#252b33;
-    color:#fff;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:14px;
 }
 
-body.light .menu button{
-    background:#e8ebef;
-    color:#111;
+nav button:hover{
+    background:var(--card2);
 }
 
-.menu button:hover{
-    background:#00bfff;
-    color:#fff;
+.theme{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:9px;
+    padding:9px 12px;
+    cursor:pointer;
 }
 
-/* PÁGINAS */
+/* PAGES */
 
 .page{
     display:none;
@@ -99,435 +121,318 @@ body.light .menu button{
 /* HOME */
 
 .hero{
+    max-width:1100px;
+    margin:auto;
+    padding:90px 25px 50px;
     text-align:center;
-    padding:70px 20px 40px;
 }
 
 .hero h1{
-    font-size:48px;
+    font-size:55px;
     margin-bottom:15px;
-}
-
-.hero h1 span{
-    color:#00bfff;
+    background:linear-gradient(90deg,#00bfff,#7c3aed);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
 .hero p{
-    color:#aeb6c2;
-    font-size:18px;
-}
-
-body.light .hero p{
-    color:#666;
-}
-
-.search{
-    max-width:750px;
-    margin:35px auto;
-    display:flex;
-    gap:10px;
-}
-
-.search input{
-    flex:1;
-    padding:17px;
-    border-radius:13px;
-    border:1px solid #30363d;
-    background:#161b22;
-    color:#fff;
-    font-size:16px;
-    outline:none;
-}
-
-body.light .search input{
-    background:#fff;
-    color:#111;
-    border-color:#ccc;
-}
-
-.search button{
-    border:0;
-    border-radius:13px;
-    padding:0 22px;
-    background:#00bfff;
-    color:#fff;
-    font-weight:bold;
-}
-
-.container{
-    max-width:1200px;
+    color:var(--muted);
+    font-size:19px;
+    max-width:650px;
     margin:auto;
-    padding:0 20px 60px;
+    line-height:1.6;
 }
 
-/* CATEGORIAS */
-
-.categories{
+.hero-buttons{
+    margin-top:30px;
     display:flex;
+    justify-content:center;
+    gap:12px;
     flex-wrap:wrap;
-    gap:10px;
-    margin:15px 0 35px;
 }
 
-.categories button{
-    border:1px solid #30363d;
-    border-radius:20px;
-    padding:10px 15px;
-    background:#161b22;
-    color:#fff;
+.primary{
+    border:0;
+    background:linear-gradient(135deg,#00bfff,#2563eb);
+    color:white;
+    padding:14px 22px;
+    border-radius:11px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
 }
 
-body.light .categories button{
-    background:#fff;
-    color:#111;
-    border-color:#ccc;
+.secondary{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:14px 22px;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:15px;
 }
 
-.categories button:hover{
-    background:#00bfff;
-    color:#fff;
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 25px 70px;
 }
 
-/* APPS */
+.section-title{
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+/* APP CARDS */
 
 .apps{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
 }
 
-.card{
-    background:#161b22;
-    border:1px solid #30363d;
-    border-radius:18px;
+.app-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
     padding:22px;
     transition:.2s;
 }
 
-body.light .card{
-    background:#fff;
-    border-color:#ddd;
-}
-
-.card:hover{
+.app-card:hover{
     transform:translateY(-4px);
-    border-color:#00bfff;
+    background:var(--card2);
 }
 
-.icon{
-    width:62px;
-    height:62px;
-    border-radius:16px;
-    background:#252b33;
+.app-icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:31px;
+    justify-content:center;
+    font-size:27px;
+    background:linear-gradient(135deg,#00bfff,#7c3aed);
     margin-bottom:15px;
 }
 
-.card h3{
+.app-card h3{
     margin-bottom:8px;
 }
 
-.card p{
-    color:#aeb6c2;
-    line-height:1.4;
-    min-height:48px;
-    margin-bottom:18px;
-}
-
-body.light .card p{
-    color:#666;
-}
-
-.cardButtons{
-    display:flex;
-    gap:8px;
+.app-card p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+    margin-bottom:17px;
 }
 
 .open{
-    flex:1;
     border:0;
-    border-radius:10px;
-    padding:11px;
-    background:#00bfff;
-    color:#fff;
-    font-weight:bold;
-}
-
-.favorite{
-    width:45px;
-    border:0;
-    border-radius:10px;
-    background:#252b33;
-    color:#fff;
-    font-size:19px;
-}
-
-body.light .favorite{
-    background:#e7eaf0;
-    color:#111;
-}
-
-/* APP PAGE */
-
-.appPage{
-    max-width:1050px;
-    margin:35px auto;
-    padding:0 20px 60px;
-}
-
-.back{
-    border:0;
-    border-radius:10px;
-    padding:11px 18px;
-    background:#252b33;
-    color:#fff;
-    margin-bottom:20px;
-}
-
-body.light .back{
-    background:#e2e6eb;
-    color:#111;
-}
-
-.appHeader{
-    background:#161b22;
-    border:1px solid #30363d;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:20px;
-}
-
-body.light .appHeader{
-    background:#fff;
-    border-color:#ddd;
-}
-
-.appHeader h1{
-    margin-bottom:8px;
-}
-
-.appHeader p{
-    color:#aeb6c2;
-}
-
-body.light .appHeader p{
-    color:#666;
-}
-
-.workspace{
-    background:#161b22;
-    border:1px solid #30363d;
-    border-radius:18px;
-    padding:25px;
-    min-height:400px;
-}
-
-body.light .workspace{
-    background:#fff;
-    border-color:#ddd;
-}
-
-/* CAMPOS */
-
-.input{
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid #30363d;
-    background:#0d1117;
-    color:#fff;
-    outline:none;
-}
-
-body.light .input{
-    background:#f5f6f8;
-    color:#111;
-}
-
-.action{
-    border:0;
-    border-radius:10px;
-    background:#00bfff;
-    color:#fff;
-    padding:12px 18px;
-    font-weight:bold;
-}
-
-.secondary{
-    border:1px solid #3b424d;
-    border-radius:10px;
-    background:#252b33;
-    color:#fff;
+    background:var(--blue);
+    color:white;
     padding:10px 15px;
-}
-
-body.light .secondary{
-    background:#e9edf2;
-    color:#111;
-}
-
-/* RESULTADOS */
-
-.result{
-    background:#252b33;
-    border-radius:12px;
-    padding:18px;
-    margin-top:18px;
-    min-height:60px;
-}
-
-body.light .result{
-    background:#edf0f4;
-}
-
-/* TASKS */
-
-.task{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    background:#252b33;
-    padding:13px;
-    border-radius:10px;
-    margin-top:10px;
-}
-
-body.light .task{
-    background:#edf0f4;
-}
-
-.delete{
-    border:0;
-    border-radius:7px;
-    padding:7px 10px;
-    background:#ef4444;
-    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 /* AI */
 
-.aiChat{
-    height:300px;
-    overflow-y:auto;
-    background:#0d1117;
-    border:1px solid #30363d;
-    border-radius:14px;
-    padding:15px;
+.ai-page{
+    max-width:1000px;
+    margin:auto;
+    min-height:calc(100vh - 70px);
+    display:flex;
+    flex-direction:column;
+}
+
+.ai-header{
+    padding:30px 20px 10px;
+}
+
+.ai-header h2{
+    font-size:30px;
+}
+
+.ai-header p{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.chat{
+    flex:1;
+    padding:25px 20px 150px;
+}
+
+.welcome{
+    text-align:center;
+    margin:60px auto 35px;
+}
+
+.robot{
+    font-size:60px;
     margin-bottom:15px;
 }
 
-body.light .aiChat{
-    background:#f5f6f8;
+.welcome h1{
+    font-size:35px;
+}
+
+.welcome p{
+    color:var(--muted);
+    margin-top:10px;
+}
+
+.messages{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
 }
 
 .message{
-    max-width:85%;
-    padding:12px 15px;
-    border-radius:14px;
-    margin-bottom:10px;
-    line-height:1.45;
-}
-
-.aiMessage{
-    background:#252b33;
-}
-
-.userMessage{
-    background:#00bfff;
-    margin-left:auto;
-}
-
-.aiInputArea{
     display:flex;
-    gap:8px;
-}
-
-.aiInputArea input{
-    margin:0;
-}
-
-/* FINANÇAS */
-
-.moneyStats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
     gap:12px;
-    margin:20px 0;
-}
-
-.stat{
-    background:#252b33;
-    border-radius:12px;
-    padding:18px;
-}
-
-body.light .stat{
-    background:#edf0f4;
-}
-
-.stat strong{
-    display:block;
-    font-size:24px;
-    margin-top:7px;
-}
-
-/* NOTAS */
-
-.noteArea{
+    max-width:850px;
     width:100%;
-    height:250px;
-    resize:vertical;
+    margin:auto;
 }
 
-/* FAVORITOS */
+.avatar{
+    min-width:40px;
+    height:40px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
-.empty{
-    padding:35px;
+.user-avatar{
+    background:#075985;
+}
+
+.ai-avatar{
+    background:linear-gradient(135deg,#00bfff,#7c3aed);
+}
+
+.message-body{
+    line-height:1.65;
+    padding-top:7px;
+}
+
+.message-name{
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+.ai-input{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:18px;
+    background:linear-gradient(transparent,var(--bg) 30%);
+}
+
+.input-box{
+    max-width:850px;
+    margin:auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    display:flex;
+    padding:7px;
+}
+
+textarea{
+    flex:1;
+    resize:none;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--text);
+    padding:12px;
+    font-family:inherit;
+    font-size:15px;
+}
+
+.send{
+    width:46px;
+    border:0;
+    border-radius:11px;
+    background:var(--blue);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* SEARCH */
+
+.search{
+    max-width:700px;
+    margin:30px auto;
+    padding:0 20px;
+}
+
+.search input{
+    width:100%;
+    padding:16px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+    font-size:15px;
+}
+
+.search-results{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.result{
+    padding:17px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:11px;
+    cursor:pointer;
+}
+
+.result:hover{
+    background:var(--card2);
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--border);
     text-align:center;
-    color:#999;
+    padding:25px;
+    color:var(--muted);
 }
 
-/* RESPONSIVO */
+/* MOBILE */
 
 @media(max-width:700px){
 
     header{
-        padding:0 12px;
+        padding:0 15px;
     }
 
-    .logo{
-        font-size:18px;
-    }
-
-    .menu button{
+    nav button{
         padding:8px;
         font-size:12px;
     }
 
     .hero h1{
-        font-size:35px;
+        font-size:40px;
     }
 
-    .search{
-        flex-direction:column;
+    .hero{
+        padding-top:60px;
     }
 
-    .search button{
-        padding:14px;
-    }
-
-    .moneyStats{
-        grid-template-columns:1fr;
-    }
-
-    .aiInputArea{
-        flex-direction:column;
-    }
 }
 </style>
 </head>
@@ -536,1401 +441,667 @@ body.light .stat{
 
 <header>
 
-    <div class="logo" id="logo">
-        🌍 <span>WorldApps</span>
+    <div class="logo">
+        <div class="logo-icon">🌐</div>
+        WorldApps
     </div>
 
-    <div class="menu">
+    <nav>
+        <button onclick="showPage('home')">🏠 Início</button>
+        <button onclick="showPage('apps')">📱 Apps</button>
+        <button onclick="showPage('ai')">🤖 WorldAI</button>
+        <button onclick="showPage('search')">🔎 Pesquisa</button>
+    </nav>
 
-        <button id="homeButton">🏠 Início</button>
-
-        <button id="favoritesButton">⭐ Favoritos</button>
-
-        <button id="themeButton">🌙 Tema</button>
-
-    </div>
+    <button class="theme" onclick="toggleTheme()">🌙</button>
 
 </header>
 
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
-<section id="homePage" class="page active">
+<div id="home" class="page active">
 
-    <div class="hero">
+    <section class="hero">
 
-        <h1>
-            Tudo o que o mundo <span>precisa.</span>
-        </h1>
+        <h1>WorldApps</h1>
 
         <p>
-            Aplicações úteis num só lugar.
+            Um espaço onde podes encontrar aplicações,
+            jogos e inteligência artificial num só lugar.
         </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary"
+                onclick="showPage('ai')">
+                🤖 Experimentar WorldAI
+            </button>
+
+            <button
+                class="secondary"
+                onclick="showPage('apps')">
+                📱 Ver aplicações
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2 class="section-title">
+            🚀 Destaques
+        </h2>
+
+        <div class="apps">
+
+            <div class="app-card">
+
+                <div class="app-icon">🤖</div>
+
+                <h3>WorldAI</h3>
+
+                <p>
+                    A inteligência artificial do WorldApps.
+                    Faz perguntas, cria ideias e ajuda nos teus projetos.
+                </p>
+
+                <button
+                    class="open"
+                    onclick="showPage('ai')">
+                    Abrir
+                </button>
+
+            </div>
+
+
+            <div class="app-card">
+
+                <div class="app-icon">🎮</div>
+
+                <h3>Jogos</h3>
+
+                <p>
+                    Área para colocar os teus jogos criados
+                    no WorldApps.
+                </p>
+
+                <button
+                    class="open"
+                    onclick="showPage('apps')">
+                    Ver jogos
+                </button>
+
+            </div>
+
+
+            <div class="app-card">
+
+                <div class="app-icon">🔎</div>
+
+                <h3>Pesquisa</h3>
+
+                <p>
+                    Pesquisa rapidamente na Internet.
+                </p>
+
+                <button
+                    class="open"
+                    onclick="showPage('search')">
+                    Pesquisar
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- APPS -->
+
+<div id="apps" class="page">
+
+    <section class="section">
+
+        <h1 class="section-title">
+            📱 WorldApps
+        </h1>
+
+        <div class="apps">
+
+            <div class="app-card">
+
+                <div class="app-icon">🤖</div>
+
+                <h3>WorldAI</h3>
+
+                <p>
+                    Assistente de inteligência artificial.
+                </p>
+
+                <button
+                    class="open"
+                    onclick="showPage('ai')">
+                    Abrir
+                </button>
+
+            </div>
+
+
+            <div class="app-card">
+
+                <div class="app-icon">🎮</div>
+
+                <h3>Craft & Build</h3>
+
+                <p>
+                    Jogo de construção 3D.
+                </p>
+
+                <button class="open">
+                    Em breve
+                </button>
+
+            </div>
+
+
+            <div class="app-card">
+
+                <div class="app-icon">🏎️</div>
+
+                <h3>Corrida Relâmpago</h3>
+
+                <p>
+                    Jogo de corridas com obstáculos.
+                </p>
+
+                <button class="open">
+                    Em breve
+                </button>
+
+            </div>
+
+
+            <div class="app-card">
+
+                <div class="app-icon">🌐</div>
+
+                <h3>IternetWorld</h3>
+
+                <p>
+                    O navegador desenvolvido para o WorldApps.
+                </p>
+
+                <button class="open">
+                    Em breve
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- AI -->
+
+<div id="ai" class="page">
+
+    <div class="ai-page">
+
+        <div class="ai-header">
+
+            <h2>🤖 WorldAI</h2>
+
+            <p>
+                O assistente inteligente do WorldApps.
+            </p>
+
+        </div>
+
+        <div class="chat" id="chat">
+
+            <div class="welcome" id="welcome">
+
+                <div class="robot">🤖</div>
+
+                <h1>Olá! Eu sou a WorldAI</h1>
+
+                <p>
+                    Como posso ajudar?
+                </p>
+
+            </div>
+
+            <div
+                class="messages"
+                id="messages">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div id="search" class="page">
+
+    <section class="section">
+
+        <h1 class="section-title">
+            🔎 Pesquisa
+        </h1>
 
         <div class="search">
 
             <input
                 id="searchInput"
-                placeholder="Pesquisar aplicações..."
+                placeholder="Pesquisar na Internet..."
+                onkeydown="searchEnter(event)"
             >
 
-            <button id="searchButton">
-                🔎 Pesquisar
-            </button>
+            <div
+                class="search-results"
+                id="searchResults">
+            </div>
 
         </div>
 
-    </div>
+    </section>
+
+</div>
 
 
-    <div class="container">
-
-        <h2>📂 Categorias</h2>
-
-        <div class="categories">
-
-            <button data-category="Todos">Todos</button>
-            <button data-category="IA">🤖 IA</button>
-            <button data-category="Educação">📚 Educação</button>
-            <button data-category="Finanças">💰 Finanças</button>
-            <button data-category="Produtividade">⚡ Produtividade</button>
-            <button data-category="Casa">🏠 Casa</button>
-            <button data-category="Segurança">🔐 Segurança</button>
-            <button data-category="Entretenimento">🎮 Entretenimento</button>
-            <button data-category="Notas">📝 Notas</button>
-
-        </div>
-
-        <h2>🚀 Aplicações</h2>
-
-        <div id="apps" class="apps"></div>
-
-    </div>
-
-</section>
+<footer>
+    © 2026 WorldApps — WorldAI
+</footer>
 
 
-<!-- ================= APP ================= -->
+<!-- AI INPUT -->
 
-<section id="appPage" class="page">
+<div class="ai-input" id="aiInput" style="display:none;">
 
-    <div class="appPage">
+    <div class="input-box">
 
-        <button id="backButton" class="back">
-            ← Voltar
+        <textarea
+            id="aiText"
+            rows="1"
+            placeholder="Pergunta alguma coisa à WorldAI..."
+            onkeydown="aiKey(event)">
+        </textarea>
+
+        <button
+            class="send"
+            onclick="sendAI()">
+            ➤
         </button>
 
-        <div class="appHeader">
-
-            <h1 id="appTitle"></h1>
-
-            <p id="appDescription"></p>
-
-        </div>
-
-        <div id="workspace" class="workspace"></div>
-
     </div>
 
-</section>
-
-
-<!-- ================= FAVORITOS ================= -->
-
-<section id="favoritesPage" class="page">
-
-    <div class="container">
-
-        <h1 style="padding-top:40px;margin-bottom:25px">
-            ⭐ Os meus favoritos
-        </h1>
-
-        <div id="favorites" class="apps"></div>
-
-    </div>
-
-</section>
+</div>
 
 
 <script>
 
-/* =====================================================
-   LISTA DE APLICAÇÕES
-===================================================== */
-
-const applications = [
-
-    {
-        id:"ai",
-        icon:"🤖",
-        name:"World AI",
-        category:"IA",
-        description:"O assistente inteligente do WorldApps."
-    },
-
-    {
-        id:"study",
-        icon:"📚",
-        name:"Estudar",
-        category:"Educação",
-        description:"Organiza estudos, matérias e tarefas."
-    },
-
-    {
-        id:"money",
-        icon:"💰",
-        name:"Gestor de Dinheiro",
-        category:"Finanças",
-        description:"Controla receitas, despesas e saldo."
-    },
-
-    {
-        id:"productivity",
-        icon:"⚡",
-        name:"Produtividade",
-        category:"Produtividade",
-        description:"Organiza as tuas tarefas e prioridades."
-    },
-
-    {
-        id:"house",
-        icon:"🏠",
-        name:"Minha Casa",
-        category:"Casa",
-        description:"Organiza tarefas e coisas da tua casa."
-    },
-
-    {
-        id:"security",
-        icon:"🔐",
-        name:"Segurança",
-        category:"Segurança",
-        description:"Ferramentas para melhorar a segurança digital."
-    },
-
-    {
-        id:"games",
-        icon:"🎮",
-        name:"Entretenimento",
-        category:"Entretenimento",
-        description:"Jogos simples para te divertires."
-    },
-
-    {
-        id:"notes",
-        icon:"📝",
-        name:"Notas",
-        category:"Notas",
-        description:"Cria e guarda as tuas notas."
-    }
-
-];
-
-
-/* =====================================================
-   ESTADO
-===================================================== */
-
-let favorites =
-    JSON.parse(
-        localStorage.getItem("worldapps_favorites") || "[]"
-    );
-
-
-/* =====================================================
-   ELEMENTOS
-===================================================== */
-
-const homePage =
-    document.getElementById("homePage");
-
-const appPage =
-    document.getElementById("appPage");
-
-const favoritesPage =
-    document.getElementById("favoritesPage");
-
-const appsContainer =
-    document.getElementById("apps");
-
-const favoritesContainer =
-    document.getElementById("favorites");
-
-const workspace =
-    document.getElementById("workspace");
-
-
-/* =====================================================
-   NAVEGAÇÃO
-===================================================== */
+/* NAVEGAÇÃO */
 
 function showPage(page){
 
-    homePage.classList.remove("active");
-    appPage.classList.remove("active");
-    favoritesPage.classList.remove("active");
-
-    page.classList.add("active");
-
-    window.scrollTo(0,0);
-}
-
-
-/* =====================================================
-   FAVORITOS
-===================================================== */
-
-function saveFavorites(){
-
-    localStorage.setItem(
-        "worldapps_favorites",
-        JSON.stringify(favorites)
-    );
-
-}
-
-
-function toggleFavorite(id){
-
-    if(favorites.includes(id)){
-
-        favorites =
-            favorites.filter(
-                item => item !== id
-            );
-
-    }else{
-
-        favorites.push(id);
-
-    }
-
-    saveFavorites();
-
-    renderApps(applications);
-
-    renderFavorites();
-
-}
-
-
-/* =====================================================
-   CARTÃO
-===================================================== */
-
-function createCard(app){
-
-    const card =
-        document.createElement("div");
-
-    card.className = "card";
-
-    const favorite =
-        favorites.includes(app.id);
-
-
-    card.innerHTML = `
-
-        <div class="icon">
-            ${app.icon}
-        </div>
-
-        <h3>
-            ${app.name}
-        </h3>
-
-        <p>
-            ${app.description}
-        </p>
-
-        <div class="cardButtons">
-
-            <button
-                class="open"
-                data-open="${app.id}">
-                Abrir aplicação
-            </button>
-
-            <button
-                class="favorite"
-                data-favorite="${app.id}">
-                ${favorite ? "★" : "☆"}
-            </button>
-
-        </div>
-
-    `;
-
-    return card;
-}
-
-
-/* =====================================================
-   MOSTRAR APPS
-===================================================== */
-
-function renderApps(list){
-
-    appsContainer.innerHTML = "";
-
-
-    if(list.length === 0){
-
-        appsContainer.innerHTML =
-            '<div class="empty">😕 Nenhuma aplicação encontrada.</div>';
-
-        return;
-
-    }
-
-
-    list.forEach(app => {
-
-        appsContainer.appendChild(
-            createCard(app)
-        );
-
-    });
-
-}
-
-
-/* =====================================================
-   FAVORITOS
-===================================================== */
-
-function renderFavorites(){
-
-    favoritesContainer.innerHTML = "";
-
-
-    const list =
-        applications.filter(
-            app => favorites.includes(app.id)
-        );
-
-
-    if(list.length === 0){
-
-        favoritesContainer.innerHTML =
-            '<div class="empty">Ainda não tens aplicações favoritas.</div>';
-
-        return;
-
-    }
-
-
-    list.forEach(app => {
-
-        favoritesContainer.appendChild(
-            createCard(app)
-        );
-
-    });
-
-}
-
-
-/* =====================================================
-   ABRIR APLICAÇÃO
-===================================================== */
-
-function openApplication(id){
-
-    const app =
-        applications.find(
-            item => item.id === id
-        );
-
-
-    if(!app){
-        return;
-    }
-
-
-    document.getElementById("appTitle").textContent =
-        app.icon + " " + app.name;
-
-    document.getElementById("appDescription").textContent =
-        app.description;
-
-    workspace.innerHTML = "";
-
-
-    /* ================= WORLD AI ================= */
-
-    if(id === "ai"){
-
-        workspace.innerHTML = `
-
-            <h2>🤖 World AI</h2>
-
-            <p style="margin:10px 0 18px">
-                Fala com o assistente do WorldApps.
-            </p>
-
-            <div id="aiChat" class="aiChat">
-
-                <div class="message aiMessage">
-                    🤖 Olá! Eu sou o World AI. Como posso ajudar?
-                </div>
-
-            </div>
-
-            <div class="aiInputArea">
-
-                <input
-                    id="aiInput"
-                    class="input"
-                    placeholder="Escreve a tua pergunta..."
-                >
-
-                <button id="aiSend" class="action">
-                    Enviar
-                </button>
-
-            </div>
-
-            <div style="margin-top:15px">
-
-                <button class="secondary aiSuggestion"
-                    data-question="Dá-me uma ideia para uma aplicação.">
-                    💡 Ideia
-                </button>
-
-                <button class="secondary aiSuggestion"
-                    data-question="Ajuda-me a organizar o meu dia.">
-                    📅 Organizar o dia
-                </button>
-
-                <button class="secondary aiSuggestion"
-                    data-question="Explica-me o que é inteligência artificial.">
-                    🧠 Explicar IA
-                </button>
-
-            </div>
-
-            <button
-                id="newChat"
-                class="secondary"
-                style="margin-top:15px">
-                🗑️ Nova conversa
-            </button>
-
-        `;
-
-
-        const chat =
-            document.getElementById("aiChat");
-
-
-        function sendAI(){
-
-            const input =
-                document.getElementById("aiInput");
-
-            const question =
-                input.value.trim();
-
-
-            if(!question){
-                return;
-            }
-
-
-            const user =
-                document.createElement("div");
-
-            user.className =
-                "message userMessage";
-
-            user.textContent =
-                question;
-
-            chat.appendChild(user);
-
-
-            const answer =
-                document.createElement("div");
-
-            answer.className =
-                "message aiMessage";
-
-
-            answer.textContent =
-                getAIResponse(question);
-
-
-            chat.appendChild(answer);
-
-            input.value = "";
-
-            chat.scrollTop =
-                chat.scrollHeight;
-
-        }
-
-
-        document
-        .getElementById("aiSend")
-        .onclick = sendAI;
-
-
-        document
-        .getElementById("aiInput")
-        .onkeydown = function(event){
-
-            if(event.key === "Enter"){
-                sendAI();
-            }
-
-        };
-
-
-        document
-        .querySelectorAll(".aiSuggestion")
-        .forEach(button => {
-
-            button.onclick = function(){
-
-                document
-                .getElementById("aiInput")
-                .value =
-                    button.dataset.question;
-
-                sendAI();
-
-            };
-
-        });
-
-
-        document
-        .getElementById("newChat")
-        .onclick = function(){
-
-            chat.innerHTML = `
-
-                <div class="message aiMessage">
-                    🤖 Nova conversa iniciada. Como posso ajudar?
-                </div>
-
-            `;
-
-        };
-
-    }
-
-
-    /* ================= ESTUDAR ================= */
-
-    else if(id === "study"){
-
-        createTaskApp(
-            "📚 Estudar",
-            "Adiciona uma matéria ou tarefa de estudo."
-        );
-
-    }
-
-
-    /* ================= PRODUTIVIDADE ================= */
-
-    else if(id === "productivity"){
-
-        createTaskApp(
-            "⚡ Produtividade",
-            "Organiza as tarefas que tens para fazer."
-        );
-
-    }
-
-
-    /* ================= CASA ================= */
-
-    else if(id === "house"){
-
-        createTaskApp(
-            "🏠 Minha Casa",
-            "Adiciona tarefas, compras ou coisas importantes."
-        );
-
-    }
-
-
-    /* ================= DINHEIRO ================= */
-
-    else if(id === "money"){
-
-        workspace.innerHTML = `
-
-            <h2>💰 Gestor de Dinheiro</h2>
-
-            <div class="moneyStats">
-
-                <div class="stat">
-                    Receitas
-                    <strong id="income">0,00 €</strong>
-                </div>
-
-                <div class="stat">
-                    Despesas
-                    <strong id="expenses">0,00 €</strong>
-                </div>
-
-                <div class="stat">
-                    Saldo
-                    <strong id="balance">0,00 €</strong>
-                </div>
-
-            </div>
-
-            <h3>Adicionar movimento</h3>
-
-            <select id="moneyType" class="input">
-                <option value="expense">Despesa</option>
-                <option value="income">Receita</option>
-            </select>
-
-            <input
-                id="moneyValue"
-                class="input"
-                type="number"
-                placeholder="Valor (€)"
-            >
-
-            <input
-                id="moneyDescription"
-                class="input"
-                placeholder="Descrição"
-            >
-
-            <button id="moneyAdd" class="action">
-                Adicionar
-            </button>
-
-            <div id="moneyHistory" style="margin-top:20px"></div>
-
-        `;
-
-
-        let income = 0;
-        let expenses = 0;
-
-
-        document
-        .getElementById("moneyAdd")
-        .onclick = function(){
-
-            const value =
-                Number(
-                    document.getElementById("moneyValue").value
-                );
-
-
-            const type =
-                document.getElementById("moneyType").value;
-
-
-            const description =
-                document
-                .getElementById("moneyDescription")
-                .value
-                .trim() || "Movimento";
-
-
-            if(value <= 0){
-                return;
-            }
-
-
-            if(type === "income"){
-                income += value;
-            }else{
-                expenses += value;
-            }
-
-
-            document.getElementById("income")
-                .textContent =
-                income.toFixed(2) + " €";
-
-
-            document.getElementById("expenses")
-                .textContent =
-                expenses.toFixed(2) + " €";
-
-
-            document.getElementById("balance")
-                .textContent =
-                (income - expenses).toFixed(2) + " €";
-
-
-            const item =
-                document.createElement("div");
-
-            item.className = "task";
-
-            item.innerHTML = `
-
-                <span>
-                    ${type === "income" ? "🟢" : "🔴"}
-                    ${description}
-                </span>
-
-                <strong>
-                    ${value.toFixed(2)} €
-                </strong>
-
-            `;
-
-
-            document
-            .getElementById("moneyHistory")
-            .prepend(item);
-
-
-            document.getElementById("moneyValue").value = "";
-            document.getElementById("moneyDescription").value = "";
-
-        };
-
-    }
-
-
-    /* ================= SEGURANÇA ================= */
-
-    else if(id === "security"){
-
-        workspace.innerHTML = `
-
-            <h2>🔐 Segurança</h2>
-
-            <p style="margin:10px 0">
-                Verifica a força de uma palavra-passe.
-            </p>
-
-            <input
-                id="password"
-                class="input"
-                type="password"
-                placeholder="Escreve uma palavra-passe"
-            >
-
-            <button id="checkPassword" class="action">
-                Verificar
-            </button>
-
-            <div id="passwordResult" class="result">
-                Ainda não verificaste.
-            </div>
-
-            <hr style="margin:25px 0;border-color:#30363d">
-
-            <h3>🔑 Gerador de palavra-passe</h3>
-
-            <button id="generatePassword"
-                class="action"
-                style="margin-top:15px">
-                Gerar palavra-passe
-            </button>
-
-            <div id="generatedPassword" class="result">
-                Clica para gerar.
-            </div>
-
-        `;
-
-
-        document
-        .getElementById("checkPassword")
-        .onclick = function(){
-
-            const password =
-                document.getElementById("password").value;
-
-
-            let points = 0;
-
-
-            if(password.length >= 8) points++;
-            if(/[A-Z]/.test(password)) points++;
-            if(/[0-9]/.test(password)) points++;
-            if(/[^A-Za-z0-9]/.test(password)) points++;
-
-
-            let result;
-
-
-            if(points <= 1){
-                result = "🔴 Fraca";
-            }
-            else if(points === 2){
-                result = "🟠 Média";
-            }
-            else if(points === 3){
-                result = "🟢 Boa";
-            }
-            else{
-                result = "🟢 Muito forte";
-            }
-
-
-            document
-            .getElementById("passwordResult")
-            .textContent =
-                "Força: " + result;
-
-        };
-
-
-        document
-        .getElementById("generatePassword")
-        .onclick = function(){
-
-            const chars =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
-
-            let password = "";
-
-
-            for(let i=0;i<14;i++){
-
-                password +=
-                    chars[
-                        Math.floor(
-                            Math.random()*chars.length
-                        )
-                    ];
-
-            }
-
-
-            document
-            .getElementById("generatedPassword")
-            .textContent =
-                password;
-
-        };
-
-    }
-
-
-    /* ================= JOGO ================= */
-
-    else if(id === "games"){
-
-        let number =
-            Math.floor(Math.random()*100)+1;
-
-
-        workspace.innerHTML = `
-
-            <h2>🎮 Adivinha o número</h2>
-
-            <p style="margin:10px 0">
-                Estou a pensar num número entre 1 e 100.
-            </p>
-
-            <input
-                id="guess"
-                class="input"
-                type="number"
-                placeholder="Escreve um número"
-            >
-
-            <button id="guessButton" class="action">
-                Tentar
-            </button>
-
-            <div id="gameResult" class="result">
-                Boa sorte!
-            </div>
-
-        `;
-
-
-        document
-        .getElementById("guessButton")
-        .onclick = function(){
-
-            const guess =
-                Number(
-                    document.getElementById("guess").value
-                );
-
-
-            const result =
-                document.getElementById("gameResult");
-
-
-            if(!guess){
-                result.textContent =
-                    "Escreve um número.";
-                return;
-            }
-
-
-            if(guess === number){
-
-                result.textContent =
-                    "🎉 Acertaste! Vou escolher outro número.";
-
-                number =
-                    Math.floor(Math.random()*100)+1;
-
-            }
-            else if(guess < number){
-
-                result.textContent =
-                    "⬆️ O número é maior.";
-
-            }
-            else{
-
-                result.textContent =
-                    "⬇️ O número é menor.";
-
-            }
-
-        };
-
-    }
-
-
-    /* ================= NOTAS ================= */
-
-    else if(id === "notes"){
-
-        workspace.innerHTML = `
-
-            <h2>📝 Notas</h2>
-
-            <textarea
-                id="notesArea"
-                class="input noteArea"
-                placeholder="Escreve aqui..."
-            ></textarea>
-
-            <button id="saveNotes" class="action">
-                💾 Guardar notas
-            </button>
-
-            <button id="clearNotes" class="secondary">
-                🗑️ Limpar
-            </button>
-
-            <div id="notesResult" class="result">
-                As notas são guardadas neste navegador.
-            </div>
-
-        `;
-
-
-        document.getElementById("notesArea").value =
-            localStorage.getItem("worldapps_notes") || "";
-
-
-        document
-        .getElementById("saveNotes")
-        .onclick = function(){
-
-            localStorage.setItem(
-                "worldapps_notes",
-                document.getElementById("notesArea").value
-            );
-
-
-            document
-            .getElementById("notesResult")
-            .textContent =
-                "✅ Notas guardadas.";
-
-        };
-
-
-        document
-        .getElementById("clearNotes")
-        .onclick = function(){
-
-            document.getElementById("notesArea").value = "";
-
-        };
-
-    }
-
-
-    showPage(appPage);
-
-}
-
-
-/* =====================================================
-   RESPOSTAS DA WORLD AI
-===================================================== */
-
-function getAIResponse(question){
-
-    const q =
-        question.toLowerCase();
-
-
-    if(
-        q.includes("olá") ||
-        q.includes("ola") ||
-        q.includes("oi")
-    ){
-
-        return "🤖 Olá! É um prazer falar contigo. O que precisas de fazer?";
-
-    }
-
-
-    if(
-        q.includes("ideia") &&
-        q.includes("aplica")
-    ){
-
-        return "💡 Uma ideia: uma aplicação que junta tarefas, calendário, despesas e IA num único painel.";
-
-    }
-
-
-    if(
-        q.includes("inteligência artificial") ||
-        q.includes("inteligencia artificial") ||
-        q.includes("ia")
-    ){
-
-        return "🧠 A inteligência artificial permite que computadores analisem informação e realizem tarefas que normalmente precisam de capacidades humanas, como compreender texto, reconhecer padrões e gerar conteúdo.";
-
-    }
-
-
-    if(
-        q.includes("estudar") ||
-        q.includes("estudo")
-    ){
-
-        return "📚 Para estudar, experimenta dividir o trabalho em sessões de 25 minutos, fazer pequenas pausas e guardar as tarefas no WorldApps.";
-
-    }
-
-
-    if(
-        q.includes("dia") ||
-        q.includes("organizar")
-    ){
-
-        return "📅 Podes organizar o dia em três grupos: urgente, importante e se houver tempo. Começa pelas tarefas mais importantes.";
-
-    }
-
-
-    if(
-        q.includes("worldapps")
-    ){
-
-        return "🌍 O WorldApps é uma plataforma onde podemos juntar várias aplicações úteis num só lugar.";
-
-    }
-
-
-    return "🤖 Ainda estou a aprender. Podes explicar a pergunta de outra forma ou experimentar uma das sugestões acima.";
-
-}
-
-
-/* =====================================================
-   APLICAÇÕES DE TAREFAS
-===================================================== */
-
-function createTaskApp(title,description){
-
-    workspace.innerHTML = `
-
-        <h2>${title}</h2>
-
-        <p style="margin:10px 0 15px">
-            ${description}
-        </p>
-
-        <input
-            id="taskInput"
-            class="input"
-            placeholder="Escreve uma tarefa..."
-        >
-
-        <button id="taskAdd" class="action">
-            ➕ Adicionar
-        </button>
-
-        <div id="taskList"></div>
-
-    `;
-
+    document
+        .querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
 
     document
-    .getElementById("taskAdd")
-    .onclick = function(){
+        .getElementById(page)
+        .classList.add("active");
 
-        const input =
-            document.getElementById("taskInput");
+    const aiInput =
+        document.getElementById("aiInput");
 
+    aiInput.style.display =
+        page === "ai" ? "block" : "none";
 
-        const text =
-            input.value.trim();
-
-
-        if(!text){
-            return;
-        }
-
-
-        const task =
-            document.createElement("div");
-
-        task.className = "task";
-
-
-        const span =
-            document.createElement("span");
-
-        span.textContent =
-            "📌 " + text;
-
-
-        const remove =
-            document.createElement("button");
-
-        remove.textContent = "X";
-        remove.className = "delete";
-
-
-        remove.onclick = function(){
-
-            task.remove();
-
-        };
-
-
-        task.appendChild(span);
-        task.appendChild(remove);
-
-
-        document
-        .getElementById("taskList")
-        .appendChild(task);
-
-
-        input.value = "";
-
-    };
+    window.scrollTo(0,0);
 
 }
 
 
-/* =====================================================
-   CLIQUES GERAIS
-===================================================== */
+/* TEMA */
 
-document.addEventListener("click",function(event){
-
-    const openButton =
-        event.target.closest("[data-open]");
-
-
-    if(openButton){
-
-        openApplication(
-            openButton.dataset.open
-        );
-
-        return;
-
-    }
-
-
-    const favoriteButton =
-        event.target.closest("[data-favorite]");
-
-
-    if(favoriteButton){
-
-        toggleFavorite(
-            favoriteButton.dataset.favorite
-        );
-
-    }
-
-});
-
-
-/* =====================================================
-   BOTÕES PRINCIPAIS
-===================================================== */
-
-document
-.getElementById("homeButton")
-.onclick = function(){
-
-    showPage(homePage);
-
-};
-
-
-document
-.getElementById("logo")
-.onclick = function(){
-
-    showPage(homePage);
-
-};
-
-
-document
-.getElementById("backButton")
-.onclick = function(){
-
-    showPage(homePage);
-
-};
-
-
-document
-.getElementById("favoritesButton")
-.onclick = function(){
-
-    renderFavorites();
-
-    showPage(favoritesPage);
-
-};
-
-
-/* =====================================================
-   TEMA
-===================================================== */
-
-document
-.getElementById("themeButton")
-.onclick = function(){
+function toggleTheme(){
 
     document.body.classList.toggle("light");
 
-
     localStorage.setItem(
-        "worldapps_theme",
+        "worldapps-theme",
         document.body.classList.contains("light")
             ? "light"
             : "dark"
     );
 
-};
+}
 
-
-if(
-    localStorage.getItem("worldapps_theme")
-    === "light"
-){
-
+if(localStorage.getItem("worldapps-theme")==="light"){
     document.body.classList.add("light");
-
 }
 
 
-/* =====================================================
-   PESQUISA
-===================================================== */
+/* IA */
 
-function searchApps(){
-
-    const query =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
+let aiHistory =
+    JSON.parse(
+        localStorage.getItem("worldai-history") || "[]"
+    );
 
 
-    const result =
-        applications.filter(app =>
+function addAIMessage(type,text){
 
-            app.name.toLowerCase().includes(query) ||
+    const box =
+        document.getElementById("messages");
 
-            app.description.toLowerCase().includes(query) ||
+    const div =
+        document.createElement("div");
 
-            app.category.toLowerCase().includes(query)
+    div.className="message";
 
-        );
+    if(type==="user"){
 
+        div.innerHTML=`
 
-    renderApps(result);
+            <div class="avatar user-avatar">
+                👤
+            </div>
 
-}
+            <div class="message-body">
 
+                <div class="message-name">
+                    Tu
+                </div>
 
-document
-.getElementById("searchButton")
-.onclick = searchApps;
+                ${escapeHTML(text)}
 
+            </div>
+        `;
 
-document
-.getElementById("searchInput")
-.onkeydown = function(event){
+    }else{
 
-    if(event.key === "Enter"){
+        div.innerHTML=`
 
-        searchApps();
+            <div class="avatar ai-avatar">
+                🤖
+            </div>
+
+            <div class="message-body">
+
+                <div class="message-name">
+                    WorldAI
+                </div>
+
+                ${text}
+
+            </div>
+        `;
 
     }
 
-};
+    box.appendChild(div);
+
+    document
+        .getElementById("chat")
+        .scrollTop =
+        document.getElementById("chat").scrollHeight;
+
+}
 
 
-/* =====================================================
-   CATEGORIAS
-===================================================== */
+function sendAI(){
 
-document
-.querySelectorAll("[data-category]")
-.forEach(button => {
+    const input =
+        document.getElementById("aiText");
 
-    button.onclick = function(){
+    const text =
+        input.value.trim();
 
-        const category =
-            button.dataset.category;
+    if(!text) return;
+
+    document
+        .getElementById("welcome")
+        .style.display="none";
+
+    addAIMessage("user",text);
+
+    aiHistory.push({
+        role:"user",
+        text:text
+    });
+
+    input.value="";
+
+    setTimeout(()=>{
+
+        const answer =
+            worldAI(text);
+
+        addAIMessage("ai",answer);
+
+        aiHistory.push({
+            role:"ai",
+            text:answer
+        });
+
+        localStorage.setItem(
+            "worldai-history",
+            JSON.stringify(aiHistory)
+        );
+
+    },500);
+
+}
 
 
-        if(category === "Todos"){
+function worldAI(text){
 
-            renderApps(applications);
+    const t =
+        text.toLowerCase();
 
-            return;
+    if(
+        t.includes("olá") ||
+        t.includes("ola") ||
+        t.includes("bom dia") ||
+        t.includes("boa tarde")
+    ){
 
-        }
+        return `
+        Olá! 👋<br><br>
+        Eu sou a <b>WorldAI</b>.
+        Estou pronta para ajudar-te a criar
+        coisas novas no WorldApps! 🚀
+        `;
+
+    }
 
 
-        const result =
-            applications.filter(
-                app => app.category === category
-            );
+    if(
+        t.includes("quem és") ||
+        t.includes("quem es")
+    ){
+
+        return `
+        Eu sou a <b>WorldAI</b> 🤖,
+        a inteligência artificial do WorldApps.
+        <br><br>
+        Esta é a nossa primeira versão,
+        mas podemos torná-la muito mais poderosa.
+        `;
+
+    }
 
 
-        renderApps(result);
+    if(
+        t.includes("worldapps")
+    ){
 
-    };
+        return `
+        🌐 <b>WorldApps</b> é a nossa plataforma
+        para reunir aplicações, jogos e IA num só lugar.
+        `;
 
-});
+    }
 
 
-/* =====================================================
-   INICIAR
-===================================================== */
+    if(
+        t.includes("jogo") ||
+        t.includes("jogos")
+    ){
 
-renderApps(applications);
+        return `
+        🎮 Podemos criar muitos jogos!
+        <br><br>
+        Por exemplo:
+        <br>• jogos 3D
+        <br>• jogos de construção
+        <br>• corridas
+        <br>• sobrevivência
+        <br>• aventuras
+        <br><br>
+        Diz-me o tipo de jogo que queres criar.
+        `;
+
+    }
+
+
+    if(
+        t.includes("aplicação") ||
+        t.includes("aplicacao") ||
+        t.includes("app")
+    ){
+
+        return `
+        💡 Posso ajudar a planear uma aplicação
+        com páginas, botões, contas, pesquisa,
+        armazenamento e inteligência artificial.
+        `;
+
+    }
+
+
+    if(
+        t.includes("código") ||
+        t.includes("codigo") ||
+        t.includes("html") ||
+        t.includes("javascript")
+    ){
+
+        return `
+        💻 Posso ajudar-te a criar código.
+        <br><br>
+        Por exemplo, podemos construir
+        páginas HTML, JavaScript, jogos
+        e aplicações web.
+        `;
+
+    }
+
+
+    if(
+        t.includes("obrigado") ||
+        t.includes("obrigada")
+    ){
+
+        return `
+        De nada! 😄
+        <br><br>
+        Vamos continuar a construir o WorldApps!
+        `;
+
+    }
+
+
+    return `
+        🤖 Entendi: <b>${escapeHTML(text)}</b>
+        <br><br>
+        Nesta V1 ainda estou a usar respostas
+        programadas. Na próxima versão podemos
+        ligar a WorldAI a um verdadeiro modelo
+        de inteligência artificial para responder
+        a praticamente qualquer pergunta.
+    `;
+
+}
+
+
+function aiKey(event){
+
+    if(
+        event.key==="Enter" &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        sendAI();
+
+    }
+
+}
+
+
+/* PESQUISA */
+
+function searchEnter(event){
+
+    if(event.key!=="Enter") return;
+
+    searchInternet();
+
+}
+
+
+function searchInternet(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const q =
+        input.value.trim();
+
+    if(!q) return;
+
+    window.open(
+        "https://www.google.com/search?q="+
+        encodeURIComponent(q),
+        "_blank"
+    );
+
+}
+
+
+/* SEGURANÇA */
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
 
 </script>
 
 </body>
 </html>
+```
