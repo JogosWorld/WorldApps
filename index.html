@@ -2,2904 +2,5288 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WorldApps V4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorldApps V5</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-
 :root{
- --bg:#0d1117;
- --card:#161b22;
- --card2:#21262d;
- --text:#fff;
- --muted:#9da7b3;
- --accent:#2563eb;
- --border:#30363d;
- --danger:#ef4444;
- --good:#22c55e;
+  --bg:#0b1020;
+  --panel:#11182b;
+  --card:#18223a;
+  --card2:#202d49;
+  --text:#f5f7ff;
+  --muted:#9aa7c0;
+  --accent:#00bfff;
+  --accent2:#008fd1;
+  --danger:#ff4d5e;
+  --success:#35d07f;
+  --border:#2b3957;
 }
 
-body.light{
- --bg:#f3f4f6;
- --card:#fff;
- --card2:#e5e7eb;
- --text:#111827;
- --muted:#667085;
- --border:#d1d5db;
+*{
+  box-sizing:border-box;
 }
-
-body.green{--accent:#16a34a}
-body.purple{--accent:#9333ea}
-body.red{--accent:#dc2626}
-body.orange{--accent:#ea580c}
 
 body{
- background:var(--bg);
- color:var(--text);
- min-height:100vh;
- transition:.2s;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,var(--bg),#101a32);
+  color:var(--text);
+  min-height:100vh;
 }
 
-header{
- position:sticky;
- top:0;
- z-index:1000;
- min-height:70px;
- background:var(--card);
- border-bottom:1px solid var(--border);
- display:flex;
- align-items:center;
- gap:20px;
- padding:10px 20px;
-}
-
-.logo{
- font-size:25px;
- font-weight:bold;
- white-space:nowrap;
-}
-
-.logo span{color:var(--accent)}
-
-nav{
- display:flex;
- gap:5px;
- overflow:auto;
-}
-
-nav button,.headbtn{
- background:transparent;
- color:var(--text);
- border:0;
- padding:10px 13px;
- border-radius:9px;
- cursor:pointer;
- white-space:nowrap;
-}
-
-nav button:hover,.headbtn:hover{
- background:var(--card2);
-}
-
-.head-actions{
- margin-left:auto;
- display:flex;
- gap:5px;
-}
-
-main{
- max-width:1250px;
- margin:auto;
- padding:30px 20px 70px;
-}
-
-.section{display:none}
-.section.active{display:block}
-
-.hero{
- padding:45px;
- border-radius:25px;
- background:linear-gradient(135deg,var(--accent),#06b6d4);
- margin-bottom:30px;
-}
-
-.hero h1{
- font-size:43px;
- margin-bottom:10px;
-}
-
-.hero p{
- font-size:18px;
- max-width:700px;
-}
-
-.search{
- margin-top:25px;
- display:flex;
- gap:10px;
- max-width:750px;
-}
-
-.search input{
- flex:1;
- padding:15px;
- border:0;
- border-radius:12px;
- outline:none;
- font-size:16px;
+button,input,textarea,select{
+  font:inherit;
 }
 
 button{
- font-size:14px;
+  cursor:pointer;
 }
 
-.btn{
- border:0;
- background:var(--accent);
- color:white;
- padding:10px 15px;
- border-radius:9px;
- cursor:pointer;
+.hidden{
+  display:none!important;
 }
 
-.btn:hover{opacity:.85}
+/* LOGIN */
 
-.btn.secondary{
- background:var(--card2);
- color:var(--text);
+#accountScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-.btn.danger{background:var(--danger)}
-.btn.good{background:var(--good)}
+.accountBox{
+  width:min(460px,100%);
+  background:rgba(17,24,43,.96);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 20px 70px #0008;
+}
+
+.logoBig{
+  text-align:center;
+  font-size:38px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.logoBig span{
+  color:var(--accent);
+}
+
+.accountSubtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.tab{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:12px;
+  background:var(--card);
+  color:var(--text);
+}
+
+.tab.active{
+  background:var(--accent);
+  color:#00131c;
+  font-weight:bold;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:6px;
+  color:var(--muted);
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#0b1222;
+  color:var(--text);
+  padding:13px;
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--accent);
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  background:var(--accent);
+  color:#00131c;
+  font-weight:bold;
+}
+
+.primary:hover{
+  background:#20c9ff;
+}
+
+.accountMessage{
+  margin-top:14px;
+  min-height:20px;
+  text-align:center;
+  color:#ffbdc4;
+}
+
+/* APP */
+
+#app{
+  min-height:100vh;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(11,16,32,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+
+.headerInner{
+  max-width:1450px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.search{
+  flex:1;
+  min-width:100px;
+}
+
+.search input{
+  width:100%;
+  padding:12px 15px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  outline:none;
+}
+
+.headerActions{
+  display:flex;
+  gap:8px;
+}
+
+.iconBtn{
+  width:44px;
+  height:44px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel);
+  color:var(--text);
+}
+
+.iconBtn:hover{
+  border-color:var(--accent);
+}
+
+.userButton{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel);
+  color:var(--text);
+  padding:8px 12px;
+}
+
+nav{
+  max-width:1450px;
+  margin:auto;
+  padding:0 18px 12px;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+}
+
+nav button{
+  border:0;
+  border-radius:10px;
+  padding:9px 13px;
+  background:transparent;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+nav button:hover,
+nav button.active{
+  background:var(--card);
+  color:var(--text);
+}
+
+main{
+  max-width:1450px;
+  margin:auto;
+  padding:25px 18px 60px;
+}
+
+.hero{
+  background:
+    radial-gradient(circle at 80% 20%,#00bfff33,transparent 30%),
+    linear-gradient(135deg,var(--panel),var(--card));
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:35px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:clamp(30px,5vw,55px);
+  margin:0 0 10px;
+}
+
+.hero h1 span{
+  color:var(--accent);
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:700px;
+  font-size:17px;
+}
+
+.sectionTitle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:30px 0 15px;
+}
+
+.sectionTitle h2{
+  margin:0;
+}
+
+.sectionTitle small{
+  color:var(--muted);
+}
+
+.categoryBar{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:20px;
+}
+
+.categoryBar button{
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--panel);
+  color:var(--muted);
+  padding:9px 14px;
+  white-space:nowrap;
+}
+
+.categoryBar button.active{
+  background:var(--accent);
+  color:#00131c;
+  border-color:var(--accent);
+}
 
 .grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:15px;
 }
 
 .card{
- background:var(--card);
- border:1px solid var(--border);
- border-radius:17px;
- padding:20px;
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  min-height:180px;
+  transition:.18s;
 }
 
 .card:hover{
- border-color:var(--accent);
+  transform:translateY(-3px);
+  border-color:#4a6088;
 }
 
-.icon{
- font-size:40px;
- margin-bottom:12px;
+.cardIcon{
+  font-size:38px;
+  margin-bottom:10px;
 }
 
-.card h3{margin-bottom:8px}
+.card h3{
+  margin:0 0 7px;
+}
 
 .card p{
- color:var(--muted);
- line-height:1.5;
- min-height:45px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.4;
+  min-height:40px;
 }
 
-.card-actions{
- display:flex;
- gap:7px;
- flex-wrap:wrap;
- margin-top:17px;
+.cardActions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
 }
 
-.star{
- float:right;
- font-size:24px;
- cursor:pointer;
+.cardActions button{
+  flex:1;
+  border:0;
+  border-radius:10px;
+  padding:10px;
+  background:var(--accent);
+  color:#00131c;
+  font-weight:bold;
 }
 
-h1{margin-bottom:10px}
-h2{margin:25px 0 15px}
-
-.muted{color:var(--muted)}
-
-.categories{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin:20px 0;
+.cardActions .fav{
+  flex:0 0 43px;
+  background:var(--card2);
+  color:var(--text);
 }
 
-.category{
- border:1px solid var(--border);
- background:var(--card);
- color:var(--text);
- padding:9px 14px;
- border-radius:20px;
- cursor:pointer;
-}
-
-.category.active{
- background:var(--accent);
- color:white;
+.cardActions .fav.active{
+  color:#ffd447;
 }
 
 .empty{
- background:var(--card);
- border:1px solid var(--border);
- padding:40px;
- border-radius:15px;
- text-align:center;
- color:var(--muted);
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:18px;
 }
+
+/* MODAL */
 
 .modal{
- display:none;
- position:fixed;
- inset:0;
- background:#000b;
- z-index:3000;
- justify-content:center;
- align-items:center;
- padding:20px;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#0009;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
 }
 
-.modal.show{display:flex}
-
-.modalbox{
- width:min(750px,100%);
- max-height:92vh;
- overflow:auto;
- background:var(--card);
- border:1px solid var(--border);
- border-radius:20px;
- padding:25px;
+.modalBox{
+  width:min(850px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:22px;
 }
 
-.modalhead{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px;
+.modalHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.modalHead h2{
+  margin:0;
 }
 
 .close{
- width:38px;
- height:38px;
- border:0;
- border-radius:9px;
- background:var(--card2);
- color:var(--text);
- font-size:22px;
- cursor:pointer;
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
 }
 
-.field{margin-bottom:15px}
+/* TOOLS */
 
-.field label{
- display:block;
- color:var(--muted);
- margin-bottom:6px;
+.toolGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
 }
 
-.field input,.field textarea,.field select{
- width:100%;
- padding:12px;
- background:var(--bg);
- color:var(--text);
- border:1px solid var(--border);
- border-radius:9px;
- outline:none;
+.toolButton{
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  padding:13px;
 }
 
-.field textarea{
- min-height:200px;
- resize:vertical;
-}
-
-.tool{
- margin-top:20px;
- background:var(--card2);
- border-radius:14px;
- padding:20px;
+.toolButton:hover{
+  border-color:var(--accent);
 }
 
 .result{
- margin-top:15px;
- background:var(--bg);
- padding:15px;
- border-radius:10px;
- word-break:break-word;
+  margin-top:15px;
+  padding:15px;
+  border-radius:12px;
+  background:#0b1222;
+  border:1px solid var(--border);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 }
 
-.gamearea{
- background:#05070a;
- border-radius:15px;
- min-height:300px;
- padding:15px;
- overflow:hidden;
+textarea.big{
+  min-height:180px;
+  resize:vertical;
 }
 
-#snakeCanvas{
- display:block;
- background:#07130b;
- margin:auto;
- max-width:100%;
+/* CALCULATOR */
+
+.calc{
+  max-width:420px;
+  margin:auto;
 }
 
-.targetArea{
- height:360px;
- background:#111827;
- border-radius:15px;
- position:relative;
- overflow:hidden;
+.calcDisplay{
+  width:100%;
+  padding:18px;
+  font-size:28px;
+  text-align:right;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#080d18;
+  color:var(--text);
+  margin-bottom:10px;
 }
 
-.target{
- position:absolute;
- width:55px;
- height:55px;
- border-radius:50%;
- background:#ef4444;
- cursor:pointer;
- border:5px solid white;
+.calcKeys{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
 }
 
-.memorygrid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
- max-width:500px;
- margin:auto;
+.calcKeys button{
+  min-height:58px;
+  border:0;
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  font-size:18px;
 }
 
-.memorycard{
- aspect-ratio:1;
- border:0;
- border-radius:10px;
- background:var(--accent);
- color:white;
- font-size:30px;
- cursor:pointer;
+.calcKeys button:hover{
+  background:var(--card2);
 }
 
-.memorycard.open{
- background:var(--card2);
+.calcKeys .op{
+  background:var(--accent);
+  color:#00131c;
 }
 
-.puzzle{
- display:grid;
- grid-template-columns:repeat(4,70px);
- gap:5px;
- justify-content:center;
+/* GAMES */
+
+.gameArea{
+  text-align:center;
 }
 
-.puzzle button{
- height:70px;
- border:0;
- border-radius:7px;
- background:var(--accent);
- color:white;
- font-size:22px;
- cursor:pointer;
+.gameCanvas{
+  max-width:100%;
+  border-radius:14px;
+  background:#050912;
+  border:1px solid var(--border);
 }
 
-.puzzle button.empty{
- background:var(--card2);
+.gameButtons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-top:12px;
 }
 
-.cards{
- display:flex;
- flex-wrap:wrap;
- justify-content:center;
- gap:12px;
+.gameButtons button{
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  background:var(--accent);
+  color:#00131c;
 }
 
-.playcard{
- width:90px;
- height:125px;
- border-radius:12px;
- border:2px solid var(--border);
- background:white;
- color:#111;
- font-size:28px;
- cursor:pointer;
-}
-
-.grid2048{
- display:grid;
- grid-template-columns:repeat(4,80px);
- gap:8px;
- justify-content:center;
- background:#9ca3af;
- padding:8px;
- border-radius:10px;
+.bigGameBoard{
+  display:grid;
+  grid-template-columns:repeat(4,70px);
+  gap:7px;
+  justify-content:center;
 }
 
 .tile2048{
- width:80px;
- height:80px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:#d1d5db;
- color:#111;
- font-size:25px;
- font-weight:bold;
- border-radius:6px;
+  width:70px;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--card2);
+  border-radius:9px;
+  font-size:22px;
+  font-weight:bold;
 }
 
-.notes{
- min-height:250px;
+.memoryGrid{
+  display:grid;
+  grid-template-columns:repeat(4,70px);
+  gap:8px;
+  justify-content:center;
 }
 
-footer{
- text-align:center;
- padding:30px;
- color:var(--muted);
- border-top:1px solid var(--border);
+.memoryCard{
+  width:70px;
+  height:70px;
+  border:0;
+  border-radius:10px;
+  background:var(--card2);
+  color:transparent;
+  font-size:30px;
 }
 
-@media(max-width:800px){
- header{
-  flex-wrap:wrap;
- }
- nav{
-  width:100%;
-  order:3;
- }
- .head-actions{margin-left:auto}
- .hero{padding:30px 20px}
- .hero h1{font-size:32px}
- .search{flex-direction:column}
- .memorygrid{grid-template-columns:repeat(4,1fr)}
- .puzzle{
-  grid-template-columns:repeat(4,55px);
- }
- .puzzle button{
-  height:55px;
- }
- .grid2048{
-  grid-template-columns:repeat(4,65px);
- }
- .tile2048{
-  width:65px;
-  height:65px;
- }
+.memoryCard.open{
+  color:var(--text);
+  background:var(--accent);
+}
+
+/* PROFILE */
+
+.profile{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:20px;
+}
+
+.avatar{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#00131c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+  font-weight:bold;
+  margin:auto;
+}
+
+.statGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:var(--accent);
+}
+
+/* TOAST */
+
+#toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:200;
+  background:#050912;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:13px 17px;
+  border-radius:12px;
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+  transition:.2s;
+}
+
+#toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* LIGHT */
+
+body.light{
+  --bg:#edf2f8;
+  --panel:#ffffff;
+  --card:#f7f9fc;
+  --card2:#e8eef7;
+  --text:#152033;
+  --muted:#61708a;
+  --border:#d3dce9;
+}
+
+body.green{
+  --accent:#35d07f;
+  --accent2:#1da95e;
+}
+
+body.purple{
+  --accent:#a970ff;
+  --accent2:#8249d8;
+}
+
+body.red{
+  --accent:#ff5b6e;
+  --accent2:#d53b4d;
+}
+
+body.orange{
+  --accent:#ff9d3d;
+  --accent2:#e17815;
+}
+
+@media(max-width:750px){
+  .headerInner{
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    flex:1;
+  }
+
+  .search{
+    order:5;
+    flex-basis:100%;
+  }
+
+  .hero{
+    padding:24px;
+  }
+
+  .profile{
+    grid-template-columns:1fr;
+  }
+
+  .bigGameBoard{
+    grid-template-columns:repeat(4,58px);
+  }
+
+  .tile2048{
+    width:58px;
+    height:58px;
+  }
+
+  .memoryGrid{
+    grid-template-columns:repeat(4,58px);
+  }
+
+  .memoryCard{
+    width:58px;
+    height:58px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- CONTAS -->
+
+<section id="accountScreen">
+  <div class="accountBox">
+
+    <div class="logoBig">World<span>Apps</span></div>
+    <div class="accountSubtitle">A tua coleção de aplicações e jogos</div>
+
+    <div class="tabs">
+      <button class="tab active" id="loginTab">Entrar</button>
+      <button class="tab" id="registerTab">Criar conta</button>
+    </div>
+
+    <form id="accountForm">
+
+      <div class="field">
+        <label>Nome de utilizador</label>
+        <input id="username" required maxlength="30" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <label>Palavra-passe</label>
+        <input id="password" type="password" required minlength="4" autocomplete="current-password">
+      </div>
+
+      <div id="confirmField" class="field hidden">
+        <label>Confirmar palavra-passe</label>
+        <input id="confirmPassword" type="password" minlength="4">
+      </div>
+
+      <button class="primary" id="accountSubmit">
+        Entrar
+      </button>
+
+    </form>
+
+    <div class="accountMessage" id="accountMessage"></div>
+  </div>
+</section>
+
+
+<!-- APLICAÇÃO -->
+
+<div id="app" class="hidden">
+
 <header>
 
-<div class="logo">🌍 World<span>Apps</span></div>
+  <div class="headerInner">
 
-<nav>
-<button onclick="show('home')">🏠 Início</button>
-<button onclick="show('apps')">📱 Aplicações</button>
-<button onclick="show('games')">🎮 Jogos</button>
-<button onclick="show('favorites')">⭐ Favoritos</button>
-<button onclick="show('security')">🔐 Segurança</button>
-</nav>
+    <div class="logo">World<span>Apps</span></div>
 
-<div class="head-actions">
-<button class="headbtn" onclick="cycleTheme()">🎨</button>
-</div>
+    <div class="search">
+      <input id="globalSearch"
+             placeholder="🔎 Pesquisar aplicações e jogos...">
+    </div>
+
+    <div class="headerActions">
+
+      <button class="iconBtn"
+              id="themeBtn"
+              title="Tema">
+        🎨
+      </button>
+
+      <button class="userButton"
+              id="userButton">
+        👤 <span id="userName"></span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <nav>
+
+    <button class="active" data-page="home">🏠 Início</button>
+    <button data-page="apps">📱 Aplicações</button>
+    <button data-page="games">🎮 Jogos</button>
+    <button data-page="favorites">⭐ Favoritos</button>
+    <button data-page="profile">👤 Conta</button>
+
+  </nav>
 
 </header>
 
-<main>
 
-<!-- HOME -->
-
-<section id="home" class="section active">
-
-<div class="hero">
-
-<h1>WorldApps 🚀</h1>
-
-<p>
-Aplicações, ferramentas e jogos funcionais num só lugar.
-</p>
-
-<div class="search">
-
-<input id="search"
-placeholder="Pesquisar uma aplicação ou jogo..."
-onkeydown="if(event.key==='Enter')searchApps()">
-
-<button class="btn" onclick="searchApps()">🔎 Pesquisar</button>
+<main id="main"></main>
 
 </div>
 
+
+<!-- MODAL -->
+
+<div id="modal" class="modal hidden">
+  <div class="modalBox">
+
+    <div class="modalHead">
+      <h2 id="modalTitle"></h2>
+      <button class="close" id="closeModal">✕</button>
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
 </div>
 
-<h2>⭐ Aplicações populares</h2>
-
-<div id="homeApps" class="grid"></div>
-
-<h2>🎮 Jogos</h2>
-
-<div id="homeGames" class="grid"></div>
-
-</section>
-
-
-<!-- APPS -->
-
-<section id="apps" class="section">
-
-<h1>📱 Aplicações</h1>
-
-<p class="muted">Ferramentas funcionais do WorldApps.</p>
-
-<div class="categories">
-
-<button class="category active" onclick="filterApps('all',this)">Todas</button>
-<button class="category" onclick="filterApps('prod',this)">📚 Produtividade</button>
-<button class="category" onclick="filterApps('tools',this)">🛠️ Ferramentas</button>
-<button class="category" onclick="filterApps('creative',this)">🎨 Criatividade</button>
-<button class="category" onclick="filterApps('math',this)">🔢 Matemática</button>
-
-</div>
-
-<div id="appsGrid" class="grid"></div>
-
-</section>
-
-
-<!-- GAMES -->
-
-<section id="games" class="section">
-
-<h1>🎮 Jogos</h1>
-
-<p class="muted">Todos os jogos desta página são jogáveis.</p>
-
-<div id="gamesGrid" class="grid"></div>
-
-</section>
-
-
-<!-- FAVORITES -->
-
-<section id="favorites" class="section">
-
-<h1>⭐ Favoritos</h1>
-
-<div id="favoritesGrid" class="grid"></div>
-
-</section>
-
-
-<!-- SECURITY -->
-
-<section id="security" class="section">
-
-<h1>🔐 Segurança</h1>
-
-<div class="grid">
-
-<div class="card">
-
-<div class="icon">🔐</div>
-
-<h3>Cofre de palavras-passe</h3>
-
-<p>Guarda palavras-passe localmente com AES-GCM.</p>
-
-<div class="card-actions">
-<button class="btn" onclick="openVault()">Abrir</button>
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="icon">🎲</div>
-
-<h3>Gerador</h3>
-
-<p>Cria palavras-passe aleatórias fortes.</p>
-
-<div class="card-actions">
-<button class="btn" onclick="passwordGenerator()">Abrir</button>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-<footer>
-WorldApps V4 · Sem IA · Sem IternetWorld
-</footer>
-
-
-<div id="modal" class="modal">
-
-<div class="modalbox">
-
-<div class="modalhead">
-
-<h2 id="modalTitle">WorldApps</h2>
-
-<button class="close" onclick="closeModal()">×</button>
-
-</div>
-
-<div id="modalContent"></div>
-
-</div>
-
-</div>
+<div id="toast"></div>
 
 
 <script>
+/* =========================================================
+   WORLDAPPS V5
+   ========================================================= */
 
-/* ================================
-   DADOS
-================================ */
-
-const apps=[
-
-{
- id:"notes",
- name:"Notas",
- icon:"📝",
- cat:"prod",
- desc:"Escreve e guarda notas.",
- open:notes
-},
-
-{
- id:"todo",
- name:"Lista de tarefas",
- icon:"✅",
- cat:"prod",
- desc:"Cria e completa tarefas.",
- open:todo
-},
-
-{
- id:"calendar",
- name:"Calendário",
- icon:"📅",
- cat:"prod",
- desc:"Consulta o calendário.",
- open:calendar
-},
-
-{
- id:"clock",
- name:"Relógio",
- icon:"🕐",
- cat:"prod",
- desc:"Relógio digital.",
- open:clock
-},
-
-{
- id:"stopwatch",
- name:"Cronómetro",
- icon:"⏱️",
- cat:"tools",
- desc:"Cronómetro funcional.",
- open:stopwatch
-},
-
-{
- id:"timer",
- name:"Temporizador",
- icon:"⏳",
- cat:"tools",
- desc:"Temporizador com contagem decrescente.",
- open:timer
-},
-
-{
- id:"calculator",
- name:"Calculadora",
- icon:"🧮",
- cat:"math",
- desc:"Calculadora básica.",
- open:calculator
-},
-
-{
- id:"scientific",
- name:"Calculadora científica",
- icon:"🔬",
- cat:"math",
- desc:"Calculadora com funções matemáticas.",
- open:scientific
-},
-
-{
- id:"converter",
- name:"Conversor de unidades",
- icon:"📏",
- cat:"math",
- desc:"Converte metros, quilómetros, centímetros e mais.",
- open:converter
-},
-
-{
- id:"random",
- name:"Números aleatórios",
- icon:"🎲",
- cat:"math",
- desc:"Gera números aleatórios.",
- open:randomNumbers
-},
-
-{
- id:"counter",
- name:"Contador de palavras",
- icon:"🔤",
- cat:"tools",
- desc:"Conta palavras e caracteres.",
- open:counter
-},
-
-{
- id:"color",
- name:"Cores",
- icon:"🎨",
- cat:"creative",
- desc:"Escolhe e copia cores.",
- open:colors
-},
-
-{
- id:"drawing",
- name:"Desenho",
- icon:"🖌️",
- cat:"creative",
- desc:"Desenha livremente.",
- open:drawing
-},
-
-{
- id:"password",
- name:"Gerador de palavras-passe",
- icon:"🔑",
- cat:"tools",
- desc:"Cria palavras-passe fortes.",
- open:passwordGenerator
-},
-
-{
- id:"calculator2",
- name:"Calculadora de percentagens",
- icon:"💯",
- cat:"math",
- desc:"Calcula percentagens rapidamente.",
- open:percentage
-}
-
-];
-
-
-const games=[
-
-{
- id:"snake",
- name:"Snake",
- icon:"🐍",
- desc:"Jogo clássico da cobra.",
- open:snake
-},
-
-{
- id:"memory",
- name:"Memória",
- icon:"🧠",
- desc:"Encontra os pares.",
- open:memory
-},
-
-{
- id:"aim",
- name:"Pontaria",
- icon:"🎯",
- desc:"Acerta no alvo o mais rápido possível.",
- open:aim
-},
-
-{
- id:"puzzle",
- name:"Puzzle",
- icon:"🧩",
- desc:"Resolve o puzzle deslizante.",
- open:puzzle
-},
-
-{
- id:"cards",
- name:"Cartas",
- icon:"🃏",
- desc:"Jogo de cartas maior ou menor.",
- open:cards
-},
-
-{
- id:"2048",
- name:"2048",
- icon:"🔢",
- desc:"Junta números até chegar a 2048.",
- open:game2048
-}
-
-];
-
-
-let favorites=
-JSON.parse(localStorage.getItem("wa_favorites")||"[]");
-
-let filter="all";
-
-
-/* ================================
-   NAVEGAÇÃO
-================================ */
-
-function show(id){
-
-document.querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id).classList.add("active");
-
-window.scrollTo(0,0);
-
-}
-
-
-/* ================================
-   FAVORITOS
-================================ */
-
-function favorite(id){
-
-if(favorites.includes(id)){
- favorites=favorites.filter(x=>x!==id);
-}else{
- favorites.push(id);
-}
-
-localStorage.setItem(
-"wa_favorites",
-JSON.stringify(favorites)
-);
-
-render();
-
-}
-
-
-function star(id){
-
-return favorites.includes(id)?"⭐":"☆";
-
-}
-
-
-function card(item){
-
-return `
-
-<div class="card">
-
-<div class="star" onclick="favorite('${item.id}')">
-${star(item.id)}
-</div>
-
-<div class="icon">${item.icon}</div>
-
-<h3>${item.name}</h3>
-
-<p>${item.desc}</p>
-
-<div class="card-actions">
-
-<button class="btn" onclick="openItem('${item.id}')">
-Abrir
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ================================
-   RENDER
-================================ */
-
-function render(){
-
-let list=apps;
-
-if(filter!=="all"){
- list=apps.filter(x=>x.cat===filter);
-}
-
-document.getElementById("appsGrid").innerHTML=
-list.map(card).join("");
-
-document.getElementById("gamesGrid").innerHTML=
-games.map(card).join("");
-
-document.getElementById("homeApps").innerHTML=
-apps.slice(0,8).map(card).join("");
-
-document.getElementById("homeGames").innerHTML=
-games.map(card).join("");
-
-let all=[...apps,...games];
-
-let fav=all.filter(x=>favorites.includes(x.id));
-
-document.getElementById("favoritesGrid").innerHTML=
-fav.length
-?fav.map(card).join("")
-:`<div class="empty">⭐ Ainda não tens favoritos.</div>`;
-
-}
-
-
-function openItem(id){
-
-let item=
-[...apps,...games].find(x=>x.id===id);
-
-if(item)item.open();
-
-}
-
-
-/* ================================
-   PESQUISA
-================================ */
-
-function searchApps(){
-
-let q=
-document.getElementById("search")
-.value
-.toLowerCase()
-.trim();
-
-if(!q)return;
-
-let results=
-[...apps,...games].filter(x=>
-x.name.toLowerCase().includes(q)||
-x.desc.toLowerCase().includes(q)
-);
-
-show("home");
-
-document.getElementById("homeApps").innerHTML=
-results.length
-?results.map(card).join("")
-:`<div class="empty">🔎 Nada encontrado.</div>`;
-
-document.getElementById("homeGames").innerHTML="";
-
-}
-
-
-/* ================================
-   FILTROS
-================================ */
-
-function filterApps(type,button){
-
-filter=type;
-
-document.querySelectorAll(".category")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-
-render();
-
-}
-
-
-/* ================================
-   MODAL
-================================ */
-
-function modal(title,html){
-
-document.getElementById("modalTitle").textContent=title;
-document.getElementById("modalContent").innerHTML=html;
-document.getElementById("modal").classList.add("show");
-
-}
-
-function closeModal(){
-
-document.getElementById("modal").classList.remove("show");
-
-}
-
-
-/* ================================
-   NOTAS
-================================ */
-
-function notes(){
-
-modal("📝 Notas",`
-
-<textarea id="notesText" class="notes"
-placeholder="Escreve aqui..."></textarea>
-
-<br><br>
-
-<button class="btn" onclick="
-localStorage.setItem('wa_notes',document.getElementById('notesText').value);
-alert('Notas guardadas!');
-">
-
-💾 Guardar
-
-</button>
-`);
-
-document.getElementById("notesText").value=
-localStorage.getItem("wa_notes")||"";
-
-}
-
-
-/* ================================
-   TO-DO
-================================ */
-
-let tasks=
-JSON.parse(localStorage.getItem("wa_tasks")||"[]");
-
-function todo(){
-
-modal("✅ Lista de tarefas",`
-
-<div class="field">
-
-<input id="taskInput"
-placeholder="Nova tarefa..."
-onkeydown="if(event.key==='Enter')addTask()">
-
-</div>
-
-<button class="btn" onclick="addTask()">➕ Adicionar</button>
-
-<div id="taskList" style="margin-top:20px"></div>
-
-`);
-
-renderTasks();
-
-}
-
-function addTask(){
-
-let input=document.getElementById("taskInput");
-
-if(!input.value.trim())return;
-
-tasks.push({
-text:input.value,
-done:false
-});
-
-saveTasks();
-
-input.value="";
-
-renderTasks();
-
-}
-
-function saveTasks(){
-
-localStorage.setItem("wa_tasks",JSON.stringify(tasks));
-
-}
-
-function renderTasks(){
-
-let el=document.getElementById("taskList");
-
-if(!el)return;
-
-el.innerHTML=tasks.map((t,i)=>`
-
-<div class="tool">
-
-<label>
-
-<input type="checkbox"
-${t.done?"checked":""}
-onchange="tasks[${i}].done=this.checked;saveTasks();renderTasks()">
-
-<span style="${t.done?'text-decoration:line-through':''}">
-${escapeHTML(t.text)}
-</span>
-
-</label>
-
-<button class="btn danger"
-style="float:right"
-onclick="tasks.splice(${i},1);saveTasks();renderTasks()">
-
-🗑️
-
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* ================================
-   CALENDÁRIO
-================================ */
-
-function calendar(){
-
-let now=new Date();
-
-modal("📅 Calendário",`
-
-<div style="text-align:center;font-size:30px">
-${now.toLocaleDateString("pt-PT",{
-weekday:"long",
-year:"numeric",
-month:"long",
-day:"numeric"
-})}
-</div>
-
-<br>
-
-<input type="date"
-value="${now.toISOString().split("T")[0]}"
-style="
-width:100%;
-padding:15px;
-font-size:20px;
-background:var(--bg);
-color:var(--text);
-border:1px solid var(--border);
-border-radius:10px">
-
-`);
-
-}
-
-
-/* ================================
-   RELÓGIO
-================================ */
-
-function clock(){
-
-modal("🕐 Relógio",`
-
-<div id="clockDisplay"
-style="text-align:center;font-size:55px;font-weight:bold">
---:--:--
-</div>
-
-`);
-
-let interval=setInterval(()=>{
-
-let el=document.getElementById("clockDisplay");
-
-if(!el){
-clearInterval(interval);
-return;
-}
-
-el.textContent=
-new Date().toLocaleTimeString("pt-PT");
-
-},500);
-
-}
-
-
-/* ================================
-   CRONÓMETRO
-================================ */
-
-function stopwatch(){
-
-modal("⏱️ Cronómetro",`
-
-<div id="sw"
-style="text-align:center;font-size:50px">
-00:00.0
-</div>
-
-<div style="text-align:center">
-
-<button class="btn" onclick="swStart()">▶️</button>
-<button class="btn secondary" onclick="swPause()">⏸️</button>
-<button class="btn danger" onclick="swReset()">🔄</button>
-
-</div>
-`);
-
-}
-
-let swTime=0;
-let swInterval=null;
-
-function swStart(){
-
-if(swInterval)return;
-
-swInterval=setInterval(()=>{
-
-swTime+=100;
-
-let sec=Math.floor(swTime/1000);
-let ms=Math.floor((swTime%1000)/100);
-
-let el=document.getElementById("sw");
-
-if(el)
-el.textContent=
-`${String(Math.floor(sec/60)).padStart(2,"0")}:${String(sec%60).padStart(2,"0")}.${ms}`;
-
-},100);
-
-}
-
-function swPause(){
-
-clearInterval(swInterval);
-swInterval=null;
-
-}
-
-function swReset(){
-
-swPause();
-swTime=0;
-
-let el=document.getElementById("sw");
-
-if(el)el.textContent="00:00.0";
-
-}
-
-
-/* ================================
-   TEMPORIZADOR
-================================ */
-
-function timer(){
-
-modal("⏳ Temporizador",`
-
-<div class="field">
-
-<input id="timerInput"
-type="number"
-min="1"
-value="60">
-
-<label>Segundos</label>
-
-</div>
-
-<div id="timerOutput"
-style="font-size:50px;text-align:center">
-60
-</div>
-
-<div style="text-align:center">
-
-<button class="btn" onclick="startTimer()">▶️ Iniciar</button>
-
-</div>
-`);
-
-}
-
-let timerInterval=null;
-
-function startTimer(){
-
-clearInterval(timerInterval);
-
-let n=
-parseInt(document.getElementById("timerInput").value)||60;
-
-let output=document.getElementById("timerOutput");
-
-output.textContent=n;
-
-timerInterval=setInterval(()=>{
-
-n--;
-
-output.textContent=n;
-
-if(n<=0){
-
-clearInterval(timerInterval);
-
-alert("⏰ Tempo terminado!");
-
-}
-
-},1000);
-
-}
-
-
-/* ================================
-   CALCULADORA
-================================ */
-
-function calculator(){
-
-modal("🧮 Calculadora",`
-
-<div class="field">
-
-<input id="calc"
-placeholder="Ex: 25*4+10">
-
-</div>
-
-<button class="btn" onclick="calc()">= Calcular</button>
-
-<div id="calcResult" class="result"></div>
-
-`);
-
-}
-
-function calc(){
-
-let value=document.getElementById("calc").value;
-
-if(!/^[0-9+\-*/().%\s]+$/.test(value)){
-
-document.getElementById("calcResult").textContent=
-"Expressão inválida.";
-
-return;
-
-}
-
-try{
-
-let result=Function(
-'"use strict";return('+value+')'
-)();
-
-document.getElementById("calcResult")
-.textContent=result;
-
-}catch{
-
-document.getElementById("calcResult")
-.textContent="Erro.";
-
-}
-
-}
-
-
-/* ================================
-   CIENTÍFICA
-================================ */
-
-function scientific(){
-
-modal("🔬 Calculadora científica",`
-
-<div class="field">
-<input id="sci" placeholder="Ex: Math.sin(Math.PI/2)">
-</div>
-
-<button class="btn" onclick="sciCalc()">Calcular</button>
-
-<div id="sciResult" class="result"></div>
-
-<p class="muted" style="margin-top:15px">
-Exemplos: Math.sqrt(25), Math.sin(1), Math.cos(1), Math.pow(2,8)
-</p>
-`);
-
-}
-
-function sciCalc(){
-
-let value=document.getElementById("sci").value;
-
-if(!/^[0-9a-zA-Z_().,+\-*/%\s]+$/.test(value))return;
-
-try{
-
-document.getElementById("sciResult").textContent=
-Function('"use strict";return('+value+')')();
-
-}catch{
-
-document.getElementById("sciResult").textContent="Erro.";
-
-}
-
-}
-
-
-/* ================================
-   CONVERSOR
-================================ */
-
-function converter(){
-
-modal("📏 Conversor de unidades",`
-
-<div class="field">
-<label>Valor</label>
-<input id="convValue" type="number" value="1">
-</div>
-
-<div class="field">
-<label>De</label>
-<select id="convFrom">
-<option value="m">Metros</option>
-<option value="km">Quilómetros</option>
-<option value="cm">Centímetros</option>
-<option value="mm">Milímetros</option>
-</select>
-</div>
-
-<div class="field">
-<label>Para</label>
-<select id="convTo">
-<option value="m">Metros</option>
-<option value="km">Quilómetros</option>
-<option value="cm">Centímetros</option>
-<option value="mm">Milímetros</option>
-</select>
-</div>
-
-<button class="btn" onclick="convert()">Converter</button>
-
-<div id="convResult" class="result"></div>
-
-`);
-
-}
-
-function convert(){
-
-let v=parseFloat(document.getElementById("convValue").value);
-
-let from=document.getElementById("convFrom").value;
-let to=document.getElementById("convTo").value;
-
-const factor={
- m:1,
- km:1000,
- cm:.01,
- mm:.001
-};
-
-let result=v*factor[from]/factor[to];
-
-document.getElementById("convResult")
-.textContent=result;
-
-}
-
-
-/* ================================
-   NÚMEROS ALEATÓRIOS
-================================ */
-
-function randomNumbers(){
-
-modal("🎲 Números aleatórios",`
-
-<div class="field">
-<label>Mínimo</label>
-<input id="randMin" type="number" value="1">
-</div>
-
-<div class="field">
-<label>Máximo</label>
-<input id="randMax" type="number" value="100">
-</div>
-
-<button class="btn" onclick="randomize()">🎲 Gerar</button>
-
-<div id="randomResult" class="result">
--
-</div>
-
-`);
-
-}
-
-function randomize(){
-
-let min=
-parseInt(document.getElementById("randMin").value);
-
-let max=
-parseInt(document.getElementById("randMax").value);
-
-if(max<min)[min,max]=[max,min];
-
-document.getElementById("randomResult")
-.textContent=
-Math.floor(Math.random()*(max-min+1))+min;
-
-}
-
-
-/* ================================
-   CONTADOR
-================================ */
-
-function counter(){
-
-modal("🔤 Contador de palavras",`
-
-<textarea id="countText"
-class="notes"
-placeholder="Escreve ou cola texto..."></textarea>
-
-<div id="countResult" class="result">
-0 palavras · 0 caracteres
-</div>
-
-`);
-
-document.getElementById("countText")
-.addEventListener("input",()=>{
-
-let t=document.getElementById("countText").value;
-
-let words=t.trim()?t.trim().split(/\s+/).length:0;
-
-document.getElementById("countResult")
-.textContent=
-`${words} palavras · ${t.length} caracteres`;
-
-});
-
-}
-
-
-/* ================================
-   CORES
-================================ */
-
-function colors(){
-
-modal("🎨 Escolher cor",`
-
-<input id="colorPicker"
-type="color"
-value="#2563eb"
-style="width:100%;height:100px">
-
-<div id="colorResult"
-class="result">
-#2563eb
-</div>
-
-<br>
-
-<button class="btn"
-onclick="navigator.clipboard.writeText(document.getElementById('colorPicker').value)">
-📋 Copiar
-
-</button>
-
-`);
-
-document.getElementById("colorPicker")
-.addEventListener("input",e=>{
-
-document.getElementById("colorResult")
-.textContent=e.target.value;
-
-});
-
-}
-
-
-/* ================================
-   DESENHO
-================================ */
-
-function drawing(){
-
-modal("🖌️ Desenho",`
-
-<canvas id="drawCanvas"
-width="650"
-height="400"
-style="
-width:100%;
-background:white;
-border-radius:10px;
-touch-action:none;
-cursor:crosshair">
-</canvas>
-
-<br>
-
-<button class="btn danger" onclick="clearDrawing()">
-🗑️ Limpar
-</button>
-
-`);
-
-setTimeout(initDrawing,100);
-
-}
-
-let drawCtx;
-
-function initDrawing(){
-
-let c=document.getElementById("drawCanvas");
-
-if(!c)return;
-
-drawCtx=c.getContext("2d");
-
-let drawing=false;
-
-function pos(e){
-
-let r=c.getBoundingClientRect();
-
-return {
-x:(e.clientX-r.left)*c.width/r.width,
-y:(e.clientY-r.top)*c.height/r.height
-};
-
-}
-
-c.addEventListener("pointerdown",e=>{
-
-drawing=true;
-
-let p=pos(e);
-
-drawCtx.beginPath();
-drawCtx.moveTo(p.x,p.y);
-
-});
-
-c.addEventListener("pointermove",e=>{
-
-if(!drawing)return;
-
-let p=pos(e);
-
-drawCtx.lineWidth=4;
-drawCtx.lineCap="round";
-drawCtx.strokeStyle="#111";
-
-drawCtx.lineTo(p.x,p.y);
-drawCtx.stroke();
-
-});
-
-c.addEventListener("pointerup",()=>drawing=false);
-c.addEventListener("pointerleave",()=>drawing=false);
-
-}
-
-function clearDrawing(){
-
-if(drawCtx)
-drawCtx.clearRect(0,0,650,400);
-
-}
-
-
-/* ================================
-   PERCENTAGENS
-================================ */
-
-function percentage(){
-
-modal("💯 Percentagens",`
-
-<div class="field">
-<label>Valor</label>
-<input id="percValue" type="number" value="100">
-</div>
-
-<div class="field">
-<label>Percentagem</label>
-<input id="perc" type="number" value="20">
-</div>
-
-<button class="btn" onclick="calcPercentage()">
-Calcular
-</button>
-
-<div id="percResult" class="result"></div>
-
-`);
-
-}
-
-function calcPercentage(){
-
-let value=parseFloat(document.getElementById("percValue").value);
-let p=parseFloat(document.getElementById("perc").value);
-
-document.getElementById("percResult")
-.textContent=
-`${p}% de ${value} = ${value*p/100}`;
-
-}
-
-
-/* ================================
-   PASSWORD GENERATOR
-================================ */
-
-function passwordGenerator(){
-
-modal("🔑 Gerador de palavras-passe",`
-
-<div class="field">
-
-<label>Tamanho</label>
-
-<input id="passLen"
-type="number"
-min="8"
-max="64"
-value="20">
-
-</div>
-
-<label>
-
-<input id="passSymbols" type="checkbox" checked>
-
-Incluir símbolos
-
-</label>
-
-<br><br>
-
-<button class="btn" onclick="generatePass()">
-🎲 Gerar
-</button>
-
-<div id="passResult" class="result">
--
-</div>
-
-<br>
-
-<button class="btn secondary"
-onclick="copyPass()">
-📋 Copiar
-</button>
-
-`);
-
-}
-
-function generatePass(){
-
-let chars=
-"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
-
-if(document.getElementById("passSymbols").checked)
-chars+="!@#$%^&*()-_=+[]{}";
-
-let len=
-Math.max(8,Math.min(64,
-parseInt(document.getElementById("passLen").value)||20
-));
-
-let values=new Uint32Array(len);
-
-crypto.getRandomValues(values);
-
-let pass="";
-
-for(let i=0;i<len;i++)
-pass+=chars[values[i]%chars.length];
-
-document.getElementById("passResult")
-.textContent=pass;
-
-}
-
-function copyPass(){
-
-let text=document.getElementById("passResult").textContent;
-
-if(text!=="-")
-navigator.clipboard.writeText(text);
-
-}
-
-
-/* ================================
-   SNAKE
-================================ */
-
-function snake(){
-
-modal("🐍 Snake",`
-
-<canvas id="snakeCanvas"
-width="400"
-height="400"></canvas>
-
-<p id="snakeScore"
-style="text-align:center;margin:10px">
-Pontuação: 0
-</p>
-
-<p class="muted" style="text-align:center">
-Usa as setas do teclado.
-</p>
-
-`);
-
-setTimeout(startSnake,100);
-
-}
-
-function startSnake(){
-
-const c=document.getElementById("snakeCanvas");
-
-if(!c)return;
-
-const ctx=c.getContext("2d");
-
-let size=20;
-let snakeBody=[
-{x:10,y:10},
-{x:9,y:10},
-{x:8,y:10}
-];
-
-let food={
-x:15,
-y:15
-};
-
-let dx=1,dy=0;
-let score=0;
-let alive=true;
-
-function newFood(){
-
-food={
-x:Math.floor(Math.random()*20),
-y:Math.floor(Math.random()*20)
-};
-
-}
-
-function key(e){
-
-if(e.key==="ArrowUp"&&dy!==1){
- dx=0;dy=-1;
-}
-
-if(e.key==="ArrowDown"&&dy!==-1){
- dx=0;dy=1;
-}
-
-if(e.key==="ArrowLeft"&&dx!==1){
- dx=-1;dy=0;
-}
-
-if(e.key==="ArrowRight"&&dx!==-1){
- dx=1;dy=0;
-}
-
-}
-
-window.addEventListener("keydown",key);
-
-let interval=setInterval(()=>{
-
-if(!alive){
- clearInterval(interval);
- window.removeEventListener("keydown",key);
- return;
-}
-
-let head={
- x:snakeBody[0].x+dx,
- y:snakeBody[0].y+dy
-};
-
-if(
-head.x<0||head.x>=20||
-head.y<0||head.y>=20||
-snakeBody.some(s=>s.x===head.x&&s.y===head.y)
-){
-
-alive=false;
-
-alert("🐍 Game Over! Pontuação: "+score);
-
-return;
-
-}
-
-snakeBody.unshift(head);
-
-if(head.x===food.x&&head.y===food.y){
-
-score++;
-
-document.getElementById("snakeScore")
-.textContent="Pontuação: "+score;
-
-newFood();
-
-}else{
-
-snakeBody.pop();
-
-}
-
-ctx.fillStyle="#07130b";
-ctx.fillRect(0,0,400,400);
-
-ctx.fillStyle="#ef4444";
-ctx.fillRect(food.x*size,food.y*size,size,size);
-
-ctx.fillStyle="#22c55e";
-
-snakeBody.forEach(s=>{
-ctx.fillRect(s.x*size,s.y*size,size-1,size-1);
-});
-
-},120);
-
-}
-
-
-/* ================================
-   MEMÓRIA
-================================ */
-
-function memory(){
-
-let symbols=[
-"🍎","🍌","🍇","🍉",
-"🍎","🍌","🍇","🍉"
-];
-
-symbols.sort(()=>Math.random()-.5);
-
-let first=null;
-let lock=false;
-let matched=0;
-
-modal("🧠 Jogo da Memória",`
-
-<div id="memoryGrid" class="memorygrid"></div>
-
-<p id="memoryStatus"
-style="text-align:center;margin-top:15px">
-Encontra os pares!
-</p>
-
-`);
-
-let grid=document.getElementById("memoryGrid");
-
-symbols.forEach((symbol,i)=>{
-
-let b=document.createElement("button");
-
-b.className="memorycard";
-b.textContent="?";
-
-b.onclick=()=>{
-
-if(lock||b.classList.contains("open"))return;
-
-b.classList.add("open");
-b.textContent=symbol;
-
-if(!first){
-
-first={b,symbol};
-
-return;
+const APP_KEY = "worldapps_v5_data";
 
-}
-
-if(first.symbol===symbol){
-
-matched++;
-
-first=null;
-
-if(matched===4)
-document.getElementById("memoryStatus")
-.textContent="🏆 Ganhaste!";
-
-}else{
-
-lock=true;
-
-setTimeout(()=>{
-
-b.classList.remove("open");
-b.textContent="?";
-
-first.b.classList.remove("open");
-first.b.textContent="?";
-
-first=null;
-lock=false;
-
-},700);
-
-}
-
-};
-
-grid.appendChild(b);
-
-});
-
-}
-
-
-/* ================================
-   PONTARIA
-================================ */
-
-function aim(){
-
-modal("🎯 Pontaria",`
-
-<p style="text-align:center;margin-bottom:10px">
-Tempo: <span id="aimTime">30</span>s ·
-Pontos: <span id="aimScore">0</span>
-</p>
-
-<div id="targetArea" class="targetArea"></div>
-
-`);
-
-let area=document.getElementById("targetArea");
-let score=0;
-let time=30;
-
-function target(){
-
-let old=area.querySelector(".target");
-
-if(old)old.remove();
-
-let t=document.createElement("button");
-
-t.className="target";
-
-t.style.left=
-Math.random()*(area.clientWidth-60)+"px";
-
-t.style.top=
-Math.random()*(area.clientHeight-60)+"px";
-
-t.onclick=()=>{
-
-score++;
-
-document.getElementById("aimScore")
-.textContent=score;
-
-target();
-
-};
-
-area.appendChild(t);
-
-}
-
-target();
-
-let interval=setInterval(()=>{
-
-time--;
-
-let el=document.getElementById("aimTime");
-
-if(el)el.textContent=time;
-
-if(time<=0){
-
-clearInterval(interval);
-
-let t=area.querySelector(".target");
-
-if(t)t.remove();
-
-alert("🎯 Fim! Pontuação: "+score);
-
-}
-
-},1000);
-
-}
-
-
-/* ================================
-   PUZZLE
-================================ */
-
-function puzzle(){
-
-let nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
-
-do{
- nums.sort(()=>Math.random()-.5);
-}while(!solvable(nums));
-
-modal("🧩 Puzzle",`
-
-<div id="puzzleBoard" class="puzzle"></div>
-
-<p style="text-align:center;margin-top:15px">
-Move o quadrado vazio para ordenar de 1 a 15.
-</p>
-
-`);
-
-renderPuzzle(nums);
-
-}
-
-function solvable(a){
-
-let inv=0;
-
-for(let i=0;i<a.length;i++)
-for(let j=i+1;j<a.length;j++)
-if(a[i]&&a[j]&&a[i]>a[j])inv++;
-
-let row=Math.floor(a.indexOf(0)/4);
-
-return (inv+row)%2===1;
-
-}
-
-function renderPuzzle(a){
-
-let board=document.getElementById("puzzleBoard");
-
-if(!board)return;
-
-board.innerHTML="";
-
-a.forEach((n,i)=>{
-
-let b=document.createElement("button");
-
-b.textContent=n||"";
-
-if(!n)b.className="empty";
-
-b.onclick=()=>{
-
-let empty=a.indexOf(0);
-
-let r=Math.floor(i/4);
-let c=i%4;
-
-let er=Math.floor(empty/4);
-let ec=empty%4;
-
-if(Math.abs(r-er)+Math.abs(c-ec)!==1)return;
-
-[a[i],a[empty]]=[a[empty],a[i]];
-
-renderPuzzle(a);
-
-if(a.every((v,i)=>v===((i+1)%16)))
-alert("🏆 Puzzle resolvido!");
-
-};
-
-board.appendChild(b);
-
-});
-
-}
-
-
-/* ================================
-   CARTAS
-================================ */
-
-function cards(){
-
-modal("🃏 Cartas - Maior ou Menor",`
-
-<div id="cardGame"></div>
-
-`);
-
-let values=[
-"🂡","🂢","🂣","🂤","🂥",
-"🂦","🂧","🂨","🂩","🂪",
-"🂫","🂭","🂮"
-];
-
-let current=
-Math.floor(Math.random()*values.length);
-
-function render(){
-
-document.getElementById("cardGame").innerHTML=`
-
-<div style="text-align:center">
-
-<div style="font-size:100px">
-${values[current]}
-</div>
-
-<p>Será a próxima carta maior ou menor?</p>
-
-<br>
-
-<button class="btn" id="higher">
-⬆️ Maior
-</button>
-
-<button class="btn secondary" id="lower">
-⬇️ Menor
-</button>
-
-<p id="cardScore" style="margin-top:15px">
-Pontuação: ${score}
-</p>
-
-</div>
-
-`;
-
-document.getElementById("higher").onclick=()=>play(true);
-document.getElementById("lower").onclick=()=>play(false);
-
-}
-
-let score=0;
-
-function play(higher){
-
-let next=
-Math.floor(Math.random()*values.length);
-
-let correct=
-higher
-?next>current
-:next<current;
-
-if(next===current){
-
-alert("Empate! Tenta outra vez.");
-
-return;
-
-}
+let data = JSON.parse(localStorage.getItem(APP_KEY) || "null");
 
-if(correct){
-
-score++;
-current=next;
-render();
-
-}else{
-
-alert("❌ Erraste! Pontuação: "+score);
-
-score=0;
-current=next;
-render();
-
-}
-
-}
-
-render();
-
-}
-
-
-/* ================================
-   2048
-================================ */
-
-function game2048(){
-
-modal("🔢 2048",`
-
-<div id="game2048Board" class="grid2048"></div>
-
-<p style="text-align:center;margin-top:15px">
-Usa as setas do teclado.
-</p>
-
-`);
-
-let board=Array(16).fill(0);
-
-function addTile(){
-
-let empty=board
-.map((v,i)=>v===0?i:null)
-.filter(v=>v!==null);
-
-if(!empty.length)return;
-
-let i=empty[Math.floor(Math.random()*empty.length)];
-
-board[i]=Math.random()<.9?2:4;
-
-}
-
-function draw(){
-
-let el=document.getElementById("game2048Board");
-
-if(!el)return;
-
-el.innerHTML=board.map(v=>
-`<div class="tile2048">${v||""}</div>`
-).join("");
-
-}
-
-function move(dir){
-
-let old=board.join(",");
-
-let rows=[];
-
-for(let r=0;r<4;r++)
-rows.push(board.slice(r*4,r*4+4));
-
-if(dir==="left"||dir==="right"){
-
-rows.forEach(row=>{
-
-if(dir==="right")row.reverse();
-
-row=row.filter(x=>x);
-
-for(let i=0;i<row.length-1;i++){
-
-if(row[i]===row[i+1]){
-
-row[i]*=2;
-row[i+1]=0;
-
-}
-
-}
-
-row=row.filter(x=>x);
-
-while(row.length<4)row.push(0);
-
-if(dir==="right")row.reverse();
-
-});
-
-}else{
-
-let cols=[];
-
-for(let c=0;c<4;c++){
-
-let col=[
-board[c],
-board[c+4],
-board[c+8],
-board[c+12]
-];
-
-if(dir==="down")col.reverse();
-
-col=col.filter(x=>x);
-
-for(let i=0;i<col.length-1;i++){
-
-if(col[i]===col[i+1]){
-
-col[i]*=2;
-col[i+1]=0;
-
-}
-
-}
-
-col=col.filter(x=>x);
-
-while(col.length<4)col.push(0);
-
-if(dir==="down")col.reverse();
-
-cols.push(col);
-
-}
-
-for(let c=0;c<4;c++)
-for(let r=0;r<4;r++)
-board[r*4+c]=cols[c][r];
-
-draw();
-
-if(old!==board.join(","))addTile();
-
-return;
-
-}
-
-board=rows.flat();
-
-if(old!==board.join(","))addTile();
-
-draw();
-
-}
-
-addTile();
-addTile();
-draw();
-
-function key(e){
-
-if(e.key==="ArrowLeft")move("left");
-if(e.key==="ArrowRight")move("right");
-if(e.key==="ArrowUp")move("up");
-if(e.key==="ArrowDown")move("down");
-
-}
-
-window.addEventListener("keydown",key);
-
-}
-
-
-/* ================================
-   COFRE
-================================ */
-
-const VAULT="wa_secure_v4";
-
-async function derive(password,salt){
-
-let material=
-await crypto.subtle.importKey(
-"raw",
-new TextEncoder().encode(password),
-"PBKDF2",
-false,
-["deriveKey"]
-);
-
-return crypto.subtle.deriveKey(
-{
-name:"PBKDF2",
-salt,
-iterations:250000,
-hash:"SHA-256"
-},
-material,
-{name:"AES-GCM",length:256},
-false,
-["encrypt","decrypt"]
-);
-
-}
-
-function b64(bytes){
-
-let s="";
-
-bytes.forEach(x=>s+=String.fromCharCode(x));
-
-return btoa(s);
-
+if(!data){
+  data = {
+    users: {},
+    currentUser: null,
+    theme: "dark"
+  };
 }
 
-function unb64(s){
+let mode = "login";
+let currentPage = "home";
+let currentCategory = "Todas";
+let searchTerm = "";
+let stopwatchInterval = null;
+let timerInterval = null;
 
-let x=atob(s);
-let a=new Uint8Array(x.length);
 
-for(let i=0;i<x.length;i++)a[i]=x.charCodeAt(i);
+/* =========================================================
+   GUARDAR
+   ========================================================= */
 
-return a;
-
+function save(){
+  localStorage.setItem(APP_KEY, JSON.stringify(data));
 }
 
-async function encrypt(data,password){
 
-let salt=crypto.getRandomValues(new Uint8Array(16));
-let iv=crypto.getRandomValues(new Uint8Array(12));
+/* =========================================================
+   UTILIZADORES
+   ========================================================= */
 
-let key=await derive(password,salt);
+function userData(){
 
-let encrypted=
-await crypto.subtle.encrypt(
-{name:"AES-GCM",iv},
-key,
-new TextEncoder().encode(JSON.stringify(data))
-);
+  if(!data.currentUser) return null;
 
-return JSON.stringify({
-salt:b64(salt),
-iv:b64(iv),
-data:b64(new Uint8Array(encrypted))
-});
+  return data.users[data.currentUser];
 
 }
 
-async function decrypt(saved,password){
+function createUser(name,password){
 
-let x=JSON.parse(saved);
+  name = name.trim();
 
-let key=await derive(
-password,
-unb64(x.salt)
-);
+  if(name.length < 3){
+    throw new Error("O nome precisa de pelo menos 3 caracteres.");
+  }
 
-let data=
-await crypto.subtle.decrypt(
-{name:"AES-GCM",iv:unb64(x.iv)},
-key,
-unb64(x.data)
-);
+  if(password.length < 4){
+    throw new Error("A palavra-passe precisa de pelo menos 4 caracteres.");
+  }
 
-return JSON.parse(
-new TextDecoder().decode(data)
-);
+  const key = name.toLowerCase();
 
-}
+  if(data.users[key]){
+    throw new Error("Esse utilizador já existe.");
+  }
 
-function openVault(){
+  data.users[key] = {
+    name:name,
+    password:btoa(unescape(encodeURIComponent(password))),
+    favorites:[],
+    notes:"",
+    tasks:[],
+    vault:[],
+    stats:{
+      appsOpened:0,
+      gamesPlayed:0,
+      logins:0
+    }
+  };
 
-let saved=localStorage.getItem(VAULT);
+  data.currentUser = key;
 
-if(saved)unlockVault();
-else createVault();
+  data.users[key].stats.logins++;
 
+  save();
 }
-
-function createVault(){
-
-modal("🔐 Criar cofre",`
-
-<p class="muted">
-O cofre é protegido por encriptação AES-GCM.
-Se esqueceres a palavra-passe principal,
-não será possível recuperar o conteúdo.
-</p>
-
-<br>
 
-<div class="field">
-<label>Palavra-passe principal</label>
-<input id="master1" type="password">
-</div>
 
-<div class="field">
-<label>Confirmar</label>
-<input id="master2" type="password">
-</div>
+function loginUser(name,password){
 
-<button class="btn" onclick="createVaultNow()">
-Criar cofre
-</button>
+  const key = name.trim().toLowerCase();
 
-`);
+  const u = data.users[key];
 
-}
-
-async function createVaultNow(){
-
-let a=document.getElementById("master1").value;
-let b=document.getElementById("master2").value;
-
-if(a.length<8){
-alert("Usa pelo menos 8 caracteres.");
-return;
-}
-
-if(a!==b){
-alert("As palavras-passe não coincidem.");
-return;
-}
+  if(!u){
+    throw new Error("Utilizador não encontrado.");
+  }
 
-let data={entries:[]};
+  const stored = decodeURIComponent(escape(atob(u.password)));
 
-localStorage.setItem(
-VAULT,
-await encrypt(data,a)
-);
+  if(stored !== password){
+    throw new Error("Palavra-passe incorreta.");
+  }
 
-vaultScreen(data,a);
+  data.currentUser = key;
+  u.stats.logins++;
 
+  save();
 }
 
-function unlockVault(){
 
-modal("🔓 Desbloquear cofre",`
+function logout(){
 
-<div class="field">
-<label>Palavra-passe</label>
-<input id="unlock" type="password">
-</div>
+  data.currentUser = null;
+  save();
 
-<button class="btn" onclick="unlockNow()">
-Desbloquear
-</button>
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("accountScreen").classList.remove("hidden");
 
-`);
+  document.getElementById("password").value="";
+  document.getElementById("username").value="";
 
 }
-
-async function unlockNow(){
 
-try{
 
-let data=await decrypt(
-localStorage.getItem(VAULT),
-document.getElementById("unlock").value
-);
+/* =========================================================
+   ACCOUNT UI
+   ========================================================= */
 
-vaultScreen(
-data,
-document.getElementById("unlock").value
-);
+function setupAccount(){
 
-}catch{
+  const loginTab = document.getElementById("loginTab");
+  const registerTab = document.getElementById("registerTab");
 
-alert("❌ Palavra-passe incorreta.");
+  const confirmField = document.getElementById("confirmField");
+  const submit = document.getElementById("accountSubmit");
+  const message = document.getElementById("accountMessage");
 
-}
-
-}
-
-let vaultData;
-let vaultPassword;
+  loginTab.onclick = ()=>{
 
-function vaultScreen(data,password){
+    mode="login";
 
-vaultData=data;
-vaultPassword=password;
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
 
-modal("🔐 Cofre",`
+    confirmField.classList.add("hidden");
 
-<button class="btn" onclick="addVaultEntry()">
-➕ Adicionar
-</button>
+    submit.textContent="Entrar";
 
-<div style="margin-top:20px">
+    message.textContent="";
+  };
 
-${data.entries.length
-?data.entries.map((x,i)=>`
+  registerTab.onclick = ()=>{
 
-<div class="tool">
+    mode="register";
 
-<strong>${escapeHTML(x.site)}</strong>
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
 
-<br>
+    confirmField.classList.remove("hidden");
 
-<span class="muted">
-${escapeHTML(x.user)}
-</span>
+    submit.textContent="Criar conta";
 
-<div class="card-actions">
+    message.textContent="";
+  };
 
-<button class="btn secondary"
-onclick="alert('Palavra-passe: '+${JSON.stringify(x.pass)})">
-👁️ Mostrar
-</button>
+  document.getElementById("accountForm").onsubmit = e=>{
 
-<button class="btn danger"
-onclick="deleteVault(${i})">
-🗑️ Apagar
-</button>
+    e.preventDefault();
 
-</div>
+    const name=document.getElementById("username").value;
+    const pass=document.getElementById("password").value;
 
-</div>
+    try{
 
-`).join("")
-:`<div class="empty">Cofre vazio.</div>`}
+      if(mode==="register"){
 
-</div>
+        const confirm=document.getElementById("confirmPassword").value;
 
-`);
+        if(pass!==confirm){
+          throw new Error("As palavras-passe não coincidem.");
+        }
 
-}
+        createUser(name,pass);
 
-function addVaultEntry(){
+      }else{
 
-modal("➕ Nova palavra-passe",`
+        loginUser(name,pass);
 
-<div class="field">
-<label>Site</label>
-<input id="vSite">
-</div>
+      }
 
-<div class="field">
-<label>Utilizador</label>
-<input id="vUser">
-</div>
+      message.textContent="";
+      startApp();
 
-<div class="field">
-<label>Palavra-passe</label>
-<input id="vPass" type="password">
-</div>
+    }catch(err){
 
-<button class="btn secondary"
-onclick="generateVaultPass()">
-🎲 Gerar
-</button>
+      message.textContent=err.message;
 
-<button class="btn"
-onclick="saveVaultEntry()">
-💾 Guardar
-</button>
+    }
 
-`);
+  };
 
 }
-
-function generateVaultPass(){
-
-let chars=
-"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*";
-
-let a=new Uint32Array(20);
 
-crypto.getRandomValues(a);
 
-document.getElementById("vPass").value=
-[...a].map(x=>chars[x%chars.length]).join("");
+/* =========================================================
+   START
+   ========================================================= */
 
-}
-
-async function saveVaultEntry(){
+function startApp(){
 
-vaultData.entries.push({
+  document.getElementById("accountScreen").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
 
-site:document.getElementById("vSite").value,
-user:document.getElementById("vUser").value,
-pass:document.getElementById("vPass").value
+  applyTheme(data.theme || "dark");
 
-});
+  document.getElementById("userName").textContent =
+    userData().name;
 
-localStorage.setItem(
-VAULT,
-await encrypt(vaultData,vaultPassword)
-);
+  renderPage("home");
 
-vaultScreen(vaultData,vaultPassword);
-
 }
-
-async function deleteVault(i){
 
-if(!confirm("Apagar esta palavra-passe?"))return;
-
-vaultData.entries.splice(i,1);
-
-localStorage.setItem(
-VAULT,
-await encrypt(vaultData,vaultPassword)
-);
-
-vaultScreen(vaultData,vaultPassword);
-
-}
 
+/* =========================================================
+   THEME
+   ========================================================= */
 
-/* ================================
-   TEMAS
-================================ */
+function applyTheme(theme){
 
-function setTheme(t){
+  document.body.className="";
 
-document.body.className=t==="dark"?"":t;
+  if(theme!=="dark"){
+    document.body.classList.add(theme);
+  }
 
-localStorage.setItem("wa_theme",t);
+  data.theme=theme;
+  save();
 
 }
 
 function cycleTheme(){
 
-let themes=["dark","light","green","purple","red","orange"];
+  const themes=[
+    "dark",
+    "light",
+    "green",
+    "purple",
+    "red",
+    "orange"
+  ];
 
-let current=localStorage.getItem("wa_theme")||"dark";
+  const i=themes.indexOf(data.theme || "dark");
 
-let i=themes.indexOf(current);
+  applyTheme(
+    themes[(i+1)%themes.length]
+  );
 
-setTheme(themes[(i+1)%themes.length]);
-
-}
-
-
-/* ================================
-   SEGURANÇA HTML
-================================ */
-
-function escapeHTML(x){
-
-return String(x)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+  toast("Tema: "+themes[(i+1)%themes.length]);
 
 }
 
 
-/* ================================
-   INÍCIO
-================================ */
+/* =========================================================
+   APP LIST
+   ========================================================= */
 
-let savedTheme=
-localStorage.getItem("wa_theme")||"dark";
+const apps=[
 
-setTheme(savedTheme);
+ {
+  id:"notes",
+  icon:"📝",
+  name:"Notas",
+  cat:"Produtividade",
+  desc:"Escreve e guarda notas.",
+  open:openNotes
+ },
 
-render();
+ {
+  id:"tasks",
+  icon:"✅",
+  name:"Tarefas",
+  cat:"Produtividade",
+  desc:"Organiza as coisas que tens para fazer.",
+  open:openTasks
+ },
 
-document.getElementById("modal")
-.addEventListener("click",e=>{
+ {
+  id:"calendar",
+  icon:"📅",
+  name:"Calendário",
+  cat:"Produtividade",
+  desc:"Consulta o calendário.",
+  open:openCalendar
+ },
 
-if(e.target.id==="modal")
-closeModal();
+ {
+  id:"clock",
+  icon:"🕐",
+  name:"Relógio",
+  cat:"Tempo",
+  desc:"Relógio digital em tempo real.",
+  open:openClock
+ },
+
+ {
+  id:"stopwatch",
+  icon:"⏱️",
+  name:"Cronómetro",
+  cat:"Tempo",
+  desc:"Mede o tempo e voltas.",
+  open:openStopwatch
+ },
+
+ {
+  id:"timer",
+  icon:"⏳",
+  name:"Temporizador",
+  cat:"Tempo",
+  desc:"Conta o tempo até zero.",
+  open:openTimer
+ },
+
+ {
+  id:"pomodoro",
+  icon:"🍅",
+  name:"Pomodoro",
+  cat:"Produtividade",
+  desc:"25 minutos de trabalho e pausa.",
+  open:openPomodoro
+ },
+
+ {
+  id:"calculator",
+  icon:"🧮",
+  name:"Calculadora",
+  cat:"Matemática",
+  desc:"Calculadora simples.",
+  open:openCalculator
+ },
+
+ {
+  id:"scientific",
+  icon:"🔬",
+  name:"Calculadora científica",
+  cat:"Matemática",
+  desc:"Raiz, seno, cosseno, logaritmo e mais.",
+  open:openScientific
+ },
+
+ {
+  id:"percentage",
+  icon:"💯",
+  name:"Percentagens",
+  cat:"Matemática",
+  desc:"Calcula percentagens rapidamente.",
+  open:openPercentage
+ },
+
+ {
+  id:"length",
+  icon:"📏",
+  name:"Conversor de comprimento",
+  cat:"Matemática",
+  desc:"Converte metros, km, cm e mais.",
+  open:openLength
+ },
+
+ {
+  id:"weight",
+  icon:"⚖️",
+  name:"Conversor de peso",
+  cat:"Matemática",
+  desc:"Converte kg, g e libras.",
+  open:openWeight
+ },
+
+ {
+  id:"temperature",
+  icon:"🌡️",
+  name:"Temperaturas",
+  cat:"Matemática",
+  desc:"Converte Celsius, Fahrenheit e Kelvin.",
+  open:openTemperature
+ },
+
+ {
+  id:"data",
+  icon:"💾",
+  name:"Conversor de dados",
+  cat:"Matemática",
+  desc:"Converte bytes, KB, MB e GB.",
+  open:openData
+ },
+
+ {
+  id:"wordcount",
+  icon:"🔤",
+  name:"Contador de texto",
+  cat:"Texto",
+  desc:"Conta palavras, letras e caracteres.",
+  open:openWordCount
+ },
+
+ {
+  id:"case",
+  icon:"Aa",
+  name:"Conversor de texto",
+  cat:"Texto",
+  desc:"Maiúsculas, minúsculas e capitalização.",
+  open:openCase
+ },
+
+ {
+  id:"cleantext",
+  icon:"🧹",
+  name:"Limpar texto",
+  cat:"Texto",
+  desc:"Remove espaços e linhas desnecessárias.",
+  open:openCleanText
+ },
+
+ {
+  id:"random",
+  icon:"🎲",
+  name:"Número aleatório",
+  cat:"Geradores",
+  desc:"Gera números aleatórios.",
+  open:openRandom
+ },
+
+ {
+  id:"dice",
+  icon:"🎲",
+  name:"Dados",
+  cat:"Geradores",
+  desc:"Lança dados virtuais.",
+  open:openDice
+ },
+
+ {
+  id:"password",
+  icon:"🔑",
+  name:"Gerador de palavras-passe",
+  cat:"Segurança",
+  desc:"Cria palavras-passe aleatórias.",
+  open:openPasswordGenerator
+ },
+
+ {
+  id:"vault",
+  icon:"🔐",
+  name:"Cofre",
+  cat:"Segurança",
+  desc:"Guarda dados secretos localmente.",
+  open:openVault
+ },
+
+ {
+  id:"colors",
+  icon:"🎨",
+  name:"Cores",
+  cat:"Criatividade",
+  desc:"Escolhe cores e vê os códigos.",
+  open:openColors
+ },
+
+ {
+  id:"gradient",
+  icon:"🌈",
+  name:"Gradientes",
+  cat:"Criatividade",
+  desc:"Cria gradientes CSS.",
+  open:openGradient
+ },
+
+ {
+  id:"drawing",
+  icon:"🖌️",
+  name:"Desenho",
+  cat:"Criatividade",
+  desc:"Desenha numa tela.",
+  open:openDrawing
+ },
+
+ {
+  id:"json",
+  icon:"{}",
+  name:"Formatador JSON",
+  cat:"Ferramentas",
+  desc:"Formata JSON localmente.",
+  open:openJSON
+ },
+
+ {
+  id:"base64",
+  icon:"🔤",
+  name:"Base64",
+  cat:"Ferramentas",
+  desc:"Codifica e descodifica texto Base64.",
+  open:openBase64
+ },
+
+ {
+  id:"url",
+  icon:"🔗",
+  name:"Codificador URL",
+  cat:"Ferramentas",
+  desc:"Codifica ou descodifica URLs.",
+  open:openURL
+ },
+
+ {
+  id:"contrast",
+  icon:"◐",
+  name:"Contraste de cores",
+  cat:"Criatividade",
+  desc:"Compara duas cores.",
+  open:openContrast
+ },
+
+ {
+  id:"metronome",
+  icon:"🎵",
+  name:"Metrónomo",
+  cat:"Ferramentas",
+  desc:"Metrónomo simples.",
+  open:openMetronome
+ }
+];
+
+
+/* =========================================================
+   GAMES
+   ========================================================= */
+
+const games=[
+
+ {
+  id:"snake",
+  icon:"🐍",
+  name:"Snake",
+  desc:"Come a comida e cresce.",
+  open:openSnake
+ },
+
+ {
+  id:"memory",
+  icon:"🧠",
+  name:"Memória",
+  desc:"Encontra os pares.",
+  open:openMemory
+ },
+
+ {
+  id:"aim",
+  icon:"🎯",
+  name:"Pontaria",
+  desc:"Clica no alvo o mais depressa possível.",
+  open:openAim
+ },
+
+ {
+  id:"puzzle",
+  icon:"🧩",
+  name:"Puzzle 15",
+  desc:"Organiza os números.",
+  open:openPuzzle
+ },
+
+ {
+  id:"cards",
+  icon:"🃏",
+  name:"Cartas",
+  desc:"Adivinha se a próxima carta é maior ou menor.",
+  open:openCards
+ },
+
+ {
+  id:"2048",
+  icon:"🔢",
+  name:"2048",
+  desc:"Junta números até chegar a 2048.",
+  open:open2048
+ },
+
+ {
+  id:"tictactoe",
+  icon:"❌",
+  name:"Jogo do Galo",
+  desc:"Joga X contra O.",
+  open:openTicTacToe
+ },
+
+ {
+  id:"rps",
+  icon:"✊",
+  name:"Pedra Papel Tesoura",
+  desc:"Desafia o computador.",
+  open:openRPS
+ },
+
+ {
+  id:"reaction",
+  icon:"⚡",
+  name:"Reação",
+  desc:"Testa a tua velocidade.",
+  open:openReaction
+ },
+
+ {
+  id:"click",
+  icon:"🖱️",
+  name:"Click Test",
+  desc:"Quantos cliques consegues fazer?",
+  open:openClickTest
+ }
+];
+
+
+/* =========================================================
+   RENDER CARDS
+   ========================================================= */
+
+function allItems(){
+
+  return [
+    ...apps.map(x=>({...x,type:"app"})),
+    ...games.map(x=>({...x,type:"game"}))
+  ];
+
+}
+
+function cardHTML(item){
+
+  const fav=userData().favorites.includes(item.id);
+
+  return `
+    <div class="card">
+
+      <div class="cardIcon">${item.icon}</div>
+
+      <h3>${escapeHTML(item.name)}</h3>
+
+      <p>${escapeHTML(item.desc)}</p>
+
+      <div class="cardActions">
+
+        <button onclick="launch('${item.id}')">
+          Abrir
+        </button>
+
+        <button
+          class="fav ${fav?"active":""}"
+          onclick="toggleFavorite('${item.id}')">
+          ${fav?"★":"☆"}
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function renderCards(items){
+
+  if(!items.length){
+
+    return `<div class="empty">Não encontrei nada. 🔎</div>`;
+
+  }
+
+  return `
+    <div class="grid">
+      ${items.map(cardHTML).join("")}
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   PÁGINAS
+   ========================================================= */
+
+function renderPage(page){
+
+  currentPage=page;
+
+  document.querySelectorAll("nav button").forEach(btn=>{
+    btn.classList.toggle(
+      "active",
+      btn.dataset.page===page
+    );
+  });
+
+  if(page==="home") renderHome();
+  if(page==="apps") renderApps();
+  if(page==="games") renderGames();
+  if(page==="favorites") renderFavorites();
+  if(page==="profile") renderProfile();
+
+}
+
+
+function renderHome(){
+
+  const popular=apps.slice(0,12);
+  const gameList=games.slice(0,6);
+
+  document.getElementById("main").innerHTML=`
+
+    <section class="hero">
+
+      <h1>Bem-vindo ao <span>WorldApps</span> 🚀</h1>
+
+      <p>
+        Olá, <strong>${escapeHTML(userData().name)}</strong>!
+        Aqui tens aplicações e jogos que funcionam diretamente no navegador.
+      </p>
+
+      <div class="statGrid">
+
+        <div class="stat">
+          <strong>${apps.length}</strong>
+          Aplicações
+        </div>
+
+        <div class="stat">
+          <strong>${games.length}</strong>
+          Jogos
+        </div>
+
+        <div class="stat">
+          <strong>${userData().favorites.length}</strong>
+          Favoritos
+        </div>
+
+      </div>
+
+    </section>
+
+    <div class="sectionTitle">
+      <h2>📱 Aplicações</h2>
+      <small>Prontas para usar</small>
+    </div>
+
+    ${renderCards(popular)}
+
+    <div class="sectionTitle">
+      <h2>🎮 Jogos</h2>
+      <small>Todos jogáveis</small>
+    </div>
+
+    ${renderCards(gameList)}
+
+  `;
+
+}
+
+
+function renderApps(){
+
+  const categories=[
+    "Todas",
+    ...new Set(apps.map(a=>a.cat))
+  ];
+
+  let filtered=apps;
+
+  if(currentCategory!=="Todas"){
+    filtered=filtered.filter(
+      x=>x.cat===currentCategory
+    );
+  }
+
+  if(searchTerm){
+    filtered=filtered.filter(
+      x=>
+        x.name.toLowerCase().includes(searchTerm) ||
+        x.desc.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="sectionTitle">
+      <h2>📱 Aplicações</h2>
+      <small>${filtered.length} disponíveis</small>
+    </div>
+
+    <div class="categoryBar">
+
+      ${categories.map(cat=>`
+        <button
+          class="${cat===currentCategory?"active":""}"
+          onclick="setCategory('${escapeAttr(cat)}')">
+          ${escapeHTML(cat)}
+        </button>
+      `).join("")}
+
+    </div>
+
+    ${renderCards(filtered)}
+
+  `;
+
+}
+
+
+function renderGames(){
+
+  let filtered=games;
+
+  if(searchTerm){
+
+    filtered=filtered.filter(
+      x=>
+        x.name.toLowerCase().includes(searchTerm) ||
+        x.desc.toLowerCase().includes(searchTerm)
+    );
+
+  }
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="sectionTitle">
+      <h2>🎮 Jogos</h2>
+      <small>${filtered.length} jogos</small>
+    </div>
+
+    ${renderCards(filtered)}
+
+  `;
+
+}
+
+
+function renderFavorites(){
+
+  const ids=userData().favorites;
+
+  const items=allItems()
+    .filter(x=>ids.includes(x.id));
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="sectionTitle">
+      <h2>⭐ Favoritos</h2>
+      <small>${items.length}</small>
+    </div>
+
+    ${renderCards(items)}
+
+  `;
+
+}
+
+
+function renderProfile(){
+
+  const u=userData();
+
+  document.getElementById("main").innerHTML=`
+
+    <div class="sectionTitle">
+      <h2>👤 A minha conta</h2>
+    </div>
+
+    <div class="card">
+
+      <div class="profile">
+
+        <div>
+          <div class="avatar">
+            ${escapeHTML(u.name.charAt(0).toUpperCase())}
+          </div>
+        </div>
+
+        <div>
+
+          <h2>${escapeHTML(u.name)}</h2>
+
+          <p>
+            Conta local do WorldApps.
+          </p>
+
+          <div class="statGrid">
+
+            <div class="stat">
+              <strong>${u.stats.appsOpened}</strong>
+              Apps abertas
+            </div>
+
+            <div class="stat">
+              <strong>${u.stats.gamesPlayed}</strong>
+              Jogos jogados
+            </div>
+
+            <div class="stat">
+              <strong>${u.favorites.length}</strong>
+              Favoritos
+            </div>
+
+            <div class="stat">
+              <strong>${u.stats.logins}</strong>
+              Entradas
+            </div>
+
+          </div>
+
+          <br>
+
+          <button
+            class="primary"
+            onclick="logout()">
+            🚪 Terminar sessão
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="sectionTitle">
+      <h2>⚙️ Definições</h2>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="cardIcon">🎨</div>
+        <h3>Tema</h3>
+        <p>Altera o aspeto do WorldApps.</p>
+        <button class="primary" onclick="cycleTheme()">
+          Mudar tema
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="cardIcon">💾</div>
+        <h3>Dados</h3>
+        <p>Os dados desta conta ficam guardados neste navegador.</p>
+        <button class="primary" onclick="exportData()">
+          Exportar
+        </button>
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+document.querySelectorAll("nav button").forEach(btn=>{
+
+  btn.onclick=()=>{
+
+    searchTerm="";
+    document.getElementById("globalSearch").value="";
+
+    currentCategory="Todas";
+
+    renderPage(btn.dataset.page);
+
+  };
 
 });
+
+
+document.getElementById("globalSearch").addEventListener(
+  "input",
+  e=>{
+
+    searchTerm=e.target.value
+      .trim()
+      .toLowerCase();
+
+    if(currentPage==="apps"){
+      renderApps();
+    }else if(currentPage==="games"){
+      renderGames();
+    }else{
+
+      currentPage="apps";
+
+      document.querySelectorAll("nav button")
+        .forEach(x=>x.classList.remove("active"));
+
+      document.querySelector(
+        'nav button[data-page="apps"]'
+      ).classList.add("active");
+
+      renderApps();
+
+    }
+
+  }
+);
+
+
+document.getElementById("themeBtn").onclick=cycleTheme;
+
+document.getElementById("userButton").onclick=()=>{
+  renderPage("profile");
+};
+
+
+function setCategory(cat){
+
+  currentCategory=cat;
+  renderApps();
+
+}
+
+
+/* =========================================================
+   FAVORITOS
+   ========================================================= */
+
+function toggleFavorite(id){
+
+  const u=userData();
+
+  const i=u.favorites.indexOf(id);
+
+  if(i>=0){
+    u.favorites.splice(i,1);
+    toast("Removido dos favoritos");
+  }else{
+    u.favorites.push(id);
+    toast("Adicionado aos favoritos ⭐");
+  }
+
+  save();
+
+  if(currentPage==="favorites"){
+    renderFavorites();
+  }else if(currentPage==="apps"){
+    renderApps();
+  }else if(currentPage==="games"){
+    renderGames();
+  }else{
+    renderPage(currentPage);
+  }
+
+}
+
+
+/* =========================================================
+   LAUNCH
+   ========================================================= */
+
+function launch(id){
+
+  const item=allItems().find(x=>x.id===id);
+
+  if(!item) return;
+
+  if(item.type==="app"){
+    userData().stats.appsOpened++;
+  }else{
+    userData().stats.gamesPlayed++;
+  }
+
+  save();
+
+  item.open();
+
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+function openModal(title,html){
+
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalContent").innerHTML=html;
+
+  document.getElementById("modal").classList.remove("hidden");
+
+}
+
+function closeModal(){
+
+  document.getElementById("modal").classList.add("hidden");
+
+  if(stopwatchInterval){
+    clearInterval(stopwatchInterval);
+    stopwatchInterval=null;
+  }
+
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval=null;
+  }
+
+}
+
+document.getElementById("closeModal").onclick=closeModal;
+
+document.getElementById("modal").onclick=e=>{
+  if(e.target.id==="modal") closeModal();
+};
+
+
+/* =========================================================
+   NOTAS
+   ========================================================= */
+
+function openNotes(){
+
+  openModal("📝 Notas",`
+
+    <textarea
+      id="notesArea"
+      class="field big"
+      style="width:100%;min-height:300px;background:#0b1222;color:var(--text);border:1px solid var(--border);border-radius:12px;padding:15px"
+      placeholder="Escreve aqui...">${escapeHTML(userData().notes)}</textarea>
+
+    <br>
+
+    <button class="primary" onclick="
+      userData().notes=document.getElementById('notesArea').value;
+      save();
+      toast('Nota guardada!');
+    ">
+      💾 Guardar nota
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   TAREFAS
+   ========================================================= */
+
+function openTasks(){
+
+  renderTasksTool();
+
+}
+
+function renderTasksTool(){
+
+  const tasks=userData().tasks;
+
+  openModal("✅ Lista de tarefas",`
+
+    <form id="taskForm">
+
+      <div style="display:flex;gap:8px">
+
+        <input
+          id="taskInput"
+          required
+          placeholder="Nova tarefa..."
+          style="flex:1;padding:13px;border-radius:12px;border:1px solid var(--border);background:#0b1222;color:var(--text)">
+
+        <button class="primary" style="width:auto;padding:13px 18px">
+          +
+        </button>
+
+      </div>
+
+    </form>
+
+    <div style="margin-top:15px">
+
+      ${tasks.length ? tasks.map((t,i)=>`
+
+        <div style="
+          display:flex;
+          gap:10px;
+          align-items:center;
+          padding:12px;
+          border-bottom:1px solid var(--border)">
+
+          <input
+            type="checkbox"
+            ${t.done?"checked":""}
+            onchange="toggleTask(${i})">
+
+          <span style="
+            flex:1;
+            ${t.done?"text-decoration:line-through;color:var(--muted)":""}">
+            ${escapeHTML(t.text)}
+          </span>
+
+          <button
+            onclick="deleteTask(${i})"
+            style="background:var(--danger);color:white;border:0;border-radius:8px;padding:8px">
+            🗑️
+          </button>
+
+        </div>
+
+      `).join("") : `<div class="empty">Ainda não tens tarefas.</div>`}
+
+    </div>
+
+  `);
+
+  document.getElementById("taskForm").onsubmit=e=>{
+
+    e.preventDefault();
+
+    const value=document.getElementById("taskInput").value.trim();
+
+    if(!value)return;
+
+    userData().tasks.push({
+      text:value,
+      done:false
+    });
+
+    save();
+
+    renderTasksTool();
+
+  };
+
+}
+
+function toggleTask(i){
+
+  userData().tasks[i].done=
+    !userData().tasks[i].done;
+
+  save();
+
+  renderTasksTool();
+
+}
+
+function deleteTask(i){
+
+  userData().tasks.splice(i,1);
+
+  save();
+
+  renderTasksTool();
+
+}
+
+
+/* =========================================================
+   CALENDÁRIO
+   ========================================================= */
+
+function openCalendar(){
+
+  const now=new Date();
+
+  openModal("📅 Calendário",`
+
+    <div style="text-align:center">
+
+      <h2>
+        ${now.toLocaleString("pt-PT",{month:"long"})}
+        ${now.getFullYear()}
+      </h2>
+
+      <div class="result">
+
+        ${now.toLocaleDateString("pt-PT",{
+          weekday:"long",
+          day:"numeric",
+          month:"long",
+          year:"numeric"
+        })}
+
+      </div>
+
+      <br>
+
+      <input
+        type="date"
+        value="${now.toISOString().slice(0,10)}"
+        style="padding:12px;border-radius:10px;background:#0b1222;color:var(--text);border:1px solid var(--border)">
+
+    </div>
+
+  `);
+
+}
+
+
+/* =========================================================
+   RELÓGIO
+   ========================================================= */
+
+function openClock(){
+
+  openModal("🕐 Relógio",`
+
+    <div style="text-align:center">
+
+      <div id="clockDisplay"
+           style="font-size:55px;font-weight:bold">
+      </div>
+
+      <div id="clockDate"
+           style="color:var(--muted);font-size:18px">
+      </div>
+
+    </div>
+
+  `);
+
+  const update=()=>{
+
+    const now=new Date();
+
+    const el=document.getElementById("clockDisplay");
+
+    if(!el)return;
+
+    el.textContent=now.toLocaleTimeString("pt-PT");
+
+    document.getElementById("clockDate").textContent=
+      now.toLocaleDateString("pt-PT",{
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      });
+
+  };
+
+  update();
+
+  const interval=setInterval(update,1000);
+
+  const oldClose=document.getElementById("closeModal").onclick;
+
+  document.getElementById("closeModal").onclick=()=>{
+    clearInterval(interval);
+    oldClose();
+    document.getElementById("closeModal").onclick=oldClose;
+  };
+
+}
+
+
+/* =========================================================
+   CRONÓMETRO
+   ========================================================= */
+
+function openStopwatch(){
+
+  let seconds=0;
+
+  openModal("⏱️ Cronómetro",`
+
+    <div style="text-align:center">
+
+      <div id="stopwatchDisplay"
+           style="font-size:55px;font-weight:bold">
+        00:00:00
+      </div>
+
+      <div class="gameButtons">
+
+        <button onclick="startStopwatch()">▶️ Iniciar</button>
+        <button onclick="pauseStopwatch()">⏸️ Pausar</button>
+        <button onclick="resetStopwatch()">🔄 Reiniciar</button>
+
+      </div>
+
+    </div>
+
+  `);
+
+  window.stopwatchSeconds=0;
+
+  window.startStopwatch=()=>{
+
+    if(stopwatchInterval)return;
+
+    stopwatchInterval=setInterval(()=>{
+
+      window.stopwatchSeconds++;
+
+      const h=Math.floor(window.stopwatchSeconds/3600);
+      const m=Math.floor((window.stopwatchSeconds%3600)/60);
+      const s=window.stopwatchSeconds%60;
+
+      const el=document.getElementById("stopwatchDisplay");
+
+      if(el){
+
+        el.textContent=
+          String(h).padStart(2,"0")+":"+
+          String(m).padStart(2,"0")+":"+
+          String(s).padStart(2,"0");
+
+      }
+
+    },1000);
+
+  };
+
+  window.pauseStopwatch=()=>{
+
+    clearInterval(stopwatchInterval);
+    stopwatchInterval=null;
+
+  };
+
+  window.resetStopwatch=()=>{
+
+    window.stopwatchSeconds=0;
+
+    document.getElementById("stopwatchDisplay")
+      .textContent="00:00:00";
+
+  };
+
+}
+
+
+/* =========================================================
+   TEMPORIZADOR
+   ========================================================= */
+
+function openTimer(){
+
+  openModal("⏳ Temporizador",`
+
+    <div class="field">
+      <label>Segundos</label>
+      <input id="timerSeconds" type="number" min="1" value="60">
+    </div>
+
+    <div id="timerDisplay"
+         style="text-align:center;font-size:50px;font-weight:bold">
+      01:00
+    </div>
+
+    <div class="gameButtons">
+      <button onclick="startTimer()">▶️ Iniciar</button>
+      <button onclick="stopTimer()">⏹️ Parar</button>
+    </div>
+
+  `);
+
+  window.timerValue=60;
+
+  window.startTimer=()=>{
+
+    clearInterval(timerInterval);
+
+    let value=parseInt(
+      document.getElementById("timerSeconds").value
+    );
+
+    if(!Number.isFinite(value)||value<1){
+      toast("Escolhe um tempo válido.");
+      return;
+    }
+
+    window.timerValue=value;
+
+    updateTimer();
+
+    timerInterval=setInterval(()=>{
+
+      window.timerValue--;
+
+      updateTimer();
+
+      if(window.timerValue<=0){
+
+        clearInterval(timerInterval);
+        timerInterval=null;
+
+        alert("⏰ Tempo terminado!");
+
+      }
+
+    },1000);
+
+  };
+
+  window.stopTimer=()=>{
+
+    clearInterval(timerInterval);
+    timerInterval=null;
+
+  };
+
+  function updateTimer(){
+
+    const m=Math.floor(window.timerValue/60);
+    const s=window.timerValue%60;
+
+    const el=document.getElementById("timerDisplay");
+
+    if(el){
+
+      el.textContent=
+        String(m).padStart(2,"0")+":"+
+        String(s).padStart(2,"0");
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   POMODORO
+   ========================================================= */
+
+function openPomodoro(){
+
+  openModal("🍅 Pomodoro",`
+
+    <div style="text-align:center">
+
+      <div id="pomoDisplay"
+           style="font-size:55px;font-weight:bold">
+        25:00
+      </div>
+
+      <p id="pomoStatus">Tempo de trabalho</p>
+
+      <div class="gameButtons">
+
+        <button onclick="pomoStart()">▶️ Iniciar</button>
+        <button onclick="pomoPause()">⏸️ Pausar</button>
+        <button onclick="pomoReset()">🔄 Reiniciar</button>
+
+      </div>
+
+    </div>
+
+  `);
+
+  window.pomoSeconds=25*60;
+  window.pomoInterval=null;
+  window.pomoWork=true;
+
+  window.pomoUpdate=()=>{
+
+    const m=Math.floor(window.pomoSeconds/60);
+    const s=window.pomoSeconds%60;
+
+    const el=document.getElementById("pomoDisplay");
+
+    if(!el)return;
+
+    el.textContent=
+      String(m).padStart(2,"0")+":"+
+      String(s).padStart(2,"0");
+
+    document.getElementById("pomoStatus").textContent=
+      window.pomoWork
+      ?"Tempo de trabalho"
+      :"Tempo de pausa";
+
+  };
+
+  window.pomoStart=()=>{
+
+    if(window.pomoInterval)return;
+
+    window.pomoInterval=setInterval(()=>{
+
+      window.pomoSeconds--;
+
+      if(window.pomoSeconds<=0){
+
+        window.pomoWork=!window.pomoWork;
+
+        window.pomoSeconds=
+          window.pomoWork
+          ?25*60
+          :5*60;
+
+        alert(
+          window.pomoWork
+          ?"Começou o trabalho!"
+          :"Hora da pausa!"
+        );
+
+      }
+
+      window.pomoUpdate();
+
+    },1000);
+
+  };
+
+  window.pomoPause=()=>{
+
+    clearInterval(window.pomoInterval);
+    window.pomoInterval=null;
+
+  };
+
+  window.pomoReset=()=>{
+
+    clearInterval(window.pomoInterval);
+    window.pomoInterval=null;
+    window.pomoWork=true;
+    window.pomoSeconds=25*60;
+
+    window.pomoUpdate();
+
+  };
+
+}
+
+
+/* =========================================================
+   CALCULADORA
+   ========================================================= */
+
+function openCalculator(){
+
+  openModal("🧮 Calculadora",`
+
+    <div class="calc">
+
+      <input id="calcDisplay"
+             class="calcDisplay"
+             value="0"
+             readonly>
+
+      <div class="calcKeys">
+
+        <button onclick="calcClear()">C</button>
+        <button onclick="calcBack()">⌫</button>
+        <button onclick="calcInput('%')">%</button>
+        <button class="op" onclick="calcInput('/')">÷</button>
+
+        <button onclick="calcInput('7')">7</button>
+        <button onclick="calcInput('8')">8</button>
+        <button onclick="calcInput('9')">9</button>
+        <button class="op" onclick="calcInput('*')">×</button>
+
+        <button onclick="calcInput('4')">4</button>
+        <button onclick="calcInput('5')">5</button>
+        <button onclick="calcInput('6')">6</button>
+        <button class="op" onclick="calcInput('-')">−</button>
+
+        <button onclick="calcInput('1')">1</button>
+        <button onclick="calcInput('2')">2</button>
+        <button onclick="calcInput('3')">3</button>
+        <button class="op" onclick="calcInput('+')">+</button>
+
+        <button onclick="calcInput('0')">0</button>
+        <button onclick="calcInput('.')">.</button>
+        <button onclick="calcSign()">±</button>
+        <button class="op" onclick="calcEqual()">=</button>
+
+      </div>
+
+    </div>
+
+  `);
+
+  window.calcExpression="0";
+
+}
+
+
+function calcDisplay(){
+
+  const el=document.getElementById("calcDisplay");
+
+  if(el)el.value=window.calcExpression;
+
+}
+
+function calcInput(x){
+
+  if(window.calcExpression==="0" && /[0-9.]/.test(x)){
+    window.calcExpression=x;
+  }else{
+    window.calcExpression+=x;
+  }
+
+  calcDisplay();
+
+}
+
+function calcClear(){
+
+  window.calcExpression="0";
+  calcDisplay();
+
+}
+
+function calcBack(){
+
+  window.calcExpression=
+    window.calcExpression.slice(0,-1)||"0";
+
+  calcDisplay();
+
+}
+
+function calcSign(){
+
+  if(window.calcExpression==="0")return;
+
+  if(/^-/.test(window.calcExpression)){
+    window.calcExpression=
+      window.calcExpression.slice(1);
+  }else{
+    window.calcExpression="-"+window.calcExpression;
+  }
+
+  calcDisplay();
+
+}
+
+
+function calcEqual(){
+
+  try{
+
+    const expression=window.calcExpression
+      .replace(/%/g,"/100");
+
+    const result=safeMath(expression);
+
+    if(!Number.isFinite(result)){
+      throw new Error();
+    }
+
+    window.calcExpression=String(
+      Math.round(result*1e12)/1e12
+    );
+
+  }catch{
+
+    window.calcExpression="Erro";
+
+  }
+
+  calcDisplay();
+
+}
+
+
+/* Parser simples e seguro */
+
+function safeMath(str){
+
+  if(!/^[0-9+\-*/().\s]+$/.test(str)){
+    throw new Error();
+  }
+
+  let i=0;
+
+  function skip(){
+    while(/\s/.test(str[i]||""))i++;
+  }
+
+  function number(){
+
+    skip();
+
+    const start=i;
+
+    while(/[0-9.]/.test(str[i]||""))i++;
+
+    const n=Number(str.slice(start,i));
+
+    if(!Number.isFinite(n)){
+      throw new Error();
+    }
+
+    return n;
+
+  }
+
+  function factor(){
+
+    skip();
+
+    if(str[i]==="+"){
+      i++;
+      return factor();
+    }
+
+    if(str[i]==="-"){
+      i++;
+      return -factor();
+    }
+
+    if(str[i]==="("){
+
+      i++;
+
+      const v=expression();
+
+      skip();
+
+      if(str[i]!==")")throw new Error();
+
+      i++;
+
+      return v;
+
+    }
+
+    return number();
+
+  }
+
+  function term(){
+
+    let v=factor();
+
+    while(true){
+
+      skip();
+
+      if(str[i]==="*"||str[i]==="/"){
+
+        const op=str[i++];
+
+        const b=factor();
+
+        if(op==="*")v*=b;
+        else{
+
+          if(b===0)throw new Error();
+
+          v/=b;
+
+        }
+
+      }else break;
+
+    }
+
+    return v;
+
+  }
+
+  function expression(){
+
+    let v=term();
+
+    while(true){
+
+      skip();
+
+      if(str[i]==="+"||str[i]==="-"){
+
+        const op=str[i++];
+        const b=term();
+
+        if(op==="+")v+=b;
+        else v-=b;
+
+      }else break;
+
+    }
+
+    return v;
+
+  }
+
+  const result=expression();
+
+  skip();
+
+  if(i!==str.length)throw new Error();
+
+  return result;
+
+}
+
+
+/* =========================================================
+   CIENTÍFICA
+   ========================================================= */
+
+function openScientific(){
+
+  openModal("🔬 Calculadora científica",`
+
+    <div class="field">
+      <label>Número</label>
+      <input id="sciInput" type="number" value="10">
+    </div>
+
+    <div class="toolGrid">
+
+      <button class="toolButton" onclick="sci('sqrt')">√x</button>
+      <button class="toolButton" onclick="sci('square')">x²</button>
+      <button class="toolButton" onclick="sci('cube')">x³</button>
+      <button class="toolButton" onclick="sci('inverse')">1/x</button>
+      <button class="toolButton" onclick="sci('sin')">sin</button>
+      <button class="toolButton" onclick="sci('cos')">cos</button>
+      <button class="toolButton" onclick="sci('tan')">tan</button>
+      <button class="toolButton" onclick="sci('log')">log</button>
+      <button class="toolButton" onclick="sci('ln')">ln</button>
+      <button class="toolButton" onclick="sci('abs')">|x|</button>
+
+    </div>
+
+    <div id="sciResult" class="result">
+      Resultado aparecerá aqui.
+    </div>
+
+  `);
+
+}
+
+function sci(operation){
+
+  const x=Number(document.getElementById("sciInput").value);
+
+  if(!Number.isFinite(x)){
+    document.getElementById("sciResult").textContent="Número inválido.";
+    return;
+  }
+
+  let r;
+
+  if(operation==="sqrt")r=Math.sqrt(x);
+  if(operation==="square")r=x*x;
+  if(operation==="cube")r=x*x*x;
+  if(operation==="inverse")r=x===0?NaN:1/x;
+  if(operation==="sin")r=Math.sin(x*Math.PI/180);
+  if(operation==="cos")r=Math.cos(x*Math.PI/180);
+  if(operation==="tan")r=Math.tan(x*Math.PI/180);
+  if(operation==="log")r=Math.log10(x);
+  if(operation==="ln")r=Math.log(x);
+  if(operation==="abs")r=Math.abs(x);
+
+  document.getElementById("sciResult").textContent=
+    Number.isFinite(r)
+    ? String(r)
+    :"Resultado inválido.";
+
+}
+
+
+/* =========================================================
+   PERCENTAGEM
+   ========================================================= */
+
+function openPercentage(){
+
+  openModal("💯 Percentagens",`
+
+    <div class="field">
+      <label>Percentagem</label>
+      <input id="pct" type="number" value="20">
+    </div>
+
+    <div class="field">
+      <label>Valor</label>
+      <input id="pctValue" type="number" value="100">
+    </div>
+
+    <button class="primary" onclick="calculatePercentage()">
+      Calcular
+    </button>
+
+    <div id="pctResult" class="result"></div>
+
+  `);
+
+}
+
+function calculatePercentage(){
+
+  const p=Number(document.getElementById("pct").value);
+  const v=Number(document.getElementById("pctValue").value);
+
+  document.getElementById("pctResult").textContent=
+    Number.isFinite(p)&&Number.isFinite(v)
+    ? `${p}% de ${v} = ${v*p/100}`
+    :"Valores inválidos.";
+
+}
+
+
+/* =========================================================
+   CONVERSORES
+   ========================================================= */
+
+function converter(title,units,convert){
+
+  openModal(title,`
+
+    <div class="field">
+      <label>Valor</label>
+      <input id="convValue" type="number" value="1">
+    </div>
+
+    <div class="field">
+      <label>De</label>
+      <select id="convFrom">
+        ${Object.keys(units).map(x=>`
+          <option value="${x}">${x}</option>
+        `).join("")}
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Para</label>
+      <select id="convTo">
+        ${Object.keys(units).map(x=>`
+          <option value="${x}">${x}</option>
+        `).join("")}
+      </select>
+    </div>
+
+    <button class="primary" onclick="doConvert()">
+      Converter
+    </button>
+
+    <div id="convResult" class="result"></div>
+
+  `);
+
+  window.currentConverter=convert;
+
+}
+
+
+function doConvert(){
+
+  const value=Number(document.getElementById("convValue").value);
+  const from=document.getElementById("convFrom").value;
+  const to=document.getElementById("convTo").value;
+
+  try{
+
+    const result=window.currentConverter(
+      value,
+      from,
+      to
+    );
+
+    document.getElementById("convResult").textContent=
+      String(result);
+
+  }catch{
+
+    document.getElementById("convResult").textContent=
+      "Valor inválido.";
+
+  }
+
+}
+
+
+function openLength(){
+
+  const units={
+    "mm":.001,
+    "cm":.01,
+    "m":1,
+    "km":1000,
+    "in":.0254,
+    "ft":.3048,
+    "yd":.9144,
+    "mi":1609.344
+  };
+
+  converter(
+    "📏 Comprimento",
+    units,
+    (v,f,t)=>v*units[f]/units[t]
+  );
+
+}
+
+
+function openWeight(){
+
+  const units={
+    "g":.001,
+    "kg":1,
+    "mg":.000001,
+    "lb":.45359237,
+    "oz":.0283495
+  };
+
+  converter(
+    "⚖️ Peso",
+    units,
+    (v,f,t)=>v*units[f]/units[t]
+  );
+
+}
+
+
+function openTemperature(){
+
+  openModal("🌡️ Temperatura",`
+
+    <div class="field">
+      <label>Valor</label>
+      <input id="tempValue" type="number" value="20">
+    </div>
+
+    <div class="field">
+      <label>De</label>
+      <select id="tempFrom">
+        <option>Celsius</option>
+        <option>Fahrenheit</option>
+        <option>Kelvin</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Para</label>
+      <select id="tempTo">
+        <option>Celsius</option>
+        <option>Fahrenheit</option>
+        <option>Kelvin</option>
+      </select>
+    </div>
+
+    <button class="primary" onclick="convertTemperature()">
+      Converter
+    </button>
+
+    <div id="tempResult" class="result"></div>
+
+  `);
+
+}
+
+
+function convertTemperature(){
+
+  let x=Number(document.getElementById("tempValue").value);
+  const from=document.getElementById("tempFrom").value;
+  const to=document.getElementById("tempTo").value;
+
+  if(from==="Fahrenheit")x=(x-32)*5/9;
+  if(from==="Kelvin")x=x-273.15;
+
+  if(to==="Fahrenheit")x=x*9/5+32;
+  if(to==="Kelvin")x=x+273.15;
+
+  document.getElementById("tempResult").textContent=
+    Number.isFinite(x)
+    ? String(x)
+    :"Valor inválido.";
+
+}
+
+
+function openData(){
+
+  const units={
+    "B":1,
+    "KB":1024,
+    "MB":1024**2,
+    "GB":1024**3,
+    "TB":1024**4
+  };
+
+  converter(
+    "💾 Dados",
+    units,
+    (v,f,t)=>v*units[f]/units[t]
+  );
+
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+function openWordCount(){
+
+  openModal("🔤 Contador de texto",`
+
+    <textarea id="textTool"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder="Escreve ou cola texto..."></textarea>
+
+    <br><br>
+
+    <button class="primary" onclick="countText()">
+      Contar
+    </button>
+
+    <div id="textResult" class="result"></div>
+
+  `);
+
+}
+
+
+function countText(){
+
+  const text=document.getElementById("textTool").value;
+
+  const words=text.trim()
+    ?text.trim().split(/\s+/).length
+    :0;
+
+  const chars=text.length;
+
+  const letters=(text.match(/[A-Za-zÀ-ÿ]/g)||[]).length;
+
+  const lines=text?text.split(/\n/).length:0;
+
+  document.getElementById("textResult").textContent=
+`Palavras: ${words}
+Caracteres: ${chars}
+Letras: ${letters}
+Linhas: ${lines}`;
+
+}
+
+
+function openCase(){
+
+  openModal("Aa Conversor de texto",`
+
+    <textarea id="caseText"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder="Texto..."></textarea>
+
+    <div class="toolGrid" style="margin-top:12px">
+
+      <button class="toolButton" onclick="caseConvert('upper')">
+        MAIÚSCULAS
+      </button>
+
+      <button class="toolButton" onclick="caseConvert('lower')">
+        minúsculas
+      </button>
+
+      <button class="toolButton" onclick="caseConvert('title')">
+        Capitalizar
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function caseConvert(type){
+
+  const el=document.getElementById("caseText");
+
+  if(type==="upper"){
+    el.value=el.value.toUpperCase();
+  }
+
+  if(type==="lower"){
+    el.value=el.value.toLowerCase();
+  }
+
+  if(type==="title"){
+
+    el.value=el.value.toLowerCase()
+      .replace(/\b\w/g,c=>c.toUpperCase());
+
+  }
+
+}
+
+
+function openCleanText(){
+
+  openModal("🧹 Limpar texto",`
+
+    <textarea id="cleanText"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder="Texto..."></textarea>
+
+    <button class="primary" onclick="
+      const e=document.getElementById('cleanText');
+      e.value=e.value
+        .split('\\n')
+        .map(x=>x.trim())
+        .filter(Boolean)
+        .join('\\n')
+        .replace(/[ \\t]+/g,' ');
+    ">
+      🧹 Limpar
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   GERADORES
+   ========================================================= */
+
+function openRandom(){
+
+  openModal("🎲 Número aleatório",`
+
+    <div class="field">
+      <label>Mínimo</label>
+      <input id="randomMin" type="number" value="1">
+    </div>
+
+    <div class="field">
+      <label>Máximo</label>
+      <input id="randomMax" type="number" value="100">
+    </div>
+
+    <button class="primary" onclick="generateRandom()">
+      Gerar
+    </button>
+
+    <div id="randomResult" class="result"></div>
+
+  `);
+
+}
+
+
+function generateRandom(){
+
+  let min=Number(document.getElementById("randomMin").value);
+  let max=Number(document.getElementById("randomMax").value);
+
+  if(min>max)[min,max]=[max,min];
+
+  const n=Math.floor(
+    Math.random()*(max-min+1)
+  )+min;
+
+  document.getElementById("randomResult").textContent=n;
+
+}
+
+
+function openDice(){
+
+  openModal("🎲 Dados",`
+
+    <div style="text-align:center">
+
+      <div id="diceResult"
+           style="font-size:90px">
+        🎲
+      </div>
+
+      <button class="primary" onclick="
+        document.getElementById('diceResult').textContent=
+        ['⚀','⚁','⚂','⚃','⚄','⚅'][Math.floor(Math.random()*6)];
+      ">
+        Lançar dado
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function openPasswordGenerator(){
+
+  openModal("🔑 Gerador de palavras-passe",`
+
+    <div class="field">
+      <label>Tamanho</label>
+      <input id="passLength" type="number" min="4" max="100" value="18">
+    </div>
+
+    <div class="toolGrid">
+
+      <label>
+        <input id="passUpper" type="checkbox" checked>
+        Maiúsculas
+      </label>
+
+      <label>
+        <input id="passNumbers" type="checkbox" checked>
+        Números
+      </label>
+
+      <label>
+        <input id="passSymbols" type="checkbox" checked>
+        Símbolos
+      </label>
+
+    </div>
+
+    <button class="primary" onclick="generatePassword()">
+      Gerar palavra-passe
+    </button>
+
+    <div id="generatedPass" class="result"></div>
+
+  `);
+
+}
+
+
+function generatePassword(){
+
+  const length=Math.min(
+    100,
+    Math.max(
+      4,
+      Number(document.getElementById("passLength").value)
+    )
+  );
+
+  let chars="abcdefghijklmnopqrstuvwxyz";
+
+  if(document.getElementById("passUpper").checked)
+    chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  if(document.getElementById("passNumbers").checked)
+    chars+="0123456789";
+
+  if(document.getElementById("passSymbols").checked)
+    chars+="!@#$%^&*()-_=+";
+
+  let result="";
+
+  for(let i=0;i<length;i++){
+    result+=chars[
+      Math.floor(Math.random()*chars.length)
+    ];
+  }
+
+  document.getElementById("generatedPass").textContent=result;
+
+}
+
+
+/* =========================================================
+   COFRE
+   ========================================================= */
+
+async function deriveKey(password,salt){
+
+  const enc=new TextEncoder();
+
+  const base=await crypto.subtle.importKey(
+    "raw",
+    enc.encode(password),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+
+  return crypto.subtle.deriveKey(
+    {
+      name:"PBKDF2",
+      salt,
+      iterations:250000,
+      hash:"SHA-256"
+    },
+    base,
+    {
+      name:"AES-GCM",
+      length:256
+    },
+    false,
+    ["encrypt","decrypt"]
+  );
+
+}
+
+
+async function encryptVault(text,password){
+
+  const enc=new TextEncoder();
+
+  const salt=crypto.getRandomValues(
+    new Uint8Array(16)
+  );
+
+  const iv=crypto.getRandomValues(
+    new Uint8Array(12)
+  );
+
+  const key=await deriveKey(password,salt);
+
+  const cipher=await crypto.subtle.encrypt(
+    {name:"AES-GCM",iv},
+    key,
+    enc.encode(text)
+  );
+
+  return {
+    salt:Array.from(salt),
+    iv:Array.from(iv),
+    data:Array.from(new Uint8Array(cipher))
+  };
+
+}
+
+
+async function decryptVault(obj,password){
+
+  const key=await deriveKey(
+    password,
+    new Uint8Array(obj.salt)
+  );
+
+  const plain=await crypto.subtle.decrypt(
+    {
+      name:"AES-GCM",
+      iv:new Uint8Array(obj.iv)
+    },
+    key,
+    new Uint8Array(obj.data)
+  );
+
+  return new TextDecoder().decode(plain);
+
+}
+
+
+function openVault(){
+
+  openModal("🔐 Cofre de palavras-passe",`
+
+    <div class="field">
+      <label>Palavra-passe do cofre</label>
+      <input id="vaultPassword" type="password">
+    </div>
+
+    <button class="primary" onclick="unlockVault()">
+      🔓 Abrir cofre
+    </button>
+
+    <div id="vaultArea"></div>
+
+  `);
+
+}
+
+
+async function unlockVault(){
+
+  const password=
+    document.getElementById("vaultPassword").value;
+
+  if(!password){
+    toast("Introduz a palavra-passe do cofre.");
+    return;
+  }
+
+  const u=userData();
+
+  if(!u.vault.length){
+
+    renderVault([]);
+
+    return;
+
+  }
+
+  try{
+
+    const decrypted=await decryptVault(
+      u.vault,
+      password
+    );
+
+    renderVault(JSON.parse(decrypted),password);
+
+  }catch{
+
+    toast("Palavra-passe do cofre incorreta.");
+
+  }
+
+}
+
+
+async function saveVault(items,password){
+
+  userData().vault=
+    await encryptVault(
+      JSON.stringify(items),
+      password
+    );
+
+  save();
+
+}
+
+
+function renderVault(items,password){
+
+  document.getElementById("vaultArea").innerHTML=`
+
+    <hr style="border-color:var(--border);margin:20px 0">
+
+    <form id="vaultForm">
+
+      <div class="field">
+        <label>Nome</label>
+        <input id="vaultName" required placeholder="Ex.: Google">
+      </div>
+
+      <div class="field">
+        <label>Utilizador</label>
+        <input id="vaultUser" placeholder="Utilizador ou email">
+      </div>
+
+      <div class="field">
+        <label>Palavra-passe</label>
+        <input id="vaultPass" type="password">
+      </div>
+
+      <button class="primary">
+        💾 Guardar no cofre
+      </button>
+
+    </form>
+
+    <div style="margin-top:20px">
+
+      ${
+        items.length
+        ?items.map((x,i)=>`
+
+          <div class="card" style="margin-bottom:10px">
+
+            <h3>🔐 ${escapeHTML(x.name)}</h3>
+
+            <p>
+              Utilizador:
+              ${escapeHTML(x.user || "—")}
+            </p>
+
+            <button
+              class="toolButton"
+              onclick="alert('Palavra-passe: '+${JSON.stringify(JSON.stringify(x.pass))})">
+              Mostrar palavra-passe
+            </button>
+
+            <button
+              class="toolButton"
+              onclick="deleteVaultItem(${i},${JSON.stringify(password)})">
+              🗑️ Apagar
+            </button>
+
+          </div>
+
+        `).join("")
+        :`<div class="empty">O cofre está vazio.</div>`
+      }
+
+    </div>
+
+  `;
+
+  document.getElementById("vaultForm").onsubmit=async e=>{
+
+    e.preventDefault();
+
+    items.push({
+      name:document.getElementById("vaultName").value,
+      user:document.getElementById("vaultUser").value,
+      pass:document.getElementById("vaultPass").value
+    });
+
+    await saveVault(items,password);
+
+    toast("Guardado no cofre!");
+
+    renderVault(items,password);
+
+  };
+
+}
+
+
+async function deleteVaultItem(i,password){
+
+  try{
+
+    const decrypted=await decryptVault(
+      userData().vault,
+      password
+    );
+
+    const items=JSON.parse(decrypted);
+
+    items.splice(i,1);
+
+    await saveVault(items,password);
+
+    renderVault(items,password);
+
+  }catch{
+
+    toast("Não foi possível apagar.");
+
+  }
+
+}
+
+
+/* =========================================================
+   CORES
+   ========================================================= */
+
+function openColors(){
+
+  openModal("🎨 Cores",`
+
+    <input
+      id="colorPicker"
+      type="color"
+      value="#00bfff"
+      style="width:100%;height:100px">
+
+    <div id="colorResult" class="result">
+      #00bfff
+    </div>
+
+    <br>
+
+    <button class="primary" onclick="randomColor()">
+      🎲 Cor aleatória
+    </button>
+
+  `);
+
+  document.getElementById("colorPicker").oninput=e=>{
+    document.getElementById("colorResult").textContent=
+      e.target.value;
+  };
+
+}
+
+
+function randomColor(){
+
+  const color="#"+Math.floor(
+    Math.random()*16777215
+  ).toString(16).padStart(6,"0");
+
+  document.getElementById("colorPicker").value=color;
+  document.getElementById("colorResult").textContent=color;
+
+}
+
+
+/* =========================================================
+   GRADIENTE
+   ========================================================= */
+
+function openGradient(){
+
+  openModal("🌈 Gerador de gradientes",`
+
+    <div class="field">
+      <label>Cor 1</label>
+      <input id="grad1" type="color" value="#00bfff">
+    </div>
+
+    <div class="field">
+      <label>Cor 2</label>
+      <input id="grad2" type="color" value="#7b2cff">
+    </div>
+
+    <div id="gradientPreview"
+      style="height:180px;border-radius:15px;margin:15px 0">
+    </div>
+
+    <button class="primary" onclick="makeGradient()">
+      Criar gradiente
+    </button>
+
+    <div id="gradientCode" class="result"></div>
+
+  `);
+
+  makeGradient();
+
+}
+
+
+function makeGradient(){
+
+  const a=document.getElementById("grad1").value;
+  const b=document.getElementById("grad2").value;
+
+  const css=
+    `linear-gradient(135deg, ${a}, ${b})`;
+
+  document.getElementById("gradientPreview").style.background=css;
+
+  document.getElementById("gradientCode").textContent=css;
+
+}
+
+
+/* =========================================================
+   DESENHO
+   ========================================================= */
+
+function openDrawing(){
+
+  openModal("🖌️ Desenho",`
+
+    <div style="text-align:center">
+
+      <canvas
+        id="drawCanvas"
+        width="700"
+        height="450"
+        style="max-width:100%;background:white;border-radius:12px;touch-action:none">
+      </canvas>
+
+      <br><br>
+
+      <input
+        id="drawColor"
+        type="color"
+        value="#000000">
+
+      <input
+        id="drawSize"
+        type="range"
+        min="1"
+        max="40"
+        value="5">
+
+      <button
+        class="toolButton"
+        onclick="clearDrawing()">
+        🗑️ Limpar
+      </button>
+
+    </div>
+
+  `);
+
+  const canvas=document.getElementById("drawCanvas");
+  const ctx=canvas.getContext("2d");
+
+  let drawing=false;
+
+  function pos(e){
+
+    const r=canvas.getBoundingClientRect();
+
+    return {
+      x:(e.clientX-r.left)*canvas.width/r.width,
+      y:(e.clientY-r.top)*canvas.height/r.height
+    };
+
+  }
+
+  canvas.onpointerdown=e=>{
+
+    drawing=true;
+
+    const p=pos(e);
+
+    ctx.beginPath();
+    ctx.moveTo(p.x,p.y);
+
+  };
+
+  canvas.onpointermove=e=>{
+
+    if(!drawing)return;
+
+    const p=pos(e);
+
+    ctx.lineWidth=
+      Number(document.getElementById("drawSize").value);
+
+    ctx.strokeStyle=
+      document.getElementById("drawColor").value;
+
+    ctx.lineCap="round";
+
+    ctx.lineTo(p.x,p.y);
+    ctx.stroke();
+
+  };
+
+  canvas.onpointerup=()=>drawing=false;
+  canvas.onpointerleave=()=>drawing=false;
+
+  window.clearDrawing=()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  };
+
+}
+
+
+/* =========================================================
+   JSON
+   ========================================================= */
+
+function openJSON(){
+
+  openModal("{} Formatador JSON",`
+
+    <textarea id="jsonInput"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder='{"nome":"WorldApps"}'></textarea>
+
+    <br>
+
+    <button class="primary" onclick="formatJSON()">
+      Formatar
+    </button>
+
+    <div id="jsonResult" class="result"></div>
+
+  `);
+
+}
+
+
+function formatJSON(){
+
+  try{
+
+    const obj=JSON.parse(
+      document.getElementById("jsonInput").value
+    );
+
+    document.getElementById("jsonResult").textContent=
+      JSON.stringify(obj,null,2);
+
+  }catch{
+
+    document.getElementById("jsonResult").textContent=
+      "JSON inválido.";
+
+  }
+
+}
+
+
+/* =========================================================
+   BASE64
+   ========================================================= */
+
+function openBase64(){
+
+  openModal("🔤 Base64",`
+
+    <textarea id="base64Input"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder="Texto..."></textarea>
+
+    <div class="gameButtons">
+
+      <button onclick="encode64()">Codificar</button>
+      <button onclick="decode64()">Descodificar</button>
+
+    </div>
+
+    <div id="base64Result" class="result"></div>
+
+  `);
+
+}
+
+
+function encode64(){
+
+  const text=document.getElementById("base64Input").value;
+
+  document.getElementById("base64Result").textContent=
+    btoa(unescape(encodeURIComponent(text)));
+
+}
+
+
+function decode64(){
+
+  try{
+
+    const text=document.getElementById("base64Input").value;
+
+    document.getElementById("base64Result").textContent=
+      decodeURIComponent(escape(atob(text)));
+
+  }catch{
+
+    document.getElementById("base64Result").textContent=
+      "Base64 inválido.";
+
+  }
+
+}
+
+
+/* =========================================================
+   URL
+   ========================================================= */
+
+function openURL(){
+
+  openModal("🔗 Codificador URL",`
+
+    <textarea id="urlInput"
+      class="big"
+      style="width:100%;padding:14px;border-radius:12px;background:#0b1222;color:var(--text);border:1px solid var(--border)"
+      placeholder="Texto ou URL..."></textarea>
+
+    <div class="gameButtons">
+
+      <button onclick="
+        document.getElementById('urlResult').textContent=
+        encodeURIComponent(document.getElementById('urlInput').value)
+      ">
+        Codificar
+      </button>
+
+      <button onclick="
+        try{
+          document.getElementById('urlResult').textContent=
+          decodeURIComponent(document.getElementById('urlInput').value)
+        }catch{
+          document.getElementById('urlResult').textContent='Texto inválido.'
+        }
+      ">
+        Descodificar
+      </button>
+
+    </div>
+
+    <div id="urlResult" class="result"></div>
+
+  `);
+
+}
+
+
+/* =========================================================
+   CONTRASTE
+   ========================================================= */
+
+function openContrast(){
+
+  openModal("◐ Contraste de cores",`
+
+    <div class="field">
+      <label>Cor do texto</label>
+      <input id="contrastA" type="color" value="#ffffff">
+    </div>
+
+    <div class="field">
+      <label>Cor do fundo</label>
+      <input id="contrastB" type="color" value="#000000">
+    </div>
+
+    <button class="primary" onclick="checkContrast()">
+      Verificar
+    </button>
+
+    <div id="contrastResult" class="result"></div>
+
+  `);
+
+}
+
+
+function luminance(hex){
+
+  const rgb=[
+    parseInt(hex.slice(1,3),16),
+    parseInt(hex.slice(3,5),16),
+    parseInt(hex.slice(5,7),16)
+  ].map(x=>{
+
+    x/=255;
+
+    return x<=.03928
+      ?x/12.92
+      :Math.pow((x+.055)/1.055,2.4);
+
+  });
+
+  return .2126*rgb[0]+
+         .7152*rgb[1]+
+         .0722*rgb[2];
+
+}
+
+
+function checkContrast(){
+
+  const a=luminance(
+    document.getElementById("contrastA").value
+  );
+
+  const b=luminance(
+    document.getElementById("contrastB").value
+  );
+
+  const ratio=
+    (Math.max(a,b)+.05)/
+    (Math.min(a,b)+.05);
+
+  let level="Fraco";
+
+  if(ratio>=4.5)level="Bom para texto normal";
+  if(ratio>=7)level="Excelente";
+
+  document.getElementById("contrastResult").textContent=
+    `Contraste: ${ratio.toFixed(2)}:1\n${level}`;
+
+}
+
+
+/* =========================================================
+   METRÓNOMO
+   ========================================================= */
+
+function openMetronome(){
+
+  openModal("🎵 Metrónomo",`
+
+    <div class="field">
+      <label>BPM</label>
+      <input id="bpm" type="number" min="30" max="240" value="100">
+    </div>
+
+    <div style="text-align:center">
+
+      <div id="metroBeat"
+           style="font-size:70px">
+        🎵
+      </div>
+
+      <button class="primary"
+              onclick="toggleMetro()">
+        ▶️ Iniciar
+      </button>
+
+    </div>
+
+  `);
+
+  window.metroInterval=null;
+  window.metroOn=false;
+
+}
+
+
+function toggleMetro(){
+
+  if(window.metroInterval){
+
+    clearInterval(window.metroInterval);
+    window.metroInterval=null;
+    return;
+
+  }
+
+  const bpm=Math.min(
+    240,
+    Math.max(
+      30,
+      Number(document.getElementById("bpm").value)
+    )
+  );
+
+  const beat=document.getElementById("metroBeat");
+
+  const audio=new AudioContext();
+
+  function tick(){
+
+    const osc=audio.createOscillator();
+    const gain=audio.createGain();
+
+    osc.frequency.value=800;
+
+    gain.gain.value=.05;
+
+    osc.connect(gain);
+    gain.connect(audio.destination);
+
+    osc.start();
+    osc.stop(audio.currentTime+.06);
+
+    beat.textContent="🔊";
+
+    setTimeout(()=>{
+      if(beat)beat.textContent="🎵";
+    },100);
+
+  }
+
+  tick();
+
+  window.metroInterval=setInterval(
+    tick,
+    60000/bpm
+  );
+
+}
+
+
+/* =========================================================
+   SNAKE
+   ========================================================= */
+
+function openSnake(){
+
+  openModal("🐍 Snake",`
+
+    <div class="gameArea">
+
+      <canvas
+        id="snakeCanvas"
+        class="gameCanvas"
+        width="400"
+        height="400">
+      </canvas>
+
+      <div>
+        Pontos: <strong id="snakeScore">0</strong>
+      </div>
+
+      <div class="gameButtons">
+        <button onclick="snakeStart()">▶️ Começar</button>
+      </div>
+
+      <p>
+        Usa as setas do teclado.
+      </p>
+
+    </div>
+
+  `);
+
+  const canvas=document.getElementById("snakeCanvas");
+  const ctx=canvas.getContext("2d");
+
+  let snake=[
+    {x:10,y:10},
+    {x:9,y:10},
+    {x:8,y:10}
+  ];
+
+  let food={x:15,y:15};
+  let dir={x:1,y:0};
+  let timer=null;
+  let score=0;
+
+  function draw(){
+
+    ctx.fillStyle="#050912";
+    ctx.fillRect(0,0,400,400);
+
+    ctx.fillStyle="#ff4050";
+    ctx.fillRect(
+      food.x*20,
+      food.y*20,
+      19,
+      19
+    );
+
+    ctx.fillStyle="#35d07f";
+
+    snake.forEach(p=>{
+      ctx.fillRect(
+        p.x*20,
+        p.y*20,
+        19,
+        19
+      );
+    });
+
+  }
+
+  function move(){
+
+    const head={
+      x:snake[0].x+dir.x,
+      y:snake[0].y+dir.y
+    };
+
+    if(
+      head.x<0||
+      head.y<0||
+      head.x>=20||
+      head.y>=20||
+      snake.some(p=>p.x===head.x&&p.y===head.y)
+    ){
+
+      clearInterval(timer);
+      timer=null;
+
+      alert("Game Over! Pontos: "+score);
+
+      return;
+
+    }
+
+    snake.unshift(head);
+
+    if(head.x===food.x&&head.y===food.y){
+
+      score++;
+
+      document.getElementById("snakeScore").textContent=score;
+
+      do{
+
+        food={
+          x:Math.floor(Math.random()*20),
+          y:Math.floor(Math.random()*20)
+        };
+
+      }while(
+        snake.some(p=>p.x===food.x&&p.y===food.y)
+      );
+
+    }else{
+
+      snake.pop();
+
+    }
+
+    draw();
+
+  }
+
+  window.snakeStart=()=>{
+
+    clearInterval(timer);
+
+    snake=[
+      {x:10,y:10},
+      {x:9,y:10},
+      {x:8,y:10}
+    ];
+
+    food={x:15,y:15};
+    dir={x:1,y:0};
+    score=0;
+
+    document.getElementById("snakeScore").textContent=0;
+
+    draw();
+
+    timer=setInterval(move,120);
+
+  };
+
+  const key=e=>{
+
+    if(e.key==="ArrowUp"&&dir.y!==1)
+      dir={x:0,y:-1};
+
+    if(e.key==="ArrowDown"&&dir.y!==-1)
+      dir={x:0,y:1};
+
+    if(e.key==="ArrowLeft"&&dir.x!==1)
+      dir={x:-1,y:0};
+
+    if(e.key==="ArrowRight"&&dir.x!==-1)
+      dir={x:1,y:0};
+
+  };
+
+  document.addEventListener("keydown",key);
+
+  draw();
+
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+function openMemory(){
+
+  const symbols=[
+    "🍎","🚀","🐱","⚽",
+    "🌎","🔥","🎮","⭐"
+  ];
+
+  const deck=[...symbols,...symbols]
+    .sort(()=>Math.random()-.5);
+
+  let first=null;
+  let lock=false;
+  let pairs=0;
+
+  openModal("🧠 Memória",`
+
+    <div class="memoryGrid" id="memoryGrid">
+
+      ${deck.map((s,i)=>`
+
+        <button
+          class="memoryCard"
+          data-index="${i}"
+          onclick="memoryClick(${i})">
+          ${s}
+        </button>
+
+      `).join("")}
+
+    </div>
+
+    <p id="memoryStatus"
+       style="text-align:center">
+       Encontra todos os pares.
+    </p>
+
+  `);
+
+  window.memoryClick=i=>{
+
+    if(lock)return;
+
+    const cards=
+      [...document.querySelectorAll(".memoryCard")];
+
+    const card=cards[i];
+
+    if(card.classList.contains("open"))return;
+
+    card.classList.add("open");
+
+    if(first===null){
+
+      first=i;
+      return;
+
+    }
+
+    const second=i;
+
+    if(deck[first]===deck[second]){
+
+      pairs++;
+
+      first=null;
+
+      if(pairs===symbols.length){
+
+        document.getElementById("memoryStatus")
+          .textContent="🎉 Ganhaste!";
+
+      }
+
+    }else{
+
+      lock=true;
+
+      setTimeout(()=>{
+
+        cards[first].classList.remove("open");
+        cards[second].classList.remove("open");
+
+        first=null;
+        lock=false;
+
+      },700);
+
+    }
+
+  };
+
+}
+
+
+/* =========================================================
+   PONTARIA
+   ========================================================= */
+
+function openAim(){
+
+  openModal("🎯 Pontaria",`
+
+    <div style="
+      height:400px;
+      position:relative;
+      background:#050912;
+      border-radius:15px;
+      overflow:hidden"
+      id="aimArea">
+
+      <button
+        id="aimTarget"
+        style="
+          position:absolute;
+          width:55px;
+          height:55px;
+          border-radius:50%;
+          border:5px solid white;
+          background:#ff4050">
+      </button>
+
+    </div>
+
+    <div style="text-align:center;margin-top:10px">
+      Pontos: <strong id="aimScore">0</strong>
+    </div>
+
+  `);
+
+  let score=0;
+
+  const area=document.getElementById("aimArea");
+  const target=document.getElementById("aimTarget");
+
+  function move(){
+
+    const maxX=Math.max(
+      0,
+      area.clientWidth-55
+    );
+
+    const maxY=Math.max(
+      0,
+      area.clientHeight-55
+    );
+
+    target.style.left=
+      Math.random()*maxX+"px";
+
+    target.style.top=
+      Math.random()*maxY+"px";
+
+  }
+
+  target.onclick=()=>{
+
+    score++;
+
+    document.getElementById("aimScore")
+      .textContent=score;
+
+    move();
+
+  };
+
+  move();
+
+}
+
+
+/* =========================================================
+   PUZZLE 15
+   ========================================================= */
+
+function openPuzzle(){
+
+  let board=[
+    1,2,3,4,
+    5,6,7,8,
+    9,10,11,12,
+    13,14,15,0
+  ];
+
+  function shuffle(){
+
+    for(let i=0;i<200;i++){
+
+      const zero=board.indexOf(0);
+      const moves=neighbors(zero);
+
+      const move=
+        moves[Math.floor(Math.random()*moves.length)];
+
+      [board[zero],board[move]]=
+        [board[move],board[zero]];
+
+    }
+
+  }
+
+  function neighbors(i){
+
+    const result=[];
+    const row=Math.floor(i/4);
+    const col=i%4;
+
+    if(row>0)result.push(i-4);
+    if(row<3)result.push(i+4);
+    if(col>0)result.push(i-1);
+    if(col<3)result.push(i+1);
+
+    return result;
+
+  }
+
+  shuffle();
+
+  openModal("🧩 Puzzle 15",`
+
+    <div class="bigGameBoard" id="puzzleBoard"></div>
+
+    <div style="text-align:center;margin-top:15px">
+      <button class="primary" onclick="puzzleShuffle()">
+        🔀 Misturar
+      </button>
+    </div>
+
+  `);
+
+  window.renderPuzzle=()=>{
+
+    document.getElementById("puzzleBoard").innerHTML=
+      board.map((n,i)=>`
+
+        <button
+          class="tile2048"
+          onclick="puzzleMove(${i})"
+          style="${n===0?"opacity:0":""}">
+          ${n||""}
+        </button>
+
+      `).join("");
+
+  };
+
+  window.puzzleMove=i=>{
+
+    const zero=board.indexOf(0);
+
+    if(neighbors(zero).includes(i)){
+
+      [board[zero],board[i]]=
+        [board[i],board[zero]];
+
+      renderPuzzle();
+
+      if(board.join(",")===
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0"){
+
+        setTimeout(
+          ()=>alert("🎉 Resolvido!"),
+          100
+        );
+
+      }
+
+    }
+
+  };
+
+  window.puzzleShuffle=()=>{
+    shuffle();
+    renderPuzzle();
+  };
+
+  renderPuzzle();
+
+}
+
+
+/* =========================================================
+   CARTAS
+   ========================================================= */
+
+function openCards(){
+
+  let current=Math.floor(Math.random()*13)+1;
+  let score=0;
+
+  openModal("🃏 Cartas",`
+
+    <div style="text-align:center">
+
+      <div id="cardValue"
+           style="font-size:80px">
+        ${current}
+      </div>
+
+      <p>
+        A próxima carta será maior ou menor?
+      </p>
+
+      <button class="toolButton"
+              onclick="cardGuess('higher')">
+        ⬆️ Maior
+      </button>
+
+      <button class="toolButton"
+              onclick="cardGuess('lower')">
+        ⬇️ Menor
+      </button>
+
+      <div class="result">
+        Pontos: <span id="cardScore">0</span>
+      </div>
+
+    </div>
+
+  `);
+
+  window.cardGuess=guess=>{
+
+    const next=Math.floor(Math.random()*13)+1;
+
+    const correct=
+      guess==="higher"
+      ?next>current
+      :next<current;
+
+    current=next;
+
+    document.getElementById("cardValue")
+      .textContent=current;
+
+    if(correct){
+      score++;
+    }else{
+      score=0;
+    }
+
+    document.getElementById("cardScore")
+      .textContent=score;
+
+  };
+
+}
+
+
+/* =========================================================
+   2048
+   ========================================================= */
+
+function open2048(){
+
+  let board=Array(16).fill(0);
+
+  function addTile(){
+
+    const empty=[];
+
+    board.forEach((v,i)=>{
+      if(v===0)empty.push(i);
+    });
+
+    if(!empty.length)return;
+
+    const i=
+      empty[Math.floor(Math.random()*empty.length)];
+
+    board[i]=Math.random()<.9?2:4;
+
+  }
+
+  function draw(){
+
+    document.getElementById("board2048").innerHTML=
+      board.map(v=>`
+        <div class="tile2048">
+          ${v||""}
+        </div>
+      `).join("");
+
+  }
+
+  function moveLeft(){
+
+    let moved=false;
+
+    for(let r=0;r<4;r++){
+
+      const row=board.slice(r*4,r*4+4);
+
+      const values=row.filter(Boolean);
+
+      for(let i=0;i<values.length-1;i++){
+
+        if(values[i]===values[i+1]){
+
+          values[i]*=2;
+          values.splice(i+1,1);
+          moved=true;
+
+        }
+
+      }
+
+      while(values.length<4)
+        values.push(0);
+
+      for(let c=0;c<4;c++){
+
+        if(board[r*4+c]!==values[c])
+          moved=true;
+
+        board[r*4+c]=values[c];
+
+      }
+
+    }
+
+    return moved;
+
+  }
+
+  function moveRight(){
+
+    board=[
+      ...board
+    ];
+
+    let changed=false;
+
+    for(let r=0;r<4;r++){
+
+      const row=
+        board.slice(r*4,r*4+4)
+          .filter(Boolean)
+          .reverse();
+
+      for(let i=0;i<row.length-1;i++){
+
+        if(row[i]===row[i+1]){
+          row[i]*=2;
+          row.splice(i+1,1);
+        }
+
+      }
+
+      while(row.length<4)row.push(0);
+
+      row.reverse();
+
+      for(let c=0;c<4;c++){
+
+        const index=r*4+c;
+
+        if(board[index]!==row[c])
+          changed=true;
+
+        board[index]=row[c];
+
+      }
+
+    }
+
+    return changed;
+
+  }
+
+  function transpose(){
+
+    const b=Array(16).fill(0);
+
+    for(let r=0;r<4;r++)
+      for(let c=0;c<4;c++)
+        b[c*4+r]=board[r*4+c];
+
+    board=b;
+
+  }
+
+  function move(direction){
+
+    let changed=false;
+
+    if(direction==="left")
+      changed=moveLeft();
+
+    if(direction==="right")
+      changed=moveRight();
+
+    if(direction==="up"){
+
+      transpose();
+      changed=moveLeft()||changed;
+      transpose();
+
+    }
+
+    if(direction==="down"){
+
+      transpose();
+      changed=moveRight()||changed;
+      transpose();
+
+    }
+
+    if(changed){
+
+      addTile();
+      draw();
+
+      if(board.includes(2048)){
+
+        setTimeout(
+          ()=>alert("🎉 Chegaste a 2048!"),
+          50
+        );
+
+      }
+
+    }
+
+  }
+
+  openModal("🔢 2048",`
+
+    <div class="bigGameBoard" id="board2048"></div>
+
+    <p style="text-align:center">
+      Usa as setas do teclado.
+    </p>
+
+    <div style="text-align:center">
+      <button class="primary" onclick="restart2048()">
+        🔄 Novo jogo
+      </button>
+    </div>
+
+  `);
+
+  window.restart2048=()=>{
+
+    board=Array(16).fill(0);
+
+    addTile();
+    addTile();
+
+    draw();
+
+  };
+
+  const key=e=>{
+
+    if(
+      ["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"]
+      .includes(e.key)
+    ){
+
+      e.preventDefault();
+
+      if(e.key==="ArrowLeft")move("left");
+      if(e.key==="ArrowRight")move("right");
+      if(e.key==="ArrowUp")move("up");
+      if(e.key==="ArrowDown")move("down");
+
+    }
+
+  };
+
+  document.addEventListener("keydown",key);
+
+  restart2048();
+
+}
+
+
+/* =========================================================
+   JOGO DO GALO
+   ========================================================= */
+
+function openTicTacToe(){
+
+  let board=Array(9).fill("");
+
+  openModal("❌ Jogo do Galo",`
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(3,80px);
+      gap:8px;
+      justify-content:center"
+      id="tttBoard">
+    </div>
+
+    <div id="tttStatus"
+         style="text-align:center;margin:15px">
+      A tua vez: X
+    </div>
+
+    <div style="text-align:center">
+      <button class="primary"
+              onclick="restartTTT()">
+        🔄 Reiniciar
+      </button>
+    </div>
+
+  `);
+
+  function winner(b){
+
+    const wins=[
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ];
+
+    for(const w of wins){
+
+      if(
+        b[w[0]] &&
+        b[w[0]]===b[w[1]] &&
+        b[w[1]]===b[w[2]]
+      ){
+        return b[w[0]];
+      }
+
+    }
+
+    return null;
+
+  }
+
+  function draw(){
+
+    document.getElementById("tttBoard").innerHTML=
+      board.map((v,i)=>`
+
+        <button
+          onclick="tttMove(${i})"
+          style="
+            width:80px;
+            height:80px;
+            font-size:35px;
+            border:0;
+            border-radius:12px;
+            background:var(--card2);
+            color:var(--text)">
+          ${v}
+        </button>
+
+      `).join("");
+
+  }
+
+  window.tttMove=i=>{
+
+    if(board[i])return;
+
+    board[i]="X";
+
+    let win=winner(board);
+
+    if(win){
+
+      document.getElementById("tttStatus")
+        .textContent="🎉 Ganhaste!";
+
+      draw();
+
+      return;
+
+    }
+
+    if(board.every(Boolean)){
+
+      document.getElementById("tttStatus")
+        .textContent="Empate!";
+
+      draw();
+
+      return;
+
+    }
+
+    let empty=board
+      .map((v,i)=>v?null:i)
+      .filter(v=>v!==null);
+
+    const ai=
+      empty[Math.floor(Math.random()*empty.length)];
+
+    board[ai]="O";
+
+    win=winner(board);
+
+    if(win){
+
+      document.getElementById("tttStatus")
+        .textContent="O computador ganhou.";
+
+    }else if(board.every(Boolean)){
+
+      document.getElementById("tttStatus")
+        .textContent="Empate!";
+
+    }
+
+    draw();
+
+  };
+
+  window.restartTTT=()=>{
+
+    board=Array(9).fill("");
+    document.getElementById("tttStatus")
+      .textContent="A tua vez: X";
+
+    draw();
+
+  };
+
+  draw();
+
+}
+
+
+/* =========================================================
+   PEDRA PAPEL TESOURA
+   ========================================================= */
+
+function openRPS(){
+
+  openModal("✊ Pedra Papel Tesoura",`
+
+    <div style="text-align:center">
+
+      <div class="gameButtons">
+
+        <button onclick="rps('pedra')">✊ Pedra</button>
+        <button onclick="rps('papel')">📄 Papel</button>
+        <button onclick="rps('tesoura')">✂️ Tesoura</button>
+
+      </div>
+
+      <div id="rpsResult" class="result">
+        Escolhe uma opção.
+      </div>
+
+    </div>
+
+  `);
+
+  window.rps=choice=>{
+
+    const choices=[
+      "pedra",
+      "papel",
+      "tesoura"
+    ];
+
+    const cpu=
+      choices[Math.floor(Math.random()*3)];
+
+    let result;
+
+    if(choice===cpu){
+
+      result="Empate!";
+
+    }else if(
+      (choice==="pedra"&&cpu==="tesoura")||
+      (choice==="papel"&&cpu==="pedra")||
+      (choice==="tesoura"&&cpu==="papel")
+    ){
+
+      result="🎉 Ganhaste!";
+
+    }else{
+
+      result="😅 Perdeste!";
+
+    }
+
+    document.getElementById("rpsResult")
+      .textContent=
+      `Tu: ${choice}\nComputador: ${cpu}\n${result}`;
+
+  };
+
+}
+
+
+/* =========================================================
+   REAÇÃO
+   ========================================================= */
+
+function openReaction(){
+
+  openModal("⚡ Teste de reação",`
+
+    <div style="text-align:center">
+
+      <button
+        id="reactionButton"
+        style="
+          width:100%;
+          min-height:250px;
+          border:0;
+          border-radius:20px;
+          background:#d33;
+          color:white;
+          font-size:30px">
+        Clica para começar
+      </button>
+
+      <div id="reactionResult"
+           class="result">
+      </div>
+
+    </div>
+
+  `);
+
+  const btn=document.getElementById("reactionButton");
+
+  let start=0;
+  let waiting=false;
+  let timeout=null;
+
+  btn.onclick=()=>{
+
+    if(waiting){
+
+      const ms=performance.now()-start;
+
+      btn.style.background="#1d8f58";
+      btn.textContent="Boa! Outra vez";
+
+      document.getElementById("reactionResult")
+        .textContent=
+        `Tempo de reação: ${Math.round(ms)} ms`;
+
+      waiting=false;
+
+      return;
+
+    }
+
+    btn.style.background="#d33";
+    btn.textContent="Espera...";
+
+    waiting=true;
+
+    timeout=setTimeout(()=>{
+
+      start=performance.now();
+
+      btn.style.background="#27b866";
+      btn.textContent="CLICA AGORA!";
+
+    },1000+Math.random()*3000);
+
+  };
+
+}
+
+
+/* =========================================================
+   CLICK TEST
+   ========================================================= */
+
+function openClickTest(){
+
+  openModal("🖱️ Click Test",`
+
+    <div style="text-align:center">
+
+      <h2 id="clickScore">0</h2>
+
+      <button
+        id="clickButton"
+        class="primary"
+        style="height:180px;font-size:35px">
+        CLICA!
+      </button>
+
+      <p id="clickTimer">
+        10 segundos
+      </p>
+
+      <button
+        class="toolButton"
+        onclick="startClickTest()">
+        ▶️ Começar
+      </button>
+
+    </div>
+
+  `);
+
+  window.clickCount=0;
+  window.clickTime=10;
+  window.clickInterval=null;
+
+  const button=document.getElementById("clickButton");
+
+  button.onclick=()=>{
+
+    if(window.clickInterval){
+      window.clickCount++;
+
+      document.getElementById("clickScore")
+        .textContent=window.clickCount;
+    }
+
+  };
+
+  window.startClickTest=()=>{
+
+    clearInterval(window.clickInterval);
+
+    window.clickCount=0;
+    window.clickTime=10;
+
+    document.getElementById("clickScore")
+      .textContent=0;
+
+    window.clickInterval=setInterval(()=>{
+
+      window.clickTime--;
+
+      document.getElementById("clickTimer")
+        .textContent=
+        `${window.clickTime} segundos`;
+
+      if(window.clickTime<=0){
+
+        clearInterval(window.clickInterval);
+        window.clickInterval=null;
+
+        alert(
+          `Terminou!\nCliques: ${window.clickCount}\nCPS: ${(window.clickCount/10).toFixed(2)}`
+        );
+
+      }
+
+    },1000);
+
+  };
+
+}
+
+
+/* =========================================================
+   EXPORTAR
+   ========================================================= */
+
+function exportData(){
+
+  const copy={
+    ...data,
+    currentUser:null
+  };
+
+  const blob=new Blob(
+    [JSON.stringify(copy,null,2)],
+    {type:"application/json"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;
+  a.download="worldapps-backup.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  toast("Backup criado.");
+
+}
+
+
+/* =========================================================
+   UTILITÁRIOS
+   ========================================================= */
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+
+  el.textContent=message;
+  el.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    el.classList.remove("show");
+  },2200);
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return String(value)
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'");
+
+}
+
+
+/* =========================================================
+   INICIAR
+   ========================================================= */
+
+setupAccount();
+
+if(data.currentUser && data.users[data.currentUser]){
+
+  startApp();
+
+}
 
 </script>
 
