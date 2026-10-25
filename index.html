@@ -3,214 +3,569 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101827">
-<title>WorldApps V5 — World Apps Technology</title>
+<meta name="theme-color" content="#101322">
+<meta name="description" content="WorldApps V5 — Aplicações úteis num só lugar.">
+<title>WorldApps V5 | World Apps Technology</title>
+
+<!-- Biblioteca necessária para gerar QR Codes -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 :root {
-    --bg: #0b1020;
-    --panel: #141c30;
-    --panel2: #1b2640;
-    --text: #f5f7ff;
-    --muted: #9aa9c5;
-    --accent: #00c8ff;
-    --border: #293550;
-    --danger: #ff5263;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    transition: background .2s, color .2s;
+  --bg: #101322;
+  --panel: #191e32;
+  --panel2: #222941;
+  --text: #f5f7ff;
+  --muted: #a9b2cc;
+  --accent: #6c63ff;
+  --accent2: #00d4ff;
+  --border: #303853;
+  --danger: #ff5263;
 }
 
 body.light {
-    --bg: #f1f5fb;
-    --panel: #ffffff;
-    --panel2: #e8eef8;
-    --text: #172238;
-    --muted: #64748b;
-    --accent: #007dbb;
-    --border: #d6dfed;
+  --bg: #f2f5fb;
+  --panel: #ffffff;
+  --panel2: #e8edf7;
+  --text: #182039;
+  --muted: #5d6680;
+  --accent: #5548ed;
+  --accent2: #008db5;
+  --border: #d8dfed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background .2s, color .2s;
 }
 
 button, input, textarea, select {
-    font: inherit;
+  font: inherit;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 3px;
 }
 
-header {
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -.8px;
 }
 
-.logo {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, #00c8ff, #615cff);
-    border-radius: 14px;
-    display: grid;
-    place-items: center;
-    font-weight: 900;
-    font-size: 20px;
-    color: white;
+.brand span {
+  color: var(--accent2);
 }
 
-.brand h1 {
-    margin: 0;
-    font-size: 20px;
+.brand-sub {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.brand small {
-    display: block;
-    margin-top: 4px;
-    color: var(--muted);
+.primary, .secondary, .danger, .theme-btn {
+  border: 0;
+  border-radius: 11px;
+  padding: 12px 17px;
+  font-weight: 700;
+  transition: transform .15s, opacity .15s;
+}
+
+.primary:hover, .secondary:hover, .danger:hover, .theme-btn:hover {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--accent), #827bff);
+  color: white;
+}
+
+.secondary, .theme-btn {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.danger {
+  background: var(--danger);
+  color: white;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.small {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+header {
+  min-height: 76px;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
 }
 
 .header-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    border: 1px solid var(--border);
-    background: var(--panel2);
-    color: var(--text);
-    padding: 10px 14px;
-    border-radius: 10px;
-    transition: .2s;
-}
-
-.btn:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-}
-
-.btn.primary {
-    background: var(--accent);
-    color: #061321;
-    border-color: transparent;
-    font-weight: bold;
-}
-
-.btn.danger {
-    color: var(--danger);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
 }
 
 main {
-    width: min(1200px, 92%);
-    margin: 28px auto 50px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 20px 60px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background:
+    radial-gradient(ellipse at top, #30286d 0%, transparent 55%),
+    var(--bg);
+}
+
+.welcome-box {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  background: var(--panel);
+  padding: 45px 30px;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  box-shadow: 0 25px 90px #0003;
+}
+
+.welcome h1 {
+  font-size: clamp(28px, 6vw, 45px);
+  margin: 25px 0 12px;
+}
+
+.welcome p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.welcome-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.welcome-buttons button {
+  min-height: 58px;
+}
+
+.login-box {
+  max-width: 430px;
+  margin: 35px auto;
+  padding: 27px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.login-box h2 {
+  margin-top: 0;
+}
+
+.login-box button {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .hero {
-    padding: 30px;
-    background: linear-gradient(125deg, var(--panel), var(--panel2));
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    margin-bottom: 25px;
+  padding: 28px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #28245a, #163d55);
+  margin-bottom: 25px;
 }
 
-.hero h2 {
-    margin: 0 0 12px;
-    font-size: clamp(27
-
-Já está, aqui tens o index completo da WorldApps V5, com a marca World Apps Technology (WAT), botão de tema, aplicações úteis, QR Code e contas locais no navegador (sem autenticação online).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.hero h1 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 0 0 10px;
+}
+
+.hero p {
+  color: #d0dcf6;
+  line-height: 1.7;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.search-row input {
+  margin: 0;
+}
+
+.section-title {
+  margin: 30px 0 16px;
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 15px;
+}
+
+.app-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 150px;
+  transition: transform .2s, border-color .2s;
+}
+
+.app-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.app-icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.app-card h3 {
+  margin: 0 0 9px;
+}
+
+.app-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.app-card button {
+  margin-top: 7px;
+}
+
+.tool-panel {
+  margin-top: 25px;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+.tool-panel h2 {
+  margin-top: 0;
+}
+
+.tool-panel button {
+  margin: 4px 4px 4px 0;
+}
+
+.tool-panel input {
+  max-width: 600px;
+}
+
+#qrcode {
+  display: inline-block;
+  padding: 12px;
+  margin-top: 15px;
+  background: white;
+  border-radius: 8px;
+  min-height: 10px;
+}
+
+#qrcode img, #qrcode canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.result {
+  margin-top: 12px;
+  padding: 13px;
+  border-radius: 10px;
+  background: var(--panel2);
+  overflow-wrap: anywhere;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 10px;
+  background: var(--panel2);
+}
+
+.todo-item span {
+  overflow-wrap: anywhere;
+}
+
+.todo-item button {
+  flex-shrink: 0;
+}
+
+#ticBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 90px);
+  gap: 7px;
+  margin: 15px 0;
+}
+
+#ticBoard button {
+  height: 90px;
+  font-size: 35px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel2);
+  color: var(--text);
+}
+
+@media (max-width: 520px) {
+  .welcome-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    padding: 15px;
+  }
+
+  main {
+    padding: 20px 13px 40px;
+  }
+
+  .hero {
+    padding: 22px;
+  }
+
+  #ticBoard {
+    grid-template-columns: repeat(3, min(25vw, 90px));
+  }
+
+  #ticBoard button {
+    height: min(25vw, 90px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ECRÃ DE BOAS-VINDAS -->
+<section id="welcomeScreen" class="welcome">
+  <div class="welcome-box">
+    <div class="brand">World<span>Apps</span> V5</div>
+    <div class="brand-sub">World Apps Technology · WAT</div>
+
+    <h1>Bem-vindo à World Apps Technology!</h1>
+
+    <p>
+      O teu espaço digital com aplicações úteis, ferramentas,
+      jogos e muito mais num único lugar.
+    </p>
+
+    <div class="welcome-buttons">
+      <button class="primary" onclick="showLogin()">
+        🔐 Iniciar Sessão
+      </button>
+
+      <button class="secondary" onclick="enterApps()">
+        🚀 Entrar na WorldApps
+      </button>
+    </div>
+
+    <p class="small">
+      Escolhe uma opção para continuar.
+    </p>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+      🌓 Mudar Tema
+    </button>
+  </div>
+</section>
+
+<!-- ECRÃ DE LOGIN -->
+<section id="loginScreen" class="hidden">
+  <header>
+    <div>
+      <div class="brand">World<span>Apps</span> V5</div>
+      <div class="brand-sub">World Apps Technology</div>
+    </div>
+
+    <button class="secondary" onclick="showWelcome()">
+      ← Voltar
+    </button>
+  </header>
+
+  <main>
+    <div class="login-box">
+      <h2 id="loginTitle">Iniciar Sessão</h2>
+
+      <p class="small">
+        Entra na tua conta local ou cria uma conta neste navegador.
+      </p>
+
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input id="email" type="email"
+               placeholder="nome@email.com" required>
+
+        <label for="password">Palavra-passe</label>
+        <input id="password" type="password"
+               placeholder="A tua palavra-passe" required
+               minlength="6">
+
+        <button class="primary" type="submit" id="loginSubmit">
+          Iniciar Sessão
+        </button>
+      </form>
+
+      <button class="secondary" id="registerButton"
+              onclick="setRegister(true)">
+        Criar Conta
+      </button>
+
+      <button class="secondary" id="cancelRegister"
+              onclick="setRegister(false)">
+        Já tenho conta
+      </button>
+
+      <div id="loginMessage" class="result hidden"></div>
+
+      <p class="small">
+        Importante: esta demonstração guarda as contas neste navegador.
+        Não é autenticação online e não sincroniza contas entre dispositivos.
+        Não utilizes palavras-passe importantes.
+      </p>
+    </div>
+  </main>
+</section>
+
+<!-- APLICAÇÃO PRINCIPAL -->
+<div id="appScreen" class="hidden">
+
+  <header>
+    <div>
+      <div class="brand">World<span>Apps</span> V5</div>
+      <div class="brand-sub">World Apps Technology · WAT</div>
+    </div>
+
+    <div class="header-actions">
+      <span id="userLabel" class="small"></span>
+
+      <button class="theme-btn" onclick="toggleTheme()">
+        🌓 Tema
+      </button>
+
+      <button class="secondary" onclick="logout()">
+        Sair
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>O teu mundo de aplicações 🌍</h1>
+
+      <p>
+        Descobre ferramentas úteis, cria QR Codes, organiza tarefas
+        e diverte-te com os nossos jogos.
+      </p>
+
+      <button class="primary" onclick="showTool('qr')">
+        ✨ Criar QR Code
+      </button>
+    </section>
+
+    <div class="search-row">
+      <input id="appSearch"
+             placeholder="🔎 Pesquisar aplicações..."
+             oninput="filterApps()">
+    </div>
+
+    <h2 class="section-title">📱 Aplicações</h2>
+
+    <div class="grid" id="appsGrid">
+
+      <article class="app-card" data-search="qr code criar código">
+        <div class="app-icon">📷</div>
+        <h3>Gerador de QR Code</h3>
+        <p>Cria QR Codes para links, textos e outras informações.</p>
+        <button class="primary" onclick="showTool('qr')">Abrir</button>
+      </article>
+
+      <article class="app-card" data-search="calculadora matemática contas">
+        <div class="app-icon">🧮</div>
+        <h3>Calculadora</h3>
+        <p>Resolve cálculos matemáticos simples.</p>
+        <button class="primary" onclick="showTool('calc')">Abrir</button>
+      </article>
+
+      <article class="app-card" data-search="notas escrever texto bloco">
+        <div class="app-icon">📝</div>
+        <h3>Bloco de Notas</h3>
+        <p>Escreve e guarda notas neste navegador.</p>
+        <button
