@@ -1,571 +1,453 @@
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101322">
-<meta name="description" content="WorldApps V5 — Aplicações úteis num só lugar.">
 <title>WorldApps V5 | World Apps Technology</title>
-
-<!-- Biblioteca necessária para gerar QR Codes -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
-:root {
-  --bg: #101322;
-  --panel: #191e32;
-  --panel2: #222941;
-  --text: #f5f7ff;
-  --muted: #a9b2cc;
-  --accent: #6c63ff;
-  --accent2: #00d4ff;
-  --border: #303853;
-  --danger: #ff5263;
-}
-
-body.light {
-  --bg: #f2f5fb;
-  --panel: #ffffff;
-  --panel2: #e8edf7;
-  --text: #182039;
-  --muted: #5d6680;
-  --accent: #5548ed;
-  --accent2: #008db5;
-  --border: #d8dfed;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-  transition: background .2s, color .2s;
-}
-
-button, input, textarea, select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-button:focus-visible, input:focus-visible,
-textarea:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent2);
-  outline-offset: 3px;
-}
-
-button:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.brand {
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: -.8px;
-}
-
-.brand span {
-  color: var(--accent2);
-}
-
-.brand-sub {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 6px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.primary, .secondary, .danger, .theme-btn {
-  border: 0;
-  border-radius: 11px;
-  padding: 12px 17px;
-  font-weight: 700;
-  transition: transform .15s, opacity .15s;
-}
-
-.primary:hover, .secondary:hover, .danger:hover, .theme-btn:hover {
-  transform: translateY(-1px);
-}
-
-.primary {
-  background: linear-gradient(135deg, var(--accent), #827bff);
-  color: white;
-}
-
-.secondary, .theme-btn {
-  background: var(--panel2);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-
-.danger {
-  background: var(--danger);
-  color: white;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  margin: 7px 0 14px;
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-
-textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-label {
-  display: block;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.small {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-header {
-  min-height: 76px;
-  padding: 15px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  flex-wrap: wrap;
-}
-
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 28px 20px 60px;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-}
-
-.welcome {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 25px;
-  background:
-    radial-gradient(ellipse at top, #30286d 0%, transparent 55%),
-    var(--bg);
-}
-
-.welcome-box {
-  width: 100%;
-  max-width: 560px;
-  text-align: center;
-  background: var(--panel);
-  padding: 45px 30px;
-  border: 1px solid var(--border);
-  border-radius: 25px;
-  box-shadow: 0 25px 90px #0003;
-}
-
-.welcome h1 {
-  font-size: clamp(28px, 6vw, 45px);
-  margin: 25px 0 12px;
-}
-
-.welcome p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.welcome-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.welcome-buttons button {
-  min-height: 58px;
-}
-
-.login-box {
-  max-width: 430px;
-  margin: 35px auto;
-  padding: 27px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-}
-
-.login-box h2 {
-  margin-top: 0;
-}
-
-.login-box button {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.hero {
-  padding: 28px;
-  border-radius: 20px;
-  background: linear-gradient(120deg, #28245a, #163d55);
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-size: clamp(25px, 4vw, 38px);
-  margin: 0 0 10px;
-}
-
-.hero p {
-  color: #d0dcf6;
-  line-height: 1.7;
-}
-
-.search-row {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.search-row input {
-  margin: 0;
-}
-
-.section-title {
-  margin: 30px 0 16px;
-  font-size: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-  gap: 15px;
-}
-
-.app-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  min-height: 150px;
-  transition: transform .2s, border-color .2s;
-}
-
-.app-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
-
-.app-icon {
-  font-size: 30px;
-  margin-bottom: 12px;
-}
-
-.app-card h3 {
-  margin: 0 0 9px;
-}
-
-.app-card p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.app-card button {
-  margin-top: 7px;
-}
-
-.tool-panel {
-  margin-top: 25px;
-  padding: 25px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-}
-
-.tool-panel h2 {
-  margin-top: 0;
-}
-
-.tool-panel button {
-  margin: 4px 4px 4px 0;
-}
-
-.tool-panel input {
-  max-width: 600px;
-}
-
-#qrcode {
-  display: inline-block;
-  padding: 12px;
-  margin-top: 15px;
-  background: white;
-  border-radius: 8px;
-  min-height: 10px;
-}
-
-#qrcode img, #qrcode canvas {
-  display: block;
-  max-width: 100%;
-}
-
-.result {
-  margin-top: 12px;
-  padding: 13px;
-  border-radius: 10px;
-  background: var(--panel2);
-  overflow-wrap: anywhere;
-}
-
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  margin-top: 8px;
-  border-radius: 10px;
-  background: var(--panel2);
-}
-
-.todo-item span {
-  overflow-wrap: anywhere;
-}
-
-.todo-item button {
-  flex-shrink: 0;
-}
-
-#ticBoard {
-  display: grid;
-  grid-template-columns: repeat(3, 90px);
-  gap: 7px;
-  margin: 15px 0;
-}
-
-#ticBoard button {
-  height: 90px;
-  font-size: 35px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--panel2);
-  color: var(--text);
-}
-
-@media (max-width: 520px) {
-  .welcome-buttons {
-    grid-template-columns: 1fr;
-  }
-
-  header {
-    padding: 15px;
-  }
-
-  main {
-    padding: 20px 13px 40px;
-  }
-
-  .hero {
-    padding: 22px;
-  }
-
-  #ticBoard {
-    grid-template-columns: repeat(3, min(25vw, 90px));
-  }
-
-  #ticBoard button {
-    height: min(25vw, 90px);
-  }
-}
+:root{--bg:#080b14;--panel:#111827;--panel2:#192337;--text:#f4f7ff;--muted:#9ba9c2;--accent:#00d9ff;--border:#29364b}
+body.light{--bg:#f1f5fb;--panel:#fff;--panel2:#e7edf7;--text:#142036;--muted:#617089;--accent:#007da8;--border:#d4deeb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;min-height:100vh;transition:.2s}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 5%;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:5}
+.brand{font-size:21px;font-weight:800;color:var(--accent)}
+.brand small{display:block;font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:4px}
+.wrap{width:min(1100px,92%);margin:30px auto}
+h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px}
+h2{margin-top:0}
+p{line-height:1.6;color:var(--muted)}
+.btn{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:11px 15px;border-radius:10px;font-weight:700}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.primary{background:var(--accent);color:#06111a;border-color:var(--accent)}
+.danger{color:#ff7777}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.stack{display:grid;gap:12px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:22px}
+.hero{max-width:750px;margin:65px auto;text-align:center;padding:38px 24px}
+.hero .brand{font-size:15px;margin-bottom:28px}
+.hero .brand small{font-size:10px}
+.hero p{max-width:560px;margin:15px auto 28px}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.hero-actions button{min-width:190px;padding:15px}
+.field{width:100%;padding:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:9px}
+label{font-size:13px;font-weight:700;color:var(--muted)}
+.field-group{display:grid;gap:7px}
+.auth{max-width:430px;margin:45px auto}
+.auth form{display:grid;gap:15px}
+.link{border:0;background:none;color:var(--accent);text-decoration:underline;padding:8px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.toolbar .field{flex:1;min-width:180px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.app{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:18px;min-height:145px;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.app .emoji{font-size:28px}
+.app strong{font-size:17px}
+.app p{font-size:13px;margin:0;flex:1}
+.app button{width:100%;margin-top:7px}
+#toolArea{margin-top:22px}
+.tool-content{display:grid;gap:14px}
+.tool-content textarea{min-height:130px;resize:vertical}
+#qrOutput{margin-top:12px}
+#qrOutput img,#qrOutput canvas{max-width:100%;height:auto}
+.cellgrid{display:grid;grid-template-columns:repeat(3,minmax(65px,95px));gap:8px}
+.cell{height:80px;font-size:28px}
+.status{color:var(--accent);min-height:22px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
+.hidden{display:none!important}
+@media(max-width:500px){header{padding:12px 4%}.brand{font-size:17px}.wrap{margin:20px auto}.panel{padding:17px}.hero{margin:30px auto;padding:20px 10px}}
 </style>
 </head>
-
 <body>
+<header>
+  <div class="brand">WorldApps V5<small>WORLD APPS TECHNOLOGY · WAT</small></div>
+  <div class="row">
+    <button class="btn" id="themeBtn" type="button">☀️ Tema</button>
+    <button class="btn hidden" id="logoutBtn" type="button">Sair</button>
+  </div>
+</header>
 
-<!-- ECRÃ DE BOAS-VINDAS -->
-<section id="welcomeScreen" class="welcome">
-  <div class="welcome-box">
-    <div class="brand">World<span>Apps</span> V5</div>
-    <div class="brand-sub">World Apps Technology · WAT</div>
-
-    <h1>Bem-vindo à World Apps Technology!</h1>
-
-    <p>
-      O teu espaço digital com aplicações úteis, ferramentas,
-      jogos e muito mais num único lugar.
-    </p>
-
-    <div class="welcome-buttons">
-      <button class="primary" onclick="showLogin()">
-        🔐 Iniciar Sessão
-      </button>
-
-      <button class="secondary" onclick="enterApps()">
-        🚀 Entrar na WorldApps
-      </button>
-    </div>
-
-    <p class="small">
-      Escolhe uma opção para continuar.
-    </p>
-
-    <button class="theme-btn" onclick="toggleTheme()">
-      🌓 Mudar Tema
-    </button>
+<main>
+<section id="welcome" class="wrap panel hero">
+  <div class="brand">WORLD APPS TECHNOLOGY<small>WAT · TECNOLOGIA PARA TODOS</small></div>
+  <h1>Bem-vindo à World Apps Technology</h1>
+  <p>Um só lugar para as tuas ferramentas, aplicações e jogos. Simples, moderno e pronto a usar.</p>
+  <div class="hero-actions">
+    <button class="btn primary" id="loginChoice" type="button">🔐 Iniciar Sessão</button>
+    <button class="btn" id="enterChoice" type="button">🚀 Entrar na WorldApps</button>
   </div>
 </section>
 
-<!-- ECRÃ DE LOGIN -->
-<section id="loginScreen" class="hidden">
-  <header>
-    <div>
-      <div class="brand">World<span>Apps</span> V5</div>
-      <div class="brand-sub">World Apps Technology</div>
+<section id="auth" class="wrap panel auth hidden">
+  <h2 id="authTitle">Iniciar Sessão</h2>
+  <p id="authDescription">Entra na tua conta local.</p>
+  <form id="authForm">
+    <div class="field-group">
+      <label for="username">Nome de utilizador</label>
+      <input class="field" id="username" required minlength="3" maxlength="30" autocomplete="username" placeholder="O teu nome">
     </div>
-
-    <button class="secondary" onclick="showWelcome()">
-      ← Voltar
-    </button>
-  </header>
-
-  <main>
-    <div class="login-box">
-      <h2 id="loginTitle">Iniciar Sessão</h2>
-
-      <p class="small">
-        Entra na tua conta local ou cria uma conta neste navegador.
-      </p>
-
-      <form id="loginForm">
-        <label for="email">Email</label>
-        <input id="email" type="email"
-               placeholder="nome@email.com" required>
-
-        <label for="password">Palavra-passe</label>
-        <input id="password" type="password"
-               placeholder="A tua palavra-passe" required
-               minlength="6">
-
-        <button class="primary" type="submit" id="loginSubmit">
-          Iniciar Sessão
-        </button>
-      </form>
-
-      <button class="secondary" id="registerButton"
-              onclick="setRegister(true)">
-        Criar Conta
-      </button>
-
-      <button class="secondary" id="cancelRegister"
-              onclick="setRegister(false)">
-        Já tenho conta
-      </button>
-
-      <div id="loginMessage" class="result hidden"></div>
-
-      <p class="small">
-        Importante: esta demonstração guarda as contas neste navegador.
-        Não é autenticação online e não sincroniza contas entre dispositivos.
-        Não utilizes palavras-passe importantes.
-      </p>
+    <div class="field-group">
+      <label for="password">Palavra-passe</label>
+      <input class="field" id="password" required minlength="4" type="password" autocomplete="current-password" placeholder="A tua palavra-passe">
     </div>
-  </main>
+    <button class="btn primary" id="authSubmit" type="submit">Iniciar Sessão</button>
+  </form>
+  <p class="status" id="authStatus" role="status"></p>
+  <div class="row">
+    <button class="link" id="switchAuth" type="button">Criar conta</button>
+    <button class="link" id="backWelcome" type="button">← Voltar</button>
+  </div>
+  <p><small>As contas são guardadas apenas neste navegador. Não uses palavras-passe importantes.</small></p>
 </section>
 
-<!-- APLICAÇÃO PRINCIPAL -->
-<div id="appScreen" class="hidden">
-
-  <header>
-    <div>
-      <div class="brand">World<span>Apps</span> V5</div>
-      <div class="brand-sub">World Apps Technology · WAT</div>
+<section id="appsPage" class="wrap hidden">
+  <div class="row" style="justify-content:space-between">
+    <div><h1>As tuas aplicações</h1><p>Bem-vindo, <strong id="userLabel"></strong>!</p></div>
+    <button class="btn" id="homeBtn" type="button">← Início</button>
+  </div>
+  <div class="toolbar">
+    <input class="field" id="searchApps" type="search" placeholder="🔎 Pesquisar aplicações e jogos...">
+  </div>
+  <div id="appsGrid" class="grid"></div>
+  <section id="toolArea" class="panel hidden">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="toolTitle">Aplicação</h2>
+      <button class="btn" id="closeTool" type="button">✕ Fechar</button>
     </div>
+    <div id="toolContent" class="tool-content"></div>
+  </section>
+</section>
+</main>
 
-    <div class="header-actions">
-      <span id="userLabel" class="small"></span>
+<footer>World Apps Technology · WAT · WorldApps V5</footer>
 
-      <button class="theme-btn" onclick="toggleTheme()">
-        🌓 Tema
-      </button>
+<script>
+"use strict";
 
-      <button class="secondary" onclick="logout()">
-        Sair
-      </button>
-    </div>
-  </header>
+const $ = id => document.getElementById(id);
+const screens = ["welcome","auth","appsPage"];
+let authMode = "login";
+let currentUser = "";
+let ticBoard = Array(9).fill("");
+let ticOver = false;
 
-  <main>
-    <section class="hero">
-      <h1>O teu mundo de aplicações 🌍</h1>
+const apps = [
+ {id:"qr",icon:"▦",name:"Criador de QR Code",desc:"Cria códigos QR a partir de texto ou links.",action:"qr"},
+ {id:"calc",icon:"🧮",name:"Calculadora",desc:"Faz cálculos diretamente no navegador.",action:"calc"},
+ {id:"notes",icon:"📝",name:"Bloco de Notas",desc:"Escreve e guarda notas neste dispositivo.",action:"notes"},
+ {id:"tasks",icon:"✅",name:"Lista de Tarefas",desc:"Organiza tarefas e marca as concluídas.",action:"tasks"},
+ {id:"passwordgen",icon:"🔑",name:"Gerador de Palavras-passe",desc:"Gera palavras-passe aleatórias.",action:"passwordgen"},
+ {id:"tic",icon:"⭕",name:"Jogo do Galo",desc:"Joga contra outro jogador neste dispositivo.",action:"tic"},
+ {id:"timer",icon:"⏱️",name:"Temporizador",desc:"Inicia uma contagem decrescente.",action:"timer"},
+ {id:"clock",icon:"🕒",name:"Relógio",desc:"Consulta a hora e a data atuais.",action:"clock"},
+ {id:"google",icon:"🔎",name:"Google",desc:"Pesquisa na Internet.",url:"https://www.google.com/"},
+ {id:"youtube",icon:"▶️",name:"YouTube",desc:"Vê vídeos e canais.",url:"https://www.youtube.com/"},
+ {id:"maps",icon:"🗺️",name:"Google Maps",desc:"Consulta mapas e direções.",url:"https://maps.google.com/"},
+ {id:"translate",icon:"🌐",name:"Google Tradutor",desc:"Traduz textos e páginas.",url:"https://translate.google.com/"},
+ {id:"wikipedia",icon:"📚",name:"Wikipedia",desc:"Consulta a enciclopédia online.",url:"https://www.wikipedia.org/"},
+ {id:"weather",icon:"🌦️",name:"Meteorologia",desc:"Consulta a previsão meteorológica.",url:"https://www.ipma.pt/"},
+ {id:"news",icon:"📰",name:"Notícias RTP",desc:"Lê as últimas notícias.",url:"https://www.rtp.pt/noticias/"},
+ {id:"mail",icon:"✉️",name:"Gmail",desc:"Abre o teu correio eletrónico.",url:"https://mail.google.com/"},
+ {id:"drive",icon:"☁️",name:"Google Drive",desc:"Acede aos teus ficheiros online.",url:"https://drive.google.com/"},
+ {id:"calendar",icon:"📅",name:"Google Calendar",desc:"Consulta o teu calendário.",url:"https://calendar.google.com/"},
+ {id:"github",icon:"💻",name:"GitHub",desc:"Explora e gere projetos de código.",url:"https://github.com/"},
+ {id:"scratch",icon:"🐱",name:"Scratch",desc:"Cria jogos e animações.",url:"https://scratch.mit.edu/"},
+ {id:"chess",icon:"♟️",name:"Xadrez",desc:"Joga xadrez online.",url:"https://www.chess.com/"},
+ {id:"poki",icon:"🎮",name:"Jogos Poki",desc:"Explora jogos de navegador.",url:"https://poki.com/"},
+ {id:"crazygames",icon:"🕹️",name:"CrazyGames",desc:"Descobre jogos de vários géneros.",url:"https://www.crazygames.com/"},
+ {id:"spotify",icon:"🎵",name:"Spotify Web",desc:"Ouve música online.",url:"https://open.spotify.com/"},
+ {id:"canva",icon:"🎨",name:"Canva",desc:"Cria designs e apresentações.",url:"https://www.canva.com/"},
+ {id:"photos",icon:"🖼️",name:"Editor de imagens",desc:"Abre um editor de imagens online.",url:"https://www.photopea.com/"},
+ {id:"speedtest",icon:"📶",name:"Teste de Internet",desc:"Verifica a velocidade da ligação.",url:"https://www.speedtest.net/"},
+ {id:"docs",icon:"📄",name:"Google Docs",desc:"Cria documentos online.",url:"https://docs.google.com/"},
+ {id:"forms",icon:"📋",name:"Google Forms",desc:"Cria formulários online.",url:"https://forms.google.com/"},
+ {id:"classroom",icon:"🎓",name:"Google Classroom",desc:"Abre a plataforma educativa.",url:"https://classroom.google.com/"}
+];
 
-      <p>
-        Descobre ferramentas úteis, cria QR Codes, organiza tarefas
-        e diverte-te com os nossos jogos.
-      </p>
+function showScreen(id){
+ screens.forEach(s => $(s).classList.toggle("hidden",s!==id));
+}
+function setStatus(id,message){$(id).textContent=message;}
+function getAccounts(){
+ try{return JSON.parse(localStorage.getItem("wat_accounts")||"{}");}
+ catch{return {};}
+}
+function saveAccounts(data){localStorage.setItem("wat_accounts",JSON.stringify(data));}
+function openLogin(){
+ authMode="login";
+ $("authTitle").textContent="Iniciar Sessão";
+ $("authDescription").textContent="Entra na tua conta local.";
+ $("authSubmit").textContent="Iniciar Sessão";
+ $("switchAuth").textContent="Criar conta";
+ $("password").autocomplete="current-password";
+ setStatus("authStatus","");
+ $("authForm").reset();
+ showScreen("auth");
+}
+function openRegister(){
+ authMode="register";
+ $("authTitle").textContent="Criar Conta";
+ $("authDescription").textContent="Cria uma conta neste navegador.";
+ $("authSubmit").textContent="Criar Conta";
+ $("switchAuth").textContent="Já tenho conta";
+ $("password").autocomplete="new-password";
+ setStatus("authStatus","");
+ $("authForm").reset();
+ showScreen("auth");
+}
+function enterApps(){
+ currentUser="";
+ $("userLabel").textContent="Visitante";
+ $("logoutBtn").classList.remove("hidden");
+ showScreen("appsPage");
+ renderApps();
+}
+function loginSuccess(name){
+ currentUser=name;
+ $("userLabel").textContent=name;
+ $("logoutBtn").classList.remove("hidden");
+ showScreen("appsPage");
+ renderApps();
+}
+$("loginChoice").addEventListener("click",openLogin);
+$("enterChoice").addEventListener("click",enterApps);
+$("backWelcome").addEventListener("click",()=>showScreen("welcome"));
+$("switchAuth").addEventListener("click",()=>authMode==="login"?openRegister():openLogin());
+$("homeBtn").addEventListener("click",()=>{
+ $("toolArea").classList.add("hidden");
+ showScreen("welcome");
+});
+$("logoutBtn").addEventListener("click",()=>{
+ currentUser="";
+ $("logoutBtn").classList.add("hidden");
+ $("toolArea").classList.add("hidden");
+ showScreen("welcome");
+});
+$("themeBtn").addEventListener("click",()=>{
+ document.body.classList.toggle("light");
+ const light=document.body.classList.contains("light");
+ localStorage.setItem("wat_theme",light?"light":"dark");
+ $("themeBtn").textContent=light?"🌙 Tema":"☀️ Tema";
+});
+if(localStorage.getItem("wat_theme")==="light"){
+ document.body.classList.add("light");
+ $("themeBtn").textContent="🌙 Tema";
+}
+$("authForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const name=$("username").value.trim();
+ const pass=$("password").value;
+ if(name.length<3||pass.length<4){
+  setStatus("authStatus","O nome precisa de 3 caracteres e a palavra-passe de 4.");
+  return;
+ }
+ const key=name.toLowerCase();
+ const accounts=getAccounts();
+ if(authMode==="register"){
+  if(accounts[key]){
+   setStatus("authStatus","Esse nome já existe. Escolhe outro.");
+   return;
+  }
+  // Demonstração local: a palavra-passe não é adequada para contas sensíveis.
+  accounts[key]={name,password:pass};
+  try{saveAccounts(accounts);}
+  catch{setStatus("authStatus","Não foi possível guardar a conta neste navegador.");return;}
+  loginSuccess(name);
+ }else{
+  if(!accounts[key]||accounts[key].password!==pass){
+   setStatus("authStatus","Nome ou palavra-passe incorretos.");
+   return;
+  }
+  loginSuccess(accounts[key].name);
+ }
+});
+$("searchApps").addEventListener("input",renderApps);
+$("closeTool").addEventListener("click",()=>{
+ $("toolArea").classList.add("hidden");
+ $("toolContent").replaceChildren();
+});
 
-      <button class="primary" onclick="showTool('qr')">
-        ✨ Criar QR Code
-      </button>
-    </section>
-
-    <div class="search-row">
-      <input id="appSearch"
-             placeholder="🔎 Pesquisar aplicações..."
-             oninput="filterApps()">
-    </div>
-
-    <h2 class="section-title">📱 Aplicações</h2>
-
-    <div class="grid" id="appsGrid">
-
-      <article class="app-card" data-search="qr code criar código">
-        <div class="app-icon">📷</div>
-        <h3>Gerador de QR Code</h3>
-        <p>Cria QR Codes para links, textos e outras informações.</p>
-        <button class="primary" onclick="showTool('qr')">Abrir</button>
-      </article>
-
-      <article class="app-card" data-search="calculadora matemática contas">
-        <div class="app-icon">🧮</div>
-        <h3>Calculadora</h3>
-        <p>Resolve cálculos matemáticos simples.</p>
-        <button class="primary" onclick="showTool('calc')">Abrir</button>
-      </article>
-
-      <article class="app-card" data-search="notas escrever texto bloco">
-        <div class="app-icon">📝</div>
-        <h3>Bloco de Notas</h3>
-        <p>Escreve e guarda notas neste navegador.</p>
-        <button
+function renderApps(){
+ const query=$("searchApps").value.trim().toLocaleLowerCase("pt-PT");
+ const grid=$("appsGrid");
+ grid.replaceChildren();
+ const filtered=apps.filter(a=>(a.name+" "+a.desc).toLocaleLowerCase("pt-PT").includes(query));
+ if(!filtered.length){
+  grid.textContent="Não foram encontradas aplicações.";
+  return;
+ }
+ filtered.forEach(a=>{
+  const card=document.createElement("article");
+  card.className="app";
+  const icon=document.createElement("div");icon.className="emoji";icon.textContent=a.icon;
+  const title=document.createElement("strong");title.textContent=a.name;
+  const desc=document.createElement("p");desc.textContent=a.desc;
+  const btn=document.createElement("button");btn.className="btn primary";btn.type="button";
+  btn.textContent=a.url?"Abrir aplicação":"Abrir";
+  btn.addEventListener("click",()=>a.url?window.open(a.url,"_blank","noopener,noreferrer"):openTool(a.action,a.name));
+  card.append(icon,title,desc,btn);
+  grid.append(card);
+ });
+}
+function addField(parent,labelText,element){
+ const group=document.createElement("div");group.className="field-group";
+ const label=document.createElement("label");label.textContent=labelText;
+ group.append(label,element);parent.append(group);return element;
+}
+function makeInput(placeholder,type="text"){
+ const input=document.createElement("input");input.className="field";input.placeholder=placeholder;input.type=type;return input;
+}
+function makeTextarea(placeholder){
+ const t=document.createElement("textarea");t.className="field";t.placeholder=placeholder;return t;
+}
+function makeButton(text,fn,primary=true){
+ const b=document.createElement("button");b.type="button";b.className="btn"+(primary?" primary":"");b.textContent=text;b.addEventListener("click",fn);return b;
+}
+function openTool(id,title){
+ $("toolTitle").textContent=title;
+ const root=$("toolContent");root.replaceChildren();
+ $("toolArea").classList.remove("hidden");
+ function message(txt){let p=root.querySelector(".status");if(!p){p=document.createElement("p");p.className="status";p.setAttribute("role","status");root.append(p);}p.textContent=txt;}
+ if(id==="qr"){
+  const input=addField(root,"Texto ou endereço para o QR Code",makeInput("https://exemplo.pt"));
+  const output=document.createElement("div");output.id="qrOutput";root.append(output);
+  root.append(makeButton("Gerar QR Code",()=>{
+   output.replaceChildren();
+   if(!input.value.trim()){message("Escreve primeiro um texto ou endereço.");return;}
+   if(typeof QRCode==="undefined"){
+    message("A biblioteca de QR Code não carregou. Verifica a Internet e tenta novamente.");
+    const fallback=document.createElement("a");fallback.href="https://www.qrcode-monkey.com/";fallback.target="_blank";fallback.rel="noopener noreferrer";fallback.textContent="Abrir criador de QR Code online";output.append(fallback);return;
+   }
+   new QRCode(output,{text:input.value.trim(),width:220,height:220});
+   message("QR Code criado. Podes digitalizá-lo com a câmara.");
+  }));
+  message("A biblioteca de QR Code é carregada pela Internet.");
+ }else if(id==="calc"){
+  const display=addField(root,"Cálculo",makeInput("Ex.: (12 + 8) * 3"));
+  const result=document.createElement("p");result.className="status";root.append(result);
+  root.append(makeButton("Calcular",()=>{
+   const expr=display.value.trim();
+   if(!expr){result.textContent="Escreve um cálculo.";return;}
+   if(!/^[0-9+\-*/().%\s]+$/.test(expr)){result.textContent="Usa apenas números e operações matemáticas.";return;}
+   try{
+    const n=Function('"use strict";return ('+expr+')')();
+    result.textContent=Number.isFinite(n)?"Resultado: "+n:"Operação inválida.";
+   }catch{result.textContent="Cálculo inválido.";}
+  }));
+ }else if(id==="notes"){
+  const area=makeTextarea("Escreve as tuas notas...");
+  try{area.value=localStorage.getItem("wat_notes")||"";}catch{}
+  root.append(area,makeButton("Guardar nota",()=>{
+   try{localStorage.setItem("wat_notes",area.value);message("Nota guardada neste navegador.");}
+   catch{message("Não foi possível guardar a nota.");}
+  }),makeButton("Apagar nota",()=>{
+   area.value="";
+   try{localStorage.removeItem("wat_notes");message("Nota apagada.");}
+   catch{message("Não foi possível apagar a nota.");}
+  },false));
+ }else if(id==="tasks"){
+  const input=makeInput("Nova tarefa");
+  const list=document.createElement("div");list.className="stack";
+  root.append(input,makeButton("Adicionar tarefa",addTask),list);
+  let tasks=[];try{tasks=JSON.parse(localStorage.getItem("wat_tasks")||"[]");}catch{}
+  function save(){try{localStorage.setItem("wat_tasks",JSON.stringify(tasks));}catch{message("Não foi possível guardar as tarefas.");}}
+  function draw(){
+   list.replaceChildren();
+   tasks.forEach((task,i)=>{
+    const row=document.createElement("div");row.className="row";
+    const cb=document.createElement("input");cb.type="checkbox";cb.checked=task.done;
+    const text=document.createElement("span");text.textContent=task.text;
+    if(task.done)text.style.textDecoration="line-through";
+    cb.addEventListener("change",()=>{tasks[i].done=cb.checked;save();draw();});
+    row.append(cb,text,makeButton("Apagar",()=>{tasks.splice(i,1);save();draw();},false));list.append(row);
+   });
+  }
+  function addTask(){if(!input.value.trim())return;tasks.push({text:input.value.trim(),done:false});input.value="";save();draw();}
+  input.addEventListener("keydown",e=>{if(e.key==="Enter")addTask();});
+  draw();
+ }else if(id==="passwordgen"){
+  const length=document.createElement("input");length.type="number";length.className="field";length.min="8";length.max="64";length.value="16";
+  addField(root,"Comprimento (8 a 64)",length);
+  const output=makeInput("A palavra-passe aparece aqui");
+  output.readOnly=true;root.append(output);
+  root.append(makeButton("Gerar palavra-passe",()=>{
+   const n=Number(length.value);
+   if(!Number.isInteger(n)||n<8||n>64){message("Escolhe um comprimento entre 8 e 64.");return;}
+   const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*-_";
+   const bytes=new Uint32Array(n);
+   if(!crypto.getRandomValues){message("O navegador não suporta geração segura.");return;}
+   crypto.getRandomValues(bytes);
+   output.value=Array.from(bytes,b=>chars[b%chars.length]).join("");
+  }),makeButton("Copiar",async()=>{
+   if(!output.value){message("Gera primeiro uma palavra-passe.");return;}
+   try{await navigator.clipboard.writeText(output.value);message("Copiada.");}
+   catch{output.select();message("Seleciona e copia o texto manualmente.");}
+  },false));
+ }else if(id==="tic"){
+  const status=document.createElement("p");status.className="status";
+  const board=document.createElement("div");board.className="cellgrid";
+  const reset=makeButton("Novo jogo",()=>{ticBoard=Array(9).fill("");ticOver=false;draw();});
+  root.append(status,board,reset);
+  function draw(){
+   board.replaceChildren();
+   ticBoard.forEach((v,i)=>{
+    const b=makeButton(v||" ",()=>{
+     if(ticOver||ticBoard[i])return;
+     ticBoard[i]="X";
+     let w=winner();
+     if(w){ticOver=true;status.textContent="Ganhou o jogador "+w+"!";draw();return;}
+     if(ticBoard.every(Boolean)){ticOver=true;status.textContent="Empate!";draw();return;}
+     const empty=ticBoard.map((x,j)=>x?null:j).filter(x=>x!==null);
+     const move=empty[Math.floor(Math.random()*empty.length)];
+     ticBoard[move]="O";
+     w=winner();
+     if(w){ticOver=true;status.textContent="Ganhou o jogador "+w+"!";} 
+     else if(ticBoard.every(Boolean)){ticOver=true;status.textContent="Empate!";}
+     else status.textContent="É a tua vez: X.";
+     draw();
+    });
+    b.className="btn cell";board.append(b);
+   });
+   if(!ticOver)status.textContent="És X. O computador é O.";
+  }
+  function winner(){
+   const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+   for(const line of lines){const [a,b,c]=line;if(ticBoard[a]&&ticBoard[a]===ticBoard[b]&&ticBoard[a]===ticBoard[c])return ticBoard[a];}
+   return "";
+  }
+  draw();
+ }else if(id==="timer"){
+  const input=addField(root,"Segundos",makeInput("60","number"));
+  let interval=null;
+  const status=document.createElement("p");status.className="status";status.textContent="Pronto a começar.";
+  root.append(status,makeButton("Iniciar",()=>{
+   clearInterval(interval);
+   let seconds=Number(input.value);
+   if(!Number.isInteger(seconds)||seconds<1||seconds>86400){status.textContent="Escolhe entre 1 e 86400 segundos.";return;}
+   status.textContent="Tempo restante: "+seconds+" s";
+   interval=setInterval(()=>{
+    seconds--;
+    status.textContent=seconds>0?"Tempo restante: "+seconds+" s":"Tempo terminado!";
+    if(seconds<=0)clearInterval(interval);
+   },1000);
+  }),makeButton("Parar",()=>{clearInterval(interval);status.textContent="Temporizador parado.";},false));
+ }else if(id==="clock"){
+  const output=document.createElement("h2");root.append(output);
+  const update=()=>output.textContent=new Date().toLocaleString("pt-PT",{dateStyle:"full",timeStyle:"medium"});
+  update();
+  const note=document.createElement("p");note.textContent="A hora é atualizada quando abres esta ferramenta.";root.append(note);
+ }
+ root.scrollIntoView({behavior:"smooth",block:"start"});
+}
+if(typeof window.QRCode==="undefined"){
+ const script=document.createElement("script");
+ script.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+ script.async=true;
+ document.head.append(script);
+}
+renderApps();
+</script>
+</body>
+</html>
