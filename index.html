@@ -4,47 +4,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldApps V5</title>
+<title>WorldApps V5 | World Apps Tecnologia</title>
 <style>
-:root {
-  --bg:#080b14;--panel:#111827;--panel2:#171f31;--text:#f4f7ff;
-  --muted:#9ba8c4;--accent:#00e5ff;--accent2:#a855f7;--border:#29334b;
+:root{
+ --bg:#080b14;--panel:#111827;--panel2:#192438;--text:#f4f7ff;
+ --muted:#9ba8c4;--accent:#00e5ff;--border:#29334b;
 }
-body.light {
-  --bg:#edf2fa;--panel:#fff;--panel2:#f2f5fc;--text:#162038;
-  --muted:#59657c;--accent:#007eaa;--accent2:#7938c5;--border:#d6deec;
+body.light{
+ --bg:#edf2fa;--panel:#fff;--panel2:#f2f5fc;--text:#162038;
+ --muted:#59657c;--accent:#007eaa;--border:#d6deec;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;transition:.2s}
 button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-header{padding:22px 5%;border-bottom:1px solid var(--border);background:var(--panel)}
-.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.subtitle{color:var(--muted);margin-top:5px;font-size:13px}
-button,.btn{background:var(--accent);color:#06111a;border:0;border-radius:10px;padding:10px 14px;font-weight:bold}
+button{cursor:pointer;background:var(--accent);color:#06111a;border:0;border-radius:10px;padding:11px 15px;font-weight:bold}
+button:hover{filter:brightness(1.12)}
 button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
 button.danger{background:#ff4565;color:white}
-button:hover{filter:brightness(1.1)}
+header{padding:20px 5%;border-bottom:1px solid var(--border);background:var(--panel)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+.subtitle{color:var(--muted);margin-top:5px;font-size:13px}
 nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
 nav button{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
 nav button.active{background:var(--accent);color:#06111a}
 main{max-width:1200px;margin:auto;padding:25px 5% 60px}
-.welcome{padding:25px;border-radius:18px;background:linear-gradient(125deg,#11283d,#25123b);border:1px solid #30415e;margin-bottom:24px}
-.welcome h1{font-size:clamp(25px,4vw,40px);margin:0 0 10px}
-.welcome p{color:#d1d9ee;line-height:1.6;margin-bottom:0}
+.welcome-banner{padding:25px;border-radius:18px;background:linear-gradient(125deg,#11283d,#25123b);border:1px solid #30415e;margin-bottom:24px}
+.welcome-banner h1{font-size:clamp(25px,4vw,40px);margin:0 0 10px}
+.welcome-banner p{color:#d1d9ee;line-height:1.6}
 .section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
 .section-head h2{margin:12px 0 18px}
 input,textarea,select{width:100%;padding:12px;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:10px;outline:none}
-input:focus,textarea:focus{border-color:var(--accent)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 .search{max-width:360px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:15px}
 .card{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:18px;min-width:0}
 .card h3{margin:9px 0 7px}
 .card p{color:var(--muted);font-size:14px;line-height:1.5}
 .emoji{font-size:30px}
-.card button{margin-top:8px}
 .tag{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:bold}
 .hidden{display:none!important}
 .appview{margin-top:24px}
@@ -56,122 +54,148 @@ input:focus,textarea:focus{border-color:var(--accent)}
 .row>*{flex:1}
 .row button{flex:0 0 auto}
 footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid var(--border);font-size:13px}
-small{color:var(--muted)}
 #qrImage{display:block;max-width:260px;width:100%;margin:18px auto;background:white;padding:10px;border-radius:10px}
 #gameBoard{display:grid;grid-template-columns:repeat(3,minmax(70px,100px));gap:8px;justify-content:center;margin:20px auto}
 #gameBoard button{height:85px;font-size:32px;background:var(--panel2);color:var(--accent);border:1px solid var(--border)}
 .bigtime{font-size:38px;font-weight:bold;text-align:center;padding:20px}
-ul.clean{padding-left:20px;line-height:1.9}
 .note{font-size:12px;color:var(--muted);line-height:1.5}
-@media(max-width:500px){main{padding:18px 4% 40px}.welcome{padding:18px}.logo{font-size:23px}}
+label{line-height:1.6}
+#welcomeScreen{position:fixed;inset:0;z-index:9999;display:flex;justify-content:center;align-items:center;padding:20px;background:radial-gradient(ellipse at top,#172b49,#080b14 70%);text-align:center;overflow-y:auto}
+.welcome-box{width:100%;max-width:600px;padding:35px 22px;border:1px solid #00e5ff66;border-radius:24px;background:#101827;box-shadow:0 0 45px #00e5ff20;animation:welcomeAppear .8s ease}
+.welcome-logo{font-size:clamp(30px,7vw,48px);font-weight:900;color:#f4f7ff}
+.welcome-logo span{color:#00e5ff}
+.welcome-brand{color:#00e5ff;letter-spacing:3px;font-size:14px;text-transform:uppercase}
+.welcome-box h1{color:#fff;font-size:clamp(25px,5vw,36px);margin-top:30px}
+.welcome-box p{line-height:1.6}
+.welcome-options{display:flex;flex-direction:column;gap:12px;max-width:310px;margin:25px auto 0}
+.welcome-options button{width:100%;padding:15px}
+.welcome-secondary{background:#192438;color:#f4f7ff;border:1px solid #00e5ff66}
+@keyframes welcomeAppear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:500px){main{padding:18px 4% 40px}.welcome-banner{padding:18px}.logo{font-size:23px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="top">
-    <div>
-      <div class="logo">🌐 World<span>Apps</span> <small>V5</small></div>
-<div class="subtitle">World Apps Tecnologia</div>
-      <div class="subtitle">As ferramentas de que precisas, num só lugar.</div>
-    </div>
-    <div class="row" style="flex:0 1 auto">
-      <button class="secondary" id="themeBtn" onclick="toggleTheme()">🌙 Mudar tema</button>
-      <button onclick="openApp('account')">👤 <span id="accountLabel">Entrar</span></button>
-    </div>
+
+<!-- ECRÃ DE BOAS-VINDAS -->
+<div id="welcomeScreen">
+ <div class="welcome-box">
+  <div class="welcome-logo">🌐 World<span>Apps</span></div>
+  <p class="welcome-brand">World Apps Tecnologia</p>
+  <h1>Bem-vindo à World Apps Tecnologia!</h1>
+  <p>O teu mundo de aplicações começa aqui.</p>
+  <div class="welcome-options">
+   <button onclick="welcomeLogin()">👤 Iniciar sessão</button>
+   <button class="welcome-secondary" onclick="enterWorldApps()">🚀 Ir para a WorldApps</button>
   </div>
-  <nav id="navigation">
-    <button class="active" data-page="home" onclick="showPage('home',this)">🏠 Início</button>
-    <button data-page="apps" onclick="showPage('apps',this)">🧰 Aplicações</button>
-    <button data-page="games" onclick="showPage('games',this)">🎮 Jogos</button>
-    <button data-page="account" onclick="showPage('account',this)">👤 Conta</button>
-  </nav>
+ </div>
+</div>
+
+<header>
+ <div class="top">
+  <div>
+   <div class="logo">🌐 World<span>Apps</span> <small>V5</small></div>
+   <div class="subtitle">World Apps Tecnologia</div>
+  </div>
+  <div class="row" style="flex:0 1 auto">
+   <button class="secondary" id="themeBtn" onclick="toggleTheme()">🌙 Mudar tema</button>
+   <button onclick="showPage('account')">👤 <span id="accountLabel">Entrar</span></button>
+  </div>
+ </div>
+ <nav>
+  <button class="active" data-page="home" onclick="showPage('home',this)">🏠 Início</button>
+  <button data-page="apps" onclick="showPage('apps',this)">🧰 Aplicações</button>
+  <button data-page="games" onclick="showPage('games',this)">🎮 Jogos</button>
+  <button data-page="account" onclick="showPage('account',this)">👤 Conta</button>
+ </nav>
 </header>
 
 <main>
-  <section id="homePage">
-    <div class="welcome">
-      <div class="tag">WorldApps V5 · Edição Neon</div>
-      <h1>Bem-vindo ao teu mundo digital.</h1>
-      <p>Descobre ferramentas úteis, cria códigos QR, organiza tarefas e joga minijogos. Tudo num único site, sem funcionalidades de inteligência artificial.</p>
-      <div class="row" style="margin-top:17px;max-width:400px">
-        <button onclick="showPage('apps')">Explorar aplicações →</button>
-        <button class="secondary" onclick="showPage('games')">Jogar agora 🎮</button>
-      </div>
-    </div>
-    <div class="section-head">
-      <h2>⭐ Aplicações em destaque</h2>
-      <input class="search" id="homeSearch" placeholder="Pesquisar aplicações..." oninput="renderCards()">
-    </div>
-    <div class="grid" id="featuredGrid"></div>
-  </section>
+ <section id="homePage">
+  <div class="welcome-banner">
+   <div class="tag">WorldApps V5 · Edição Neon</div>
+   <h1>O teu mundo digital.</h1>
+   <p>Ferramentas úteis, criação, produtividade e jogos num só lugar.</p>
+   <button onclick="showPage('apps')">Explorar aplicações →</button>
+   <button class="secondary" onclick="showPage('games')">Jogar agora 🎮</button>
+  </div>
+  <div class="section-head">
+   <h2>⭐ Aplicações em destaque</h2>
+   <input class="search" id="homeSearch" placeholder="Pesquisar aplicações..." oninput="renderCards()">
+  </div>
+  <div class="grid" id="featuredGrid"></div>
+ </section>
 
-  <section id="appsPage" class="hidden">
-    <div class="section-head">
-      <h2>🧰 Todas as aplicações</h2>
-      <input class="search" id="appSearch" placeholder="Pesquisar..." oninput="renderCards()">
+ <section id="appsPage" class="hidden">
+  <div class="section-head">
+   <h2>🧰 Todas as aplicações</h2>
+   <input class="search" id="appSearch" placeholder="Pesquisar..." oninput="renderCards()">
+  </div>
+  <div class="grid" id="appsGrid"></div>
+ </section>
+
+ <section id="gamesPage" class="hidden">
+  <div class="section-head"><h2>🎮 Zona de jogos</h2></div>
+  <div class="grid" id="gamesGrid"></div>
+ </section>
+
+ <section id="accountPage" class="hidden">
+  <div class="appview">
+   <div class="card">
+    <div class="emoji">👤</div>
+    <h2 id="accountTitle">A tua conta WorldApps</h2>
+    <p id="accountDescription">Cria uma conta local ou inicia sessão.</p>
+    <div id="accountForm">
+     <label for="username">Nome de utilizador</label>
+     <input id="username" autocomplete="username" placeholder="O teu nome">
+     <label for="password" style="display:block;margin-top:12px">Palavra-passe</label>
+     <input id="password" type="password" autocomplete="current-password" placeholder="Pelo menos 6 caracteres">
+     <div class="row" style="margin-top:10px">
+      <button onclick="registerUser()">Criar conta</button>
+      <button class="secondary" onclick="loginUser()">Entrar</button>
+     </div>
+     <p class="note">Conta de demonstração guardada apenas neste navegador. Não sincroniza entre dispositivos. Não uses uma palavra-passe importante.</p>
+     <div id="accountMessage" class="output hidden"></div>
     </div>
-    <div class="grid" id="appsGrid"></div>
-  </section>
-
-  <section id="gamesPage" class="hidden">
-    <div class="section-head"><h2>🎮 Zona de jogos</h2></div>
-    <div class="grid" id="gamesGrid"></div>
-  </section>
-
-  <section id="accountPage" class="hidden">
-    <div class="appview">
-      <div class="card">
-        <div class="emoji">👤</div>
-        <h2 id="accountTitle">A tua conta WorldApps</h2>
-        <p id="accountDescription">Cria uma conta local ou inicia sessão.</p>
-        <div id="accountForm">
-          <label for="username">Nome de utilizador</label>
-          <input id="username" autocomplete="username" placeholder="O teu nome">
-          <label for="password" style="display:block;margin-top:12px">Palavra-passe</label>
-          <input id="password" type="password" autocomplete="current-password" placeholder="Pelo menos 6 caracteres">
-          <div class="row" style="margin-top:10px">
-            <button onclick="registerUser()">Criar conta</button>
-            <button class="secondary" onclick="loginUser()">Entrar</button>
-          </div>
-          <p class="note">As contas são guardadas neste navegador. Não são contas online e não sincronizam entre dispositivos. Não uses uma palavra-passe importante.</p>
-          <div id="accountMessage" class="output hidden"></div>
-        </div>
-        <div id="loggedIn" class="hidden">
-          <p id="loggedMessage"></p>
-          <button class="danger" onclick="logoutUser()">Terminar sessão</button>
-        </div>
-      </div>
+    <div id="loggedIn" class="hidden">
+     <p id="loggedMessage"></p>
+     <button class="danger" onclick="logoutUser()">Terminar sessão</button>
     </div>
-  </section>
+   </div>
+  </div>
+ </section>
 
-  <section id="appView" class="appview hidden">
-    <div class="card" id="appContent"></div>
-  </section>
+ <section id="appView" class="appview hidden">
+  <div class="card" id="appContent"></div>
+ </section>
 </main>
 
-<footer>WorldApps V5 · Feito para explorar, criar e jogar. <br>Contas locais neste dispositivo · Sem IA.</footer>
+<footer>
+ WorldApps V5 · World Apps Tecnologia<br>
+ Ferramentas e jogos num só lugar · Sem IA
+</footer>
 
 <script>
-const apps = [
- {id:"qr",name:"Criador de QR Code",icon:"📱",cat:"Criação",desc:"Cria um QR Code a partir de texto ou de um link.",featured:true},
- {id:"calculator",name:"Calculadora",icon:"🧮",cat:"Ferramentas",desc:"Faz contas de forma rápida.",featured:true},
- {id:"notes",name:"Bloco de notas",icon:"📝",cat:"Produtividade",desc:"Escreve e guarda notas neste navegador.",featured:true},
- {id:"tasks",name:"Lista de tarefas",icon:"✅",cat:"Produtividade",desc:"Organiza o que tens de fazer.",featured:true},
- {id:"passwordgen",name:"Gerador de palavras-passe",icon:"🔐",cat:"Segurança",desc:"Gera palavras-passe aleatórias.",featured:true},
- {id:"timer",name:"Cronómetro",icon:"⏱️",cat:"Ferramentas",desc:"Inicia, pausa e reinicia o cronómetro."},
- {id:"counter",name:"Contador",icon:"🔢",cat:"Ferramentas",desc:"Conta cliques e ajusta o resultado."},
- {id:"converter",name:"Conversor de unidades",icon:"📏",cat:"Ferramentas",desc:"Converte metros, quilómetros e centímetros."},
- {id:"color",name:"Seletor de cores",icon:"🎨",cat:"Criação",desc:"Escolhe uma cor e copia o código HEX."},
- {id:"writer",name:"Contador de texto",icon:"📄",cat:"Produtividade",desc:"Conta palavras e caracteres."},
- {id:"dice",name:"Lançar dados",icon:"🎲",cat:"Diversão",desc:"Lança um ou dois dados virtuais."},
- {id:"coin",name:"Cara ou coroa",icon:"🪙",cat:"Diversão",desc:"Lança uma moeda virtual."}
+const apps=[
+{id:"qr",name:"Criador de QR Code",icon:"📱",cat:"Criação",desc:"Cria um QR Code a partir de texto ou link.",featured:true},
+{id:"calculator",name:"Calculadora",icon:"🧮",cat:"Ferramentas",desc:"Faz contas de forma rápida.",featured:true},
+{id:"notes",name:"Bloco de notas",icon:"📝",cat:"Produtividade",desc:"Escreve e guarda notas neste navegador.",featured:true},
+{id:"tasks",name:"Lista de tarefas",icon:"✅",cat:"Produtividade",desc:"Organiza o que tens de fazer.",featured:true},
+{id:"passwordgen",name:"Gerador de palavras-passe",icon:"🔐",cat:"Segurança",desc:"Gera palavras-passe aleatórias.",featured:true},
+{id:"timer",name:"Cronómetro",icon:"⏱️",cat:"Ferramentas",desc:"Inicia, pausa e reinicia o cronómetro."},
+{id:"counter",name:"Contador",icon:"🔢",cat:"Ferramentas",desc:"Conta cliques e ajusta o resultado."},
+{id:"converter",name:"Conversor de unidades",icon:"📏",cat:"Ferramentas",desc:"Converte metros, quilómetros e centímetros."},
+{id:"color",name:"Seletor de cores",icon:"🎨",cat:"Criação",desc:"Escolhe uma cor e copia o código HEX."},
+{id:"writer",name:"Contador de texto",icon:"📄",cat:"Produtividade",desc:"Conta palavras e caracteres."},
+{id:"dice",name:"Lançar dados",icon:"🎲",cat:"Diversão",desc:"Lança um ou dois dados virtuais."},
+{id:"coin",name:"Cara ou coroa",icon:"🪙",cat:"Diversão",desc:"Lança uma moeda virtual."}
 ];
-const games = [
- {id:"tictactoe",name:"Jogo do Galo",icon:"❎",desc:"Joga contra outro jogador no mesmo dispositivo."},
- {id:"reaction",name:"Teste de reflexos",icon:"⚡",desc:"Espera pelo sinal verde e testa a tua reação."},
- {id:"guess",name:"Adivinha o número",icon:"🔢",desc:"Descobre o número secreto entre 1 e 100."}
+const games=[
+{id:"tictactoe",name:"Jogo do Galo",icon:"❎",desc:"Dois jogadores no mesmo dispositivo."},
+{id:"reaction",name:"Teste de reflexos",icon:"⚡",desc:"Espera pelo sinal verde e testa a tua reação."},
+{id:"guess",name:"Adivinha o número",icon:"🎯",desc:"Descobre o número secreto entre 1 e 100."}
 ];
-function cardHTML(a){return `<article class="card"><div class="emoji">${a.icon}</div><div class="tag">${a.cat||"Jogo"}</div><h3>${a.name}</h3><p>${a.desc}</p><button onclick="openApp('${a.id}')">Abrir aplicação →</button></article>`}
+
+function cardHTML(a){return `<article class="card"><div class="emoji">${a.icon}</div><div class="tag">${a.cat||"Jogo"}</div><h3>${a.name}</h3><p>${a.desc}</p><button onclick="openApp('${a.id}')">Abrir →</button></article>`}
 function renderCards(){
  const hs=(document.getElementById("homeSearch")?.value||"").toLowerCase();
  const s=(document.getElementById("appSearch")?.value||"").toLowerCase();
@@ -186,15 +210,27 @@ function showPage(page,btn){
  if(btn)btn.classList.add("active");
  window.scrollTo({top:0,behavior:"smooth"});
 }
+function enterWorldApps(){
+ document.getElementById("welcomeScreen").style.display="none";
+ showPage("home");
+}
+function welcomeLogin(){
+ document.getElementById("welcomeScreen").style.display="none";
+ showPage("account");
+}
 function toggleTheme(){
  document.body.classList.toggle("light");
  const light=document.body.classList.contains("light");
  localStorage.setItem("wa_theme",light?"light":"dark");
  document.getElementById("themeBtn").textContent=light?"☀️ Mudar tema":"🌙 Mudar tema";
 }
-if(localStorage.getItem("wa_theme")==="light"){document.body.classList.add("light");document.getElementById("themeBtn").textContent="☀️ Mudar tema";}
+if(localStorage.getItem("wa_theme")==="light"){
+ document.body.classList.add("light");
+ document.getElementById("themeBtn").textContent="☀️ Mudar tema";
+}
 
 function openApp(id){
+ if(id==="account"){showPage("account");return;}
  ["homePage","appsPage","gamesPage","accountPage"].forEach(x=>document.getElementById(x).classList.add("hidden"));
  document.getElementById("appView").classList.remove("hidden");
  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
@@ -205,98 +241,112 @@ function openApp(id){
  const field=(label,id,placeholder="",type="text")=>`<label for="${id}" style="display:block;margin-top:12px">${label}</label><input id="${id}" type="${type}" placeholder="${placeholder}">`;
  const out=`<div id="output" class="output"></div>`;
  const setOut=t=>{const el=document.getElementById("output");if(el)el.textContent=t;};
+
  switch(id){
- case "account":
-   showPage("account");return;
  case "qr":
-   c.innerHTML=`<div class="emoji">📱</div><h2>Criador de QR Code</h2><p>Escreve um link ou texto para criar o código QR.</p>${field("Texto ou link","qrText","https://exemplo.com")}<button onclick="makeQR()">Gerar QR Code</button><div id="qrResult"></div><p class="note">A imagem do QR Code é gerada através de um serviço externo e requer internet.</p>${back}`;
-   break;
+  c.innerHTML=`<div class="emoji">📱</div><h2>Criador de QR Code</h2><p>Escreve um texto ou link para criar o código QR.</p>${field("Texto ou link","qrText","https://exemplo.com")}<button onclick="makeQR()">Gerar QR Code</button><div id="qrResult"></div><p class="note">Precisa de ligação à internet para gerar a imagem.</p>${back}`;break;
  case "calculator":
-   c.innerHTML=`<div class="emoji">🧮</div><h2>Calculadora</h2>${field("Primeiro número","num1","Ex.: 25","number")}${field("Operação","op")}${field("Segundo número","num2","Ex.: 5","number")}<button onclick="calculate()">Calcular</button>${out}${back}`;
-   document.getElementById("op").value="+";
-   document.getElementById("op").outerHTML=`<select id="op"><option value="+">Somar (+)</option><option value="-">Subtrair (−)</option><option value="*">Multiplicar (×)</option><option value="/">Dividir (÷)</option><option value="%">Resto (%)</option></select>`;
-   break;
+  c.innerHTML=`<div class="emoji">🧮</div><h2>Calculadora</h2>${field("Primeiro número","num1","Ex.: 25","number")}<label style="display:block;margin-top:12px">Operação</label><select id="op"><option value="+">Somar (+)</option><option value="-">Subtrair (−)</option><option value="*">Multiplicar (×)</option><option value="/">Dividir (÷)</option><option value="%">Resto (%)</option></select>${field("Segundo número","num2","Ex.: 5","number")}<button onclick="calculate()">Calcular</button>${out}${back}`;break;
  case "notes":
-   c.innerHTML=`<div class="emoji">📝</div><h2>Bloco de notas</h2><textarea id="noteText" rows="10" placeholder="Escreve as tuas notas..."></textarea><button onclick="localStorage.setItem('wa_notes',document.getElementById('noteText').value);setOut('Nota guardada neste navegador!')">Guardar nota</button><button class="secondary" onclick="document.getElementById('noteText').value='';localStorage.removeItem('wa_notes');setOut('Nota apagada.')">Apagar</button>${out}${back}`;
-   document.getElementById("noteText").value=localStorage.getItem("wa_notes")||"";
-   break;
+  c.innerHTML=`<div class="emoji">📝</div><h2>Bloco de notas</h2><textarea id="noteText" rows="10" placeholder="Escreve as tuas notas..."></textarea><button onclick="localStorage.setItem('wa_notes',document.getElementById('noteText').value);setOut('Nota guardada neste navegador!')">Guardar nota</button><button class="secondary" onclick="document.getElementById('noteText').value='';localStorage.removeItem('wa_notes');setOut('Nota apagada.')">Apagar</button>${out}${back}`;
+  document.getElementById("noteText").value=localStorage.getItem("wa_notes")||"";break;
  case "tasks":
-   c.innerHTML=`<div class="emoji">✅</div><h2>Lista de tarefas</h2><div class="row">${field("Nova tarefa","taskInput","O que precisas de fazer?")}<button onclick="addTask()">Adicionar</button></div><div id="taskList"></div>${back}`;
-   renderTasks();break;
+  c.innerHTML=`<div class="emoji">✅</div><h2>Lista de tarefas</h2>${field("Nova tarefa","taskInput","O que precisas de fazer?")}<button onclick="addTask()">Adicionar tarefa</button><div id="taskList"></div>${back}`;renderTasks();break;
  case "passwordgen":
-   c.innerHTML=`<div class="emoji">🔐</div><h2>Gerador de palavras-passe</h2>${field("Comprimento (8–64)","passLength","16","number")}<p><label><input id="passSymbols" type="checkbox" checked style="width:auto"> Incluir símbolos</label></p><button onclick="generatePassword()">Gerar palavra-passe</button><div id="passwordOutput" class="output"></div><button class="secondary" onclick="copyText(document.getElementById('passwordOutput').textContent)">Copiar</button><p class="note">Para contas importantes, usa um gestor de palavras-passe de confiança.</p>${back}`;
-   document.getElementById("passLength").value=16;break;
+  c.innerHTML=`<div class="emoji">🔐</div><h2>Gerador de palavras-passe</h2>${field("Comprimento (8–64)","passLength","16","number")}<p><label><input id="passSymbols" type="checkbox" checked style="width:auto"> Incluir símbolos</label></p><button onclick="generatePassword()">Gerar palavra-passe</button><div id="passwordOutput" class="output"></div><button class="secondary" onclick="copyText(document.getElementById('passwordOutput').textContent)">Copiar</button>${back}`;document.getElementById("passLength").value=16;break;
  case "timer":
-   c.innerHTML=`<div class="emoji">⏱️</div><h2>Cronómetro</h2><div class="bigtime" id="timerDisplay">00:00.0</div><button onclick="startTimer()">Iniciar</button><button class="secondary" onclick="pauseTimer()">Pausar</button><button class="secondary" onclick="resetTimer()">Reiniciar</button>${back}`;
-   timerStart=0;timerElapsed=0;timerRunning=false;break;
+  c.innerHTML=`<div class="emoji">⏱️</div><h2>Cronómetro</h2><div class="bigtime" id="timerDisplay">00:00.0</div><button onclick="startTimer()">Iniciar</button><button class="secondary" onclick="pauseTimer()">Pausar</button><button class="secondary" onclick="resetTimer()">Reiniciar</button>${back}`;timerStart=0;timerElapsed=0;timerRunning=false;break;
  case "counter":
-   counterValue=0;c.innerHTML=`<div class="emoji">🔢</div><h2>Contador</h2><div class="bigtime" id="counterDisplay">0</div><button onclick="counterChange(1)">+1</button><button class="secondary" onclick="counterChange(-1)">−1</button><button class="secondary" onclick="counterChange(10)">+10</button><button class="secondary" onclick="counterChange(0)">Reiniciar</button>${back}`;break;
+  counterValue=0;c.innerHTML=`<div class="emoji">🔢</div><h2>Contador</h2><div class="bigtime" id="counterDisplay">0</div><button onclick="counterChange(1)">+1</button><button class="secondary" onclick="counterChange(-1)">−1</button><button class="secondary" onclick="counterChange(10)">+10</button><button class="secondary" onclick="counterChange(0)">Reiniciar</button>${back}`;break;
  case "converter":
-   c.innerHTML=`<div class="emoji">📏</div><h2>Conversor de unidades</h2>${field("Valor","convValue","100","number")}<label style="display:block;margin-top:12px">Converter de</label><select id="convFrom"><option value="m">Metros</option><option value="km">Quilómetros</option><option value="cm">Centímetros</option></select><label style="display:block;margin-top:12px">Converter para</label><select id="convTo"><option value="km">Quilómetros</option><option value="m">Metros</option><option value="cm">Centímetros</option></select><button onclick="convertUnits()">Converter</button>${out}${back}`;break;
+  c.innerHTML=`<div class="emoji">📏</div><h2>Conversor de unidades</h2>${field("Valor","convValue","100","number")}<label style="display:block;margin-top:12px">Converter de</label><select id="convFrom"><option value="m">Metros</option><option value="km">Quilómetros</option><option value="cm">Centímetros</option></select><label style="display:block;margin-top:12px">Converter para</label><select id="convTo"><option value="km">Quilómetros</option><option value="m">Metros</option><option value="cm">Centímetros</option></select><button onclick="convertUnits()">Converter</button>${out}${back}`;break;
  case "color":
-   c.innerHTML=`<div class="emoji">🎨</div><h2>Seletor de cores</h2><input id="colorPicker" type="color" value="#00e5ff" oninput="showColor()" style="height:70px"><div id="colorSample" style="height:90px;border-radius:12px;margin-top:15px;background:#00e5ff"></div><div id="colorCode" class="output">#00E5FF</div><button onclick="copyText(document.getElementById('colorCode').textContent)">Copiar HEX</button>${back}`;break;
+  c.innerHTML=`<div class="emoji">🎨</div><h2>Seletor de cores</h2><input id="colorPicker" type="color" value="#00e5ff" oninput="showColor()" style="height:70px"><div id="colorSample" style="height:90px;border-radius:12px;margin-top:15px;background:#00e5ff"></div><div id="colorCode" class="output">#00E5FF</div><button onclick="copyText(document.getElementById('colorCode').textContent)">Copiar HEX</button>${back}`;break;
  case "writer":
-   c.innerHTML=`<div class="emoji">📄</div><h2>Contador de texto</h2><textarea id="writerText" rows="8" placeholder="Escreve ou cola o teu texto..." oninput="countText()"></textarea><div id="textStats" class="output">0 palavras · 0 caracteres</div>${back}`;break;
+  c.innerHTML=`<div class="emoji">📄</div><h2>Contador de texto</h2><textarea id="writerText" rows="8" placeholder="Escreve ou cola o teu texto..." oninput="countText()"></textarea><div id="textStats" class="output">0 palavras · 0 caracteres</div>${back}`;break;
  case "dice":
-   c.innerHTML=`<div class="emoji">🎲</div><h2>Lançar dados</h2><label>Quantidade</label><select id="diceCount"><option value="1">1 dado</option><option value="2">2 dados</option></select><button onclick="rollDice()">Lançar!</button>${out}${back}`;break;
+  c.innerHTML=`<div class="emoji">🎲</div><h2>Lançar dados</h2><label>Quantidade</label><select id="diceCount"><option value="1">1 dado</option><option value="2">2 dados</option></select><button onclick="rollDice()">Lançar!</button>${out}${back}`;break;
  case "coin":
-   c.innerHTML=`<div class="emoji">🪙</div><h2>Cara ou coroa</h2><button onclick="setOut(Math.random()<0.5?'🪙 CARA!':'🪙 COROA!')">Lançar moeda</button>${out}${back}`;break;
+  c.innerHTML=`<div class="emoji">🪙</div><h2>Cara ou coroa</h2><button onclick="setOut(Math.random()<0.5?'🪙 CARA!':'🪙 COROA!')">Lançar moeda</button>${out}${back}`;break;
  case "tictactoe":
-   c.innerHTML=`<div class="emoji">❎</div><h2>Jogo do Galo</h2><p>Dois jogadores, no mesmo dispositivo.</p><div id="gameStatus">Vez do X</div><div id="gameBoard"></div><button class="secondary" onclick="newTicTacToe()">Novo jogo</button>${back}`;newTicTacToe();break;
+  c.innerHTML=`<div class="emoji">❎</div><h2>Jogo do Galo</h2><p>Dois jogadores no mesmo dispositivo.</p><div id="gameStatus">Vez do X</div><div id="gameBoard"></div><button class="secondary" onclick="newTicTacToe()">Novo jogo</button>${back}`;newTicTacToe();break;
  case "reaction":
-   c.innerHTML=`<div class="emoji">⚡</div><h2>Teste de reflexos</h2><p id="reactionMessage">Carrega em começar e espera que o painel fique verde. Não carregues antes!</p><button id="reactionBtn" onclick="reactionStart()">Começar</button>${back}`;break;
+  c.innerHTML=`<div class="emoji">⚡</div><h2>Teste de reflexos</h2><p id="reactionMessage">Carrega em começar e espera pelo sinal verde.</p><button id="reactionBtn" onclick="reactionStart()">Começar</button>${back}`;break;
  case "guess":
-   guessSecret=Math.floor(Math.random()*100)+1;guessCount=0;
-   c.innerHTML=`<div class="emoji">🔢</div><h2>Adivinha o número</h2><p>Escolhi um número entre 1 e 100.</p>${field("A tua tentativa","guessInput","Número entre 1 e 100","number")}<button onclick="guessNumber()">Tentar</button><button class="secondary" onclick="openApp('guess')">Novo número</button>${out}${back}`;break;
- default: c.innerHTML=`<h2>Aplicação não encontrada</h2>${back}`;
+  guessSecret=Math.floor(Math.random()*100)+1;guessCount=0;
+  c.innerHTML=`<div class="emoji">🎯</div><h2>Adivinha o número</h2><p>Escolhi um número entre 1 e 100.</p>${field("A tua tentativa","guessInput","Número entre 1 e 100","number")}<button onclick="guessNumber()">Tentar</button><button class="secondary" onclick="openApp('guess')">Novo número</button>${out}${back}`;break;
+ default:c.innerHTML=`<h2>Aplicação não encontrada</h2>${back}`;
  }
 }
+
 function makeQR(){
- const value=document.getElementById("qrText").value.trim(), result=document.getElementById("qrResult");
+ const value=document.getElementById("qrText").value.trim(),result=document.getElementById("qrResult");
  if(!value){result.textContent="Escreve primeiro um texto ou link.";return;}
- const img=document.createElement("img");img.id="qrImage";img.alt="Código QR criado";
+ result.innerHTML="";
+ const img=document.createElement("img");img.id="qrImage";img.alt="Código QR";
  img.src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+encodeURIComponent(value);
- img.onerror=()=>{result.textContent="Não foi possível gerar o QR Code. Verifica a ligação à internet.";};
- result.innerHTML="";result.appendChild(img);
+ img.onerror=()=>{result.textContent="Não foi possível gerar o QR Code. Verifica a internet.";};
+ result.appendChild(img);
  const btn=document.createElement("button");btn.textContent="Abrir imagem do QR Code";btn.onclick=()=>window.open(img.src,"_blank","noopener");result.appendChild(btn);
 }
 function calculate(){
  const a=Number(document.getElementById("num1").value),b=Number(document.getElementById("num2").value),op=document.getElementById("op").value;
  if(document.getElementById("num1").value===""||document.getElementById("num2").value===""){document.getElementById("output").textContent="Preenche os dois números.";return;}
  if(op==="/"&&b===0){document.getElementById("output").textContent="Não podes dividir por zero.";return;}
- let r=op==="+"?a+b:op==="-"?a-b:op==="*"?a*b:op==="/ "?a/b:op==="/"?a/b:a%b;
+ const r=op==="+"?a+b:op==="-"?a-b:op==="*"?a*b:op==="/"?a/b:a%b;
  document.getElementById("output").textContent="Resultado: "+r;
 }
-function copyText(t){if(!t)return; if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>alert("Copiado!")).catch(()=>prompt("Copia o texto:",t));}else prompt("Copia o texto:",t);}
+function setOut(t){const el=document.getElementById("output");if(el)el.textContent=t;}
+function copyText(t){if(!t)return;if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>alert("Copiado!")).catch(()=>prompt("Copia o texto:",t));}else prompt("Copia o texto:",t);}
 function generatePassword(){
- let n=parseInt(document.getElementById("passLength").value,10);if(!Number.isFinite(n)||n<8||n>64){document.getElementById("passwordOutput").textContent="Escolhe um comprimento entre 8 e 64.";return;}
+ const n=parseInt(document.getElementById("passLength").value,10);
+ if(!Number.isFinite(n)||n<8||n>64){document.getElementById("passwordOutput").textContent="Escolhe um comprimento entre 8 e 64.";return;}
  let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
  if(document.getElementById("passSymbols").checked)chars+="!@#$%^&*()-_=+[]{}?";
- let result="";const random=new Uint32Array(n);crypto.getRandomValues(random);for(let i=0;i<n;i++)result+=chars[random[i]%chars.length];
+ const random=new Uint32Array(n);crypto.getRandomValues(random);
+ let result="";for(let i=0;i<n;i++)result+=chars[random[i]%chars.length];
  document.getElementById("passwordOutput").textContent=result;
 }
 function renderTasks(){
  const list=document.getElementById("taskList");if(!list)return;
  const tasks=JSON.parse(localStorage.getItem("wa_tasks")||"[]");
  list.innerHTML=tasks.length?"":"<p>Ainda não tens tarefas.</p>";
- tasks.forEach((t,i)=>{const row=document.createElement("div");row.className="output";
- const label=document.createElement("label"),cb=document.createElement("input");cb.type="checkbox";cb.checked=t.done;cb.style.width="auto";cb.style.marginRight="8px";
- cb.onchange=()=>{tasks[i].done=cb.checked;localStorage.setItem("wa_tasks",JSON.stringify(tasks));renderTasks();};
- label.appendChild(cb);const txt=document.createTextNode(t.text);label.appendChild(txt);if(t.done)label.style.textDecoration="line-through";
- const del=document.createElement("button");del.className="danger";del.textContent="Apagar";del.style.float="right";del.onclick=()=>{tasks.splice(i,1);localStorage.setItem("wa_tasks",JSON.stringify(tasks));renderTasks();};
- row.appendChild(label);row.appendChild(del);list.appendChild(row);});
+ tasks.forEach((t,i)=>{
+  const row=document.createElement("div");row.className="output";
+  const label=document.createElement("label"),cb=document.createElement("input");
+  cb.type="checkbox";cb.checked=t.done;cb.style.width="auto";cb.style.marginRight="8px";
+  cb.onchange=()=>{tasks[i].done=cb.checked;localStorage.setItem("wa_tasks",JSON.stringify(tasks));renderTasks();};
+  label.appendChild(cb);label.appendChild(document.createTextNode(t.text));
+  if(t.done)label.style.textDecoration="line-through";
+  const del=document.createElement("button");del.className="danger";del.textContent="Apagar";del.style.float="right";
+  del.onclick=()=>{tasks.splice(i,1);localStorage.setItem("wa_tasks",JSON.stringify(tasks));renderTasks();};
+  row.appendChild(label);row.appendChild(del);list.appendChild(row);
+ });
 }
-function addTask(){const inp=document.getElementById("taskInput"),v=inp.value.trim();if(!v)return;const t=JSON.parse(localStorage.getItem("wa_tasks")||"[]");t.push({text:v,done:false});localStorage.setItem("wa_tasks",JSON.stringify(t));inp.value="";renderTasks();}
+function addTask(){
+ const inp=document.getElementById("taskInput"),v=inp.value.trim();if(!v)return;
+ const tasks=JSON.parse(localStorage.getItem("wa_tasks")||"[]");
+ tasks.push({text:v,done:false});localStorage.setItem("wa_tasks",JSON.stringify(tasks));inp.value="";renderTasks();
+}
 let timerStart=0,timerElapsed=0,timerRunning=false,timerInterval=null;
 function startTimer(){if(timerRunning)return;timerRunning=true;timerStart=Date.now()-timerElapsed;timerInterval=setInterval(()=>{timerElapsed=Date.now()-timerStart;const el=document.getElementById("timerDisplay");if(el)el.textContent=formatTime(timerElapsed);},100);}
 function pauseTimer(){timerRunning=false;clearInterval(timerInterval);}
 function resetTimer(){pauseTimer();timerElapsed=0;const el=document.getElementById("timerDisplay");if(el)el.textContent="00:00.0";}
-function formatTime(ms){const min=Math.floor(ms/60000),sec=Math.floor(ms/1000)%60,tenth=Math.floor(ms/100)%10;return String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0")+"."+tenth;}
-let counterValue=0;function counterChange(n){counterValue=n===0?0:counterValue+n;const el=document.getElementById("counterDisplay");if(el)el.textContent=counterValue;}
-function convertUnits(){const v=Number(document.getElementById("convValue").value),f=document.getElementById("convFrom").value,t=document.getElementById("convTo").value;if(document.getElementById("convValue").value===""){document.getElementById("output").textContent="Introduz um valor.";return;}const metres=v*(f==="km"?1000:f==="cm"?.01:1),r=metres/(t==="km"?1000:t==="cm"?.01:1);document.getElementById("output").textContent=`Resultado: ${r} ${t}`;}
+function formatTime(ms){return String(Math.floor(ms/60000)).padStart(2,"0")+":"+String(Math.floor(ms/1000)%60).padStart(2,"0")+"."+Math.floor(ms/100)%10;}
+let counterValue=0;
+function counterChange(n){counterValue=n===0?0:counterValue+n;const el=document.getElementById("counterDisplay");if(el)el.textContent=counterValue;}
+function convertUnits(){
+ const inp=document.getElementById("convValue"),v=Number(inp.value);
+ if(inp.value===""){setOut("Introduz um valor.");return;}
+ const f=document.getElementById("convFrom").value,t=document.getElementById("convTo").value;
+ const metres=v*(f==="km"?1000:f==="cm"?.01:1);
+ const r=metres/(t==="km"?1000:t==="cm"?.01:1);
+ setOut(`Resultado: ${r} ${t}`);
+}
 function showColor(){const v=document.getElementById("colorPicker").value;document.getElementById("colorSample").style.background=v;document.getElementById("colorCode").textContent=v.toUpperCase();}
 function countText(){const s=document.getElementById("writerText").value;const words=s.trim()?s.trim().split(/\s+/).length:0;document.getElementById("textStats").textContent=`${words} palavras · ${s.length} caracteres · ${s.split(/\n/).length} linhas`;}
-function rollDice(){const n=Number(document.getElementById("diceCount").value),r=Array.from({length:n},()=>Math.floor(Math.random()*6)+1);document.getElementById("output").textContent=`Resultado: ${r.join(" + ")}${n===2?" = "+r.reduce((a,b)=>a+b,0):""}`;}
+function rollDice(){const n=Number(document.getElementById("diceCount").value),r=Array.from({length:n},()=>Math.floor(Math.random()*6)+1);setOut(`Resultado: ${r.join(" + ")}${n===2?" = "+r.reduce((a,b)=>a+b,0):""}`);}
+
 let ticBoard=[],ticTurn="X",ticOver=false;
 function newTicTacToe(){ticBoard=Array(9).fill("");ticTurn="X";ticOver=false;drawTicTacToe();}
 function drawTicTacToe(){
@@ -305,7 +355,8 @@ function drawTicTacToe(){
  document.getElementById("gameStatus").textContent=ticOver?"Jogo terminado!":`Vez do ${ticTurn}`;
 }
 function ticMove(i){
- if(ticBoard[i]||ticOver)return;ticBoard[i]=ticTurn;
+ if(ticBoard[i]||ticOver)return;
+ ticBoard[i]=ticTurn;
  const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
  if(wins.some(w=>w.every(j=>ticBoard[j]===ticTurn))){ticOver=true;drawTicTacToe();document.getElementById("gameStatus").textContent=`🎉 ${ticTurn} ganhou!`;return;}
  if(ticBoard.every(Boolean)){ticOver=true;drawTicTacToe();document.getElementById("gameStatus").textContent="Empate!";return;}
@@ -314,23 +365,35 @@ function ticMove(i){
 let reactionTimeout=null,reactionReady=false,reactionStartTime=0,reactionWaiting=false;
 function reactionStart(){
  const btn=document.getElementById("reactionBtn"),msg=document.getElementById("reactionMessage");if(!btn||!msg)return;
- clearTimeout(reactionTimeout);reactionReady=false;reactionWaiting=true;btn.textContent="Espera...";btn.style.background="#d94646";msg.textContent="Espera que fique verde...";
+ clearTimeout(reactionTimeout);reactionReady=false;reactionWaiting=true;
+ btn.textContent="Espera...";btn.style.background="#d94646";msg.textContent="Espera que fique verde...";
+ btn.onclick=reactionClick;
  reactionTimeout=setTimeout(()=>{reactionReady=true;reactionStartTime=performance.now();btn.style.background="#22c55e";btn.textContent="CARREGA AGORA!";msg.textContent="AGORA!";},1000+Math.random()*3500);
- btn.onclick=()=>{
-  if(!reactionWaiting){reactionStart();return;}
-  if(!reactionReady){clearTimeout(reactionTimeout);reactionWaiting=false;btn.style.background="";btn.textContent="Tentar novamente";msg.textContent="Clicaste demasiado cedo!";return;}
-  const elapsed=Math.round(performance.now()-reactionStartTime);reactionWaiting=false;reactionReady=false;btn.style.background="";btn.textContent="Jogar novamente";msg.textContent=`O teu tempo de reação foi ${elapsed} ms!`;
- };
+}
+function reactionClick(){
+ const btn=document.getElementById("reactionBtn"),msg=document.getElementById("reactionMessage");
+ if(!reactionWaiting){reactionStart();return;}
+ if(!reactionReady){clearTimeout(reactionTimeout);reactionWaiting=false;btn.style.background="";btn.textContent="Tentar novamente";msg.textContent="Clicaste demasiado cedo!";return;}
+ const elapsed=Math.round(performance.now()-reactionStartTime);
+ reactionWaiting=false;reactionReady=false;btn.style.background="";btn.textContent="Jogar novamente";
+ msg.textContent=`O teu tempo de reação foi ${elapsed} ms!`;
 }
 let guessSecret=0,guessCount=0;
-function guessNumber(){const inp=document.getElementById("guessInput"),n=Number(inp.value),out=document.getElementById("output");if(!inp.value||n<1||n>100||!Number.isInteger(n)){out.textContent="Introduz um número inteiro entre 1 e 100.";return;}guessCount++;out.textContent=n===guessSecret?`🎉 Acertaste em ${guessCount} tentativa(s)!`:n<guessSecret?"É maior! Tenta novamente.":"É menor! Tenta novamente.";if(n===guessSecret)inp.disabled=true;}
+function guessNumber(){
+ const inp=document.getElementById("guessInput"),n=Number(inp.value);
+ if(!inp.value||n<1||n>100||!Number.isInteger(n)){setOut("Introduz um número inteiro entre 1 e 100.");return;}
+ guessCount++;
+ if(n===guessSecret){setOut(`🎉 Acertaste em ${guessCount} tentativa(s)!`);inp.disabled=true;}
+ else setOut(n<guessSecret?"É maior! Tenta novamente.":"É menor! Tenta novamente.");
+}
 
 function loadUsers(){try{return JSON.parse(localStorage.getItem("wa_users")||"{}");}catch(e){return {};}}
 function registerUser(){
  const name=document.getElementById("username").value.trim(),pass=document.getElementById("password").value,msg=document.getElementById("accountMessage");
  msg.classList.remove("hidden");
  if(name.length<3||pass.length<6){msg.textContent="O nome deve ter pelo menos 3 caracteres e a palavra-passe 6.";return;}
- const users=loadUsers(),key=name.toLowerCase();if(users[key]){msg.textContent="Esse nome já existe neste navegador. Inicia sessão.";return;}
+ const users=loadUsers(),key=name.toLowerCase();
+ if(users[key]){msg.textContent="Esse nome já existe neste navegador. Inicia sessão.";return;}
  users[key]={name,password:pass};localStorage.setItem("wa_users",JSON.stringify(users));localStorage.setItem("wa_current",name);
  updateAccount();msg.textContent="Conta criada neste navegador!";
 }
@@ -350,7 +413,9 @@ function updateAccount(){
  document.getElementById("accountDescription").textContent=name?"Sessão iniciada neste navegador.":"Cria uma conta local ou inicia sessão.";
  document.getElementById("loggedMessage").textContent=name?`Olá, ${name}! Estás ligado à tua conta local.`:"";
 }
-renderCards();updateAccount();
+
+renderCards();
+updateAccount();
 </script>
 </body>
 </html>
