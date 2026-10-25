@@ -1,391 +1,138 @@
+from pathlib import Path
 
-<!DOCTYPE html>
+html = r'''<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WorldApps V6</title>
+<meta name="theme-color" content="#080b14">
+<title>WorldApps V7</title>
 <style>
-:root{--bg:#0b1020;--panel:#151d32;--panel2:#1d2944;--text:#f4f7ff;--muted:#aab6d3;--accent:#7868ff;--border:#2b3858;--good:#31c48d;--danger:#f87171}
-body.light{--bg:#f2f5fb;--panel:#fff;--panel2:#e9eef8;--text:#172033;--muted:#596780;--accent:#5548e8;--border:#d7deeb}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,Arial;transition:.2s}
-button,input,textarea,select{font:inherit;border-radius:10px;border:1px solid var(--border);padding:10px 12px}
-input,textarea,select{background:var(--bg);color:var(--text);max-width:100%}
-button{background:var(--accent);color:#fff;border:0;cursor:pointer;font-weight:650}
-button:hover{filter:brightness(1.1)}
-button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
-button.danger{background:#c83d55}
-.wrap{max-width:1250px;margin:auto;padding:20px}
-header{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--border);padding:14px max(20px,calc((100% - 1210px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{font-size:24px;font-weight:900;letter-spacing:-.8px}
-.logo span{color:var(--accent)}
-.top-actions{display:flex;gap:8px;flex-wrap:wrap}
-.hero{background:linear-gradient(135deg,var(--panel),var(--panel2));padding:26px;border:1px solid var(--border);border-radius:20px;margin:8px 0 22px}
-.hero h1{font-size:clamp(27px,5vw,42px);line-height:1.1;margin:0 0 10px}
-.muted{color:var(--muted)}
-.search{width:100%;padding:14px;margin:0 0 20px}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.section-head h2{margin:16px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px}
-.app-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:17px;display:flex;flex-direction:column;min-height:176px}
-.app-card .emoji{font-size:28px}
-.app-card h3{margin:7px 0 4px}
-.app-card p{color:var(--muted);margin:0 0 14px;flex:1}
-.app-card button{width:100%}
-.panel{display:none;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:20px;margin:22px 0}
-.panel.active{display:block}
-.panel h2{margin-top:0}
-.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.row input{flex:1;min-width:150px}
-.field{display:flex;flex-direction:column;gap:5px;margin:10px 0}
-.field input,.field textarea{width:100%}
-.result{background:var(--panel2);border-radius:12px;padding:12px;margin:12px 0;overflow-wrap:anywhere}
-.qr-output{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.qr-output canvas{width:220px;height:220px;image-rendering:pixelated;border:8px solid white}
-.game-grid{display:grid;grid-template-columns:repeat(4,minmax(50px,80px));gap:8px}
-.memory-card{height:70px;font-size:25px;background:var(--panel2);border:1px solid var(--border);color:var(--text)}
-.memory-card.open{background:var(--accent);color:white}
-.snake-wrap{max-width:100%;overflow:auto}
-.snake-wrap canvas{width:360px;height:360px;border:2px solid var(--border)}
-.footer{text-align:center;padding:30px;color:var(--muted)}
-.hidden{display:none!important}
-.notice{padding:12px;background:var(--panel2);border-radius:10px;color:var(--muted)}
-.stat{display:inline-block;background:var(--panel2);padding:8px 12px;border-radius:10px;margin:4px 4px 4px 0}
-.task{display:flex;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
-.task span{flex:1}
-.task.done span{text-decoration:line-through;color:var(--muted)}
-.close-row{display:flex;justify-content:flex-end;margin-top:16px}
-.small{font-size:13px}
-canvas{display:block;max-width:100%;background:#fff;border-radius:10px;touch-action:none}
-@media(max-width:600px){.wrap{padding:13px}header{padding:12px}.logo{font-size:21px}.hero{padding:20px}.panel{padding:15px}}
+:root{--bg:#080b14;--panel:#101626;--panel2:#151e31;--text:#f4f7ff;--muted:#9ba8c4;--accent:#9b5cff;--accent2:#00e5ff;--border:#27334c;--good:#50f0a0;--danger:#ff5878;--shadow:0 12px 35px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#25144b 0,transparent 35%),radial-gradient(ellipse at 90% 5%,#073344 0,transparent 28%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}a{color:var(--accent2)}.wrap{max-width:1250px;margin:auto;padding:18px}.topbar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 0 20px;border-bottom:1px solid var(--border)}.brand{display:flex;gap:11px;align-items:center;font-size:1.25rem;font-weight:900;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07101b;font-size:1.4rem;box-shadow:0 0 25px #9b5cff55}.brand small{display:block;font-size:.68rem;letter-spacing:2px;color:var(--muted);font-weight:700}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn,.iconbtn{border:1px solid var(--border);border-radius:12px;background:var(--panel2);color:var(--text);padding:9px 13px}.btn.primary{background:linear-gradient(100deg,var(--accent),#6848e8);border-color:transparent;color:white;font-weight:800}.btn:hover,.iconbtn:hover{filter:brightness(1.2);transform:translateY(-1px)}.hero{padding:32px 0 24px;display:grid;grid-template-columns:1.4fr .6fr;gap:20px;align-items:center}.eyebrow{color:var(--accent2);font-size:.76rem;font-weight:900;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(2.1rem,5vw,4rem);line-height:1.03;letter-spacing:-2px;margin:9px 0 12px}.gradient{background:linear-gradient(90deg,#fff,var(--accent2),#bd8cff);background-clip:text;color:transparent}.hero p{max-width:650px;color:var(--muted);font-size:1.04rem}.hero-card{border:1px solid #3b3465;border-radius:22px;padding:22px;background:linear-gradient(140deg,#20183b,#0e2532);box-shadow:var(--shadow)}.hero-card .big{font-size:2.5rem}.hero-card strong{display:block;font-size:1.1rem}.hero-card p{font-size:.9rem;margin-bottom:0}.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.stat{padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:#0d1321;color:var(--muted);font-size:.83rem}.stat b{color:var(--text)}.searchrow{display:flex;gap:10px;margin:10px 0 18px}.search{flex:1;min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:13px 15px;color:var(--text)}.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 14px}.chip{white-space:nowrap;border:1px solid var(--border);border-radius:999px;background:#101626;color:var(--muted);padding:8px 13px}.chip.active{background:#31204d;color:#fff;border-color:var(--accent)}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:15px 0}.sectionhead h2{margin:0;font-size:1.35rem}.sectionhead p{margin:3px 0 0;color:var(--muted);font-size:.88rem}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.appcard{border:1px solid var(--border);border-radius:17px;padding:16px;background:linear-gradient(145deg,#121a2a,#0d1320);text-align:left;color:var(--text);min-height:150px;display:flex;flex-direction:column;transition:.18s;box-shadow:0 6px 20px #0002}.appcard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 30px #0004}.appicon{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#292047,#103340);font-size:1.45rem;margin-bottom:12px}.appcard strong{font-size:1rem}.appcard p{margin:5px 0 0;color:var(--muted);font-size:.82rem}.appcard .tag{margin-top:auto;padding-top:12px;color:var(--accent2);font-size:.72rem;font-weight:800}.empty{color:var(--muted);padding:28px;text-align:center;border:1px dashed var(--border);border-radius:15px;grid-column:1/-1}.footer{color:var(--muted);font-size:.8rem;padding:30px 0 15px;text-align:center}.modal{position:fixed;inset:0;z-index:20;background:#02040bd9;display:none;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(8px)}.modal.open{display:flex}.dialog{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}.dialoghead{position:sticky;top:0;background:var(--panel);display:flex;align-items:center;justify-content:space-between;padding:16px 19px;border-bottom:1px solid var(--border);z-index:1}.dialoghead h2{font-size:1.15rem;margin:0}.dialogbody{padding:20px}.close{border:1px solid var(--border);border-radius:10px;background:var(--panel2);color:var(--text);width:36px;height:36px;font-size:1.2rem}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-weight:700;font-size:.88rem}.field input,.field textarea,.field select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:#090e19;color:var(--text)}.field textarea{min-height:100px;resize:vertical}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{margin-top:14px;padding:14px;background:#0a101d;border:1px solid var(--border);border-radius:12px;overflow-wrap:anywhere}.notice{font-size:.82rem;color:var(--muted)}.success{color:var(--good)}.error{color:var(--danger)}.toolactions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.qrimg{max-width:240px;width:100%;display:block;margin:12px auto;background:white;padding:10px;border-radius:12px}.gamebox{background:#080d17;border:1px solid var(--border);border-radius:14px;padding:12px}.gamecanvas{display:block;width:100%;max-width:560px;margin:auto;background:#07101b;border-radius:10px;touch-action:manipulation}.gamecontrols{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}.memorygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:420px;margin:14px auto}.memorytile{aspect-ratio:1;border-radius:12px;border:1px solid var(--border);background:#1b2340;color:white;font-size:1.7rem}.memorytile.revealed{background:#163447;border-color:var(--accent2)}.light{--bg:#eef2fa;--panel:#fff;--panel2:#edf1fb;--text:#182035;--muted:#5e6a84;--border:#d5dcec;--shadow:0 12px 35px #23335520;background:radial-gradient(ellipse at 15% 0%,#ded1ff 0,transparent 35%),radial-gradient(ellipse at 90% 5%,#c8f5fa 0,transparent 28%),var(--bg)}.light .appcard{background:linear-gradient(145deg,#fff,#f5f7fc)}.light .hero-card{background:linear-gradient(140deg,#eee5ff,#e0f9fc);border-color:#d2c7f3}.light .stat,.light .chip{background:#fff}.light .field input,.light .field textarea,.light .field select,.light .result{background:#f6f8fc}.light .dialoghead{background:var(--panel)}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.hero-card{display:none}}@media(max-width:600px){.wrap{padding:13px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.appcard{padding:12px;min-height:145px}.hero{padding-top:25px}.hero h1{letter-spacing:-1px}.row2{grid-template-columns:1fr}.brand{font-size:1.05rem}.topbar{align-items:flex-start}.actions{justify-content:flex-end}.sectionhead h2{font-size:1.15rem}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">🌍 World<span>Apps</span> <small style="font-size:12px;color:var(--muted)">V6</small></div>
-  <div class="top-actions">
-    <button class="secondary" id="themeBtn" onclick="toggleTheme()">🌙 Tema</button>
-    <button onclick="openPanel('account')">👤 <span id="accountButton">Conta</span></button>
-  </div>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand"><div class="logo">W</div><div>WorldApps <small>VERSÃO 7 · HUB DIGITAL</small></div></div>
+  <div class="actions"><button class="btn" id="themeBtn" title="Mudar tema">🌗 Tema</button><button class="btn" id="favBtn">⭐ Favoritos</button><button class="btn primary" id="accountBtn">👤 Entrar</button></div>
 </header>
-
-<main class="wrap">
-  <section class="hero">
-    <h1>O teu mundo de aplicações.</h1>
-    <p class="muted">Ferramentas úteis, criatividade e jogos — tudo num só lugar.</p>
-    <div class="row">
-      <span class="stat">🧩 <b id="appCount">0</b> aplicações</span>
-      <span class="stat">🎮 5 jogos</span>
-      <span class="stat">💾 Guardado neste navegador</span>
-    </div>
-  </section>
-
-  <input id="search" class="search" placeholder="🔎 Procurar uma aplicação ou jogo..." oninput="filterApps()" aria-label="Pesquisar aplicações">
-
-  <div class="section-head"><h2>🚀 Aplicações</h2><span class="muted small">Escolhe uma ferramenta para começar</span></div>
-  <section class="grid" id="appGrid">
-    <article class="app-card" data-name="calculadora matemática"><div class="emoji">🧮</div><h3>Calculadora</h3><p>Faz operações matemáticas.</p><button onclick="openPanel('calculator')">Abrir</button></article>
-    <article class="app-card" data-name="notas bloco de notas texto"><div class="emoji">📝</div><h3>Bloco de notas</h3><p>Escreve e guarda notas no navegador.</p><button onclick="openPanel('notes')">Abrir</button></article>
-    <article class="app-card" data-name="tarefas lista organização"><div class="emoji">✅</div><h3>Lista de tarefas</h3><p>Organiza o que tens para fazer.</p><button onclick="openPanel('tasks')">Abrir</button></article>
-    <article class="app-card" data-name="qr code código qr gerador"><div class="emoji">📱</div><h3>Criador de QR Code</h3><p>Cria e descarrega códigos QR sem API externa.</p><button onclick="openPanel('qr')">Abrir</button></article>
-    <article class="app-card" data-name="palavra passe senha gerador"><div class="emoji">🔐</div><h3>Gerador de palavras-passe</h3><p>Gera uma palavra-passe aleatória.</p><button onclick="openPanel('password')">Abrir</button></article>
-    <article class="app-card" data-name="desenho pintura pintar"><div class="emoji">🎨</div><h3>Área de desenho</h3><p>Desenha, escolhe cores e guarda a imagem.</p><button onclick="openPanel('paint')">Abrir</button></article>
-    <article class="app-card" data-name="conversor unidades comprimento peso temperatura"><div class="emoji">🔄</div><h3>Conversor de unidades</h3><p>Converte comprimento, peso e temperatura.</p><button onclick="openPanel('converter')">Abrir</button></article>
-    <article class="app-card" data-name="desconto percentagem preço compras"><div class="emoji">🏷️</div><h3>Calculadora de descontos</h3><p>Descobre o preço depois do desconto.</p><button onclick="openPanel('discount')">Abrir</button></article>
-    <article class="app-card" data-name="temporizador timer contagem"><div class="emoji">⏳</div><h3>Temporizador</h3><p>Define uma contagem decrescente.</p><button onclick="openPanel('timer')">Abrir</button></article>
-    <article class="app-card" data-name="cronómetro stopwatch tempo"><div class="emoji">⏱️</div><h3>Cronómetro</h3><p>Mede o tempo decorrido.</p><button onclick="openPanel('stopwatch')">Abrir</button></article>
-    <article class="app-card" data-name="calendário data mês"><div class="emoji">📅</div><h3>Calendário</h3><p>Consulta a data e o dia da semana.</p><button onclick="openPanel('calendar')">Abrir</button></article>
-    <article class="app-card" data-name="relógio horas"><div class="emoji">🕒</div><h3>Relógio</h3><p>Vê a hora atual do teu dispositivo.</p><button onclick="openPanel('clock')">Abrir</button></article>
-    <article class="app-card" data-name="dados dado aleatório"><div class="emoji">🎲</div><h3>Lançar dados</h3><p>Lança um ou dois dados virtuais.</p><button onclick="openPanel('dice')">Abrir</button></article>
-    <article class="app-card" data-name="número aleatório sorteio"><div class="emoji">🎯</div><h3>Número aleatório</h3><p>Sorteia um número dentro de um intervalo.</p><button onclick="openPanel('random')">Abrir</button></article>
-    <article class="app-card" data-name="editor texto ficheiro download"><div class="emoji">📄</div><h3>Editor de texto</h3><p>Escreve texto e descarrega um ficheiro .txt.</p><button onclick="openPanel('editor')">Abrir</button></article>
-    <article class="app-card" data-name="contagem palavras caracteres"><div class="emoji">🔤</div><h3>Contador de texto</h3><p>Conta palavras e caracteres.</p><button onclick="openPanel('wordcount')">Abrir</button></article>
-    <article class="app-card" data-name="pedra papel tesoura jogo"><div class="emoji">✊</div><h3>Pedra, papel ou tesoura</h3><p>Joga contra o computador.</p><button onclick="openPanel('rps')">Abrir</button></article>
-  </section>
-
-  <div class="section-head"><h2>🎮 Jogos</h2><span class="muted small">Jogáveis no navegador</span></div>
-  <section class="grid">
-    <article class="app-card" data-name="snake cobra jogo"><div class="emoji">🐍</div><h3>Snake</h3><p>Come a fruta e evita bater nas paredes ou em ti.</p><button onclick="openPanel('snake')">Jogar</button></article>
-    <article class="app-card" data-name="memória cartas jogo"><div class="emoji">🧠</div><h3>Jogo da memória</h3><p>Encontra todos os pares de símbolos.</p><button onclick="startMemory();openPanel('memory')">Jogar</button></article>
-    <article class="app-card" data-name="adivinhar número jogo"><div class="emoji">🔢</div><h3>Adivinha o número</h3><p>Descobre o número secreto entre 1 e 100.</p><button onclick="openPanel('guess')">Jogar</button></article>
-    <article class="app-card" data-name="teste rapidez cliques jogo"><div class="emoji">⚡</div><h3>Teste de rapidez</h3><p>Faz o máximo de cliques em 10 segundos.</p><button onclick="openPanel('clicker')">Jogar</button></article>
-    <article class="app-card" data-name="pedra papel tesoura jogo"><div class="emoji">✊</div><h3>Pedra, papel ou tesoura</h3><p>Escolhe o teu movimento e tenta ganhar.</p><button onclick="openPanel('rps')">Jogar</button></article>
-  </section>
-
-  <section class="panel" id="account">
-    <h2>👤 Conta local</h2>
-    <p class="notice">As contas funcionam apenas neste navegador. Não uses uma palavra-passe que utilizes noutros serviços. Isto não é autenticação segura para dados sensíveis.</p>
-    <div id="loggedOut">
-      <div class="field"><label for="accountName">Nome de utilizador</label><input id="accountName" autocomplete="username" placeholder="Ex.: jogador123"></div>
-      <div class="field"><label for="accountPass">Palavra-passe local</label><input id="accountPass" type="password" autocomplete="current-password" placeholder="Pelo menos 6 caracteres"></div>
-      <div class="row"><button onclick="registerLocal()">Criar conta</button><button class="secondary" onclick="loginLocal()">Iniciar sessão</button></div>
-      <p id="authMessage" class="muted"></p>
-    </div>
-    <div id="loggedIn" class="hidden"><p id="welcomeUser"></p><button class="danger" onclick="logoutLocal()">Terminar sessão</button></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="calculator">
-    <h2>🧮 Calculadora</h2>
-    <div class="field"><label for="calcInput">Operação</label><input id="calcInput" placeholder="Ex.: (25 + 5) * 2"></div>
-    <button onclick="calculate()">Calcular</button>
-    <div id="calcResult" class="result">O resultado aparece aqui.</div>
-    <p class="muted small">Operações permitidas: + − × ÷, parênteses e % como resto da divisão.</p>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="notes">
-    <h2>📝 Bloco de notas</h2>
-    <textarea id="noteText" rows="9" style="width:100%" placeholder="Escreve as tuas ideias..."></textarea>
-    <div class="row"><button onclick="saveNotes()">Guardar</button><button class="secondary" onclick="downloadText('minhas-notas.txt',document.getElementById('noteText').value)">Descarregar .txt</button></div>
-    <p id="noteStatus" class="muted"></p>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="tasks">
-    <h2>✅ Lista de tarefas</h2>
-    <div class="row"><input id="taskInput" placeholder="Escreve uma tarefa..." onkeydown="if(event.key==='Enter')addTask()"><button onclick="addTask()">Adicionar</button></div>
-    <div id="taskList"></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="qr">
-    <h2>📱 Criador de QR Code</h2>
-    <p class="muted">Escreve um link ou texto. O QR é gerado localmente, sem serviços externos.</p>
-    <div class="row"><input id="qrInput" placeholder="https://exemplo.com ou texto"><button onclick="createQR()">Criar QR Code</button></div>
-    <div id="qrStatus" class="muted small"></div><div id="qrResult" class="qr-output"></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="password">
-    <h2>🔐 Gerador de palavras-passe</h2>
-    <div class="row"><label>Comprimento <input id="passLength" type="number" min="8" max="64" value="16" style="width:90px"></label><label><input id="passSymbols" type="checkbox" checked> Incluir símbolos</label></div>
-    <p><button onclick="generatePassword()">Gerar palavra-passe</button></p>
-    <div class="row"><input id="passResult" readonly aria-label="Palavra-passe gerada"><button class="secondary" onclick="copyPassword()">Copiar</button></div>
-    <p id="passStatus" class="muted small"></p><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="paint">
-    <h2>🎨 Área de desenho</h2>
-    <div class="row"><label>Cor <input id="paintColor" type="color" value="#222222"></label><label>Tamanho <input id="paintSize" type="range" min="1" max="30" value="5"></label><button class="secondary" onclick="clearPaint()">Limpar</button><button onclick="downloadPaint()">Guardar imagem</button></div>
-    <p class="muted small">Desenha com o rato ou com o dedo.</p><canvas id="paintCanvas" width="800" height="450"></canvas>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="converter">
-    <h2>🔄 Conversor de unidades</h2>
-    <div class="row"><label>Tipo<select id="convType" onchange="updateConverter()"><option value="length">Comprimento</option><option value="weight">Peso/massa</option><option value="temp">Temperatura</option></select></label><label>De<select id="convFrom" onchange="convertUnits()"></select></label><label>Para<select id="convTo" onchange="convertUnits()"></select></label></div>
-    <div class="field"><label for="convValue">Valor</label><input id="convValue" type="number" value="1" oninput="convertUnits()"></div>
-    <div id="convResult" class="result"></div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="discount">
-    <h2>🏷️ Calculadora de descontos</h2>
-    <div class="row"><label>Preço (€)<input id="priceInput" type="number" min="0" step="0.01" value="50" oninput="calcDiscount()"></label><label>Desconto (%)<input id="discountInput" type="number" min="0" max="100" value="20" oninput="calcDiscount()"></label></div>
-    <div id="discountResult" class="result"></div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="timer">
-    <h2>⏳ Temporizador</h2>
-    <div class="row"><label>Minutos <input id="timerMinutes" type="number" min="0" max="999" value="1"></label><label>Segundos <input id="timerSeconds" type="number" min="0" max="59" value="0"></label><button onclick="startTimer()">Iniciar</button><button class="secondary" onclick="pauseTimer()">Pausar</button><button class="secondary" onclick="resetTimer()">Repor</button></div>
-    <div id="timerDisplay" class="result" style="font-size:32px;font-weight:800">01:00</div><p id="timerStatus" class="muted"></p>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="stopwatch">
-    <h2>⏱️ Cronómetro</h2><div id="stopwatchDisplay" class="result" style="font-size:32px;font-weight:800">00:00.0</div>
-    <div class="row"><button onclick="startStopwatch()">Iniciar</button><button class="secondary" onclick="pauseStopwatch()">Pausar</button><button class="secondary" onclick="resetStopwatch()">Repor</button></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="calendar">
-    <h2>📅 Calendário</h2><div class="result" id="calendarNow"></div>
-    <div class="field"><label for="datePick">Escolher uma data</label><input type="date" id="datePick" onchange="showDateInfo()"></div><div id="dateInfo" class="muted"></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="clock">
-    <h2>🕒 Relógio</h2><div id="clockDisplay" class="result" style="font-size:40px;font-weight:900"></div><p id="clockDate" class="muted"></p>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="dice">
-    <h2>🎲 Lançar dados</h2><div class="row"><label>Número de dados<select id="diceCount"><option value="1">1 dado</option><option value="2">2 dados</option></select></label><button onclick="rollDice()">Lançar</button></div>
-    <div id="diceResult" class="result" style="font-size:35px"></div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="random">
-    <h2>🎯 Número aleatório</h2><div class="row"><label>Mínimo<input type="number" id="randMin" value="1"></label><label>Máximo<input type="number" id="randMax" value="100"></label><button onclick="randomNumber()">Sortear</button></div>
-    <div id="randomResult" class="result" style="font-size:32px"></div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="editor">
-    <h2>📄 Editor de texto</h2><div class="field"><label for="editorText">Texto</label><textarea id="editorText" rows="10" placeholder="Escreve aqui..."></textarea></div>
-    <div class="row"><input id="editorFilename" value="documento.txt" aria-label="Nome do ficheiro"><button onclick="downloadEditor()">Descarregar ficheiro</button></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="wordcount">
-    <h2>🔤 Contador de texto</h2><textarea id="wordText" rows="8" style="width:100%" placeholder="Cola ou escreve um texto..." oninput="countWords()"></textarea>
-    <div id="wordResult" class="result">0 palavras · 0 caracteres</div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="rps">
-    <h2>✊ Pedra, papel ou tesoura</h2><p>Escolhe a tua jogada:</p><div class="row"><button onclick="playRPS('Pedra')">🪨 Pedra</button><button onclick="playRPS('Papel')">📄 Papel</button><button onclick="playRPS('Tesoura')">✂️ Tesoura</button></div>
-    <div id="rpsResult" class="result">Boa sorte!</div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="guess">
-    <h2>🔢 Adivinha o número</h2><p>Descobre o número secreto entre 1 e 100.</p><div class="row"><input id="guessInput" type="number" min="1" max="100" placeholder="O teu palpite" onkeydown="if(event.key==='Enter')guessNumber()"><button onclick="guessNumber()">Tentar</button><button class="secondary" onclick="resetGuess()">Novo jogo</button></div>
-    <div id="guessResult" class="result">Escolhe um número!</div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="clicker">
-    <h2>⚡ Teste de rapidez</h2><p>Clica no botão tantas vezes quanto conseguires em 10 segundos.</p><div id="clickerStatus" class="result">Carrega em começar quando estiveres pronto.</div>
-    <div class="row"><button onclick="startClicker()">Começar</button><button id="clickTarget" class="secondary" onclick="clickTarget()" disabled>CLICA!</button><button class="secondary" onclick="resetClicker()">Repor</button></div>
-    <div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="memory">
-    <h2>🧠 Jogo da memória</h2><p id="memoryStatus" class="muted">Encontra os 8 pares.</p><div id="memoryGrid" class="game-grid"></div>
-    <p><button class="secondary" onclick="startMemory()">Novo jogo</button></p><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-
-  <section class="panel" id="snake">
-    <h2>🐍 Snake</h2><p class="muted">Usa as setas do teclado ou os botões. Come a fruta vermelha.</p><div class="snake-wrap"><canvas id="snakeCanvas" width="360" height="360"></canvas></div>
-    <div class="row" style="margin-top:10px"><button class="secondary" onclick="setDirection(0,-1)">⬆️</button><button class="secondary" onclick="setDirection(-1,0)">⬅️</button><button class="secondary" onclick="setDirection(0,1)">⬇️</button><button class="secondary" onclick="setDirection(1,0)">➡️</button><button onclick="startSnake()">Começar / Recomeçar</button></div>
-    <div id="snakeStatus" class="result">Pontuação: 0</div><div class="close-row"><button class="secondary" onclick="closePanels()">Fechar</button></div>
-  </section>
-</main>
-<footer class="footer">WorldApps V6 · Ferramentas e jogos num só lugar · Sem IA</footer>
-
+<section class="hero">
+  <div><div class="eyebrow">O teu mundo, num só lugar</div><h1>Descobre. Cria.<br><span class="gradient">Faz acontecer.</span></h1><p>Ferramentas úteis, pequenos jogos e ideias para o dia a dia. Abre uma aplicação e começa logo — sem instalar nada.</p><div class="stats"><div class="stat"><b id="appCount">0</b> ferramentas</div><div class="stat"><b>2</b> mini-jogos</div><div class="stat"><b>0</b> IA</div></div></div>
+  <div class="hero-card"><div class="big">✦ ⚡ ◈</div><strong>Bem-vindo à V7</strong><p>Uma experiência rápida, personalizável e feita para funcionar diretamente no navegador.</p></div>
+</section>
+<div class="searchrow"><input id="search" class="search" placeholder="🔎  Procurar aplicações, jogos e ferramentas..." autocomplete="off"><button class="btn" id="clearSearch">Limpar</button></div>
+<nav class="categories" id="categories"></nav>
+<section><div class="sectionhead"><div><h2 id="sectionTitle">Todas as aplicações</h2><p id="sectionDesc">Escolhe uma ferramenta para começar.</p></div><span class="notice" id="shownCount"></span></div><div class="grid" id="appGrid"></div></section>
+<footer class="footer">WorldApps V7 · Feito para funcionar no teu navegador · As contas são locais neste dispositivo.</footer>
+</div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="dialog"><div class="dialoghead"><h2 id="modalTitle">Aplicação</h2><button class="close" id="closeModal" aria-label="Fechar">×</button></div><div class="dialogbody" id="modalBody"></div></div></div>
 <script>
+(() => {
 'use strict';
-const $=id=>document.getElementById(id);
-function openPanel(id){closePanels();const p=$(id);if(p){p.classList.add('active');p.scrollIntoView({behavior:'smooth',block:'start'});}if(id==='clock')updateClock();if(id==='calendar')updateCalendar();if(id==='converter')updateConverter();}
-function closePanels(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));}
-function toggleTheme(){document.body.classList.toggle('light');localStorage.setItem('wa-theme',document.body.classList.contains('light')?'light':'dark');updateThemeButton();}
-function updateThemeButton(){$('themeBtn').textContent=document.body.classList.contains('light')?'☀️ Tema':'🌙 Tema';}
-if(localStorage.getItem('wa-theme')==='light')document.body.classList.add('light');updateThemeButton();
-function filterApps(){const q=$('search').value.toLowerCase().trim();document.querySelectorAll('[data-name]').forEach(c=>c.classList.toggle('hidden',!((c.dataset.name+' '+c.innerText).toLowerCase().includes(q))));}
-$('appCount').textContent=document.querySelectorAll('#appGrid .app-card').length;
-
-// Contas locais: demonstração simples, não é autenticação segura.
-function getUsers(){try{return JSON.parse(localStorage.getItem('wa-users')||'{}')}catch{return {};}}
-function setAuthMessage(m){ $('authMessage').textContent=m; }
-function registerLocal(){
- const n=$('accountName').value.trim().toLowerCase(),p=$('accountPass').value;
- if(!/^[a-z0-9_.-]{3,24}$/.test(n)){setAuthMessage('O nome deve ter 3–24 caracteres: letras, números, ponto, _ ou -.');return;}
- if(p.length<6){setAuthMessage('A palavra-passe deve ter pelo menos 6 caracteres.');return;}
- const u=getUsers();if(u[n]){setAuthMessage('Esse nome já está registado neste navegador.');return;}
- u[n]={password:p,created:Date.now()};localStorage.setItem('wa-users',JSON.stringify(u));localStorage.setItem('wa-current-user',n);updateAccountUI();setAuthMessage('Conta local criada!');
+const $=s=>document.querySelector(s);
+const apps=[
+{id:'qr',name:'Criador de QR Code',icon:'▦',cat:'Criar',desc:'Cria códigos QR para links e texto.',tag:'FERRAMENTA',type:'qr'},
+{id:'notes',name:'Bloco de notas',icon:'📝',cat:'Produtividade',desc:'Escreve notas e guarda-as neste dispositivo.',tag:'GUARDA LOCAL',type:'notes'},
+{id:'todo',name:'Lista de tarefas',icon:'☑️',cat:'Produtividade',desc:'Organiza tarefas e marca o que está feito.',tag:'ORGANIZAÇÃO',type:'todo'},
+{id:'calc',name:'Calculadora',icon:'🧮',cat:'Ferramentas',desc:'Faz contas rápidas com segurança.',tag:'UTILIDADE',type:'calc'},
+{id:'timer',name:'Temporizador',icon:'⏱️',cat:'Ferramentas',desc:'Conta o tempo para as tuas atividades.',tag:'TEMPO',type:'timer'},
+{id:'stopwatch',name:'Cronómetro',icon:'⌚',cat:'Ferramentas',desc:'Mede tempos e voltas.',tag:'TEMPO',type:'stopwatch'},
+{id:'password',name:'Gerador de palavras-passe',icon:'🔐',cat:'Segurança',desc:'Gera uma palavra-passe aleatória no navegador.',tag:'PRIVADO',type:'password'},
+{id:'text',name:'Contador de texto',icon:'🔤',cat:'Criar',desc:'Conta palavras, caracteres e linhas.',tag:'ESCRITA',type:'text'},
+{id:'converter',name:'Conversor de unidades',icon:'📐',cat:'Ferramentas',desc:'Converte comprimento, peso e temperatura.',tag:'CONVERSOR',type:'converter'},
+{id:'color',name:'Seletor de cores',icon:'🎨',cat:'Criar',desc:'Escolhe uma cor e copia o código HEX.',tag:'DESIGN',type:'color'},
+{id:'calendar',name:'Calendário',icon:'📅',cat:'Produtividade',desc:'Consulta a data e planeia uma atividade.',tag:'PLANEAMENTO',type:'calendar'},
+{id:'random',name:'Sorteador',icon:'🎲',cat:'Diversão',desc:'Escolhe um nome ou número aleatório.',tag:'ALEATÓRIO',type:'random'},
+{id:'flashcards',name:'Cartões de estudo',icon:'🧠',cat:'Estudar',desc:'Cria cartões para treinar a memória.',tag:'ESTUDO',type:'flashcards'},
+{id:'memory',name:'Jogo da memória',icon:'🃏',cat:'Jogos',desc:'Encontra os pares iguais.',tag:'JOGO JOGÁVEL',type:'memory'},
+{id:'clicker',name:'Desafio de cliques',icon:'⚡',cat:'Jogos',desc:'Faz o máximo de cliques em 10 segundos.',tag:'JOGO JOGÁVEL',type:'clicker'},
+{id:'journal',name:'Diário pessoal',icon:'📔',cat:'Produtividade',desc:'Regista pensamentos guardados localmente.',tag:'GUARDA LOCAL',type:'journal'},
+{id:'draw',name:'Quadro de desenho',icon:'✏️',cat:'Criar',desc:'Desenha livremente e descarrega a imagem.',tag:'CRIATIVIDADE',type:'draw'},
+{id:'focus',name:'Sessão de foco',icon:'🎯',cat:'Produtividade',desc:'Temporizador de foco de 25 minutos.',tag:'FOCO',type:'focus'},
+{id:'dice',name:'Dados virtuais',icon:'🎲',cat:'Diversão',desc:'Lança de um a seis dados.',tag:'ALEATÓRIO',type:'dice'},
+{id:'coin',name:'Cara ou coroa',icon:'🪙',cat:'Diversão',desc:'Lança uma moeda virtual.',tag:'ALEATÓRIO',type:'coin'}
+];
+const cats=['Todas','Favoritos','Produtividade','Ferramentas','Criar','Estudar','Jogos','Diversão','Segurança'];
+let category='Todas',favorites=new Set(readJSON('wa7_favs',[])),showFavOnly=false,account=readJSON('wa7_user',null),timerId=null,stopwatchStart=0,stopwatchElapsed=0,stopwatchTick=null,clickerTimer=null,clickerScore=0,clickerEnd=0,memState={first:null,lock:false,matches:0};
+function readJSON(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}}
+function saveJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch{return false}}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderCats(){ $('#categories').innerHTML=cats.map(c=>`<button class="chip ${c===category?'active':''}" data-cat="${safe(c)}">${c==='Favoritos'?'⭐ ':''}${safe(c)}</button>`).join('');}
+function renderApps(){let q=$('#search').value.trim().toLowerCase();let list=apps.filter(a=>(category==='Todas'||(category==='Favoritos'?favorites.has(a.id):a.cat===category))&&(!showFavOnly||favorites.has(a.id))&&(!q||(a.name+' '+a.desc+' '+a.cat).toLowerCase().includes(q)));$('#appCount').textContent=apps.length;$('#shownCount').textContent=list.length+' resultados';$('#sectionTitle').textContent=category==='Favoritos'?'⭐ Favoritos':category==='Todas'?'Todas as aplicações':category;$('#sectionDesc').textContent=q?'Resultados da pesquisa.':'Escolhe uma ferramenta para começar.';$('#appGrid').innerHTML=list.length?list.map(a=>`<button class="appcard" data-app="${a.id}"><span class="appicon">${a.icon}</span><strong>${safe(a.name)}</strong><p>${safe(a.desc)}</p><span class="tag">${favorites.has(a.id)?'⭐ FAVORITO · ':''}${safe(a.tag)}</span></button>`).join(''):'<div class="empty">Não encontrámos aplicações. Experimenta outra pesquisa ou categoria.</div>';}
+function openModal(title,html){clearInterval(timerId);timerId=null;$('#modalTitle').textContent=title;$('#modalBody').innerHTML=html;$('#modal').classList.add('open');}
+function closeModal(){ $('#modal').classList.remove('open');clearInterval(timerId);timerId=null;clearInterval(stopwatchTick);stopwatchTick=null;clearInterval(clickerTimer);clickerTimer=null;}
+function field(label,id,placeholder='',value=''){return `<div class="field"><label for="${id}">${label}</label><input id="${id}" placeholder="${placeholder}" value="${safe(value)}"></div>`}
+function btn(label,id,primary=true){return `<button class="btn ${primary?'primary':''}" id="${id}">${label}</button>`}
+function openApp(id){const a=apps.find(x=>x.id===id);if(!a)return;const f= (id)=>favorites.has(id);
+let body='';
+switch(id){
+case 'qr':body=`<p>Escreve um endereço de site, texto ou contacto. O código é gerado por um serviço externo de QR; não coloques informação privada.</p>${field('Texto ou URL','qrText','https://exemplo.pt','https://')}<div class="toolactions">${btn('Gerar QR Code','makeQr')}${btn('Limpar','clearQr',false)}</div><div id="qrResult" class="result" hidden></div><p class="notice">É necessária ligação à Internet para gerar a imagem do QR Code.</p>`;break;
+case 'notes':body=`<p>As notas ficam guardadas neste navegador.</p><div class="field"><label for="noteText">A tua nota</label><textarea id="noteText" placeholder="Escreve aqui...">${safe(localStorage.getItem('wa7_note')||'')}</textarea></div><div class="toolactions">${btn('Guardar nota','saveNote')}${btn('Apagar','deleteNote',false)}</div><p id="noteMsg" class="notice"></p>`;break;
+case 'todo':body=`${field('Nova tarefa','todoInput','Ex.: estudar matemática')}<div class="toolactions">${btn('Adicionar tarefa','addTodo')}</div><div id="todoList" class="result"></div>`;break;
+case 'calc':body=`<div class="field"><label for="calcExpr">Expressão matemática</label><input id="calcExpr" placeholder="Ex.: (12 + 8) * 3" value=""></div>${btn('Calcular','doCalc')}<div id="calcResult" class="result">O resultado aparece aqui.</div><p class="notice">Suporta números, parênteses e operações + − × ÷ e resto (%).</p>`;break;
+case 'timer':body=`${field('Duração em minutos','timerMinutes','5','5')}<div class="result"><strong id="timerDisplay" style="font-size:2rem">05:00</strong><p id="timerStatus" class="notice">Pronto para começar.</p></div><div class="toolactions">${btn('▶ Iniciar','startTimer')}${btn('Reiniciar','resetTimer',false)}</div>`;break;
+case 'stopwatch':body=`<div class="result" style="text-align:center"><strong id="swDisplay" style="font-size:2.2rem">00:00.0</strong><div id="swLaps" class="notice"></div></div><div class="toolactions">${btn('▶ Iniciar','swStart')}${btn('⏸ Pausar','swPause',false)}${btn('Volta','swLap',false)}${btn('Reiniciar','swReset',false)}</div>`;break;
+case 'password':body=`<div class="field"><label for="passLength">Comprimento: <span id="lenVal">18</span></label><input id="passLength" type="range" min="8" max="64" value="18"></div><div class="field"><label><input type="checkbox" id="passSymbols" checked> Incluir símbolos</label></div>${btn('Gerar palavra-passe','genPass')}<div class="result" id="passResult">A palavra-passe aparece aqui.</div><div class="toolactions">${btn('Copiar','copyPass',false)}</div><p class="notice">Gerada localmente com o gerador aleatório seguro do navegador quando disponível.</p>`;break;
+case 'text':body=`<div class="field"><label for="textInput">O teu texto</label><textarea id="textInput" placeholder="Escreve ou cola o texto..."></textarea></div><div class="result" id="textStats">0 palavras · 0 caracteres · 0 linhas</div>`;break;
+case 'converter':body=`<div class="field"><label for="convType">Tipo de conversão</label><select id="convType"><option value="kmmi">Quilómetros → milhas</option><option value="mikm">Milhas → quilómetros</option><option value="cm">Centímetros → polegadas</option><option value="kg">Quilogramas → libras</option><option value="lb">Libras → quilogramas</option><option value="cf">Celsius → Fahrenheit</option><option value="fc">Fahrenheit → Celsius</option><option value="lm">Litros → mililitros</option></select></div>${field('Valor','convValue','Introduz um número','1')}${btn('Converter','doConvert')}<div class="result" id="convResult"></div>`;break;
+case 'color':body=`<div class="field"><label for="colorPick">Escolhe uma cor</label><input id="colorPick" type="color" value="#9b5cff" style="height:65px;padding:5px"></div><div class="result" id="colorResult" style="height:90px;background:#9b5cff"></div><p id="hexValue">#9B5CFF</p><div class="toolactions">${btn('Copiar HEX','copyHex')}</div>`;break;
+case 'calendar':body=`<div class="result"><div id="todayDate" style="font-size:1.4rem;font-weight:800"></div><p id="todayLong"></p></div>${field('Plano para a data','calDate','',''+new Date().toISOString().slice(0,10))}${field('Atividade','calPlan','O que queres fazer?')}<div class="toolactions">${btn('Guardar plano','savePlan')}</div><div id="planList" class="result"></div>`;break;
+case 'random':body=`<div class="field"><label for="randomItems">Opções (uma por linha)</label><textarea id="randomItems" placeholder="Ana&#10;Bruno&#10;Carla"></textarea></div><div class="toolactions">${btn('Escolher opção','pickRandom')}${btn('Número aleatório','pickNumber',false)}</div><div class="result" id="randomResult">A escolha aparece aqui.</div><div class="field"><label for="randMax">Número máximo (para sorteio numérico)</label><input id="randMax" type="number" min="1" value="100"></div>`;break;
+case 'flashcards':body=`<p>Cria cartões com pergunta e resposta. Separa cada cartão com uma linha e usa | entre pergunta e resposta.</p><div class="field"><label for="fcInput">Cartões</label><textarea id="fcInput" placeholder="Capital de Portugal | Lisboa&#10;2 + 2 | 4"></textarea></div><div class="toolactions">${btn('Guardar cartões','saveFC')}${btn('Estudar','studyFC',false)}</div><div id="fcStudy" class="result" hidden></div>`;break;
+case 'memory':body=`<p>Encontra os oito pares iguais. Tenta usar o menor número de jogadas.</p><div class="result" id="memoryStatus">Jogadas: 0 · Pares: 0/8</div><div class="memorygrid" id="memoryGrid"></div>${btn('Novo jogo','newMemory',false)}`;break;
+case 'clicker':body=`<div class="result" style="text-align:center"><div id="clickScore" style="font-size:2.8rem;font-weight:900">0</div><div id="clickTime" class="notice">10 segundos</div></div><button id="clickTarget" class="btn primary" style="width:100%;min-height:120px;font-size:1.4rem;margin-top:12px">Toca aqui para começar!</button><p id="clickMsg" class="notice">Faz o máximo de cliques antes do tempo acabar.</p><div class="toolactions">${btn('Recomeçar','resetClicker',false)}</div>`;break;
+case 'journal':body=`<p>O diário é guardado apenas neste navegador. Evita escrever dados muito sensíveis.</p><div class="field"><label for="journalDate">Data</label><input type="date" id="journalDate" value="${new Date().toISOString().slice(0,10)}"></div><div class="field"><label for="journalText">Entrada do diário</label><textarea id="journalText" placeholder="Como correu o teu dia?"></textarea></div><div class="toolactions">${btn('Guardar entrada','saveJournal')}</div><div class="result" id="journalEntries"></div>`;break;
+case 'draw':body=`<p>Desenha com o rato ou com o dedo. Podes limpar ou guardar o desenho como imagem PNG.</p><div class="toolactions"><label class="notice">Cor <input id="drawColor" type="color" value="#00e5ff"></label><label class="notice">Pincel <input id="drawSize" type="range" min="1" max="24" value="5"></label>${btn('Limpar','clearCanvas',false)}${btn('Descarregar PNG','saveCanvas')}</div><canvas id="drawCanvas" width="700" height="360" style="display:block;width:100%;background:white;border-radius:12px;touch-action:none;margin-top:12px"></canvas>`;break;
+case 'focus':body=`<p>Uma sessão de foco com 25 minutos e pausa opcional.</p><div class="result" style="text-align:center"><strong id="focusDisplay" style="font-size:2.5rem">25:00</strong><p id="focusStatus" class="notice">Pronto para começar.</p></div><div class="toolactions">${btn('▶ Começar','focusStart')}${btn('Pausa / continuar','focusPause',false)}${btn('Reiniciar','focusReset',false)}</div>`;break;
+case 'dice':body=`<div id="diceCount" class="field"><label for="diceNum">Número de dados</label><select id="diceNum"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>${btn('Lançar dados','rollDice')}<div class="result" id="diceResult" style="font-size:2rem;text-align:center">🎲</div>`;break;
+case 'coin':body=`<div class="result" id="coinResult" style="text-align:center;font-size:4rem">🪙<p style="font-size:1rem">Pronto para lançar</p></div>${btn('Lançar moeda','flipCoin')}`;break;
 }
-function loginLocal(){const n=$('accountName').value.trim().toLowerCase(),p=$('accountPass').value,u=getUsers();if(!u[n]||u[n].password!==p){setAuthMessage('Nome ou palavra-passe incorretos.');return;}localStorage.setItem('wa-current-user',n);updateAccountUI();setAuthMessage('Sessão iniciada.');}
-function logoutLocal(){localStorage.removeItem('wa-current-user');updateAccountUI();setAuthMessage('Terminaste a sessão.');}
-function updateAccountUI(){const n=localStorage.getItem('wa-current-user');$('loggedOut').classList.toggle('hidden',!!n);$('loggedIn').classList.toggle('hidden',!n);$('accountButton').textContent=n||'Conta';$('welcomeUser').textContent=n?'Olá, '+n+'! A tua sessão é local neste navegador.':'';}
-updateAccountUI();
-
-// Calculadora: aceita apenas caracteres de operações matemáticas.
-function calculate(){const s=$('calcInput').value.trim();if(!s||!/^[0-9+\-*/().%\s]+$/.test(s)){$('calcResult').textContent='Escreve uma operação válida.';return;}try{const n=Function('"use strict";return ('+s+')')();$('calcResult').textContent=Number.isFinite(n)?'Resultado: '+n:'Operação inválida.';}catch{$('calcResult').textContent='Não consegui calcular essa operação.';}}
-$('noteText').value=localStorage.getItem('wa-notes')||'';
-function saveNotes(){localStorage.setItem('wa-notes',$('noteText').value);$('noteStatus').textContent='Notas guardadas neste navegador.';}
-function getTasks(){try{return JSON.parse(localStorage.getItem('wa-tasks')||'[]')}catch{return [];}}
-function renderTasks(){const box=$('taskList');box.replaceChildren();getTasks().forEach((t,i)=>{const d=document.createElement('div');d.className='task'+(t.done?' done':'');const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!t.done;cb.onchange=()=>{const a=getTasks();a[i].done=cb.checked;localStorage.setItem('wa-tasks',JSON.stringify(a));renderTasks();};const s=document.createElement('span');s.textContent=t.text;const b=document.createElement('button');b.className='danger';b.textContent='Eliminar';b.onclick=()=>{const a=getTasks();a.splice(i,1);localStorage.setItem('wa-tasks',JSON.stringify(a));renderTasks();};d.append(cb,s,b);box.append(d);});}
-function addTask(){const v=$('taskInput').value.trim();if(!v)return;const a=getTasks();a.push({text:v,done:false});localStorage.setItem('wa-tasks',JSON.stringify(a));$('taskInput').value='';renderTasks();}
-renderTasks();
-function downloadText(filename,text){const blob=new Blob([text],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename||'texto.txt';a.click();URL.revokeObjectURL(url);}
-function downloadEditor(){let n=$('editorFilename').value.trim()||'documento.txt';if(!n.includes('.'))n+='.txt';downloadText(n,$('editorText').value);}
-
-// QR Code: gerador local simples para textos curtos (QR versão 1–4, nível L).
-function createQR(){const text=$('qrInput').value;if(!text.trim()){$('qrStatus').textContent='Escreve primeiro algum texto ou um link.';return;}try{const canvas=makeQR(text);const result=$('qrResult');result.replaceChildren();canvas.className='qr-canvas';const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='worldapps-qrcode.png';a.textContent='Descarregar QR Code (PNG)';a.style.display='block';a.style.marginTop='10px';result.append(canvas,a);$('qrStatus').textContent='QR Code criado localmente.';}catch(e){$('qrStatus').textContent='Texto demasiado longo para este gerador (máximo aproximado de 78 bytes).';}}
-function makeQR(text){
- const bytes=Array.from(new TextEncoder().encode(text));
- const versions=[{v:1,n:21,data:19,ecc:7},{v:2,n:25,data:34,ecc:10},{v:3,n:29,data:55,ecc:15},{v:4,n:33,data:80,ecc:20}];
- const info=versions.find(x=>bytes.length<=x.data-2);if(!info)throw Error('long');
- const bits=[];const push=(v,n)=>{for(let i=n-1;i>=0;i--)bits.push((v>>>i)&1);};
- push(4,4);push(bytes.length,8);bytes.forEach(b=>push(b,8));const capacity=info.data*8;push(0,Math.min(4,capacity-bits.length));while(bits.length%8)bits.push(0);
- const data=[];for(let i=0;i<bits.length;i+=8){let b=0;for(let j=0;j<8;j++)b=(b<<1)|(bits[i+j]||0);data.push(b);}
- for(let p=0;data.length<info.data;p++)data.push(p%2?0x11:0xec);
- function gfMul(x,y){let z=0;for(let i=7;i>=0;i--){z=(z<<1)^((z>>>7)*0x11d);if((y>>>i)&1)z^=x;}return z&255;}
- function gfPow(n){let x=1;for(let i=0;i<n;i++)x=gfMul(x,2);return x;}
- let gen=[1];for(let i=0;i<info.ecc;i++){const next=Array(gen.length+1).fill(0);gen.forEach((c,j)=>{next[j]^=c;next[j+1]^=gfMul(c,gfPow(i));});gen=next;}
- const rem=Array(info.ecc).fill(0);data.forEach(b=>{const factor=b^rem[0];rem.shift();rem.push(0);for(let i=0;i<gen.length;i++)rem[i]^=gfMul(gen[i],factor);});
- const code=data.concat(rem),n=info.n,m=Array.from({length:n},()=>Array(n).fill(null)),set=(x,y,v)=>{if(x>=0&&y>=0&&x<n&&y<n)m[y][x]=!!v;};
- function finder(x,y){for(let dy=-1;dy<=7;dy++)for(let dx=-1;dx<=7;dx++){const xx=x+dx,yy=y+dy;if(xx<0||yy<0||xx>=n||yy>=n)continue;set(xx,yy,dx>=0&&dx<=6&&dy>=0&&dy<=6&&(dx===0||dx===6||dy===0||dy===6||(dx>=2&&dx<=4&&dy>=2&&dy<=4));}}
- finder(0,0);finder(n-7,0);finder(0,n-7);
- for(let i=8;i<n-8;i++){set(i,6,i%2===0);set(6,i,i%2===0);}
- const format=0b111011111000100;
- for(let i=0;i<15;i++){const bit=((format>>i)&1)!==0;let x,y;if(i<6){x=8;y=i;}else if(i<8){x=8;y=i+1;}else{x=8;y=n-15+i;}set(x,y,bit);if(i<8){x=n-i-1;y=8;}else{x=15-i-1;y=8;}if(x>=0&&x<n)set(x,y,bit);}
- set(8,n-8,true);
- let bitIndex=0,up=true;
- for(let right=n-1;right>=1;right-=2){if(right===6)right=5;for(let vert=0;vert<n;vert++){const y=up?n-1-vert:vert;for(let j=0;j<2;j++){const x=right-j;if(m[y][x]!==null)continue;let bit=bitIndex<code.length*8?((code[bitIndex>>>3]>>>(7-(bitIndex&7)))&1)!==0:false;bitIndex++;if((x+y)%2===0)bit=!bit;set(x,y,bit);}}up=!up;}
- const scale=8,quiet=4,c=document.createElement('canvas');c.width=c.height=(n+quiet*2)*scale;const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#000';for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(m[y][x])ctx.fillRect((x+quiet)*scale,(y+quiet)*scale,scale,scale);return c;
+openModal(a.name,body);bindApp(id);
 }
-
-function generatePassword(){const len=Math.max(8,Math.min(64,parseInt($('passLength').value,10)||16));const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789'+($('passSymbols').checked?'!@#$%^&*_-+=':'');const arr=new Uint32Array(len);if(window.crypto&&crypto.getRandomValues)crypto.getRandomValues(arr);else for(let i=0;i<len;i++)arr[i]=Math.floor(Math.random()*4294967296);$('passResult').value=Array.from(arr,x=>chars[x%chars.length]).join('');$('passStatus').textContent='Criada. Guarda-a num local seguro.';}
-function copyPassword(){const v=$('passResult').value;if(!v)return;$('passResult').select();if(navigator.clipboard&&location.protocol==='https:')navigator.clipboard.writeText(v).then(()=>$('passStatus').textContent='Copiada!').catch(()=>$('passStatus').textContent='Seleciona e copia manualmente.');else $('passStatus').textContent='Seleciona o texto e usa Ctrl+C.';}
-
-const paint=$('paintCanvas'),pctx=paint.getContext('2d');pctx.fillStyle='#fff';pctx.fillRect(0,0,paint.width,paint.height);let drawing=false;
-function paintPos(e){const r=paint.getBoundingClientRect();return{x:(e.clientX-r.left)*paint.width/r.width,y:(e.clientY-r.top)*paint.height/r.height};}
-paint.addEventListener('pointerdown',e=>{drawing=true;paint.setPointerCapture(e.pointerId);const p=paintPos(e);pctx.beginPath();pctx.moveTo(p.x,p.y);});
-paint.addEventListener('pointermove',e=>{if(!drawing)return;const p=paintPos(e);pctx.strokeStyle=$('paintColor').value;pctx.lineWidth=+$('paintSize').value;pctx.lineCap='round';pctx.lineJoin='round';pctx.lineTo(p.x,p.y);pctx.stroke();});
-paint.addEventListener('pointerup',()=>drawing=false);paint.addEventListener('pointercancel',()=>drawing=false);
-function clearPaint(){pctx.fillStyle='#fff';pctx.fillRect(0,0,paint.width,paint.height);}
-function downloadPaint(){const a=document.createElement('a');a.href=paint.toDataURL('image/png');a.download='desenho.png';a.click();}
-
-const units={length:[['Milímetros','mm',.001],['Centímetros','cm',.01],['Metros','m',1],['Quilómetros','km',1000],['Polegadas','in',.0254],['Pés','ft',.3048]],weight:[['Gramas','g',1],['Quilogramas','kg',1000],['Libras','lb',453.59237],['Onças','oz',28.3495]],temp:[['Celsius','C'],['Fahrenheit','F'],['Kelvin','K']]};
-function updateConverter(){const type=$('convType').value;for(const id of ['convFrom','convTo']){const s=$(id);s.replaceChildren();units[type].forEach((u,i)=>{const o=document.createElement('option');o.value=i;o.textContent=u[0];s.append(o);});}if(type==='length')$('convTo').value='2';else if(type==='weight')$('convTo').value='1';else $('convTo').value='1';convertUnits();}
-function convertUnits(){const type=$('convType').value,val=Number($('convValue').value),from=units[type][+$('convFrom').value],to=units[type][+$('convTo').value];if(!Number.isFinite(val)){$('convResult').textContent='Introduz um valor válido.';return;}let out;if(type==='temp'){let c=from[1]==='C'?val:from[1]==='F'?(val-32)*5/9:val-273.15;out=to[1]==='C'?c:to[1]==='F'?c*9/5+32:c+273.15;}else out=val*from[2]/to[2];$('convResult').textContent='Resultado: '+Number(out.toFixed(6))+' '+to[1];}
-updateConverter();
-function calcDiscount(){const p=Number($('priceInput').value),d=Number($('discountInput').value);if(p<0||d<0||d>100||!Number.isFinite(p)||!Number.isFinite(d)){$('discountResult').textContent='Confirma os valores (desconto entre 0% e 100%).';return;}const saving=p*d/100;$('discountResult').textContent='Preço final: '+(p-saving).toLocaleString('pt-PT',{style:'currency',currency:'EUR'})+' · Poupas '+saving.toLocaleString('pt-PT',{style:'currency',currency:'EUR'});}
-calcDiscount();
-
-let timerRemaining=60,timerId=null;
-function fmt(s){s=Math.max(0,Math.ceil(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
-function drawTimer(){$('timerDisplay').textContent=fmt(timerRemaining);}
-function startTimer(){if(timerId)return;if(timerRemaining<=0)timerRemaining=Math.max(0,(+$('timerMinutes').value||0)*60+(+$('timerSeconds').value||0));if(timerRemaining<=0){$('timerStatus').textContent='Define uma duração maior que zero.';return;}$('timerStatus').textContent='A contar…';timerId=setInterval(()=>{timerRemaining--;drawTimer();if(timerRemaining<=0){clearInterval(timerId);timerId=null;$('timerStatus').textContent='Tempo terminado!';}},1000);}
-function pauseTimer(){clearInterval(timerId);timerId=null;$('timerStatus').textContent='Pausado.';}
-function resetTimer(){pauseTimer();timerRemaining=Math.max(0,(+$('timerMinutes').value||0)*60+(+$('timerSeconds').value||0));drawTimer();$('timerStatus').textContent='Pronto.';}
-$('timerMinutes').addEventListener('input',()=>{if(!timerId)resetTimer()});$('timerSeconds').addEventListener('input',()=>{if(!timerId)resetTimer()});drawTimer();
-
-let swStart=0,swElapsed=0,swId=null;
-function updateSW(){const t=swElapsed+(swId?performance.now()-swStart:0),s=t/1000;$('stopwatchDisplay').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0')+'.'+Math.floor((s%1)*10);}
-function startStopwatch(){if(swId)return;swStart=performance.now();swId=setInterval(updateSW,100);}
-function pauseStopwatch(){if(!swId)return;swElapsed+=performance.now()-swStart;clearInterval(swId);swId=null;updateSW();}
-function resetStopwatch(){clearInterval(swId);swId=null;swElapsed=0;updateSW();}
-
-function updateClock(){const d=new Date();$('clockDisplay').textContent=d.toLocaleTimeString('pt-PT');$('clockDate').textContent=d.toLocaleDateString('pt-PT',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}
-setInterval(()=>{updateClock();updateCalendar();},1000);
-function updateCalendar(){const d=new Date();$('calendarNow').textContent=d.toLocaleDateString('pt-PT',{weekday:'long',year:'numeric',month:'long',day:'numeric'});if(!$('datePick').value)$('datePick').value=d.toISOString().slice(0,10);}
-function showDateInfo(){if(!$('datePick').value)return;const d=new Date($('datePick').value+'T12:00:00');$('dateInfo').textContent=d.toLocaleDateString('pt-PT',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}
-function rollDice(){const count=+$('diceCount').value,a=Array.from({length:count},()=>Math.floor(Math.random()*6)+1);$('diceResult').textContent=a.map(n=>['','⚀','⚁','⚂','⚃','⚄','⚅'][n]+' ('+n+')').join(' + ')+(count===2?' = '+a.reduce((x,y)=>x+y,0):'');}
-function randomNumber(){const min=Number($('randMin').value),max=Number($('randMax').value);if(!Number.isInteger(min)||!Number.isInteger(max)||max<min){$('randomResult').textContent='Usa números inteiros e máximo ≥ mínimo.';return;}$('randomResult').textContent=String(Math.floor(Math.random()*(max-min+1))+min);}
-function countWords(){const s=$('wordText').value;$('wordResult').textContent=(s.trim()?s.trim().split(/\s+/).length:0)+' palavras · '+s.length+' caracteres · '+s.replace(/\s/g,'').length+' sem espaços';}
-function playRPS(player){const choices=['Pedra','Papel','Tesoura'],c=choices[Math.floor(Math.random()*3)];const result=player===c?'Empate!':((player==='Pedra'&&c==='Tesoura')||(player==='Papel'&&c==='Pedra')||(player==='Tesoura'&&c==='Papel'))?'Ganhaste!':'O computador ganhou!';$('rpsResult').textContent='Tu: '+player+' · Computador: '+c+' · '+result;}
-
-let secret=Math.floor(Math.random()*100)+1,guessTries=0;
-function guessNumber(){const n=Number($('guessInput').value);if(!Number.isInteger(n)||n<1||n>100){$('guessResult').textContent='Escolhe um número inteiro de 1 a 100.';return;}guessTries++;$('guessResult').textContent=n===secret?'🎉 Acertaste em '+guessTries+' tentativa(s)!':n<secret?'É mais alto!':'É mais baixo!';}
-function resetGuess(){secret=Math.floor(Math.random()*100)+1;guessTries=0;$('guessInput').value='';$('guessResult').textContent='Novo número escolhido. Tenta adivinhar!';}
-
-let clickCount=0,clickActive=false,clickTimer=null;
-function startClicker(){clearTimeout(clickTimer);clickCount=0;clickActive=true;$('clickTarget').disabled=false;$('clickerStatus').textContent='Já! Tens 10 segundos. Cliques: 0';clickTimer=setTimeout(()=>{clickActive=false;$('clickTarget').disabled=true;$('clickerStatus').textContent='Tempo! Fizeste '+clickCount+' cliques.';},10000);}
-function clickTarget(){if(!clickActive)return;clickCount++;$('clickerStatus').textContent='Cliques: '+clickCount;}
-function resetClicker(){clearTimeout(clickTimer);clickActive=false;clickCount=0;$('clickTarget').disabled=true;$('clickerStatus').textContent='Carrega em começar quando estiveres pronto.';}
-
-const memoryIcons=['🍎','🍋','🍇','🍒','⭐','🚀','🐸','🎈'];let memoryCards=[],memoryFirst=null,memoryLock=false,memoryMatches=0;
-function startMemory(){memoryCards=[...memoryIcons,...memoryIcons].sort(()=>Math.random()-.5);memoryFirst=null;memoryLock=false;memoryMatches=0;$('memoryStatus').textContent='Encontra os 8 pares.';const g=$('memoryGrid');g.replaceChildren();memoryCards.forEach((icon,i)=>{const b=document.createElement('button');b.className='memory-card';b.textContent='?';b.setAttribute('aria-label','Carta escondida');b.onclick=()=>flipMemory(i,b);g.append(b);});}
-function flipMemory(i,b){if(memoryLock||b.classList.contains('open')||b.dataset.matched)return;b.textContent=memoryCards[i];b.classList.add('open');if(memoryFirst===null){memoryFirst={i,b};return;}if(memoryCards[memoryFirst.i]===memoryCards[i]){memoryFirst.b.dataset.matched='1';b.dataset.matched='1';memoryMatches++;memoryFirst=null;$('memoryStatus').textContent=memoryMatches===8?'🎉 Encontraste todos os pares!':'Pares encontrados: '+memoryMatches+'/8';return;}memoryLock=true;const first=memoryFirst;memoryFirst=null;setTimeout(()=>{first.b.textContent='?';b.textContent='?';first.b.classList.remove('open');b.classList.remove('open');memoryLock=false;},700);}
-startMemory();
-
-const sc=$('snakeCanvas'),sx=sc.getContext('2d'),cell=18,tiles=20;let snake=[],fruit={x:10,y:10},dir={x:1,y:0},nextDir={x:1,y:0},snakeId=null,snakeScore=0,snakeRunning=false;
-function randomFruit(){let f;do{f={x:Math.floor(Math.random()*tiles),y:Math.floor(Math.random()*tiles)}}while(snake.some(s=>s.x===f.x&&s.y===f.y));return f;}
-function drawSnake(){sx.fillStyle='#0d1724';sx.fillRect(0,0,sc.width,sc.height);sx.fillStyle='#ef4444';sx.fillRect(fruit.x*cell+2,fruit.y*cell+2,cell-4,cell-4);snake.forEach((s,i)=>{sx.fillStyle=i===0?'#a78bfa':'#34d399';sx.fillRect(s.x*cell+1,s.y*cell+1,cell-2,cell-2);});}
-function startSnake(){clearInterval(snakeId);snake=[{x:5,y:10},{x:4,y:10},{x:3,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};snakeScore=0;snakeRunning=true;fruit=randomFruit();$('snakeStatus').textContent='Pontuação: 0';drawSnake();snakeId=setInterval(stepSnake,130);}
-function setDirection(x,y){if(x===-dir.x&&y===-dir.y)return;nextDir={x,y};}
-function stepSnake(){if(!snakeRunning)return;dir=nextDir;const h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.y<0||h.x>=tiles||h.y>=tiles||snake.some(s=>s.x===h.x&&s.y===h.y)){snakeRunning=false;clearInterval(snakeId);$('snakeStatus').textContent='Fim do jogo! Pontuação: '+snakeScore+'. Carrega em recomeçar.';return;}snake.unshift(h);if(h.x===fruit.x&&h.y===fruit.y){snakeScore++;fruit=randomFruit();$('snakeStatus').textContent='Pontuação: '+snakeScore;}else snake.pop();drawSnake();}
-document.addEventListener('keydown',e=>{if(!$('snake').classList.contains('active'))return;const keys={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};if(keys[e.key]){e.preventDefault();setDirection(...keys[e.key]);}});
-startSnake();clearInterval(snakeId);snakeRunning=false;drawSnake();
-</script>
-</body>
-</html>
+function bindApp(id){
+const on=(sel,ev,fn)=>{const e=$(sel);if(e)e.addEventListener(ev,fn)};
+switch(id){
+case 'qr':on('#makeQr','click',()=>{const v=$('#qrText').value.trim();if(!v){$('#qrText').focus();return}const box=$('#qrResult');box.hidden=false;box.innerHTML=`<p>QR Code para:</p><p>${safe(v)}</p><img class="qrimg" alt="Código QR gerado" src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(v)}"><div class="toolactions"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://api.qrserver.com/v1/create-qr-code/?size=800x800&data=${encodeURIComponent(v)}">Abrir QR grande</a></div>`});on('#clearQr','click',()=>{$('#qrText').value='';$('#qrResult').hidden=true});break;
+case 'notes':on('#saveNote','click',()=>{$('#noteMsg').textContent=saveLocal('wa7_note',$('#noteText').value)?'Nota guardada neste navegador.':'Não foi possível guardar.'});on('#deleteNote','click',()=>{$('#noteText').value='';localStorage.removeItem('wa7_note');$('#noteMsg').textContent='Nota apagada.'});break;
+case 'todo':renderTodos();on('#addTodo','click',()=>{const t=$('#todoInput').value.trim();if(!t)return;const list=readJSON('wa7_todos',[]);list.push({text:t,done:false,id:Date.now()});saveJSON('wa7_todos',list);$('#todoInput').value='';renderTodos()});break;
+case 'calc':on('#doCalc','click',()=>{const expr=$('#calcExpr').value.trim();if(!expr||!/^[0-9+\-*/().%\s]+$/.test(expr)||!/[\d)]/.test(expr)){ $('#calcResult').textContent='Expressão inválida.';return}try{const n=Function('"use strict";return ('+expr+')')();$('#calcResult').textContent=Number.isFinite(n)?'Resultado: '+n:'Resultado inválido.'}catch{$('#calcResult').textContent='Não foi possível calcular.'}});break;
+case 'timer':on('#startTimer','click',()=>{if(timerId)return;let secs=Math.max(1,Math.min(86400,Math.round((Number($('#timerMinutes').value)||1)*60)));$('#timerStatus').textContent='Temporizador em execução.';const end=Date.now()+secs*1000;const tick=()=>{const left=Math.max(0,Math.ceil((end-Date.now())/1000));$('#timerDisplay').textContent=fmt(left);if(left===0){clearInterval(timerId);timerId=null;$('#timerStatus').textContent='⏰ Tempo terminado!';try{navigator.vibrate?.(200)}catch{}}};tick();timerId=setInterval(tick,250)});on('#resetTimer','click',()=>{clearInterval(timerId);timerId=null;$('#timerDisplay').textContent=fmt(Math.max(1,Number($('#timerMinutes').value)||5)*60);$('#timerStatus').textContent='Pronto para começar.'});on('#timerMinutes','input',()=>{if(!timerId)$('#timerDisplay').textContent=fmt(Math.max(1,Number($('#timerMinutes').value)||1)*60)});break;
+case 'stopwatch':on('#swStart','click',()=>{if(stopwatchTick)return;stopwatchStart=Date.now()-stopwatchElapsed;stopwatchTick=setInterval(()=>{$('#swDisplay').textContent=fmtMs(Date.now()-stopwatchStart)},100)});on('#swPause','click',()=>{if(stopwatchTick){stopwatchElapsed=Date.now()-stopwatchStart;clearInterval(stopwatchTick);stopwatchTick=null;$('#swDisplay').textContent=fmtMs(stopwatchElapsed)}});on('#swLap','click',()=>{$('#swLaps').innerHTML+='<div>Volta: '+safe($('#swDisplay').textContent)+'</div>'});on('#swReset','click',()=>{clearInterval(stopwatchTick);stopwatchTick=null;stopwatchElapsed=0;$('#swDisplay').textContent='00:00.0';$('#swLaps').innerHTML=''});break;
+case 'password':on('#passLength','input',()=>$('#lenVal').textContent=$('#passLength').value);on('#genPass','click',()=>{const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789'+($('#passSymbols').checked?'!@#$%&*+-_=?':'');let out='';const arr=new Uint32Array(Number($('#passLength').value));if(crypto?.getRandomValues)crypto.getRandomValues(arr);else for(let i=0;i<arr.length;i++)arr[i]=Math.floor(Math.random()*4294967296);for(let n of arr)out+=chars[n%chars.length];$('#passResult').textContent=out});on('#copyPass','click',()=>copyText($('#passResult').textContent));break;
+case 'text':on('#textInput','input',()=>{const t=$('#textInput').value;const words=t.trim()?t.trim().split(/\s+/).length:0;$('#textStats').textContent=`${words} palavras · ${t.length} caracteres · ${t? t.split(/\n/).length:0} linhas`});break;
+case 'converter':on('#doConvert','click',()=>{const v=Number($('#convValue').value);if(!Number.isFinite(v)){$('#convResult').textContent='Introduz um número válido.';return}const type=$('#convType').value, map={kmmi:[v=>v*.621371,'mi'],mikm:[v=>v/0.621371,'km'],cm:[v=>v/2.54,'pol'],kg:[v=>v*2.20462,'lb'],lb:[v=>v/2.20462,'kg'],cf:[v=>v*9/5+32,'°F'],fc:[v=>(v-32)*5/9,'°C'],lm:[v=>v*1000,'ml']};$('#convResult').textContent=map[type][0](v).toLocaleString('pt-PT',{maximumFractionDigits:5})+' '+map[type][1]});break;
+case 'color':on('#colorPick','input',()=>{$('#colorResult').style.background=$('#colorPick').value;$('#hexValue').textContent=$('#colorPick').value.toUpperCase()});on('#copyHex','click',()=>copyText($('#colorPick').value.toUpperCase()));break;
+case 'calendar':$('#todayDate').textContent=new Date().toLocaleDateString('pt-PT',{day:'numeric',month:'long',year:'numeric'});$('#todayLong').textContent=new Date().toLocaleDateString('pt-PT',{weekday:'long'});renderPlans();on('#savePlan','click',()=>{const plan=$('#calPlan').value.trim();if(!plan)return;const a=readJSON('wa7_plans',[]);a.push({date:$('#calDate').value,plan});saveJSON('wa7_plans',a);$('#calPlan').value='';renderPlans()});break;
+case 'random':on('#pickRandom','click',()=>{const a=$('#randomItems').value.split('\n').map(x=>x.trim()).filter(Boolean);$('#randomResult').textContent=a.length?a[Math.floor(Math.random()*a.length)]:'Escreve pelo menos uma opção.'});on('#pickNumber','click',()=>{const max=Math.floor(Number($('#randMax').value));$('#randomResult').textContent=max>0&&max<=100000000?'Número sorteado: '+(1+Math.floor(Math.random()*max)):'Introduz um máximo entre 1 e 100 000 000.'});break;
+case 'flashcards':on('#saveFC','click',()=>{const cards=$('#fcInput').value.split('\n').map(x=>x.split('|')).filter(x=>x.length>=2&&x[0].trim()&&x[1].trim()).map(x=>({q:x[0].trim(),a:x.slice(1).join('|').trim()}));saveJSON('wa7_fc',cards);$('#fcStudy').hidden=false;$('#fcStudy').innerHTML=cards.length?`${cards.length} cartões guardados. Clica em “Estudar” para começar.`:'Não foram encontrados cartões válidos.'});on('#studyFC','click',()=>studyCards());break;
+case 'memory':newMemory();break;
+case 'clicker':setupClicker();break;
+case 'journal':renderJournal();on('#saveJournal','click',()=>{const text=$('#journalText').value.trim();if(!text)return;const entries=readJSON('wa7_journal',[]);entries.unshift({date:$('#journalDate').value,text});saveJSON('wa7_journal',entries.slice(0,50));$('#journalText').value='';renderJournal()});break;
+case 'draw':setupDraw();break;
+case 'focus':{let left=1500,running=false,end=0;const display=()=>$('#focusDisplay').textContent=fmt(left);display();on('#focusStart','click',()=>{if(running)return;running=true;end=Date.now()+left*1000;$('#focusStatus').textContent='Hora de focar!';timerId=setInterval(()=>{left=Math.max(0,Math.ceil((end-Date.now())/1000));display();if(left<=0){clearInterval(timerId);timerId=null;running=false;$('#focusStatus').textContent='Sessão concluída. Muito bem!'}},250)});on('#focusPause','click',()=>{if(running){left=Math.max(0,Math.ceil((end-Date.now())/1000));clearInterval(timerId);timerId=null;running=false;$('#focusStatus').textContent='Em pausa.'}else if(left>0){running=true;end=Date.now()+left*1000;$('#focusStatus').textContent='Hora de focar!';timerId=setInterval(()=>{left=Math.max(0,Math.ceil((end-Date.now())/1000));display();if(!left){clearInterval(timerId);timerId=null;running=false;$('#focusStatus').textContent='Sessão concluída!'}},250)}});on('#focusReset','click',()=>{clearInterval(timerId);timerId=null;left=1500;running=false;display();$('#focusStatus').textContent='Pronto para começar.'});break}
+case 'dice':on('#rollDice','click',()=>{const n=Number($('#diceNum').value),vals=Array.from({length:n},()=>1+Math.floor(Math.random()*6));$('#diceResult').textContent=vals.map(x=>['','⚀','⚁','⚂','⚃','⚄','⚅'][x]).join(' ')+' = '+vals.reduce((a,b)=>a+b,0)});break;
+case 'coin':on('#flipCoin','click',()=>{$('#coinResult').innerHTML=Math.random()<.5?'🪙<p>Cara!</p>':'🪙<p>Coroa!</p>'});break;
+}
+}
+function saveLocal(k,v){try{localStorage.setItem(k,v);return true}catch{return false}}
+function fmt(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function fmtMs(ms){const s=Math.floor(ms/1000),d=Math.floor(ms%1000/100);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')+'.'+d}
+async function copyText(t){try{await navigator.clipboard.writeText(t);alert('Copiado!')}catch{const ta=document.createElement('textarea');ta.value=t;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();alert('Copiado!')}}
+function renderTodos(){const el=$('#todoList');if(!el)return;const arr=readJSON('wa7_todos',[]);el.innerHTML=arr.length?arr.map(t=>`<div style="display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)"><input type="checkbox" data-todo="${t.id}" ${t.done?'checked':''}><span style="flex:1;${t.done?'text-decoration:line-through;color:var(--muted)':''}">${safe(t.text)}</span><button class="btn" data-del="${t.id}">Apagar</button></div>`).join(''):'Ainda não tens tarefas.';el.querySelectorAll('[data-todo]').forEach(e=>e.onchange=()=>{const a=readJSON('wa7_todos',[]);const t=a.find(x=>x.id==e.dataset.todo);if(t)t.done=e.checked;saveJSON('wa7_todos',a);renderTodos()});el.querySelectorAll('[data-del]').forEach(e=>e.onclick=()=>{saveJSON('wa7_todos',readJSON('wa7_todos',[]).filter(x=>x.id!=e.dataset.del));renderTodos()})}
+function renderPlans(){const el=$('#planList');if(!el)return;const a=readJSON('wa7_plans',[]);el.innerHTML=a.length?a.slice(-8).reverse().map(p=>`<div style="padding:7px 0;border-bottom:1px solid var(--border)"><strong>${safe(p.date)}</strong> — ${safe(p.plan)}</div>`).join(''):'Ainda não guardaste planos.'}
+let fcIndex=0,fcCards=[];
+function studyCards(){fcCards=readJSON('wa7_fc',[]);fcIndex=0;const el=$('#fcStudy');el.hidden=false;showFC()}
+function showFC(){const el=$('#fcStudy');if(!fcCards.length){el.textContent='Guarda cartões primeiro.';return}const c=fcCards[fcIndex%fcCards.length];el.innerHTML=`<p class="notice">Cartão ${fcIndex%fcCards.length+1} de ${fcCards.length}</p><h3>${safe(c.q)}</h3><button class="btn" id="revealFC">Mostrar resposta</button><div id="fcAnswer"></div><div class="toolactions">${btn('← Anterior','prevFC',false)}${btn('Próximo →','nextFC',false)}</div>`;$('#revealFC').onclick=()=>$('#fcAnswer').textContent=c.a;$('#prevFC').onclick=()=>{fcIndex=(fcIndex-1+fcCards.length)%fcCards.length;showFC()};$('#nextFC').onclick=()=>{fcIndex++;showFC()}}
+let memCards=[],memMoves=0,memMatched=new Set();
+function newMemory(){memCards=['🍎','🍋','🍇','🍒','🐱','🐸','⭐','🚀', '🍎','🍋','🍇','🍒','🐱','🐸','⭐','🚀'].sort(()=>Math.random()-.5);memMoves=0;memMatched=new Set();memState={first:null,lock:false,matches:0};drawMemory()}
+function drawMemory(){const grid=$('#memoryGrid');if(!grid)return;$('#memoryStatus').textContent=`Jogadas: ${memMoves} · Pares: ${memMatched.size/2}/8`;grid.innerHTML=memCards.map((c,i)=>`<button class="memorytile ${memMatched.has(i)||memState.first===i?'revealed':''}" data-mi="${i}">${memMatched.has(i)||memState.first===i?c:'?'}</button>`).join('');grid.querySelectorAll('[data-mi]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.mi);if(memState.lock||memMatched.has(i)||memState.first===i)return;if(memState.first===null){memState.first=i;drawMemory();return}memMoves++;const first=memState.first;if(memCards[first]===memCards[i]){memMatched.add(first);memMatched.add(i);memState.first=null;drawMemory();if(memMatched.size===16)$('#memoryStatus').textContent=`Conseguiste! ${memMoves} jogadas.`}else{memState.lock=true;drawMemory();setTimeout(()=>{memState.first=null;memState.lock=false;drawMemory()},700)}})}
+function setupClicker(){clickerScore=0;let running=false;const target=$('#clickTarget');$('#clickScore').textContent='0';$('#clickTime').textContent='10 segundos';$('#clickMsg').textContent='Clica para começar!';target.onclick=()=>{if(!running){running=true;clickerScore=0;clickerEnd=Date.now()+10000;target.textContent='CLICA! ⚡';clickerTimer=setInterval(()=>{const left=Math.max(0,Math.ceil((clickerEnd-Date.now())/1000));$('#clickTime').textContent=left+' segundos';if(!left){clearInterval(clickerTimer);clickerTimer=null;running=false;target.textContent='Tempo terminado!';$('#clickMsg').textContent='Resultado: '+clickerScore+' cliques.'}},100);return}if(Date.now()<clickerEnd){clickerScore++;$('#clickScore').textContent=clickerScore}};$('#resetClicker').onclick=()=>{clearInterval(clickerTimer);clickerTimer=null;running=false;clickerScore=0;$('#clickScore').textContent='0';$('#clickTime').textContent='10 segundos';target.textContent='Toca aqui para começar!';$('#clickMsg').textContent='Faz o máximo de cliques antes do tempo acabar.'}}
+function renderJournal(){const el=$('#journalEntries');if(!el)return;const a=readJSON('wa7_journal',[]);el.innerHTML=a.length?a.map(e=>`<div style="padding:9px 0;border-bottom:1px solid var(--border)"><strong>${safe(e.date)}</strong><p style="white-space:pre-wrap;margin:5px 0">${safe(e.text)}</p></div>`).join(''):'Ainda não tens entradas no diário.'}
+function setupDraw(){const c=$('#drawCanvas'),ctx=c.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,c.width,c.height);let down=false;function pos(e){const r=c.getBoundingClientRect();return {x:(e.clientX-r.left)*c.width/r.width,y:(e.clientY-r.top)*c.height/r.height}}c.onpointerdown=e=>{down=true;c.setPointerCapture(e.pointerId);const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)};c.onpointermove=e=>{if(!down)return;const p=pos(e);ctx.strokeStyle=$('#drawColor').value;ctx.lineWidth=Number($('#drawSize').value);ctx.lineCap='round';ctx.lineJoin='round';ctx.lineTo(p.x,p.y);ctx.stroke()};c.onpointerup=c.onpointercancel=()=>down=false;$('#clearCanvas').onclick=()=>{ctx.fillStyle='#ffffff';ctx.fillRect(0,0,c.width,c.height)};$('#saveCanvas').onclick=()=>{const a=document.createElement('a');a.download='worldapps-desenho.png';a.href=c.toDataURL('image/png');a.click()}}
+function renderAccount(){ $('#accountBtn').textContent=account?'👤 '+account.name:'👤 Entrar'}
+function accountModal(){if(account){openModal('Conta local',`<p>Olá, <strong>${safe(account.name)}</strong>!</p><p class="notice">Esta conta existe apenas neste navegador. Não é uma conta online.</p><div class="toolactions">${btn('Terminar sessão','logout')}${btn('Apagar conta local','deleteAccount',false)}</div>`);$('#logout').onclick=()=>{account=null;saveJSON('wa7_user',null);renderAccount();closeModal()};$('#deleteAccount').onclick=()=>{if(confirm('Apagar a conta local deste navegador?')){account=null;saveJSON('wa7_user',null);renderAccount();closeModal()}};return}
+openModal('Criar conta local',`<p>Cria um perfil simples para personalizar a tua experiência neste dispositivo.</p>${field('Nome de utilizador','userName','Como te chamas?')}${field('Email (opcional)','userEmail','nome@exemplo.pt')}<div class="field"><label for="userPass">Palavra-passe local</label><input id="userPass" type="password" autocomplete="new-password" placeholder="Pelo menos 6 caracteres"></div><p class="notice">A palavra-passe é guardada como resumo criptográfico quando o navegador suporta Web Crypto. Esta conta não permite iniciar sessão noutros dispositivos nem recuperar a conta. Não uses uma palavra-passe importante.</p><div class="toolactions">${btn('Criar conta','createAccount')}${btn('Continuar sem conta','guest',false)}</div><p id="accountError" class="error"></p>`);$('#createAccount').onclick=async()=>{const name=$('#userName').value.trim(),email=$('#userEmail').value.trim(),pass=$('#userPass').value;if(name.length<2||pass.length<6){$('#accountError').textContent='Indica um nome (2+ caracteres) e uma palavra-passe (6+ caracteres).';return}let hash='';try{if(crypto.subtle){const data=new TextEncoder().encode(pass);const digest=await crypto.subtle.digest('SHA-256',data);hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,'0')).join('')}}catch{}account={name,email,passHash:hash||null,created:new Date().toISOString()};if(!saveJSON('wa7_user',account)){$('#accountError').textContent='O navegador não permitiu guardar a conta.';account=null;return}renderAccount();closeModal()};$('#guest').onclick=closeModal}
+$('#categories').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;category=b.dataset.cat;showFavOnly=false;render
